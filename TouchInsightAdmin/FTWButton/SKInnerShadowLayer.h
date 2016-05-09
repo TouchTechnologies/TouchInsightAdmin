@@ -1,0 +1,19 @@
+//
+//  CAInnerShadowLayer.h
+//  FTW
+//
+//  Created by Soroush Khanlou on 6/13/12.
+//  Copyright (c) 2012 Soroush Khanlou. All rights reserved.
+//
+
+#import <QuartzCore/QuartzCore.h>
+#import <Foundation/Foundation.h>
+
+@interface SKInnerShadowLayer : CAGradientLayer
+
+@property CGColorRef innerShadowColor;
+@property CGSize innerShadowOffset;
+@property CGFloat innerShadowRadius;
+@property CGFloat innerShadowOpacity;
+
+@end

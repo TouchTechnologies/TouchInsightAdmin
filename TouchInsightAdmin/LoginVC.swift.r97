@@ -1,0 +1,155 @@
+//
+//  LoginVC.swift
+//  TouchInsightAdmin
+//
+//  Created by weerapons suwanchatree on 11/26/2558 BE.
+//  Copyright © 2558 weerapons suwanchatree. All rights reserved.
+//
+
+import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import SMPageControl
+import SCLAlertView
+import CoreLocation
+import MapKit
+class LoginVC: UIViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var userNameTxt: UITextField!
+    @IBOutlet weak var passWordTxt: UITextField!
+    
+    var latitude:String? = "0.00"
+    var longitude:String? = "0.00"
+    
+    let locationManager = CLLocationManager()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        locationManager.requestWhenInUseAuthorization();
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            
+        }
+        else{
+            print("Location service disabled");
+        }
+        //        test.PostData()
+    
+        /***
+        define AlertView
+        .......................................................
+        SCLAlertView().showInfo("Important info", subTitle: "You are great")
+        ***/
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        
+        let location = locations.last! as CLLocation
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    
+//        print("latitude : \(location.coordinate.latitude)")
+//        print("longitude : \(location.coordinate.longitude)")
+        latitude  = String(location.coordinate.latitude)
+        longitude = String(location.coordinate.longitude)
+        locationManager.stopUpdatingLocation()
+//        self.map.setRegion(region, animated: true)
+    }
+    
+    @IBAction func LoginBtn(sender: AnyObject)
+    {
+        let login = API_Model()
+        var titleMessage:String = ""
+        var message:String = ""
+//        print(userNameTxt.text as! String)
+//        print(passWordTxt.text as! String)
+//        print("latitude : \(latitude)")
+//        print("long")
+        if userNameTxt.text != "" && passWordTxt.text != ""
+        {
+            login.LogIn(userNameTxt.text!, password: passWordTxt.text!,latitude: latitude!,longitude: longitude!)
+                {
+                    data in
+                    print(data)
+
+                    if (data["status"] as! Bool)
+                    {
+                        titleMessage = "Login Success"
+                        message = "ยินดีตอนรับเข้าสู่ระบบ"
+                        SCLAlertView().showInfo(titleMessage, subTitle: message)
+                        print("SUCCESS")
+                        let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                        self.navigationController?.pushViewController(secondViewController!, animated: true)
+                    }
+                    else
+                    {
+                        titleMessage = "Login fail"
+                        message = data["message"] as! String
+                        SCLAlertView().showInfo(titleMessage, subTitle: message)
+                        print(" Message = \(data["message"])")
+                    }
+
+            }
+        }
+        else if userNameTxt.text == "" && passWordTxt.text == ""
+        {
+            titleMessage = "Login fail"
+            message = "กรุณากรอก Username และ Password"
+            SCLAlertView().showInfo(titleMessage, subTitle: message)
+        }
+        else if userNameTxt.text == ""
+        {
+            titleMessage = "Login fail"
+            message = "กรุณากรอก Username"
+            SCLAlertView().showInfo(titleMessage, subTitle: message)
+        }
+        else if passWordTxt.text == ""
+        {
+            titleMessage = "Login fail"
+            message = "กรุณากรอก Password"
+            SCLAlertView().showInfo(titleMessage, subTitle: message)
+        }
+       
+    }
+    
+    @IBAction func LoginFbBtn(sender: AnyObject) {
+        let parameters = [
+            "username":"weerapon",
+            "password":"12345",
+            "tokenIdentifier":"123456789",
+            "platform":"Application",
+            "os":"iOS",
+            "osVersion":"8.0",
+            "expire":"",
+            "latitude":"",
+            "longitude":""
+        ]
+        let s2s = API_Model()
+        s2s.sync2Server("tokens", POST_Data: parameters){
+            data in
+            print(data)
+        }
+
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /*
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+    }
+    */
+    
+}
