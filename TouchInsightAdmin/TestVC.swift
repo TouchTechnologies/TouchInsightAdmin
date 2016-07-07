@@ -347,12 +347,12 @@ class TestVC: UIViewController,UITextFieldDelegate {
         
         
         _btnRegister.frame = RectBtnRegis
-        _btnRegister.addTarget(self, action: "clickMe:", forControlEvents: UIControlEvents.TouchUpInside)
+        _btnRegister.addTarget(self, action: #selector(TestVC.clickMe(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         _btnRegister.alpha = 0.6
         
         
         _btnForgot.frame = RectBtnForgot
-        _btnForgot.addTarget(self, action: "clickMe:", forControlEvents: UIControlEvents.TouchUpInside)
+        _btnForgot.addTarget(self, action: #selector(TestVC.clickMe(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         _btnForgot.alpha = 0.6
         
         

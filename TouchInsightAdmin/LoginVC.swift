@@ -34,6 +34,8 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
     }
     override func viewDidLoad() {
         appDelegate.isLogin = false
+        
+        
         alertView.showCircularIcon = false
         super.viewDidLoad()
         self.setViewStyle()
@@ -46,6 +48,9 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
 //*******************User Test**********************//
 //       userNameTxt.text = "pair@p.z"
 //       passWordTxt.text = "12345678"
+        
+        userNameTxt.text = "teerstudio@hotmail.com"
+        passWordTxt.text = "master99"
        
         userNameTxt.delegate = self
         passWordTxt.delegate = self
@@ -83,12 +88,12 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         return true;
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         self.view!.endEditing(true)
         return true
     }
@@ -156,24 +161,26 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         userNameTxt.resignFirstResponder()
         passWordTxt.resignFirstResponder()
         
-        let login = API_Model()
         var titleMessage:String = ""
         var message:String = ""
-//        print(userNameTxt.text as! String)
-//        print(passWordTxt.text as! String)
-//        print("latitude : \(latitude)")
-//        print("long")
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-        PKHUD.sharedHUD.show()
-        
-      //  PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-     //   PKHUD.sharedHUD.hide(afterDelay: 2.0)
-        if userNameTxt.text != "" && passWordTxt.text != ""
-        {
+
+        if userNameTxt.text != "" && passWordTxt.text != "" {
+            
+            let login = API_Model()
+            //        print(userNameTxt.text as! String)
+            //        print(passWordTxt.text as! String)
+            //        print("latitude : \(latitude)")
+            //        print("long")
+            PKHUD.sharedHUD.dimsBackground = false
+            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+            
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+            PKHUD.sharedHUD.show()
+            
+            //  PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+            //   PKHUD.sharedHUD.hide(afterDelay: 2.0)
+            
             login.LogIn(userNameTxt.text!, password: passWordTxt.text!,latitude: latitude!,longitude: longitude!)
                 {
                     data in
@@ -194,30 +201,52 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                         login.getUserInfo(self.appDelegate.userInfo["userID"]! as String)
                             {
                                 data in
-                                PKHUD.sharedHUD.hide(afterDelay: 0.1)
+                                //PKHUD.sharedHUD.hide(afterDelay: 0.1)
                                 print("data : \(data)")
-//                                 = (data["profileName"] as! String)
-//                                self.lblEmail.text = (data["email"] as! String)
                                 
-                                let dataJson = "{\"providerUser\":\"\(data["email"]!)\"}"
-                                //print("appDelegate :\(appDelegate.userInfo["email"])")
-                                print("dataSendJson : \(dataJson)")
-                                login.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJson){
-                                    data in
-                                    
-                                    print("listProvider :\(data["ListProviderInformationSummary"]!)")
-                                    self.appDelegate.providerData = data
-                                    print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
-                                   
-                                    self.alertView.showTitle(titleMessage, subTitle: message, style: SCLAlertViewStyle.Success, closeButtonTitle: "OK" , duration: 3.0, colorStyle: 0xAC332F, colorTextButton: 0xFFFFFF)
-                                    
+                                
+                                if let _avatarImage = data["avatar"] as! String? {
+                                    self.appDelegate.userInfo["avatarImage"] = _avatarImage
+                                }
+                                
+                                if let _firstName = data["firstName"] as! String? {
+                                    self.appDelegate.userInfo["firstName"] = _firstName
+                                }
+                                
+                                if let _lastName = data["lastName"] as! String? {
+                                    self.appDelegate.userInfo["lastName"] = _lastName
+                                }
+                                
+                                if let _email = data["email"] as! String? {
+                                    self.appDelegate.userInfo["email"] = _email
+                                }
+                                
+                                if let _mobile = data["phoneNumber"] as! String? {
+                                    self.appDelegate.userInfo["mobile"] = _mobile
+                                }
+                                
+                                
+                                if let _id = data["id"] as! String? {
+                                    self.appDelegate.userInfo["id"] = _id
+                                }
+                                
+                                self.appDelegate.userInfo["profileName"] = "\(self.appDelegate.userInfo["firstName"]!) \(self.appDelegate.userInfo["lastName"]!)"
+                                
+                                
+                                
+                                self.appDelegate.userInfo["username"] = self.userNameTxt.text
+                                self.appDelegate.userInfo["passWord"] = self.passWordTxt.text
+                                self.appDelegate.userInfo["email"] = self.userNameTxt.text
+                                //
+                                
+                                self.appDelegate.isLogin = true
+                                print("APPDALAGATELOGIN:::\(self.appDelegate.isLogin)")
+                                
+                                PKHUD.sharedHUD.hide(animated: true, completion: {_ in
                                     let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                                     self.navigationController?.pushViewController(secondViewController!, animated: true)
-
-
-                                    self.appDelegate.isLogin = true
-                                    print("APPDALAGATELOGIN:::\(self.appDelegate.isLogin)")
-                                }
+                                })
+                                
                         }
                     }
                     else
@@ -225,10 +254,11 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                         self.appDelegate.isLogin = false
                         titleMessage = "Login fail"
                         message = data["message"] as! String
-                       self.alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
+                        self.alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
                         print(" Message = \(data["message"])")
                         PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                        PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                        //PKHUD.sharedHUD.hide(afterDelay: 1.0)
                     }
 
             }

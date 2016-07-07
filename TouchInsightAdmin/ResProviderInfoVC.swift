@@ -9,7 +9,7 @@
 import UIKit
 import PagingMenuController
 import PKHUD
-class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
+class ResProviderInfoVC: UIViewController , PagingMenuControllerDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -85,20 +85,20 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         
         // btnInfo.backgroundColor = UIColor.greenColor()
         btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
-        btnInfo.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
+        btnInfo.addTarget(self, action: #selector(ResProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         btnGallery.tag = 1
         btnGallery.frame = CGRect(origin:CGPoint(x: 30.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
         
         // btnGallery.backgroundColor = UIColor.grayColor()
         btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-        btnGallery.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
+        btnGallery.addTarget(self, action: #selector(ResProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         btnLive.tag = 2
         btnLive.frame = CGRect(origin:CGPoint(x: 60.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
         // btnLive.backgroundColor = UIColor.yellowColor()
         btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
-        btnLive.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
+        btnLive.addTarget(self, action: #selector(ResProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         
         viewWithTopButtons.addSubview(btnInfo)
@@ -137,7 +137,7 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         pagingMenuController.view.bounds.size.width = UIScreen.mainScreen().bounds.size.width
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
         pagingMenuController.menuView.scrollEnabled = true
-        pagingMenuController.menuView.menuItemViews.forEach{$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProviderInfoVC.handleTapGesture(_:)))) }
+        pagingMenuController.menuView.menuItemViews.forEach{$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ResProviderInfoVC.handleTapGesture(_:)))) }
     }
     func handleTapGesture(recognizer: UITapGestureRecognizer) {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController

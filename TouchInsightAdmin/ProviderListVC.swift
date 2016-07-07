@@ -12,7 +12,7 @@ import PKHUD
 
 class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, CustomIOS7AlertViewDelegate {
     
-   
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var providerstype :[String] = ["HOTEL","HOTEL","HOTEL"]
     var providerType :String?
@@ -20,36 +20,40 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     var providersname : [String] = ["AAAAAAAAAAA HOTEL","BBBBBBBB HOTEL","CCCCCCCCCCC HOTEL"]
     let kInfoTitle = "Create New Provider"
     let kSubtitle:String = ("Add Your Provider Name")
-    let imggg = UIImage(named: "Left-32.png")!
+    //let imggg = UIImage(named: "Left-32.png")!
     var providerTypeKeyname:String?
     var bgColor = UIColor()
-   
+    
     var closeBtn = UIButton()
     var popupView = UIView()
     var subView1 = alertCreateProviderV()
     
     var navunderlive = UIView()
-     var Cell = customProviderView()
- 
+    var Cell = customProviderView()
+    
     @IBOutlet var tableView: UITableView!
-
+    
     @IBAction func btnLeft(sender: AnyObject) {
-        let mainView = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-        self.navigationController?.pushViewController(mainView!, animated: true)
-    }
-
-    func initNavUnderline(){
-    navunderlive.frame = CGRectMake(self.view.frame.size.width/3, (self.navigationController?.navigationBar.frame.size.height)! - 3, self.view.frame.size.width/3, 3)
-    navunderlive.backgroundColor = UIColor.redColor()
-    
-    self.navigationController?.navigationBar.addSubview(navunderlive)
-    
-    }
-   internal func initialAlert(){
+//        let mainView = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+//        self.navigationController?.pushViewController(mainView!, animated: true)
         
-           }
+        self.navigationController?.popViewControllerAnimated(true)
+        print("back click")
+    }
+    
+    func initNavUnderline(){
+        navunderlive.frame = CGRectMake(self.view.frame.size.width/3, (self.navigationController?.navigationBar.frame.size.height)! - 3, self.view.frame.size.width/3, 3)
+        navunderlive.backgroundColor = UIColor.redColor()
+        
+        self.navigationController?.navigationBar.addSubview(navunderlive)
+    }
+    
+    internal func initialAlert(){
+        
+    }
+    
     @IBAction  func btnCreateProvider(sender: AnyObject) {
-               print("alert ")
+        print("alert ")
         
         let alert = CustomIOS7AlertView()
         alert.delegate = self
@@ -57,86 +61,87 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         alert.containerView = createpopupView()
         alert.show()
         
-//      alert.keyboardWillShow(NSNotification)
+        //      alert.keyboardWillShow(NSNotification)
     }
     
-                  //CustomIOS7AlertViewDelegate = self
-        
-      /*  let send = API_Model()
-        let alert = SCLAlertView()
-        let txtProviderName = alert.addTextField("Provider name")
-        alert.addButton("Hotel", target:self, selector:Selector("setHotel"))
-        alert.addButton("Restaurant", target:self, selector:Selector("setRestaurant"))
-        alert.addButton("Attraction", target:self, selector:Selector("setAttraction"))
-        alert.addButton("Create"){
-            print(txtProviderName.text)
-            
-            if self.providerTypeKeyname != nil
-            {
-                print("Not Null")
-                let dataJson = [
-                    "providerInformation" : [
-                        "providerTypeKeyname" : self.providerTypeKeyname!,
-                        "nameEn"              : txtProviderName.text!,
-                        "nameTh"              : ""
-                    ],
-                    "user" : [
-                    "accessToken" : self.appDelegate.userInfo["accessToken"]!
-                    ]
-                ]
-                
-                //create Provider
-                send.providerAPI(self.appDelegate.command["createProvider"]!, dataJson: send.Dict2JsonString(dataJson)){
-                    data in
-//                    print("data :\(data)")
-                    
-                    let dataJsonUpdate = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
-                    //print("appDelegate :\(appDelegate.userInfo["email"])")
-//                    print("dataSendJson : \(dataJsonUpdate)")
-                    send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJsonUpdate){
-                        data in
-                        
-//                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
-                        self.appDelegate.providerData = data
-                        print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
-                        let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-                        self.navigationController?.pushViewController(providerlist!, animated: true)
-                    
-                }
-
-                }
-
-            }else
-            {
-                print("nil")
-            }
-        
-
-            
-        }
-        
-//        alert.showEdit(kInfoTitle, subTitle:kSubtitle ,colorStyle:0xDB3F42 , colorTextButton: 0xFFFFFF )
-        alert.showEdit(kInfoTitle, subTitle: kSubtitle, closeButtonTitle:"cancel", colorStyle: 0xDB3F42, colorTextButton: 0xFFFFFF)
-//         alert.showSuccess(kInfoTitle, subTitle: kSubtitle)
-        */
-        
-        
-//    }
-   internal func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
-      print("reload")
-  
-            alertView.close()
-//            tableView.reloadData()
-   
+    //CustomIOS7AlertViewDelegate = self
     
+    /*  let send = API_Model()
+     let alert = SCLAlertView()
+     let txtProviderName = alert.addTextField("Provider name")
+     alert.addButton("Hotel", target:self, selector:Selector("setHotel"))
+     alert.addButton("Restaurant", target:self, selector:Selector("setRestaurant"))
+     alert.addButton("Attraction", target:self, selector:Selector("setAttraction"))
+     alert.addButton("Create"){
+     print(txtProviderName.text)
+     
+     if self.providerTypeKeyname != nil
+     {
+     print("Not Null")
+     let dataJson = [
+     "providerInformation" : [
+     "providerTypeKeyname" : self.providerTypeKeyname!,
+     "nameEn"              : txtProviderName.text!,
+     "nameTh"              : ""
+     ],
+     "user" : [
+     "accessToken" : self.appDelegate.userInfo["accessToken"]!
+     ]
+     ]
+     
+     //create Provider
+     send.providerAPI(self.appDelegate.command["createProvider"]!, dataJson: send.Dict2JsonString(dataJson)){
+     data in
+     //                    print("data :\(data)")
+     
+     let dataJsonUpdate = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
+     //print("appDelegate :\(appDelegate.userInfo["email"])")
+     //                    print("dataSendJson : \(dataJsonUpdate)")
+     send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJsonUpdate){
+     data in
+     
+     //                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
+     self.appDelegate.providerData = data
+     print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
+     let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
+     self.navigationController?.pushViewController(providerlist!, animated: true)
+     
+     }
+     
+     }
+     
+     }else
+     {
+     print("nil")
+     }
+     
+     
+     
+     }
+     
+     //        alert.showEdit(kInfoTitle, subTitle:kSubtitle ,colorStyle:0xDB3F42 , colorTextButton: 0xFFFFFF )
+     alert.showEdit(kInfoTitle, subTitle: kSubtitle, closeButtonTitle:"cancel", colorStyle: 0xDB3F42, colorTextButton: 0xFFFFFF)
+     //         alert.showSuccess(kInfoTitle, subTitle: kSubtitle)
+     */
+    
+    
+    //    }
+    internal func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
+        print("reload xxxx")
+        
+        alertView.close()
+        self.reloadData()
+        //            tableView.reloadData()
+        
+        
     }
     
-   //    func closealert(sender : UIButton){
-//     print("Close")
-//       //  alert.close()
-//         tableView.reloadData()
-//    }
-
+    //    func closealert(sender : UIButton){
+    //     print("Close")
+    //       //  alert.close()
+    //         tableView.reloadData()
+    //    }
+    
     // Create a custom container view
     func createpopupView() -> UIView {
         
@@ -150,36 +155,36 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         subView1.providerNameTxt.layer.borderWidth = 1
         subView1.providerNameTxt.layer.cornerRadius = 5
         subView1.providerNameTxt.delegate = self
-       
+        
         popupView.addSubview(subView1)
         return popupView
     }
     func alertDismiss(sender :UIButton){
-//        alert.close()
-//        print("helllllll")
-//        alert.hidden = true
-//        alert.removeFromSuperview()
-//        popupView.removeFromSuperview()
-//        self.dismissViewControllerAnimated(true, completion: {})
-//        tableView.hidden = false
-//        PKHUD.sharedHUD.dimsBackground = false
-//        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//        PKHUD.sharedHUD.show()
-//        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//        if (appDelegate.providerData!["ListProviderInformationSummary"]!.count != 0)
-//        {
-//            
-//           let nib = UINib(nibName: "customProviderListVC", bundle: nil)
-//           self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
-//            tableView.reloadData()
-//            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-//            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//        
-//      
-//        }
-      
-//       tableView.reloadData()
+        //        alert.close()
+        print("helllllll")
+        //        alert.hidden = true
+        //        alert.removeFromSuperview()
+        //        popupView.removeFromSuperview()
+        //        self.dismissViewControllerAnimated(true, completion: {})
+        //        tableView.hidden = false
+        //        PKHUD.sharedHUD.dimsBackground = false
+        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        //        PKHUD.sharedHUD.show()
+        //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        //        if (appDelegate.providerData!["ListProviderInformationSummary"]!.count != 0)
+        //        {
+        //
+        //           let nib = UINib(nibName: "customProviderListVC", bundle: nil)
+        //           self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+        //            tableView.reloadData()
+        //            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+        //            PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        //
+        //
+        //        }
+        
+        tableView.reloadData()
         
     }
     func setAttraction(){
@@ -196,42 +201,56 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         providerTypeKeyname = "hotel"
     }
     
- 
     
-   // @IBOutlet var providerView:UIView!
-
- /*   var txtProviderName = UITextField()
-    var providerItem = String()
-    var icon1 = UIImage()
-    @IBAction func btnAddProvider(sender: AnyObject) {
-        let alert = SCLAlertView()
-   
-        txtProviderName = alert.addTextField("Provider name")
-        alert.addButton("Attraction",action:{
-            self.providerItem = "Attraction"
-            print("provider type :\(self.providerItem)")
-        })
-        
-        alert.addButton("Restaurant",action:{
-            self.providerItem = "Restaurant"
-            print("provider type :\(self.providerItem)")
-            
-        })
-
-        alert.addButton("Hotel",action:{
-            self.providerItem = "Hotel"
-            print("provider type :\(self.providerItem)")
-            
-        })
-        alert.addButton("Create", target:self, selector:Selector("createProvder"))
-        alert.showEdit("Create new provider", subTitle:"Add your provider name ",colorStyle : 0x50AB3C)
-        
-
-    }
-*/
+    
+    // @IBOutlet var providerView:UIView!
+    
+    /*   var txtProviderName = UITextField()
+     var providerItem = String()
+     var icon1 = UIImage()
+     @IBAction func btnAddProvider(sender: AnyObject) {
+     let alert = SCLAlertView()
+     
+     txtProviderName = alert.addTextField("Provider name")
+     alert.addButton("Attraction",action:{
+     self.providerItem = "Attraction"
+     print("provider type :\(self.providerItem)")
+     })
+     
+     alert.addButton("Restaurant",action:{
+     self.providerItem = "Restaurant"
+     print("provider type :\(self.providerItem)")
+     
+     })
+     
+     alert.addButton("Hotel",action:{
+     self.providerItem = "Hotel"
+     print("provider type :\(self.providerItem)")
+     
+     })
+     alert.addButton("Create", target:self, selector:Selector("createProvder"))
+     alert.showEdit("Create new provider", subTitle:"Add your provider name ",colorStyle : 0x50AB3C)
+     
+     
+     }
+     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.providersname.count
-        return self.appDelegate.providerData!["ListProviderInformationSummary"]!.count
+        //        return self.providersname.count
+        
+        var countData = 0
+        if let dicProviderData = self.appDelegate.providerData as NSDictionary? {
+            
+            if let arrProviderData = dicProviderData["ListProviderInformationSummary"] as! NSArray? {
+                
+                if let _count = arrProviderData.count as Int? {
+                    countData = _count
+                }
+                
+            }
+            
+        }
+        return countData
+        
     }
     
     
@@ -247,188 +266,140 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     
+        
         let nib = UINib(nibName: "customProviderListVC", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "cell")
         Cell = tableView.dequeueReusableCellWithIdentifier("cell") as! customProviderView
         
         Cell.selectionStyle = UITableViewCellSelectionStyle.None
-
         
-// *************************** FIX BUG *************************
-
-   
         
-        do {
-            let coverImage = try (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"]!)
-            print(coverImage!)
+        // *************************** FIX BUG *************************
+        
+        
+        if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String? {
             
-            if(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"]! != nil){
-                
-                if(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"]! is NSNull){
-                    Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-                }
-//                else if(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"]! as! String == "http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png")
-//                {
-                else if(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"]! as! String == "http://insight.touch-ics.com/_develop/public/resource/insight/hotel/default/cover/default.png")
-                {
-                    Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-                }
-                else{
-                    
-                    Cell.imgProvider.image = UIImage(data: NSData(contentsOfURL: NSURL(string:coverImage as! String)!)!)
-                }
+            if coverImage.rangeOfString("cover/default.png") == nil {
+                let urlLogo = NSURL(string: coverImage)
+                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
                 
             }
-            else{
-                
-                Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-            }
-
         }
-        catch {
-            print(error)
-        }
-
         
-        
-        
-     
-       
-        
-//            if(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]! as! String == ""http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png)
-//            {
-//                 Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-//            
-//            }
-//            else{
-//       
-//              Cell.imgProvider.image = UIImage(data: NSData(contentsOfURL: NSURL(string:appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["medium"] as! String)!)!)
-//                }
-            
-//        }
-//        else{
-//        Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-//        }
-        
-        
-        
-    
-//        else if (coverImage == "http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png"){
-//           Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-//        }
-//        else{
-//          Cell.imgProvider.image = UIImage(data: NSData(contentsOfURL: NSURL(string:coverImage )!)!)
-//        
-//        }
-//        if let coverImage = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["medium"]) {
-//                        Cell.imgProvider.image = UIImage(data: NSData(contentsOfURL: NSURL(string:coverImage as! String)!)!)
-//        }else{
-                     //  Cell.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
-//        }
-
-// *************************** FIX BUG ************************
-
-        //print("imageURL \(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["medium"] as! String)")
-        print("SUMMARY :::\(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"]!)")
         Cell.lblProviderType.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String)
         Cell.lblProviderName.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["name_en"]! as! String)
         
         return Cell
     }
     
+    func reloadData() {
+        
+        appDelegate.getlistProvider{data in
+            
+            PKHUD.sharedHUD.dimsBackground = false
+            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+            
+            //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show()
+            //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+            if (data["ListProviderInformationSummary"]!.count != 0){
+                let nib = UINib(nibName: "customProviderListVC", bundle: nil)
+                self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+                //                print("====================Provider Data==============================")
+                //                print(data["ListProviderInformationSummary"]![0]!["province_id"]!)
+                //                print("====================Provider Data==============================")
+                self.tableView.reloadData()
+                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                
+            }else{
+                self.tableView.hidden = true
+                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+            }
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         self.initNavUnderline()
-     
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         
-//        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show()
-//        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        if (appDelegate.providerData!["ListProviderInformationSummary"]!.count != 0)
-        {
-            let nib = UINib(nibName: "customProviderListVC", bundle: nil)
-            tableView.registerNib(nib, forCellReuseIdentifier: "cell")
-            print("====================Provider Data==============================")
-            print(appDelegate.providerData!["ListProviderInformationSummary"]![0]!["province_id"]!)
-            print("====================Provider Data==============================")
-            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-            
-        }else
-        {
-            tableView.hidden = true
-            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        }
-        
-
-        
-        
+        self.reloadData()
         
         //create alert
         
-        
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("viewWillDisappear")
+        self.navigationController?.navigationBarHidden = true
+    }
+    
     override func viewWillAppear(animated: Bool) {
-       self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         tableView.reloadData()
         self.appDelegate.viewWithTopButtons.hidden = true
         //self.initialAlert()
     }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        print("viewDidDisappear")
+        PKHUD.sharedHUD.hide(animated: true, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
-    
-        }
-     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        textField.resignFirstResponder()
+        return true
+        
+    }
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProviderListVC.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProviderListVC.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         self.view!.endEditing(true)
         return true
     }
     func keyboardDidShow(notification: NSNotification) {
-    
-//        alert.frame = popupView.bounds    }, completion: nil)
+        
+        //        alert.frame = popupView.bounds    }, completion: nil)
         // Assign new frame to your view
         let width: CGFloat = UIScreen.mainScreen().bounds.size.width
         let height: CGFloat = UIScreen.mainScreen().bounds.size.height
         var keyboardInfo: [NSObject : AnyObject] = notification.userInfo!
         let keyboardFrameBegin: NSValue = keyboardInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
         let keyboardFrameBeginRect: CGRect =
-        keyboardFrameBegin.CGRectValue()
+            keyboardFrameBegin.CGRectValue()
         self.view!.frame = CGRectMake(0,-keyboardFrameBeginRect.size.height, width, height)
         //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
         
     }
     
     func keyboardDidHide(notification: NSNotification) {
-       
+        
         let width: CGFloat = UIScreen.mainScreen().bounds.size.width
         let height: CGFloat = UIScreen.mainScreen().bounds.size.height
         self.view!.frame = CGRectMake(0, 0, width, height)
-
+        
     }
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -441,6 +412,6 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-
-
+    
+    
 }

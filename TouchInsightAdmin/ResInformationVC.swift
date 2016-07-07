@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
+class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
     let width = UIScreen.mainScreen().bounds.size.width
     let height = UIScreen.mainScreen().bounds.size.height
     
@@ -73,11 +73,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         checkinPicker.hidden = true
         checkinPicker.backgroundColor = UIColor.whiteColor()
-        checkinPicker.addTarget(self, action: #selector(InformationVC.checkinPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        checkinPicker.addTarget(self, action: #selector(ResInformationVC.checkinPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         checkoutPicker.hidden = true
         checkoutPicker.backgroundColor = UIColor.whiteColor()
-        checkoutPicker.addTarget(self, action: #selector(InformationVC.checkoutPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        checkoutPicker.addTarget(self, action: #selector(ResInformationVC.checkoutPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -95,7 +95,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
 print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
         
         self.initailLogoImage()

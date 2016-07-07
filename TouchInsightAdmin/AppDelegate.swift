@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var providerIDData:NSDictionary?
     var provinceDic:NSDictionary?
     var isLogin = Bool()
+    var isDisplayLoginSuccess = Bool()
     
     //Hotel
     var facilityHotelDic:NSDictionary?
@@ -83,12 +84,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "passWord":"",
         "id":""
     ]
-   
+    
+    
+    func getlistProvider(completionHandler:[String:AnyObject]->()) {
+        
+        let userData = self.userInfo
+        print("---getlistProvider()---")
+        
+        print("---userData---")
+        print(userData["email"])
+        print("--------------")
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            // do some task
+            
+            let login = API_Model()
+            let dataJson = "{\"providerUser\":\"\(userData["email"]!)\"}"
+            print(dataJson)
+            //print("appDelegate :\(appDelegate.userInfo["email"])")
+            print("dataSendJson : \(dataJson)")
+            
+            login.providerAPI(self.command["listProvider"]!, dataJson: dataJson){
+                data in
+                
+                print("> > > > > > > > > > listProvider < < < < < < < < <")
+                print(data)
+                print("listProvider :\(data["ListProviderInformationSummary"]!)")
+                print("> > > > > > > > > > listProvider < < < < < < < < <")
+                
+                self.providerData = data
+                completionHandler(data as! [String : AnyObject])
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                // update some UI
+            }
+        }
+    }
+    
+    
+    // ==== ==== ==== ==== ====
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         //return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-      return true
+      
+        
+        
+        
+        return true
         
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

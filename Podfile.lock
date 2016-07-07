@@ -4,10 +4,12 @@ PODS:
   - EAIntroView (2.8.1):
     - EARestrictedScrollView (~> 0.2.0)
   - EARestrictedScrollView (0.2.0)
+  - HanekeSwift (0.10.1)
   - NKJPagerViewController (1.1.1)
   - PagingMenuController (0.8.0)
   - PKHUD (3.1.0)
   - PureLayout (3.0.1)
+  - QRCodeReader.swift (6.0.0)
   - RBBAnimation (0.4.0)
   - RNCryptor (4.0.0)
   - RNGridMenu (0.1.3)
@@ -18,10 +20,12 @@ DEPENDENCIES:
   - Alamofire
   - CustomIOSAlertView
   - EAIntroView
+  - HanekeSwift
   - NKJPagerViewController
   - PagingMenuController
   - PKHUD
   - PureLayout
+  - QRCodeReader.swift
   - RBBAnimation
   - RNCryptor
   - RNGridMenu
@@ -33,14 +37,18 @@ SPEC CHECKSUMS:
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   EAIntroView: 73abfa89caa311f450af876421d950b96679e845
   EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
+  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   NKJPagerViewController: 35c49bb83f235102c09b3b5e40ef2d463b2637e2
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  QRCodeReader.swift: 4aa8b0f88847a51312d6ffd2cafc387962da9dd8
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
   RNCryptor: 59d6483908115af5c12b884db23392024e52a5fe
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
   SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: 2fdd6a80f4e0712371cc6845ba8fef6820d1ba5b
+
+COCOAPODS: 1.0.1

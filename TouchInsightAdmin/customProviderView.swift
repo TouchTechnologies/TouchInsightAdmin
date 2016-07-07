@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 class customProviderView: UITableViewCell {
 
@@ -20,6 +21,8 @@ class customProviderView: UITableViewCell {
         super.awakeFromNib()
         self.teamDetailView.layer.cornerRadius = 5
         self.imgProvider.layer.cornerRadius = 5
+        
+        self.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
         
         //lblProviderType.text = "AAAAAA"
         //lblProviderName.text = "BBBBB"

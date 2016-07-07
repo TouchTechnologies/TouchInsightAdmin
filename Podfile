@@ -3,7 +3,7 @@ platform :ios, '8.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
 ##getServer Json Data
-pod 'AF'
+#pod 'AF' # 'AFNetworking' ?
 pod 'Alamofire'
 #pod 'AlamofireImage', '~> 2.0'
 ##help view
@@ -28,6 +28,9 @@ pod 'RNCryptor'
 pod 'PKHUD'
 #GoogleAnalytics
 #pod 'GoogleAnalytics'
+
+pod 'HanekeSwift'
+pod 'QRCodeReader.swift'
 
 
 target 'TouchInsightAdmin' do

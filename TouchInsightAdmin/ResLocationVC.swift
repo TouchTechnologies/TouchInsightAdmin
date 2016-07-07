@@ -1,5 +1,5 @@
 //
-//  LocationVC.swift
+//  ResLocationVC.swift
 //  TouchInsightAdmin
 //
 //  Created by Touch on 12/9/2558 BE.
@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UITextFieldDelegate{
+class ResLocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UITextFieldDelegate{
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -364,7 +364,7 @@ func changeDetial(){
      //      self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
         
         
-        let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(LocationVC.handleLongPress(_:)))
+        let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ResLocationVC.handleLongPress(_:)))
         lpgr.minimumPressDuration = 1.0
         //user needs to press for 1 seconds
         self.mapView.addGestureRecognizer(lpgr)

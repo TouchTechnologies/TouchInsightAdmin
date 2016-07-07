@@ -16,11 +16,13 @@ class API_Model {
 //        let _oldapiUrl = "http://api.touch-ics.com/_develop/2.2/interface/insight"
 //        let _uploadAPI = "http://api.touch-ics.com/_develop/2.2/uploadmedia/"
     
-    let _apiUrl = "http://192.168.9.58/framework/public/api/v1/"
-    let _oldapiUrl = "http://192.168.9.58/api/interface/insight"
-    let _uploadAPI = "http://192.168.9.58/api/uploadmedia/"
+//    let _apiUrl = "http://192.168.9.58/framework/public/api/v1/"
+//    let _oldapiUrl = "http://192.168.9.58/api/interface/insight"
+//    let _uploadAPI = "http://192.168.9.58/api/uploadmedia/"
     
-    
+    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
     
     let _osVersion = UIDevice.currentDevice().systemVersion
     let _UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
@@ -76,7 +78,7 @@ class API_Model {
                 //                print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+                    //print("JSON: \(JSON)")
                     completionHandler(JSON as! [String : AnyObject])
                     
                 }
@@ -111,20 +113,23 @@ class API_Model {
                 //                print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+                    //print("JSON: \(JSON)")
                     if let jsonStatus = (JSON["status"])
                     {
-                        print("jsonStatus :\(JSON["status"] as! Int)")
+                        //print("jsonStatus :\(JSON["status"] as! Int)")
                         if (jsonStatus as! Int == 4051){
                             print("Error")
                         }else
                         {
                             let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
-                            print("============================================")
+                            //print("============================================")
                             
 //                            print("before JsonEncode : \(result)")
                             //completionHandler(JSON as! [String : AnyObject])
                             let resultJson = self.jsonEncode(result as String)
+//                            print("resultJson")
+//                            print(resultJson)
+//                            print("= = = = = = = =")
                             completionHandler(resultJson )
 //                            print("after JsonEncode : \(resultJson)")
 //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
@@ -205,12 +210,14 @@ class API_Model {
         print("latitude: \(latitude)")
         print("longitude: \(longitude)")
         print("parameter \(parameters)")
-        Alamofire.request(.POST, "\(_apiUrl)tokens", parameters: parameters)
+        let reqUrl = "\(_apiUrl)tokens"
+        print(reqUrl)
+        Alamofire.request(.POST, reqUrl, parameters: parameters)
             .responseJSON { response in
                 print("---------------------------------------------------------------------")
                 print("Login")
 //                print(response.request)  // original URL request
-//                print(response.response) // URL response
+                print(response.response) // URL response
 //                print(response.data)     // server data
 //                print(response.result)   // result of response serialization
                 print("---------------------------------------------------------------------")

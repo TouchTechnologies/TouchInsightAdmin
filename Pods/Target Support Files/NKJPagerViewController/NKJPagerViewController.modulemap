@@ -1,6 +1,0 @@
-framework module NKJPagerViewController {
-  umbrella header "NKJPagerViewController-umbrella.h"
-
-  export *
-  module * { export * }
-}

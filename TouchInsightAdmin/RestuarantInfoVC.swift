@@ -22,16 +22,16 @@ class RestuarantInfoVC: UIViewController, PagingMenuControllerDelegate {
     var navunderlive = UIView()
     
     var options = PagingMenuOptions()
-
+    
     
     
     //let viewWithTopButtons = UIView()
     let btnInfo = UIButton()
     let btnGallery = UIButton()
     let btnLive = UIButton()
-
+    
     override func viewWillAppear(animated: Bool) {
-       // self.getProviderByID()
+        // self.getProviderByID()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class RestuarantInfoVC: UIViewController, PagingMenuControllerDelegate {
         self.reloadInputViews()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,20 +58,20 @@ class RestuarantInfoVC: UIViewController, PagingMenuControllerDelegate {
         
         // btnInfo.backgroundColor = UIColor.greenColor()
         btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
-        btnInfo.addTarget(self, action: "topMenu:", forControlEvents: .TouchUpInside)
+        btnInfo.addTarget(self, action: #selector(RestuarantInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         btnGallery.tag = 1
         btnGallery.frame = CGRect(origin:CGPoint(x: 30.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
         
         // btnGallery.backgroundColor = UIColor.grayColor()
         btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-        btnGallery.addTarget(self, action: "topMenu:", forControlEvents: .TouchUpInside)
+        btnGallery.addTarget(self, action: #selector(RestuarantInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         btnLive.tag = 2
         btnLive.frame = CGRect(origin:CGPoint(x: 60.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
         // btnLive.backgroundColor = UIColor.yellowColor()
         btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
-        btnLive.addTarget(self, action: "topMenu:", forControlEvents: .TouchUpInside)
+        btnLive.addTarget(self, action: #selector(RestuarantInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         
         viewWithTopButtons.addSubview(btnInfo)
@@ -84,7 +84,7 @@ class RestuarantInfoVC: UIViewController, PagingMenuControllerDelegate {
         infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RestuarantInfoVC") as! RestuarantInfoViewController
         LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RestLocationVC") as! RestLocationViewController
         MenulistViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuInfoVC") as! MenuViewController
-
+        
         let viewControllers = [infoViewController,LocationViewController,MenulistViewController]
         
         options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
@@ -111,7 +111,7 @@ class RestuarantInfoVC: UIViewController, PagingMenuControllerDelegate {
         pagingMenuController.view.bounds.size.width = UIScreen.mainScreen().bounds.size.width
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
         pagingMenuController.menuView.scrollEnabled = true
-        pagingMenuController.menuView.menuItemViews.forEach{$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapGesture:")) }
+        pagingMenuController.menuView.menuItemViews.forEach{$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RestuarantInfoVC.handleTapGesture(_:)))) }
     }
     func handleTapGesture(recognizer: UITapGestureRecognizer) {
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
@@ -170,34 +170,34 @@ class RestuarantInfoVC: UIViewController, PagingMenuControllerDelegate {
         
         
     }
-func topMenu(sender : UIButton){
+    
+    func topMenu(sender : UIButton){
+        
         if (sender.tag == 0){
             btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
             btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
             btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
             self.initialInfoVC()
             print("info")
-        }
-        else if(sender.tag == 1){
             
+        }else if(sender.tag == 1){
             btnGallery.setImage(UIImage(named:"ic_gellary2.png"), forState: .Normal)
             btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
             btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
             self.initialImageGalleryVC()
-            
-            
             print("Gallery")
+            
         }
     }
 }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+/*
+ // MARK: - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+ // Get the new view controller using segue.destinationViewController.
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
