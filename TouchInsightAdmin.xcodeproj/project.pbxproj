@@ -10,6 +10,9 @@
 		265A420C0E8A4959264454F7 /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B3F9A7E2BAF4B051561B67 /* Pods_TouchInsightAdmin.framework */; };
 		3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC711C06BA3D0051E850 /* LoginVC.swift */; };
 		3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC731C06DC2A0051E850 /* API_Model.swift */; };
+		3693D3301D2E0489001B26DF /* API_RestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693D32F1D2E0489001B26DF /* API_RestModel.swift */; };
+		3693D3321D2E050E001B26DF /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693D3311D2E050E001B26DF /* Define.swift */; };
+		3693D3341D2E0BD2001B26DF /* Restuarant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693D3331D2E0BD2001B26DF /* Restuarant.swift */; };
 		36AB49C71C3CE9CF0078A936 /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49C61C3CE9CF0078A936 /* RNGridMenu.m */; };
 		36AB49CD1C3CED6A0078A936 /* MyCustomPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49CA1C3CED6A0078A936 /* MyCustomPinAnnotationView.m */; };
 		36AB49CE1C3CED6A0078A936 /* MyCustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49CC1C3CED6A0078A936 /* MyCustomPointAnnotation.m */; };
@@ -53,6 +56,7 @@
 		36E394541C40BA22004402B7 /* RNGridMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E394441C40BA21004402B7 /* RNGridMenu.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36E394551C40BA22004402B7 /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E394451C40BA21004402B7 /* SCLAlertView.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36E394561C40BA22004402B7 /* SMPageControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E394461C40BA21004402B7 /* SMPageControl.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		49866A274520002702834984 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87384BA852B3AF1C8F18E95 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B7FA38E878B1EBB88C5C000 /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBEC2B7DBCE1DA504614BC /* Pods_TouchInsightAdminTests.framework */; };
 		D8F4BF3A2BCE3CF3D185737C /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDC062A67F063339C035140 /* Pods_TouchInsightAdminUITests.framework */; };
 		F30671FF1C1691B4001A577F /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = F30671FD1C1691B4001A577F /* add_image.png */; };
@@ -220,6 +224,9 @@
 		3621BC711C06BA3D0051E850 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3621BC731C06DC2A0051E850 /* API_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_Model.swift; sourceTree = "<group>"; };
 		366CBBDD1C07F6A200484DA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		3693D32F1D2E0489001B26DF /* API_RestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_RestModel.swift; sourceTree = "<group>"; };
+		3693D3311D2E050E001B26DF /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		3693D3331D2E0BD2001B26DF /* Restuarant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restuarant.swift; sourceTree = "<group>"; };
 		36AB49C51C3CE9CF0078A936 /* RNGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGridMenu.h; path = Class/RNGridMenu.h; sourceTree = "<group>"; };
 		36AB49C61C3CE9CF0078A936 /* RNGridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNGridMenu.m; path = Class/RNGridMenu.m; sourceTree = "<group>"; };
 		36AB49C91C3CED6A0078A936 /* MyCustomPinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCustomPinAnnotationView.h; path = Class/MapAnnotation/MyCustomPinAnnotationView.h; sourceTree = "<group>"; };
@@ -477,6 +484,7 @@
 				36E394551C40BA22004402B7 /* SCLAlertView.framework in Frameworks */,
 				36E394561C40BA22004402B7 /* SMPageControl.framework in Frameworks */,
 				265A420C0E8A4959264454F7 /* Pods_TouchInsightAdmin.framework in Frameworks */,
+				49866A274520002702834984 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +528,15 @@
 				361C9A771C0833B30062BE11 /* FBSDKShareKit.framework */,
 			);
 			name = FBSDK;
+			sourceTree = "<group>";
+		};
+		3693D32E1D2E0440001B26DF /* Obj */ = {
+			isa = PBXGroup;
+			children = (
+				3693D3311D2E050E001B26DF /* Define.swift */,
+				3693D3331D2E0BD2001B26DF /* Restuarant.swift */,
+			);
+			name = Obj;
 			sourceTree = "<group>";
 		};
 		36AB49C81C3CED270078A936 /* MapAnnotation */ = {
@@ -605,6 +622,7 @@
 				36E039C71C2BDD61003EB925 /* RNGridMenu */,
 				F3627FE81C2BACC7006BC607 /* PopupMenu */,
 				366CBBF41C08012500484DA5 /* FBSDK */,
+				3693D32E1D2E0440001B26DF /* Obj */,
 				36DC41431C05CB1E001B8E22 /* API */,
 				36DC412A1C05C6E3001B8E22 /* JobTextFieldxxx.swift */,
 				36DC41261C05C667001B8E22 /* DeviceDetail.swift */,
@@ -664,6 +682,7 @@
 			isa = PBXGroup;
 			children = (
 				3621BC731C06DC2A0051E850 /* API_Model.swift */,
+				3693D32F1D2E0489001B26DF /* API_RestModel.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -979,12 +998,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36DC40FA1C0587CF001B8E22 /* Build configuration list for PBXNativeTarget "TouchInsightAdmin" */;
 			buildPhases = (
+				D50F96CF8E121106291AB9CD /* Check Pods Manifest.lock */,
 				C9C73E8E2AADD19B0FF31FC6 /* [CP] Check Pods Manifest.lock */,
 				36DC40CE1C0587CE001B8E22 /* Sources */,
 				36DC40CF1C0587CE001B8E22 /* Frameworks */,
 				36DC40D01C0587CE001B8E22 /* Resources */,
 				3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */,
 				5FDDBFD69044B021B2268B8B /* [CP] Copy Pods Resources */,
+				26CAAB8150A291FB485AE282 /* Embed Pods Frameworks */,
+				C19BCB794A58F383B4DFA7C8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1223,6 +1245,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		26CAAB8150A291FB485AE282 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1283,6 +1320,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C19BCB794A58F383B4DFA7C8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C9C73E8E2AADD19B0FF31FC6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1311,6 +1363,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D50F96CF8E121106291AB9CD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E24C4EA3E2D4F75C235466D7 /* [CP] Copy Pods Resources */ = {
@@ -1347,8 +1414,10 @@
 				F383BF591C7C084200726ED7 /* MenuViewController.swift in Sources */,
 				F309A38C1C8002520084647D /* introPage4.swift in Sources */,
 				3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */,
+				3693D3341D2E0BD2001B26DF /* Restuarant.swift in Sources */,
 				F329F1F71D2D10400061BA52 /* ResCreateRoomInfoVC.swift in Sources */,
 				36AB49CE1C3CED6A0078A936 /* MyCustomPointAnnotation.m in Sources */,
+				3693D3321D2E050E001B26DF /* Define.swift in Sources */,
 				F3A7582D1C27FB2E00CBB8A0 /* alertCreateProviderV.swift in Sources */,
 				F3B8B5271C3B861100768DF9 /* roomfacCell.swift in Sources */,
 				F3BA1F551C76FF6700B0782C /* ImageCollectionViewCell.swift in Sources */,
@@ -1367,6 +1436,7 @@
 				36AB49CD1C3CED6A0078A936 /* MyCustomPinAnnotationView.m in Sources */,
 				F3E6F7731C1EA44D005FE053 /* customRoomListTbl.swift in Sources */,
 				F3B071231C0F4FAD00DC97CB /* EditProfileVC.swift in Sources */,
+				3693D3301D2E0489001B26DF /* API_RestModel.swift in Sources */,
 				36DC41281C05C667001B8E22 /* DeviceDetail.swift in Sources */,
 				F3FE68041C109972002BF719 /* JSSAlertView.swift in Sources */,
 				36DC40D81C0587CF001B8E22 /* ViewController.swift in Sources */,
