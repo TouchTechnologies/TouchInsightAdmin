@@ -24,10 +24,13 @@ class API_Model {
     let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
     let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
     
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let _osVersion = UIDevice.currentDevice().systemVersion
     let _UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
     let _SecretKey = "BcILclihFSTbm3tGpfKfrbdW"
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+    
 
     func post2Server(apiName:String,POST_Data:[String:AnyObject],completionHandler:[String:AnyObject]->()){
         Alamofire.request(.GET, "\(_apiUrl)\(apiName)", parameters: POST_Data)
@@ -95,10 +98,10 @@ class API_Model {
             "client": "touchinsightmobileapp",
             "appVersion": "1.0",
             "OSVersion": _osVersion,
-            "deviceID": "359359052323687",
+            "deviceID": _UUID,
             "command": apiCode,
             "OS": "iOS",
-            "mobileAgent": "samsung/t03gxx/t03g:4.4.2/KOT49H/N7100XXUFNI4:user/release-keys",
+            "mobileAgent": appDelegate.mobileAgent,
             "language": "TH",
             "mask": IV_Key64,
             "data": data

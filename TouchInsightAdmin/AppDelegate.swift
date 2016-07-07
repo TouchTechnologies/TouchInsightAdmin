@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var window: UIWindow?
     let osVersion = UIDevice.currentDevice().systemVersion
     let UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    let mobileAgent = "samsung/t03gxx/t03g:4.4.2/KOT49H/N7100XXUFNI4:user/release-keys"
     var latitude: String = "0.00"
     var longitude: String = "0.00"
     var accessToken: String?
@@ -28,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var provinceDic:NSDictionary?
     var isLogin = Bool()
     var isDisplayLoginSuccess = Bool()
+    
+    var providerArr:NSMutableArray?
     
     //Hotel
     var facilityHotelDic:NSDictionary?

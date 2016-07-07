@@ -244,6 +244,7 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
         //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
         
         let send = API_Model()
+
         print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
         
         let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
