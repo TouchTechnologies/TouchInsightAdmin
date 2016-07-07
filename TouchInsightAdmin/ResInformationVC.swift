@@ -403,9 +403,9 @@ func initalertView(){
             
         }
     }
-
+    
     func dismissKeyboard() {
-       txtHotelName.resignFirstResponder()
+        txtHotelName.resignFirstResponder()
         emailTxt.resignFirstResponder()
         websiteTxt.resignFirstResponder()
         provinceTxt.resignFirstResponder()
@@ -420,10 +420,11 @@ func initalertView(){
         addressTxt.resignFirstResponder()
         phonNumberTxt.resignFirstResponder()
         pickerView.hidden = true
-       checkinPicker.hidden = true
-       checkoutPicker.hidden = true
+        checkinPicker.hidden = true
+        checkoutPicker.hidden = true
         
     }
+    
     func dismissKeyboard2() {
         print("dismissKeyboard2")
         provinceTxt.resignFirstResponder()
@@ -572,7 +573,7 @@ func initalertView(){
         self.getFacility()
         self.getProviderByID()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
         imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
         self.scrollView.addSubview(self.imgHotelLogo)
@@ -584,10 +585,10 @@ func initalertView(){
 
       
         //hide keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
 
-        let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard2")
+        let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard2))
         provinceTxt.addGestureRecognizer(pickerTap)
 //        provinceTxt.resignFirstResponder()
         //set picker view

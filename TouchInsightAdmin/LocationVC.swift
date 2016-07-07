@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UITextFieldDelegate{
-
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var propertyView1: UIView!
@@ -44,14 +44,14 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
         self.propertyView2.hidden = false
         self.changLocationBar.hidden = false
         self.saveLocationBtn.hidden = true
-     //   self.propertyView1.hidden = true
-         print("lat :\(latTxt.text) long: \(longTxt.text)")
-         print("save Button")
+        //   self.propertyView1.hidden = true
+        print("lat :\(latTxt.text) long: \(longTxt.text)")
+        print("save Button")
         
         let send = API_Model()
         let dataDic = [
             "providerInformation" :
-            [
+                [
                     "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
                     "providerTypeKeyname" : "hotel",
                     "longitude": self.longTxt.text! as String,
@@ -78,8 +78,8 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
             send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJson){
                 data in
                 
-            print("listProvider :\(data["ListProviderInformationSummary"]!)")
-
+                print("listProvider :\(data["ListProviderInformationSummary"]!)")
+                
                 
                 self.appDelegate.providerData = data
                 
@@ -98,71 +98,71 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
             }
             
         }
-       
-       
+        
+        
     }
-func changeDetial(){
+    func changeDetial(){
         
-    propertyView2.frame = CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height/3)
-    propertyView2.backgroundColor = UIColor.whiteColor()
-    self.view.addSubview(propertyView2)
+        propertyView2.frame = CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height/3)
+        propertyView2.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(propertyView2)
         
-    locationImageicon.frame = CGRectMake(self.propertyView2.frame.size.width/2-30, self.propertyView2.frame.size.height/6, 50, 60)
-    let imgPin: UIImage = UIImage(named: "icon_pin_nearme.png")!
-    locationImageicon.image = imgPin
-    propertyView2.addSubview(locationImageicon)
+        locationImageicon.frame = CGRectMake(self.propertyView2.frame.size.width/2-30, self.propertyView2.frame.size.height/6, 50, 60)
+        let imgPin: UIImage = UIImage(named: "icon_pin_nearme.png")!
+        locationImageicon.image = imgPin
+        propertyView2.addSubview(locationImageicon)
         
-    locationText.frame = CGRectMake(0, self.propertyView2.frame.size.height/5 +  locationImageicon.frame.size.height, self.propertyView2.frame.size.width, 50)
-    locationText.text = NSString(format: "%@ %@", self.locationname , self.cityname) as String
-    locationText.textAlignment = .Center
-    locationText.textColor = UIColor.grayColor()
-    locationText.font = UIFont(name: "Helvetica", size: 16)
-    propertyView2.addSubview(locationText)
+        locationText.frame = CGRectMake(0, self.propertyView2.frame.size.height/5 +  locationImageicon.frame.size.height, self.propertyView2.frame.size.width, 50)
+        locationText.text = NSString(format: "%@ %@", self.locationname , self.cityname) as String
+        locationText.textAlignment = .Center
+        locationText.textColor = UIColor.grayColor()
+        locationText.font = UIFont(name: "Helvetica", size: 16)
+        propertyView2.addSubview(locationText)
         
-    let LatlblW = propertyView2.frame.size.width/2
+        let LatlblW = propertyView2.frame.size.width/2
         
-    Latlbl.frame = CGRectMake(0, self.propertyView2.frame.size.height - 45 , LatlblW , 40)
-    Latlbl.text = latTxt.text
-    Latlbl.font = UIFont(name: "Helvetica", size: 16)
-    Latlbl.textAlignment  = .Center
-    propertyView2.addSubview(Latlbl)
-
+        Latlbl.frame = CGRectMake(0, self.propertyView2.frame.size.height - 45 , LatlblW , 40)
+        Latlbl.text = latTxt.text
+        Latlbl.font = UIFont(name: "Helvetica", size: 16)
+        Latlbl.textAlignment  = .Center
+        propertyView2.addSubview(Latlbl)
+        
         Longlbl.frame = CGRectMake(propertyView2.frame.size.width/2, self.propertyView2.frame.size.height - 45 , LatlblW , 40)
         Longlbl.text = longTxt.text
         Longlbl.font = UIFont(name: "Helvetica", size: 16)
         Longlbl.textAlignment  = .Center
         propertyView2.addSubview(Longlbl)
-   
-    changLocationBarH =  self.view.frame.size.height/5
-    changLocationBar.frame = CGRectMake(0,self.view.frame.size.height-changLocationBarH, self.view.frame.size.width,changLocationBarH)
-    changLocationBar.backgroundColor = UIColor.whiteColor()
-     self.view.addSubview(changLocationBar)
         
-    changLocationBtn.frame = CGRectMake(20, 20 ,changLocationBar.frame.size.width - 40 ,changLocationBarH - 40)
-    changLocationBtn.backgroundColor = UIColor.redColor()
-    changLocationBtn.layer.cornerRadius = 5
+        changLocationBarH =  self.view.frame.size.height/5
+        changLocationBar.frame = CGRectMake(0,self.view.frame.size.height-changLocationBarH, self.view.frame.size.width,changLocationBarH)
+        changLocationBar.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(changLocationBar)
+        
+        changLocationBtn.frame = CGRectMake(20, 20 ,changLocationBar.frame.size.width - 40 ,changLocationBarH - 40)
+        changLocationBtn.backgroundColor = UIColor.redColor()
+        changLocationBtn.layer.cornerRadius = 5
         Buttonlbl.frame = CGRectMake(0,0,changLocationBtn.frame.size.width,50)
- 
-    changLocationBtn.addTarget(self, action: "updateLocation:", forControlEvents: .TouchUpInside)
-    Buttonlbl.center.y = changLocationBtn.frame.size.height/2
-    Buttonlbl.textAlignment = .Center
-    Buttonlbl.text = "Change Location"
-    Buttonlbl.textColor = UIColor.whiteColor()
-    Buttonlbl.font = UIFont(name: "Helvetica", size: 20)
-    changLocationBtn.addSubview(Buttonlbl)
-    changLocationBar.addSubview(changLocationBtn)
         
-    let imgButton: UIImage = UIImage(named: "icon-2.png")!
-    ButtonImg.image = imgButton
-    ButtonImg.frame = CGRectMake(0, 0, changLocationBtn.frame.size.height, changLocationBtn.frame.size.height)
-    changLocationBtn.addSubview(ButtonImg)
-}
+        changLocationBtn.addTarget(self, action: "updateLocation:", forControlEvents: .TouchUpInside)
+        Buttonlbl.center.y = changLocationBtn.frame.size.height/2
+        Buttonlbl.textAlignment = .Center
+        Buttonlbl.text = "Change Location"
+        Buttonlbl.textColor = UIColor.whiteColor()
+        Buttonlbl.font = UIFont(name: "Helvetica", size: 20)
+        changLocationBtn.addSubview(Buttonlbl)
+        changLocationBar.addSubview(changLocationBtn)
+        
+        let imgButton: UIImage = UIImage(named: "icon-2.png")!
+        ButtonImg.image = imgButton
+        ButtonImg.frame = CGRectMake(0, 0, changLocationBtn.frame.size.height, changLocationBtn.frame.size.height)
+        changLocationBtn.addSubview(ButtonImg)
+    }
     func updateLocation(sender : UIButton){
-    self.saveLocationBtn.hidden = false
-    print("true")
-    self.propertyView2.hidden = true
-    self.changLocationBar.hidden = true
-
+        self.saveLocationBtn.hidden = false
+        print("true")
+        self.propertyView2.hidden = true
+        self.changLocationBar.hidden = true
+        
         
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -178,14 +178,14 @@ func changeDetial(){
         
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
-       
+        
         self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
         self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
-
+        
         
         if CLLocationManager.locationServicesEnabled(){
             self.locationManager.delegate = self
-//            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            //            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.startUpdatingLocation()
             print("OK Location")
@@ -195,12 +195,12 @@ func changeDetial(){
         }
         
         print("location")
-
+        
         if let latitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]!) {
             print("latitude  \(latitude)")
             //latTxt.text = (latitude as! String)
-    
-          
+            
+            
             //            print("Location(set) : \(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String))")
             if(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String) != 0 )
             {
@@ -212,12 +212,12 @@ func changeDetial(){
                 point.subtitle = "Current Subtitle"
                 self.mapView.addAnnotation(point)
                 
-              
+                
             }else
             {
                 print("No Location Set")
                 
-              
+                
                 
             }
             
@@ -234,8 +234,8 @@ func changeDetial(){
             longTxt.text = ""
         }
         
-       
-       
+        
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
@@ -247,13 +247,13 @@ func changeDetial(){
         
         
         if let latitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]!) {
-//            print("latitude ::: \(latitude)")
-           
+            //            print("latitude ::: \(latitude)")
+            
             latTxt.text = (latitude as! String)
-           // let point: MyCustomPointAnnotation = MyCustomPointAnnotation()
+            // let point: MyCustomPointAnnotation = MyCustomPointAnnotation()
             
             
-//            print("Location(set) : \(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String))")
+            //            print("Location(set) : \(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String))")
             
             
             if(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String) != 0 )
@@ -269,19 +269,19 @@ func changeDetial(){
                 print("No Location Set")
             }
             
-
+            
         }else{
             print("No DistanceAirport")
             latTxt.text = ""
         }
         if let longitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["longitude"]!) {
-//            print("longitude  \(longitude)")
+            //            print("longitude  \(longitude)")
             longTxt.text = (longitude as! String)
         }else{
             print("No DistanceAirport")
             longTxt.text = ""
         }
-
+        
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // stuff
@@ -292,20 +292,20 @@ func changeDetial(){
             print(location)
         }
         super.touchesBegan(touches, withEvent: event)
-//        let touch = touches.anyObject()! as! UITouch
-//        let location = touch.locationInView(self)
-//        print(location)
+        //        let touch = touches.anyObject()! as! UITouch
+        //        let location = touch.locationInView(self)
+        //        print(location)
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.latTxt.delegate = self
@@ -329,10 +329,10 @@ func changeDetial(){
             //        let viewRegion = MKCoordinateRegion(center: Coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 2000, 2000)
             self.mapView.setRegion(viewRegion, animated:true)
-           
+            
             self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
             self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
-
+            
             self.propertyView2.hidden = true
             self.changLocationBar.hidden = true
             
@@ -349,26 +349,26 @@ func changeDetial(){
                 self.changLocationBar.hidden = false
                 
             }
-
+            
         }
         
-       
         
         
         
-         print("latChange111:\(self.latTxt.text))")
         
-         print("latChange111:\(self.longTxt.text)")
-  
-     // self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
-     //      self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
+        print("latChange111:\(self.latTxt.text))")
+        
+        print("latChange111:\(self.longTxt.text)")
+        
+        // self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
+        //      self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
         
         
         let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(LocationVC.handleLongPress(_:)))
         lpgr.minimumPressDuration = 1.0
         //user needs to press for 1 seconds
         self.mapView.addGestureRecognizer(lpgr)
-
+        
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -379,7 +379,7 @@ func changeDetial(){
         // We could display multiple types of point annotations
         if (annotation is MyCustomPointAnnotation) {
             print("Title : \(annotation.description)")
-//            let pin: MyCustomPinAnnotationView = MyCustomPinAnnotationView(annotation: annotation)
+            //            let pin: MyCustomPinAnnotationView = MyCustomPinAnnotationView(annotation: annotation)
             let pin: MyCustomPinAnnotationView = MyCustomPinAnnotationView(annotation: annotation, type: 1)
             return pin
         }
@@ -391,7 +391,7 @@ func changeDetial(){
         }
         let touchPoint: CGPoint = gestureRecognizer.locationInView(self.mapView)
         let touchMapCoordinate: CLLocationCoordinate2D = self.mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
-       
+        
         annotation.coordinate = touchMapCoordinate
         let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
         mapView.removeAnnotations( annotationsToRemove )
@@ -403,7 +403,7 @@ func changeDetial(){
         
         annotation.name = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["name_en"]! as! String)
         
-
+        
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         
@@ -430,7 +430,7 @@ func changeDetial(){
             if let city = placeMark.addressDictionary!["City"] as? NSString {
                 print("City ::::\(city)")
                 self.cityname = NSString(format: "%@",city) as String
-
+                
             }
             
             // Zip code
@@ -443,9 +443,9 @@ func changeDetial(){
                 print("countryName :::\(country)")
             }
             
-           
-        })
             
+        })
+        
         
         
         print("Annotation Name: \(self.annotation.name)")
@@ -458,7 +458,7 @@ func changeDetial(){
         
         print("lacationManager")
         let location = locations.last! as CLLocation
-
+        
         
         print("latitude : \(location.coordinate.latitude)")
         print("longitude : \(location.coordinate.longitude)")
@@ -473,5 +473,5 @@ func changeDetial(){
         print("viewDidDisappear")
     }
     
-
+    
 }

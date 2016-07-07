@@ -9,6 +9,9 @@
 import UIKit
 import FBSDKCoreKit
 import Foundation
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -132,7 +135,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         // Override point for customization after application launch.
         //return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
       
-        
+        Fabric.with([Crashlytics.self])
+
         
         
         return true

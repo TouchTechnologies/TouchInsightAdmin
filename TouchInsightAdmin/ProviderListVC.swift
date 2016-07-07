@@ -52,14 +52,15 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
+    let alert = CustomIOS7AlertView()
     @IBAction  func btnCreateProvider(sender: AnyObject) {
         print("alert ")
         
-        let alert = CustomIOS7AlertView()
         alert.delegate = self
         alert.buttonColor = UIColor.redColor()
         alert.containerView = createpopupView()
         alert.show()
+        
         
         //      alert.keyboardWillShow(NSNotification)
     }
@@ -129,7 +130,7 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     internal func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
         print("reload xxxx")
         
-        alertView.close()
+        alert.close()
         self.reloadData()
         //            tableView.reloadData()
         
@@ -254,14 +255,47 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(" Index Path : \(indexPath.row)")
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show()
-        self.performSegueWithIdentifier("showproviderinfo", sender: indexPath)
+        
+     
+        
+        
+        if let keyType = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String? {
+            
+            PKHUD.sharedHUD.dimsBackground = false
+            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show()
+            
+            appDelegate.providerIndex = indexPath.row
+            appDelegate.pagecontrolIndex = 0
+            
+            
+            print("keyType")
+            print(keyType)
+            
+            
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            var targetVC = UIViewController()
+            if(keyType == "restaurant"){
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("resinformation") as! RestuarantListVC
+            }else if(keyType == "hotel"){
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+            }else if(keyType == "attraction"){
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC ////////////  FAKE!!!!!!
+            }
+            
+            self.navigationController?.pushViewController(targetVC, animated: true)
+            
+        }
+        
+        
+        
+        
+        
+//        self.performSegueWithIdentifier("showproviderinfo", sender: indexPath)
         
     }
     
@@ -278,11 +312,9 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         
         if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String? {
-            
             if coverImage.rangeOfString("cover/default.png") == nil {
                 let urlLogo = NSURL(string: coverImage)
                 self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
-                
             }
         }
         
@@ -318,7 +350,6 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                 PKHUD.sharedHUD.hide(animated: true, completion: nil)
             }
-            
         }
     }
     
@@ -343,7 +374,7 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
-        tableView.reloadData()
+        //tableView.reloadData()
         self.appDelegate.viewWithTopButtons.hidden = true
         //self.initialAlert()
     }
@@ -352,6 +383,7 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear")
         PKHUD.sharedHUD.hide(animated: true, completion: nil)
+        
     }
     
     
@@ -401,17 +433,17 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
-        if segue.identifier == "showproviderinfo"{
-            appDelegate.providerIndex = sender!.row
-            appDelegate.pagecontrolIndex = 0
-            print("appIndex :\(appDelegate.providerIndex! as Int)")
-        }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        
+//        if segue.identifier == "showproviderinfo"{
+//            appDelegate.providerIndex = sender!.row
+//            appDelegate.pagecontrolIndex = 0
+//            print("appIndex :\(appDelegate.providerIndex! as Int)")
+//        }
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//    }
+//    
     
 }

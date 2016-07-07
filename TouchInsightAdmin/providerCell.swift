@@ -13,7 +13,6 @@ class providerCell: UITableViewCell {
     @IBOutlet var providerImg: UIImageView!
     @IBOutlet var providerTypeLbl: UILabel!
     
-    
     var scx = CGFloat()
     var scy = CGFloat()
     var imgRect = CGRect()
@@ -32,17 +31,14 @@ class providerCell: UITableViewCell {
         scy = (1024.0/480.0);
         scx = (768.0/360.0);
         
-        
         if(UI_USER_INTERFACE_IDIOM() == .Pad){
             imgRect = CGRectMake(8*scx, 8*scy, 60*scx, 60*scy)
             lblRect = CGRectMake(86*scx, 24*scy, 197*scx, 25*scy)
-           
-        }
-        else{
+
+        }else{
             imgRect = CGRectMake(8, 8, 60, 60)
             lblRect = CGRectMake(86, 24, 197, 25)
-           
-            
+ 
         }
         
     }

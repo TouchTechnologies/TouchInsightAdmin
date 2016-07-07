@@ -32,9 +32,11 @@ pod 'PKHUD'
 pod 'HanekeSwift'
 pod 'QRCodeReader.swift'
 
+pod 'Fabric'
+pod 'Crashlytics'
 
 target 'TouchInsightAdmin' do
-    
+
 
 end
 
@@ -45,4 +47,3 @@ end
 target 'TouchInsightAdminUITests' do
 
 end
-

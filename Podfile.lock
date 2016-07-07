@@ -1,9 +1,12 @@
 PODS:
   - Alamofire (3.2.0)
+  - Crashlytics (3.7.2):
+    - Fabric (~> 1.6.3)
   - CustomIOSAlertView (0.9.3)
   - EAIntroView (2.8.1):
     - EARestrictedScrollView (~> 0.2.0)
   - EARestrictedScrollView (0.2.0)
+  - Fabric (1.6.7)
   - HanekeSwift (0.10.1)
   - NKJPagerViewController (1.1.1)
   - PagingMenuController (0.8.0)
@@ -18,8 +21,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Crashlytics
   - CustomIOSAlertView
   - EAIntroView
+  - Fabric
   - HanekeSwift
   - NKJPagerViewController
   - PagingMenuController
@@ -34,9 +39,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   EAIntroView: 73abfa89caa311f450af876421d950b96679e845
   EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   NKJPagerViewController: 35c49bb83f235102c09b3b5e40ef2d463b2637e2
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508

@@ -9,6 +9,7 @@
 import UIKit
 import PagingMenuController
 import PKHUD
+import SCLAlertView
 class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -30,7 +31,8 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
     @IBOutlet var containnerView: UIView!
     
     @IBAction func backtomyproviderBtn(sender: AnyObject) {
-        performSegueWithIdentifier("backtoproviderlistBtn", sender: self)
+        //performSegueWithIdentifier("backtoproviderlistBtn", sender: self)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "backtoproviderlistBtn") {
@@ -42,9 +44,22 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         }
     }
     
+    var navBar = UINavigationBar()
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
+        //         navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44 + 20))
+        //        self.view.addSubview(navBar);
+        //        let navItem = UINavigationItem(title: "");
+        //        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: nil, action: #selector(ProviderInfoVC.backtomyproviderBtn(_:)));
+        //        navItem.leftBarButtonItem = doneItem;
+        //        navBar.setItems([navItem], animated: false);
+        //
+        
+        
         self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
         self.appDelegate.viewWithTopButtons.hidden = false
@@ -52,10 +67,13 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         self.reloadInputViews()
         // self.appDelegate.pagecontrolIndex = 2
         
+        
+        self.getProviderByID()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.getProviderByID()
+        self.navigationController?.navigationBarHidden = false
         
         
         
@@ -201,8 +219,7 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
             btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
             self.initialInfoVC()
             print("info")
-        }
-        else if(sender.tag == 1){
+        }else if(sender.tag == 1){
             
             btnGallery.setImage(UIImage(named:"ic_gellary2.png"), forState: .Normal)
             btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
@@ -211,15 +228,17 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
             
             
             print("Gallery")
+        }else if(sender.tag == 2){
+//            btnLive.setImage(UIImage(named: "ic_livestream_menu2.png"), forState: .Normal)
+//            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+//            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+//            print("live stream")
+            
+            let alertView = SCLAlertView()
+            alertView.showCircularIcon = false
+            alertView.showNotice("Comming Soon !!!", subTitle: "")
+            
         }
-        //
-        //
-        //        else if(sender.tag == 2){
-        //            btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
-        //            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
-        //            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-        //        print("live stream")
-        //        }
         
     }
     
