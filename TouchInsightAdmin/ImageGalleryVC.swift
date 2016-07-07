@@ -252,25 +252,37 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        }
        
         
-        if let coverImg = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] {
-        print("Has Cover img")
-//        if(coverImg as! String == "http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png"){
-            if(coverImg as! String == "http://insight.touch-ics.com/_develop/public/resource/insight/hotel/default/cover/default.png"){
-            
-            print("URL Defult")
-                      CoverImg.image = UIImage(named: "bg_cctvdefault.png")
-                    }
-                    else{
-              print("URL not Defult")
-                      CoverImg.image =  UIImage(data: NSData(contentsOfURL: NSURL(string:coverImg as! String)!)!)
-                    
-                    }
         
+        CoverImg.image = UIImage(named: "bg_cctvdefault.png")
+        if let coverImage = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"]  as! String? {
+            if coverImage.rangeOfString("cover/default.png") == nil {
+                let urlLogo = NSURL(string: coverImage)
+                CoverImg.hnk_setImageFromURL(urlLogo!)
+            }
         }
-        else{
-          print("No Cover img")
-            CoverImg.image = UIImage(named: "bg_cctvdefault.png")
-        }
+        
+        
+        
+        
+//        if let coverImg = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] {
+//        print("Has Cover img")
+////        if(coverImg as! String == "http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png"){
+//            if(coverImg as! String == "http://insight.touch-ics.com/_develop/public/resource/insight/hotel/default/cover/default.png"){
+//            
+//            print("URL Defult")
+//                      CoverImg.image = UIImage(named: "bg_cctvdefault.png")
+//                    }
+//                    else{
+//              print("URL not Defult")
+//                      CoverImg.image =  UIImage(data: NSData(contentsOfURL: NSURL(string:coverImg as! String)!)!)
+//                    
+//                    }
+//        
+//        }
+//        else{
+//          print("No Cover img")
+//            CoverImg.image = UIImage(named: "bg_cctvdefault.png")
+//        }
 
         
     

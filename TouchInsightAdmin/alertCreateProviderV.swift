@@ -160,7 +160,7 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
                 })
                 self.alertsuccess.showCloseButton = false
                 self.alertsuccess.showCircularIcon = false
-                self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:1.0, colorStyle:0xAC332F)
+                self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:5.0, colorStyle:0xAC332F)
             }
             
         }
@@ -178,6 +178,9 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
         super.awakeFromNib()
         self.initialSize()
         
+        UIView.animateWithDuration(0.5, animations: {}, completion: {_ in
+            self.providerNameTxt.becomeFirstResponder()
+        })
     }
     
     
