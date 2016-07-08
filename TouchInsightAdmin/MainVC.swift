@@ -29,6 +29,9 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     var alertView = SCLAlertView()
     
+    @IBOutlet weak var viewUserInfo: UIView!
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate.isLogin = true
@@ -76,7 +79,9 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
                 dispatch_async(dispatch_get_main_queue()) {
                     
-                    self.imgProfile.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+                    UIView.animateWithDuration(1.0, animations: {
+                        self.imgProfile.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+                    })
                 }
                 
             }else{
@@ -90,6 +95,26 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         }
         
         
+        
+        
+//        let device = DeviceDetail()
+//        print(device)     // prints for example "iPhone 6 Plus"
+//        if device == .iPhone4 || device == .iPhone4s {
+//            print("OK iPhone4s")
+//            // Do something
+//        } else {
+//            // Do something else
+//            print("OK i'm not iPhone4s")
+//        }
+        
+        
+        let deviceH = self.view.bounds.height
+        print("deviceH = \(deviceH)")
+        if deviceH <= 480.0 {
+//            self.viewUserInfo.frame.size.height = 180.0
+//            self.mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 667)
+        }
+
         
     }
     
