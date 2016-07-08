@@ -367,12 +367,18 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         print("viewWillDisappear")
         self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         //tableView.reloadData()
         self.appDelegate.viewWithTopButtons.hidden = true

@@ -171,7 +171,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             
             let dataHotelJson = send.Dict2JsonString(dataHotelDic)
             print("dataJson(Facility) : \(dataHotelJson)")
-            send.providerAPI(appDelegate.command["ListHotelFacility"]!, dataJson: dataHotelJson){
+            send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataHotelJson){
                 data in
                 if(self.loadCount == 1)
                 {
@@ -260,18 +260,18 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     override func viewDidAppear(animated: Bool) {
         
-        if appDelegate.isDisplayLoginSuccess != true {
-            appDelegate.isDisplayLoginSuccess = true
-            
-            let titleMessage = "Login Success"
-            let message = "ยินดีต้อนรับเข้าสู่ระบบ"
-            
-            alertView.showCircularIcon = false
-            self.alertView.showTitle(titleMessage, subTitle: message, style: SCLAlertViewStyle.Success, closeButtonTitle: "OK" , duration: 5.0, colorStyle: 0xAC332F, colorTextButton: 0xFFFFFF)
-            
-            
-            print("appDelegate.isDisplayLoginSuccess = true")
-        }
+//        if appDelegate.isDisplayLoginSuccess != true {
+//            appDelegate.isDisplayLoginSuccess = true
+//            
+//            let titleMessage = "Login Success"
+//            let message = "ยินดีต้อนรับเข้าสู่ระบบ"
+//            
+//            alertView.showCircularIcon = false
+//            self.alertView.showTitle(titleMessage, subTitle: message, style: SCLAlertViewStyle.Success, closeButtonTitle: "OK" , duration: 5.0, colorStyle: 0xAC332F, colorTextButton: 0xFFFFFF)
+//            
+//            
+//            print("appDelegate.isDisplayLoginSuccess = true")
+//        }
         
         
     }
@@ -347,7 +347,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     @IBAction func btnSettingClick(sender: AnyObject) {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let _nextView = storyBoard.instantiateViewControllerWithIdentifier("editprofileVC") as! EditProfileVC
+        let _nextView = storyBoard.instantiateViewControllerWithIdentifier("settingVC") as! SettingAccountVC
         self.navigationController?.pushViewController(_nextView, animated: true)
         
     }

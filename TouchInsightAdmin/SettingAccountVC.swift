@@ -18,7 +18,7 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     
     @IBAction func btnBacktoMain(sender: AnyObject) {
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -52,7 +52,6 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         super.viewDidLoad()
         //        self.navigationController?.navigationBarHidden = false
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         
         
@@ -65,18 +64,18 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     }
     override func viewWillAppear(animated: Bool) {
         
-        //self.navigationController?.setNavigationBarHidden(true , animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(animated: Bool) {
         
         //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         print("viewWillDisappear")
-        self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     

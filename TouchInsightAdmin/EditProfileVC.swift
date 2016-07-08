@@ -146,7 +146,7 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
     
     override func viewWillDisappear(animated: Bool) {
         
-        self.navigationController?.navigationBarHidden = true
+//        self.navigationController?.navigationBarHidden = true
     }
     
     
