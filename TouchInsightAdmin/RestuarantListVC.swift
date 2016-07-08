@@ -108,9 +108,9 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
         
     }
     func initialInfoVC(){
-        infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResInformation") as! ResInformationVC
-        LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResLocation") as! ResLocationVC
-        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResMenuInfo") as! ResMenuInfoVC
+        infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResInformationVC") as! ResInformationVC
+        LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResLocationVC") as! ResLocationVC
+        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResMenuInfoVC") as! ResMenuInfoVC
         //        let viewControllers = [infoViewController, LocationViewController, RoominfoViewController]
         let viewControllers = [infoViewController,LocationViewController,RoominfoViewController]
         options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
