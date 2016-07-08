@@ -318,8 +318,6 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 //            }
             self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:coverImage)!)
             
-        }else{
-            self.Cell.imgProvider.hnk_setImageFromFile("ic_no_image")
         }
         
         Cell.lblProviderType.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String)

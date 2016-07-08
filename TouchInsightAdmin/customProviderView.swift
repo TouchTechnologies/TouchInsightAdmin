@@ -22,7 +22,7 @@ class customProviderView: UITableViewCell {
         self.teamDetailView.layer.cornerRadius = 5
         self.imgProvider.layer.cornerRadius = 5
         
-        self.imgProvider.image = UIImage(named: "bg_cctvdefault.png")
+        self.imgProvider.image = UIImage(named: "ic_no_image.png")
         
         //lblProviderType.text = "AAAAAA"
         //lblProviderName.text = "BBBBB"
