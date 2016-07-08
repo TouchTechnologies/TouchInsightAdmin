@@ -12,6 +12,7 @@
 		3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC731C06DC2A0051E850 /* API_Model.swift */; };
 		368AB9DC1D2FA1DB007CEC09 /* Resfacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AB9DA1D2FA1DB007CEC09 /* Resfacility.swift */; };
 		368AB9DD1D2FA1DB007CEC09 /* Resfacility.xib in Resources */ = {isa = PBXBuildFile; fileRef = 368AB9DB1D2FA1DB007CEC09 /* Resfacility.xib */; };
+		368AB9DF1D2FB406007CEC09 /* ic_no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AB9DE1D2FB406007CEC09 /* ic_no_image.png */; };
 		36AB49C71C3CE9CF0078A936 /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49C61C3CE9CF0078A936 /* RNGridMenu.m */; };
 		36AB49CD1C3CED6A0078A936 /* MyCustomPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49CA1C3CED6A0078A936 /* MyCustomPinAnnotationView.m */; };
 		36AB49CE1C3CED6A0078A936 /* MyCustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49CC1C3CED6A0078A936 /* MyCustomPointAnnotation.m */; };
@@ -233,6 +234,7 @@
 		366CBBDD1C07F6A200484DA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		368AB9DA1D2FA1DB007CEC09 /* Resfacility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resfacility.swift; sourceTree = "<group>"; };
 		368AB9DB1D2FA1DB007CEC09 /* Resfacility.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Resfacility.xib; sourceTree = "<group>"; };
+		368AB9DE1D2FB406007CEC09 /* ic_no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_no_image.png; path = images/ic_no_image.png; sourceTree = "<group>"; };
 		36AB49C51C3CE9CF0078A936 /* RNGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGridMenu.h; path = Class/RNGridMenu.h; sourceTree = "<group>"; };
 		36AB49C61C3CE9CF0078A936 /* RNGridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNGridMenu.m; path = Class/RNGridMenu.m; sourceTree = "<group>"; };
 		36AB49C91C3CED6A0078A936 /* MyCustomPinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCustomPinAnnotationView.h; path = Class/MapAnnotation/MyCustomPinAnnotationView.h; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 		36FB35DB1C06A8CE00026813 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				368AB9DE1D2FB406007CEC09 /* ic_no_image.png */,
 				F36AABC71C8EEB2E000B7BFE /* edit_icon.png */,
 				F366B7171C7C38A0006EC4B7 /* empty_menu.png */,
 				F3DA15D01C6486B600900527 /* icon-2.png */,
@@ -1209,6 +1212,7 @@
 				F36965F11C578D51001F18AD /* ic_info.png in Resources */,
 				F3B8B5211C3B847100768DF9 /* roomfacility.xib in Resources */,
 				F3B071211C0F45F500DC97CB /* Left-32.png in Resources */,
+				368AB9DF1D2FB406007CEC09 /* ic_no_image.png in Resources */,
 				F3C44D331C0FEC17000E744C /* Shop-100.png in Resources */,
 				F3C6DC141C191C570005A621 /* bg1.png in Resources */,
 				F34D52DC1C3CF560002AC1EF /* shopping_60px.png in Resources */,
