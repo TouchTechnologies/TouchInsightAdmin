@@ -162,9 +162,15 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         let tappedMenuView = recognizer.view as! MenuItemView
         let tappedPage = pagingMenuController.menuView.menuItemViews.indexOf(tappedMenuView)
         if (tappedPage != pagingMenuController.currentPage){
-            print("not refresh = \(tappedPage)")
+            print("not refresh")
+            print("tappedPage = \(tappedPage)") // 0,1,2
+            print("currentPage = \(pagingMenuController.currentPage)") // 0,1,2
             
-            pagingMenuController.moveToMenuPage(tappedPage!, animated: true)
+            if((pagingMenuController.currentPage == 0 && tappedPage! == 2) || (pagingMenuController.currentPage == 2 && tappedPage! == 0)){
+                pagingMenuController.moveToMenuPage(1, animated: true)
+            }else{
+                pagingMenuController.moveToMenuPage(tappedPage!, animated: true)
+            }
             
         } else {
             if(tappedPage == 0){
@@ -184,7 +190,7 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
     func initialImageGalleryVC(){
         
         
-        let galleryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imagegallery") as! ImageGalleryVC
+        let galleryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ImageGalleryVC") as! ImageGalleryVC
         
         // self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         // self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)

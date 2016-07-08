@@ -210,7 +210,7 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
                 SCLAlertView().showTitle("Delete", subTitle: "ลบ Room สำเร็จ", duration: 1.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
                 
                 //back to room list view
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC
                 self.appDelegate.pagecontrolIndex = 2
                 self.navigationController?.pushViewController(vc, animated:true)
                 

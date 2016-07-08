@@ -242,7 +242,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                                 self.appDelegate.isLogin = true
                                 print("APPDALAGATELOGIN:::\(self.appDelegate.isLogin)")
                                 
-                                PKHUD.sharedHUD.hide(animated: true, completion: {_ in
+                                PKHUD.sharedHUD.hide(animated: false, completion: {_ in
                                     let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                                     self.navigationController?.pushViewController(secondViewController!, animated: true)
                                 })
@@ -257,7 +257,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                         self.alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
                         print(" Message = \(data["message"])")
                         PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                        PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                        PKHUD.sharedHUD.hide(animated: false, completion: nil)
                         //PKHUD.sharedHUD.hide(afterDelay: 1.0)
                     }
 

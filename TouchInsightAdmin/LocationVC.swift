@@ -143,7 +143,7 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
         changLocationBtn.layer.cornerRadius = 5
         Buttonlbl.frame = CGRectMake(0,0,changLocationBtn.frame.size.width,50)
         
-        changLocationBtn.addTarget(self, action: "updateLocation:", forControlEvents: .TouchUpInside)
+        changLocationBtn.addTarget(self, action: #selector(LocationVC.updateLocation(_:)), forControlEvents: .TouchUpInside)
         Buttonlbl.center.y = changLocationBtn.frame.size.height/2
         Buttonlbl.textAlignment = .Center
         Buttonlbl.text = "Change Location"
@@ -213,8 +213,7 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
                 self.mapView.addAnnotation(point)
                 
                 
-            }else
-            {
+            }else{
                 print("No Location Set")
                 
                 
@@ -319,9 +318,12 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
         print("pointLat : \(pointLat)")
         print("lat1 : \(Double(self.appDelegate.latitude)!) long1 \(Double(self.appDelegate.longitude )!)")
         
+        print("lat xxxxxx : \((appDelegate.latitude))")
+        print("lng xxxxxx : \((appDelegate.longitude))")
         
-        if(Int(appDelegate.latitude) != 0 )
-        {
+        
+        if (appDelegate.latitude != "0.00" && appDelegate.longitude != "0.00"){
+            
             //Set Center Location
             print("set Center Location")
             let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(self.appDelegate.latitude)!,Double(self.appDelegate.longitude)! )
@@ -338,7 +340,6 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
             
             if(pointLat != "0.000000"){
                 
-                
                 let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 2000, 2000)
                 self.mapView.setRegion(viewRegion, animated:true)
                 print("pointLat : \(pointLat)")
@@ -350,6 +351,17 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
                 
             }
             
+        }else{
+            //13.3449981,101.5100112
+//            let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(13.3449981,101.5100112)
+//            //print("LATITUDEEE\(Double(self.appDelegate.latitude)!)")
+//            //        let viewRegion = MKCoordinateRegion(center: Coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 100, 100)
+//            self.mapView.setRegion(viewRegion, animated:true)
+            
+            let span = MKCoordinateSpanMake(0.075, 0.075)
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112), span: span)
+            mapView.setRegion(region, animated: true)
         }
         
         
