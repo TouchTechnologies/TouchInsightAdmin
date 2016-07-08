@@ -1,0 +1,6 @@
+framework module Pods_TouchInsightAdminTests {
+  umbrella header "Pods-TouchInsightAdminTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
