@@ -98,6 +98,8 @@ print("province Delegate \(appDelegate.provinceName)")
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
         
+        
+        
         self.initailLogoImage()
     }
     override func viewDidDisappear(animated: Bool) {
@@ -570,8 +572,8 @@ func initalertView(){
         
         
         self.setObject()
-        self.getFacility()
-        self.getProviderByID()
+//        self.getFacility()
+//        self.getProviderByID()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AttnInfoVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true

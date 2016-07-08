@@ -280,11 +280,11 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             var targetVC = UIViewController()
             if(keyType == "restaurant"){
-                targetVC = storyBoard.instantiateViewControllerWithIdentifier("resinformation") as! RestuarantListVC
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("RestuarantListVC") as! RestuarantListVC
             }else if(keyType == "hotel"){
-                targetVC = storyBoard.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC
             }else if(keyType == "attraction"){
-                targetVC = storyBoard.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC ////////////  FAKE!!!!!!
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC ////////////  FAKE!!!!!!
             }
             
             self.navigationController?.pushViewController(targetVC, animated: true)

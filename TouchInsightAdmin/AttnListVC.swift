@@ -113,9 +113,9 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
     }
     
     func initialInfoVC(){
-        infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnInformationVC") as! AttnInfoVC
+        infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnInfoVC") as! AttnInfoVC
         LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnLocationVC") as! AttnLocationVC
-        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnRoomInfoVC") as! AttnMenuInfoVC
+        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnMenuInfoVC") as! AttnMenuInfoVC
         //        let viewControllers = [infoViewController, LocationViewController, RoominfoViewController]
         let viewControllers = [infoViewController,LocationViewController,RoominfoViewController]
         options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
