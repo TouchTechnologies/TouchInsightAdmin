@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
+class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
     let width = UIScreen.mainScreen().bounds.size.width
     let height = UIScreen.mainScreen().bounds.size.height
     
@@ -73,11 +73,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         checkinPicker.hidden = true
         checkinPicker.backgroundColor = UIColor.whiteColor()
-        checkinPicker.addTarget(self, action: #selector(InformationVC.checkinPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        checkinPicker.addTarget(self, action: #selector(AttnInfoVC.checkinPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         checkoutPicker.hidden = true
         checkoutPicker.backgroundColor = UIColor.whiteColor()
-        checkoutPicker.addTarget(self, action: #selector(InformationVC.checkoutPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        checkoutPicker.addTarget(self, action: #selector(AttnInfoVC.checkoutPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -95,7 +95,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
 print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
         
         self.initailLogoImage()
@@ -403,9 +403,9 @@ func initalertView(){
             
         }
     }
-
+    
     func dismissKeyboard() {
-       txtHotelName.resignFirstResponder()
+        txtHotelName.resignFirstResponder()
         emailTxt.resignFirstResponder()
         websiteTxt.resignFirstResponder()
         provinceTxt.resignFirstResponder()
@@ -420,10 +420,11 @@ func initalertView(){
         addressTxt.resignFirstResponder()
         phonNumberTxt.resignFirstResponder()
         pickerView.hidden = true
-       checkinPicker.hidden = true
-       checkoutPicker.hidden = true
+        checkinPicker.hidden = true
+        checkoutPicker.hidden = true
         
     }
+    
     func dismissKeyboard2() {
         print("dismissKeyboard2")
         provinceTxt.resignFirstResponder()
@@ -572,7 +573,7 @@ func initalertView(){
         self.getFacility()
         self.getProviderByID()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AttnInfoVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
         imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
         self.scrollView.addSubview(self.imgHotelLogo)
@@ -584,10 +585,10 @@ func initalertView(){
 
       
         //hide keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
 
-        let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard2")
+        let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard2))
         provinceTxt.addGestureRecognizer(pickerTap)
 //        provinceTxt.resignFirstResponder()
         //set picker view
@@ -772,37 +773,37 @@ func initalertView(){
     
     func getProviderByID()
     {
-//        PKHUD.sharedHUD.dimsBackground = false
-//        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//        
-////        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-//        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//        PKHUD.sharedHUD.show()
-//        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//        
-//        let send = API_Model()
-//        print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
-//        
-//        let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
-//        send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
-//            data in
-//            print("getProviderByID \(data)")
-//            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-//            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-////            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
-//            
-//            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
-//            
-//            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
-//            
-//            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
-//            
-//            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
-//            
-//            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
-//            
-//            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
-//        }
+        PKHUD.sharedHUD.dimsBackground = false
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        
+//        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
+        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        
+        let send = API_Model()
+        print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
+        
+        let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
+        send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
+            data in
+            print("getProviderByID \(data)")
+            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+            PKHUD.sharedHUD.hide(afterDelay: 1.0)
+//            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
+            
+            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
+            
+            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
+            
+            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
+            
+            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
+            
+            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
+            
+            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
+        }
         
     }
     func imageTapped(img: AnyObject)

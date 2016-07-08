@@ -60,6 +60,14 @@
 		F30672021C16BFAC001A577F /* customProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30672011C16BFAC001A577F /* customProviderView.swift */; };
 		F306727D1C1718E6001A577F /* ProviderInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306727C1C1718E6001A577F /* ProviderInfoVC.swift */; };
 		F309A38C1C8002520084647D /* introPage4.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309A38B1C8002520084647D /* introPage4.swift */; };
+		F30DF8541D2F5AEA0074B713 /* AttnListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF8531D2F5AEA0074B713 /* AttnListVC.swift */; };
+		F30DF8561D2F5AF90074B713 /* AttnInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF8551D2F5AF90074B713 /* AttnInfoVC.swift */; };
+		F30DF8581D2F5B030074B713 /* AttnLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF8571D2F5B030074B713 /* AttnLocationVC.swift */; };
+		F30DF85A1D2F5B110074B713 /* AttnMenuInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF8591D2F5B110074B713 /* AttnMenuInfoVC.swift */; };
+		F30DF85C1D2F5B190074B713 /* AttnCreateMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF85B1D2F5B190074B713 /* AttnCreateMenuVC.swift */; };
+		F30DF85E1D2F5B250074B713 /* AttnImageGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF85D1D2F5B250074B713 /* AttnImageGalleryVC.swift */; };
+		F30DF8601D2F5B2E0074B713 /* AttnEditMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF85F1D2F5B2E0074B713 /* AttnEditMenuVC.swift */; };
+		F30DF8621D2F5B380074B713 /* AttnImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30DF8611D2F5B380074B713 /* AttnImageCollectionViewCell.swift */; };
 		F329F1E11D2BA8A10061BA52 /* EAIntroPage.h in Sources */ = {isa = PBXBuildFile; fileRef = F329F1DD1D2BA8A10061BA52 /* EAIntroPage.h */; };
 		F329F1E21D2BA8A10061BA52 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = F329F1DE1D2BA8A10061BA52 /* EAIntroPage.m */; };
 		F329F1E31D2BA8A10061BA52 /* EAIntroView.h in Sources */ = {isa = PBXBuildFile; fileRef = F329F1DF1D2BA8A10061BA52 /* EAIntroView.h */; };
@@ -311,6 +319,14 @@
 		F30672011C16BFAC001A577F /* customProviderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customProviderView.swift; sourceTree = "<group>"; };
 		F306727C1C1718E6001A577F /* ProviderInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderInfoVC.swift; sourceTree = "<group>"; };
 		F309A38B1C8002520084647D /* introPage4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = introPage4.swift; sourceTree = "<group>"; };
+		F30DF8531D2F5AEA0074B713 /* AttnListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnListVC.swift; sourceTree = "<group>"; };
+		F30DF8551D2F5AF90074B713 /* AttnInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnInfoVC.swift; sourceTree = "<group>"; };
+		F30DF8571D2F5B030074B713 /* AttnLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnLocationVC.swift; sourceTree = "<group>"; };
+		F30DF8591D2F5B110074B713 /* AttnMenuInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnMenuInfoVC.swift; sourceTree = "<group>"; };
+		F30DF85B1D2F5B190074B713 /* AttnCreateMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnCreateMenuVC.swift; sourceTree = "<group>"; };
+		F30DF85D1D2F5B250074B713 /* AttnImageGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnImageGalleryVC.swift; sourceTree = "<group>"; };
+		F30DF85F1D2F5B2E0074B713 /* AttnEditMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnEditMenuVC.swift; sourceTree = "<group>"; };
+		F30DF8611D2F5B380074B713 /* AttnImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttnImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		F329F1DD1D2BA8A10061BA52 /* EAIntroPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EAIntroPage.h; path = Pods/EAIntroView/EAIntroView/EAIntroPage.h; sourceTree = "<group>"; };
 		F329F1DE1D2BA8A10061BA52 /* EAIntroPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EAIntroPage.m; path = Pods/EAIntroView/EAIntroView/EAIntroPage.m; sourceTree = "<group>"; };
 		F329F1DF1D2BA8A10061BA52 /* EAIntroView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EAIntroView.h; path = Pods/EAIntroView/EAIntroView/EAIntroView.h; sourceTree = "<group>"; };
@@ -968,6 +984,14 @@
 		F3D90B4F1C63526D00EEFB21 /* Attraction */ = {
 			isa = PBXGroup;
 			children = (
+				F30DF8531D2F5AEA0074B713 /* AttnListVC.swift */,
+				F30DF8551D2F5AF90074B713 /* AttnInfoVC.swift */,
+				F30DF8571D2F5B030074B713 /* AttnLocationVC.swift */,
+				F30DF8591D2F5B110074B713 /* AttnMenuInfoVC.swift */,
+				F30DF85B1D2F5B190074B713 /* AttnCreateMenuVC.swift */,
+				F30DF85D1D2F5B250074B713 /* AttnImageGalleryVC.swift */,
+				F30DF85F1D2F5B2E0074B713 /* AttnEditMenuVC.swift */,
+				F30DF8611D2F5B380074B713 /* AttnImageCollectionViewCell.swift */,
 			);
 			name = Attraction;
 			sourceTree = "<group>";
@@ -1361,13 +1385,17 @@
 				F383BF591C7C084200726ED7 /* MenuViewController.swift in Sources */,
 				F309A38C1C8002520084647D /* introPage4.swift in Sources */,
 				3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */,
+				F30DF8581D2F5B030074B713 /* AttnLocationVC.swift in Sources */,
 				F329F1F71D2D10400061BA52 /* ResCreateMenuVC.swift in Sources */,
+				F30DF85C1D2F5B190074B713 /* AttnCreateMenuVC.swift in Sources */,
 				36AB49CE1C3CED6A0078A936 /* MyCustomPointAnnotation.m in Sources */,
 				F3A7582D1C27FB2E00CBB8A0 /* alertCreateProviderV.swift in Sources */,
+				F30DF8541D2F5AEA0074B713 /* AttnListVC.swift in Sources */,
 				F3B8B5271C3B861100768DF9 /* roomfacCell.swift in Sources */,
 				F3BA1F551C76FF6700B0782C /* ImageCollectionViewCell.swift in Sources */,
 				F383BF5C1C7C185500726ED7 /* SSRadioButton.swift in Sources */,
 				F360C2C61C0ED09900149CCC /* MyCollectionViewCell.swift in Sources */,
+				F30DF85A1D2F5B110074B713 /* AttnMenuInfoVC.swift in Sources */,
 				F329F1FB1D2D10600061BA52 /* ResEditMenuVC.swift in Sources */,
 				F329F1F51D2D10260061BA52 /* ResMenuInfoVC.swift in Sources */,
 				F3C6DC041C17D6F90005A621 /* RoomInfoVC.swift in Sources */,
@@ -1379,7 +1407,9 @@
 				F3C6DC1C1C197B710005A621 /* ImageGalleryVC.swift in Sources */,
 				F3627FED1C2BACEC006BC607 /* CNPPopupController.m in Sources */,
 				36AB49CD1C3CED6A0078A936 /* MyCustomPinAnnotationView.m in Sources */,
+				F30DF8601D2F5B2E0074B713 /* AttnEditMenuVC.swift in Sources */,
 				F3E6F7731C1EA44D005FE053 /* customRoomListTbl.swift in Sources */,
+				F30DF85E1D2F5B250074B713 /* AttnImageGalleryVC.swift in Sources */,
 				F3B071231C0F4FAD00DC97CB /* EditProfileVC.swift in Sources */,
 				36DC41281C05C667001B8E22 /* DeviceDetail.swift in Sources */,
 				F3FE68041C109972002BF719 /* JSSAlertView.swift in Sources */,
@@ -1397,11 +1427,13 @@
 				36AB49C71C3CE9CF0078A936 /* RNGridMenu.m in Sources */,
 				F3C6EE201C6B2EBD00DB031F /* EditRoominfomationVC.swift in Sources */,
 				F383BF551C7C081900726ED7 /* RestuarantInfoViewController.swift in Sources */,
+				F30DF8561D2F5AF90074B713 /* AttnInfoVC.swift in Sources */,
 				F306727D1C1718E6001A577F /* ProviderInfoVC.swift in Sources */,
 				F383BF5D1C7C185500726ED7 /* SSRadioButtonsController.swift in Sources */,
 				36DC41291C05C667001B8E22 /* DeviceType.swift in Sources */,
 				36DC41201C05C5B4001B8E22 /* FTWButton.m in Sources */,
 				36DC412B1C05C6E3001B8E22 /* JobTextFieldxxx.swift in Sources */,
+				F30DF8621D2F5B380074B713 /* AttnImageCollectionViewCell.swift in Sources */,
 				F3C6DC021C17D6C10005A621 /* LocationVC.swift in Sources */,
 				36AD55E41C0C391D001CAB71 /* ProviderListVC.swift in Sources */,
 				F329F1F31D2D10190061BA52 /* ResLocationVC.swift in Sources */,
