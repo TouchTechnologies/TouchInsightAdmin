@@ -311,7 +311,7 @@ func initalertView(){
             "providerInformation" :
                 [
                     "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                    "providerTypeKeyname" : "hotel"
+                    "providerTypeKeyname" : "restuarant"
             ]
         ]
         
@@ -569,8 +569,8 @@ func initalertView(){
         
         
         self.setObject()
-        self.getFacility()
-        self.getProviderByID()
+//        self.getFacility()
+//        self.getProviderByID()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         imgHotelLogo.userInteractionEnabled = true
