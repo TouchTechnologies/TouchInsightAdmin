@@ -38,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var hotelLogo = UIImageView()
 //    var facilitiesHotelAttached = [String]()
     
+    
+    //Restuarant
+    var facilityResDic:NSDictionary?
+    var facilityResStatus = [Bool]()
+    
     //Room
     var roomIndex : Int?
     var roomGalleryIndex : Int?
