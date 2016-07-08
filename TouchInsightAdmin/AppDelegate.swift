@@ -54,10 +54,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var pagecontrolIndex : Int?
     var providerIndex:Int?
     var command = [
+        //Provider API Code
         "createProvider":"010600",
         "listProvider":"010100",
         "updateProvider":"010700",
-        //Room
+        
+//        "ListHotelFacility":"110001", //remove
+        
+        "ListFacility":"110001",
+        "SetFacilityAttached":"110700",
+        "GetFacilityAttached":"110100",
+        "GetProviderInformationById":"010200",
+        "CreateGallery" : "070600",
+
+        //Hotel Room Code
         "listRoom":"090100",
         "ListGallery" : "070100",
         "createRoomType":"090600",
@@ -67,15 +77,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "GetRoomTypeFacilityAttached":"120100",
         "ListRoomTypeGallery" : "100100",
         "CreateRoomTypeGallery":"100600",
+        "ListRoomFacility":"120001",
         
         "getUploadImageURL":"010700",
         "listProvince":"000300",
-        "ListHotelFacility":"110001",
-        "SetFacilityAttached":"110700",
-        "GetFacilityAttached":"110100",
-        "ListRoomFacility":"120001",
-        "GetProviderInformationById":"010200",
-        "CreateGallery" : "070600"
+
+        
+        //Restuarant Menu Code
+        "ListMenu":"130100",
+        "CreateMenu":"130600",
+        "UpdateMenu":"130700",
+        "DeleteMenu":"130800",
+        "ListMenuGallery":"140100",
+        "CreateMenuGallery":"140600",
+        "DeleteMenuGallery":"140800",
+        
         
     ]
     var userInfo = [
