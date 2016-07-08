@@ -21,7 +21,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     var mediaKey:String!
     var facilitiesAttached:[[String:String]] = []
 
-    var facilitiesHotelAttached = [String]()
+    var facilitiesResAttached = [String]()
     
     @IBOutlet var lblAddHotelfac: UILabel!
     @IBOutlet var tableView: UITableView!
@@ -153,13 +153,13 @@ func initalertView(){
     func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
         alertView.close()
         
-        self.facilitiesHotelAttached.removeAll()
-        for i in 0...appDelegate.facilityHotelDic!["facilities"]!.count - 1
+        self.facilitiesResAttached.removeAll()
+        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
         {
             if (self.appDelegate.facilityHotelStatus[i] as Bool)
             {
                 
-                self.facilitiesHotelAttached.append(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)
+                self.facilitiesResAttached.append(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)
                 
                 
             }
@@ -178,7 +178,7 @@ func initalertView(){
         let height = UIScreen.mainScreen().bounds.size.height
         let containerView = UIView(frame: CGRectMake(0, 0, 300 , height - 100))
         
-        let subView1: hotelfacility = NSBundle.mainBundle().loadNibNamed("hotelfacility", owner: self, options: nil)[0] as! hotelfacility
+        let subView1: Resfacility = NSBundle.mainBundle().loadNibNamed("Resfacility", owner: self, options: nil)[0] as! Resfacility
         subView1.frame = containerView.bounds
        // subView1.closeAlert.addTarget(self, action: "closealert:", forControlEvents: .TouchUpInside)
        // sibview.frame = CGRectMake(0, 0, 300, 400)
@@ -291,12 +291,12 @@ func initalertView(){
         print("==============================================")
         
 //        print("Facility(status) : \(appDelegate.facilityHotelStatus)")
-        for i in 0...appDelegate.facilityHotelDic!["facilities"]!.count - 1
+        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
         {
 //            print("faccccccc \(i)")
             if(self.appDelegate.facilityHotelStatus[i])
             {
-            print("Facility :\(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)")
+            print("Facility :\(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
             }
            
         }
@@ -304,7 +304,7 @@ func initalertView(){
     func getFacility()
     {
         
-        facilitiesHotelAttached.removeAll()
+        facilitiesResAttached.removeAll()
         
         let dataDic =
         [
@@ -329,27 +329,27 @@ func initalertView(){
                 for i in 0...data["facilitiesAttached"]!.count - 1
                 {
                     print(data["facilitiesAttached"]![i]["facility_keyname"])
-                    print("CountWTF : \(self.appDelegate.facilityHotelDic!["facilities"]!.count)")
-                    for j in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1
+                    print("CountWTF : \(self.appDelegate.facilityResDic!["facilities"]!.count)")
+                    for j in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1
                     {
-//                    print("facilitiesAttachedID \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"])")
+//                    print("facilitiesAttachedID \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"])")
                     
-                        if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"] as! String))
+                        if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String))
                         {
                             self.appDelegate.facilityHotelStatus[j] = true
                             print("index : \(j) \(data["facilitiesAttached"]![i]["facility_id"] as! String)")
-                            print("index : \(j) \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"] as! String)")
+                            print("index : \(j) \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String)")
                     
                         }
                     
                     }
-                    self.facilitiesHotelAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
+                    self.facilitiesResAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
                 self.tableView.reloadData()
         }
         
-        print("all facility hotel \(appDelegate.facilityHotelDic)")
+        print("all facility hotel \(appDelegate.facilityResDic)")
         
     }
     
@@ -370,18 +370,18 @@ func initalertView(){
         ]
         
         //var facilitiesAttached:[[String:String]] = []
-        self.facilitiesHotelAttached.removeAll()
-        for i in 0...appDelegate.facilityHotelDic!["facilities"]!.count - 1
+        self.facilitiesResAttached.removeAll()
+        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
         {
             if (self.appDelegate.facilityHotelStatus[i] as Bool)
             {
                 facilitiesAttached.append(
-                    ["facility_id": appDelegate.facilityHotelDic!["facilities"]![i]["facility_id"] as! String,
-                        "facility_keyname": appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String,
+                    ["facility_id": appDelegate.facilityResDic!["facilities"]![i]["facility_id"] as! String,
+                        "facility_keyname": appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String,
                         "quantity": "0", ])
-                print("fac OK \(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)")
+                print("fac OK \(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
                 
-                self.facilitiesHotelAttached.append(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)
+                self.facilitiesResAttached.append(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)
                 
           
             }
@@ -570,8 +570,9 @@ func initalertView(){
         
         
         self.setObject()
+        self.getProviderByID()
 //        self.getFacility()
-//        self.getProviderByID()
+        
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
@@ -751,17 +752,17 @@ func initalertView(){
 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return facilitiesHotelAttached.count
+        return facilitiesResAttached.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        if(facilitiesHotelAttached.count == 0){
+        if(facilitiesResAttached.count == 0){
          cell.textLabel?.text = ""
         }
         else{
        // var facilitiesAttached:[[String:String]] = []
-       cell.textLabel?.text = facilitiesHotelAttached[indexPath.row]
-        print("facilitiesHotelAttached(table) \(facilitiesHotelAttached[indexPath.row])")
+       cell.textLabel?.text = facilitiesResAttached[indexPath.row]
+        print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
         }
         
        //cell.textLabel?.text = "facility name"
@@ -792,17 +793,17 @@ func initalertView(){
             PKHUD.sharedHUD.hide(afterDelay: 1.0)
 //            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
             
-            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
-            
-            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
-            
-            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
-            
-            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
-            
-            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
-            
-            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
+//            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
+//            
+//            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
+//            
+//            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
+//            
+//            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
+//            
+//            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
+//            
+//            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
         }
         
     }
