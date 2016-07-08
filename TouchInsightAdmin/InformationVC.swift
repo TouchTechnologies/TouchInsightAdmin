@@ -564,15 +564,15 @@ func initalertView(){
     }
    
     override func viewWillAppear(animated: Bool) {
-        self.viewDidLoad()
-        self.viewDidAppear(true)
-        
+        //self.viewDidLoad()
+        //self.viewDidAppear(true)
+        super.viewWillAppear(true)
         
         self.setObject()
         self.getFacility()
         self.getProviderByID()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(InformationVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
         imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
         self.scrollView.addSubview(self.imgHotelLogo)

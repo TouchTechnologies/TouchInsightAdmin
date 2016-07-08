@@ -729,7 +729,7 @@
         <!--Provider InfoVC-->
         <scene sceneID="4X0-7o-bwK">
             <objects>
-                <viewController storyboardIdentifier="providerinfo" id="PXz-mw-y32" customClass="ProviderInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProviderInfoVC" id="PXz-mw-y32" customClass="ProviderInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oNi-mQ-x70">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -1676,7 +1676,7 @@
         <!--Image Gallery-->
         <scene sceneID="Qtp-Be-t7g">
             <objects>
-                <viewController storyboardIdentifier="imagegallery" title="Image Gallery" id="W7r-8a-nNS" customClass="ImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageGalleryVC" title="Image Gallery" id="W7r-8a-nNS" customClass="ImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="15q-hT-z8j">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2050,7 +2050,7 @@
         <!--Create Room-->
         <scene sceneID="mAg-Ud-ZvN">
             <objects>
-                <viewController storyboardIdentifier="CreateRoom" id="JzS-un-k06" customClass="CreateRoomInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateRoomInfoVC" id="JzS-un-k06" customClass="CreateRoomInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hT4-9G-nZ3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2330,7 +2330,7 @@
         <!--Edit Room-->
         <scene sceneID="2AM-F6-g1p">
             <objects>
-                <viewController storyboardIdentifier="editRoom" id="9HV-lh-0Xg" customClass="EditRoominfomationVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditRoominfomationVC" id="9HV-lh-0Xg" customClass="EditRoominfomationVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dHZ-rJ-twy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2771,7 +2771,7 @@
         <!--Restuarant ListVC-->
         <scene sceneID="9cJ-10-VVe">
             <objects>
-                <viewController storyboardIdentifier="resinformation" id="O6C-1i-Vqk" customClass="RestuarantListVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestuarantListVC" id="O6C-1i-Vqk" customClass="RestuarantListVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Byd-vC-u3m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -3234,7 +3234,7 @@
         <!--Image Gallery-->
         <scene sceneID="XxK-5d-dQl">
             <objects>
-                <viewController storyboardIdentifier="ResImagegallery" title="Image Gallery" id="LTA-QQ-gOB" customClass="ResImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResImageGalleryVC" title="Image Gallery" id="LTA-QQ-gOB" customClass="ResImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="coU-xw-eXP">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3444,7 +3444,7 @@
         <!--Room-->
         <scene sceneID="bRn-FK-F01">
             <objects>
-                <viewController storyboardIdentifier="ResRoomInfoVC" title="Room" id="WaX-Bv-Ujg" customClass="ResMenuInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResMenuInfoVC" title="Room" id="WaX-Bv-Ujg" customClass="ResMenuInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NUm-ul-82d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -3533,7 +3533,7 @@
         <!--Create Room-->
         <scene sceneID="yrk-GD-CXw">
             <objects>
-                <viewController storyboardIdentifier="ResCreateRoom" id="C55-9P-YcB" customClass="ResCreateMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResCreateMenuVC" id="C55-9P-YcB" customClass="ResCreateMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7KG-dV-C6W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3795,7 +3795,7 @@
         <!--Edit Room-->
         <scene sceneID="Z5w-bT-beR">
             <objects>
-                <viewController storyboardIdentifier="ResEditRoom" id="ttu-s9-8HD" customClass="ResEditMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResEditMenuVC" id="ttu-s9-8HD" customClass="ResEditMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bHi-dG-Wmg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4053,7 +4053,7 @@
         <!--Attn ListVC-->
         <scene sceneID="J8g-o6-koy">
             <objects>
-                <viewController storyboardIdentifier="attninformation" id="xn8-7J-u4u" customClass="AttnListVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttnListVC" id="xn8-7J-u4u" customClass="AttnListVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9X9-if-4oa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -4123,7 +4123,7 @@
         <!--Hotel Info-->
         <scene sceneID="ZTC-gq-rZf">
             <objects>
-                <viewController storyboardIdentifier="AttnInformationVC" title="Hotel Info" id="dIX-13-jQC" customClass="AttnInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttnInfoVC" title="Hotel Info" id="dIX-13-jQC" customClass="AttnInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vMb-ib-kZP">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4516,7 +4516,7 @@
         <!--Image Gallery-->
         <scene sceneID="IXQ-t9-Mg2">
             <objects>
-                <viewController storyboardIdentifier="AttnImagegallery" title="Image Gallery" id="iO6-ys-e0A" customClass="AttnImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttnImageGalleryVC" title="Image Gallery" id="iO6-ys-e0A" customClass="AttnImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eps-O2-nHa">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4726,7 +4726,7 @@
         <!--Room-->
         <scene sceneID="0ww-we-NrQ">
             <objects>
-                <viewController storyboardIdentifier="AttnRoomInfoVC" title="Room" id="nko-4A-riL" customClass="AttnMenuInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttnMenuInfoVC" title="Room" id="nko-4A-riL" customClass="AttnMenuInfoVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dap-LV-akb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -4815,7 +4815,7 @@
         <!--Create Room-->
         <scene sceneID="MNh-FL-6W1">
             <objects>
-                <viewController storyboardIdentifier="AttnCreateMenu" id="3wj-yQ-pVw" customClass="AttnCreateMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttnCreateMenuVC" id="3wj-yQ-pVw" customClass="AttnCreateMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cx2-UB-ewl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5077,7 +5077,7 @@
         <!--Edit Room-->
         <scene sceneID="dDD-LS-pch">
             <objects>
-                <viewController storyboardIdentifier="AttnEditMenu" id="DWy-N4-h0v" customClass="AttnEditMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttnEditMenuVC" id="DWy-N4-h0v" customClass="AttnEditMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ulV-s7-WsF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

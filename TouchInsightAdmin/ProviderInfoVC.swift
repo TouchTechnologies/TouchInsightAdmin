@@ -34,16 +34,16 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         //performSegueWithIdentifier("backtoproviderlistBtn", sender: self)
         self.navigationController?.popViewControllerAnimated(true)
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "backtoproviderlistBtn") {
-            let nav = segue.destinationViewController as! UINavigationController
-            let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-            nav.pushViewController(providerlist!, animated: true)
-            
-            // pass data to next view
-        }
-    }
-    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//        if (segue.identifier == "backtoproviderlistBtn") {
+//            let nav = segue.destinationViewController as! UINavigationController
+//            let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
+//            nav.pushViewController(providerlist!, animated: true)
+//            
+//            // pass data to next view
+//        }
+//    }
+//    
     var navBar = UINavigationBar()
     override func viewDidLoad() {
         
@@ -162,7 +162,9 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         let tappedMenuView = recognizer.view as! MenuItemView
         let tappedPage = pagingMenuController.menuView.menuItemViews.indexOf(tappedMenuView)
         if (tappedPage != pagingMenuController.currentPage){
-            print("not refresh")
+            print("not refresh = \(tappedPage)")
+            
+            pagingMenuController.moveToMenuPage(tappedPage!, animated: true)
             
         } else {
             if(tappedPage == 0){
@@ -197,6 +199,8 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
         let menuWidth = navwidth!/2
         options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: true, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
+        
+        
         options.scrollEnabled = false
         options.menuItemMargin = 0
         options.textColor = UIColor.grayColor()

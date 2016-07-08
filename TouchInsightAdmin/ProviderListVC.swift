@@ -343,12 +343,12 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                 //                print("====================Provider Data==============================")
                 self.tableView.reloadData()
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                PKHUD.sharedHUD.hide(animated: false, completion: nil)
                 
             }else{
                 self.tableView.hidden = true
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                PKHUD.sharedHUD.hide(animated: false, completion: nil)
             }
         }
     }
