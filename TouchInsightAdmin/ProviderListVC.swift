@@ -312,10 +312,14 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         
         if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String? {
-            if coverImage.rangeOfString("cover/default.png") == nil {
-                let urlLogo = NSURL(string: coverImage)
-                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
-            }
+//            if coverImage.rangeOfString("cover/default.png") == nil {
+//                let urlLogo = NSURL(string: coverImage)
+//                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
+//            }
+            self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:coverImage)!)
+            
+        }else{
+            self.Cell.imgProvider.hnk_setImageFromFile("ic_no_image")
         }
         
         Cell.lblProviderType.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String)
