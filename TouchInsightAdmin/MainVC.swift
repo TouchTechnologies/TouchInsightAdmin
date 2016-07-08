@@ -285,9 +285,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             
         }
         
- 
-
-        
     }
     
     override func viewWillAppear(animated: Bool) {
