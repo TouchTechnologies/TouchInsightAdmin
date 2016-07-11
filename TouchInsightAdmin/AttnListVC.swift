@@ -150,7 +150,11 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
         let tappedPage = pagingMenuController.menuView.menuItemViews.indexOf(tappedMenuView)
         if (tappedPage != pagingMenuController.currentPage){
             print("not refresh")
-            
+            if((pagingMenuController.currentPage == 0 && tappedPage! == 2) || (pagingMenuController.currentPage == 2 && tappedPage! == 0)){
+                pagingMenuController.moveToMenuPage(1, animated: true)
+            }else{
+                pagingMenuController.moveToMenuPage(tappedPage!, animated: true)
+            }
         } else {
             if(tappedPage == 0){
                 print("tapp 1")

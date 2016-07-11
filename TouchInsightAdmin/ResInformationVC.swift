@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
+class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate{
     let width = UIScreen.mainScreen().bounds.size.width
     let height = UIScreen.mainScreen().bounds.size.height
     
@@ -72,7 +72,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             self.view_DateSet.hidden = true
             self.view_BottomSet.frame.origin.y = 804
             
-            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1249)
+//            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
         })
         
     }
@@ -88,7 +88,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             self.view_DateSet.hidden = false
             self.view_BottomSet.frame.origin.y = 881
             
-            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1316)
+//            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
         })
         
         
@@ -98,10 +98,157 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     // Sub box ==========
     // Btn 24 Hour
+    var is24Hour = true
     @IBOutlet weak var imgCheck24h: UIImageView!
     @IBAction func btn24Click(sender: AnyObject) {
         
+        if ( is24Hour != true ) {
+            
+            self.checkInView.backgroundColor = UIColor.whiteColor()
+            self.checkOutView.backgroundColor = UIColor.whiteColor()
+            
+            self.checkInTxt.backgroundColor = UIColor.whiteColor()
+            self.checkOutTxt.backgroundColor = UIColor.whiteColor()
+            
+            self.checkInTxt.textColor = UIColor.blackColor()
+            self.checkOutTxt.textColor = UIColor.blackColor()
+            
+            self.checkInTxt.enabled = true
+            self.checkOutTxt.enabled = true
+            
+            is24Hour = true
+            self.imgCheck24h.image = UIImage(named: "check.png")
+        }else{
+            
+            self.checkInView.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
+            self.checkOutView.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
+            
+            self.checkInTxt.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
+            self.checkOutTxt.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
+            
+            self.checkInTxt.textColor = UIColor(red:0.61, green:0.61, blue:0.63, alpha:1.00)
+            self.checkOutTxt.textColor = UIColor(red:0.61, green:0.61, blue:0.63, alpha:1.00)
+            
+            self.checkInTxt.enabled = false
+            self.checkOutTxt.enabled = false
+            
+            is24Hour = false
+            self.imgCheck24h.image = UIImage(named: "uncheck.png")
+            
+        }
         
+    }
+    
+    
+    
+    
+    
+    
+    
+    // Date Click
+    var selectedDay = [
+        "mo":"0",
+        "tu":"0",
+        "we:":"0",
+        "th":"0",
+        "fr":"0",
+        "sa":"0",
+        "su":"0"
+    ]
+    @IBOutlet weak var day_mo: UIImageView!
+    @IBOutlet weak var day_tu: UIImageView!
+    @IBOutlet weak var day_we: UIImageView!
+    @IBOutlet weak var day_th: UIImageView!
+    @IBOutlet weak var day_fr: UIImageView!
+    @IBOutlet weak var day_sa: UIImageView!
+    @IBOutlet weak var day_su: UIImageView!
+    
+    // Day Click
+    @IBAction func day_mo_click(sender: AnyObject) {
+        if(selectedDay["mo"] == "0"){
+            selectedDay["mo"] = "1"
+            day_mo.image = UIImage(named: "mo_hover.png")
+        }else{
+            selectedDay["mo"] = "0"
+            day_mo.image = UIImage(named: "mo.png")
+        }
+        displaySelectedDay()
+    }
+    
+    @IBAction func day_tu_click(sender: AnyObject) {
+        
+        if(selectedDay["tu"] == "0"){
+            selectedDay["tu"] = "1"
+            day_tu.image = UIImage(named: "tu_hover.png")
+        }else{
+            selectedDay["tu"] = "0"
+            day_tu.image = UIImage(named: "tu.png")
+        }
+        displaySelectedDay()
+    }
+    
+    @IBAction func day_we_click(sender: AnyObject) {
+        
+        if(selectedDay["we"] == "0"){
+            selectedDay["we"] = "1"
+            day_we.image = UIImage(named: "we_hover.png")
+        }else{
+            selectedDay["we"] = "0"
+            day_we.image = UIImage(named: "we.png")
+        }
+        displaySelectedDay()
+    }
+    
+    @IBAction func day_th_click(sender: AnyObject) {
+        
+        if(selectedDay["th"] == "0"){
+            selectedDay["th"] = "1"
+            day_th.image = UIImage(named: "th_hover.png")
+        }else{
+            selectedDay["th"] = "0"
+            day_th.image = UIImage(named: "th.png")
+        }
+        displaySelectedDay()
+    }
+    
+    @IBAction func day_fr_click(sender: AnyObject) {
+        
+        if(selectedDay["fr"] == "0"){
+            selectedDay["fr"] = "1"
+            day_fr.image = UIImage(named: "fr_hover.png")
+        }else{
+            selectedDay["fr"] = "0"
+            day_fr.image = UIImage(named: "fr.png")
+        }
+        displaySelectedDay()
+    }
+    
+    @IBAction func day_sa_click(sender: AnyObject) {
+        
+        if(selectedDay["sa"] == "0"){
+            selectedDay["sa"] = "1"
+            day_sa.image = UIImage(named: "sa_hover.png")
+        }else{
+            selectedDay["sa"] = "0"
+            day_sa.image = UIImage(named: "sa.png")
+        }
+        displaySelectedDay()
+    }
+    
+    @IBAction func day_su_click(sender: AnyObject) {
+        
+        if(selectedDay["su"] == "0"){
+            selectedDay["su"] = "1"
+            day_su.image = UIImage(named: "su_hover.png")
+        }else{
+            selectedDay["su"] = "0"
+            day_su.image = UIImage(named: "su.png")
+        }
+        displaySelectedDay()
+    }
+    
+    func displaySelectedDay() {
+        print(selectedDay)
     }
     
     
@@ -122,6 +269,10 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //self.viewDateArrow.transform = CGAffineTransformMakeRotation((45.0 * CGFloat(M_PI)) / 180.0)
         
         print("View Did Load")
+        
+        
+        self.imgCheck24h.image = UIImage(named: "check.png")
+        
         //self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         
         checkinPicker.hidden = true
@@ -142,7 +293,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         tableView.delegate = self
         tableView.dataSource = self
         
-        //checkOutTxt.delegate = self
+        checkOutTxt.delegate = self
         checkInTxt.delegate = self
         //print("province Data \(provinceData)")
         print("province Delegate \(appDelegate.provinceName)")
@@ -152,7 +303,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        self.view!.addGestureRecognizer(tap)
         
         self.initailLogoImage()
-        
         
     }
     override func viewDidDisappear(animated: Bool) {
@@ -601,9 +751,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         pickerView.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.width, 2150)
-        self.view_DateSet.frame.size.width = self.view.frame.width - 16
-        self.view_BottomSet.frame.size.width = self.view.frame.width - 16
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.width, 2200)
+//        self.view_DateSet.frame.size.width = self.view.frame.width - 16
+//        self.view_BottomSet.frame.size.width = self.view.frame.width - 16
         
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 804

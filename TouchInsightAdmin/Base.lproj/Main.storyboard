@@ -2796,6 +2796,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="containnerView" destination="Kej-JL-Wns" id="F1G-sm-FEM"/>
                     </connections>
@@ -2844,8 +2845,8 @@
         <scene sceneID="dXE-y3-rCx">
             <objects>
                 <viewController storyboardIdentifier="ResInformationVC" title="Res Info" id="whq-VC-WOU" customClass="ResInformationVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Na7-pS-Xu9">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Na7-pS-Xu9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" id="meH-Yl-7dM">
@@ -3012,7 +3013,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ir9-IA-nER">
-                                        <rect key="frame" x="8" y="758" width="139" height="42"/>
+                                        <rect key="frame" x="9" y="758" width="138" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="btn_AllDayClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="a5D-xY-8Dd"/>
@@ -3025,18 +3026,97 @@
                                             <action selector="btn_WeeklyClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="Iqp-Tr-BVB"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" id="Odw-jc-i1v">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="Odw-jc-i1v">
                                         <rect key="frame" x="8" y="804" width="359" height="69"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="NYp-PD-Lsd">
                                                 <rect key="frame" x="0.0" y="6" width="359" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mo.png" id="tSh-2g-t3M">
+                                                        <rect key="frame" x="15" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZXp-rh-yCm">
+                                                        <rect key="frame" x="15" y="10" width="39" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_mo_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="50K-aR-7dF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tu.png" id="Rtz-yN-LQJ">
+                                                        <rect key="frame" x="62" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ngd-F6-GhM">
+                                                        <rect key="frame" x="62" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_tu_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="qkD-0H-Fph"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="we.png" id="A9v-Ju-YKw">
+                                                        <rect key="frame" x="110" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AE5-ck-NpR">
+                                                        <rect key="frame" x="110" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_we_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="ZWo-Sk-Ssn"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="th.png" id="0vZ-ga-WZK">
+                                                        <rect key="frame" x="158" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oOz-Mf-xHO">
+                                                        <rect key="frame" x="159" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_th_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="c0k-ra-kMF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fr.png" id="5LO-Q6-akv">
+                                                        <rect key="frame" x="206" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lj2-xe-XIh">
+                                                        <rect key="frame" x="206" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_fr_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="EaD-GA-rvq"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sa.png" id="Jgi-60-Mlh">
+                                                        <rect key="frame" x="255" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HLK-wM-UYa">
+                                                        <rect key="frame" x="255" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_sa_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="BPX-dB-g6t"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="su.png" id="pUL-39-FGS">
+                                                        <rect key="frame" x="303" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3J2-L0-MHM">
+                                                        <rect key="frame" x="303" y="10" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="day_su_click:" destination="whq-VC-WOU" eventType="touchUpInside" id="rE7-eA-BKT"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" id="Qcn-1o-9wz">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="Qcn-1o-9wz">
                                         <rect key="frame" x="9" y="881" width="359" height="435"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -3047,13 +3127,13 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" id="G9a-cc-pFU">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" id="G9a-cc-pFU">
                                                 <rect key="frame" x="0.0" y="29" width="175" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" id="285-oO-0xh">
                                                         <rect key="frame" x="0.0" y="28" width="175" height="47"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -3063,7 +3143,7 @@
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xNw-Ok-q3I">
                                                         <rect key="frame" x="0.0" y="9" width="175" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -3071,13 +3151,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" id="g7P-VF-TWV">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" id="g7P-VF-TWV">
                                                 <rect key="frame" x="178" y="29" width="182" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" id="n8h-yY-SQM">
-                                                        <rect key="frame" x="-1" y="25" width="183" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                        <rect key="frame" x="0.0" y="25" width="182" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -3087,7 +3167,7 @@
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXi-yz-ufg">
                                                         <rect key="frame" x="0.0" y="8" width="182" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -3113,20 +3193,20 @@
                                                     <action selector="btn24Click:" destination="whq-VC-WOU" eventType="touchUpInside" id="IwE-ow-3NV"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" id="dh8-B6-46b">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" id="dh8-B6-46b">
                                                 <rect key="frame" x="18" y="167" width="323" height="181"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Hotel Facility" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OxI-b7-0Tf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Highlight feature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OxI-b7-0Tf">
                                                         <rect key="frame" x="8" y="7" width="264" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aFg-7d-ONJ">
                                                         <rect key="frame" x="8" y="38" width="307" height="135"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="ke8-P6-3Lk">
@@ -3144,7 +3224,7 @@
                                                         </connections>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="A1a-Uj-ZcN">
-                                                        <rect key="frame" x="273" y="7" width="42" height="30"/>
+                                                        <rect key="frame" x="278" y="7" width="42" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="30"/>
                                                         <state key="normal" title="+">
@@ -3200,8 +3280,6 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ww1-Vf-GG6"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="HotelDesTxt" destination="fjx-Ur-GKA" id="kEe-uC-7MZ"/>
@@ -3215,6 +3293,13 @@
                         <outlet property="checkOutView" destination="g7P-VF-TWV" id="rEp-rL-Z0B"/>
                         <outlet property="checkinPicker" destination="SB6-gY-eAu" id="EqS-CQ-f75"/>
                         <outlet property="checkoutPicker" destination="LaK-Ab-MdI" id="vRo-tQ-dCH"/>
+                        <outlet property="day_fr" destination="5LO-Q6-akv" id="JEh-8p-Fcu"/>
+                        <outlet property="day_mo" destination="tSh-2g-t3M" id="hIl-a9-AYC"/>
+                        <outlet property="day_sa" destination="Jgi-60-Mlh" id="v4e-Ro-kMf"/>
+                        <outlet property="day_su" destination="pUL-39-FGS" id="jTO-Vc-YLb"/>
+                        <outlet property="day_th" destination="0vZ-ga-WZK" id="6NR-3E-tGm"/>
+                        <outlet property="day_tu" destination="Rtz-yN-LQJ" id="04g-Pu-k71"/>
+                        <outlet property="day_we" destination="A9v-Ju-YKw" id="0t8-de-HvD"/>
                         <outlet property="emailTxt" destination="DXu-s0-Jty" id="xos-0F-Oea"/>
                         <outlet property="hotelFacListView" destination="dh8-B6-46b" id="ngu-8m-sW9"/>
                         <outlet property="imgCheck24h" destination="pbc-gB-zEX" id="v3y-Xf-w7J"/>
@@ -5348,6 +5433,7 @@
         <image name="check.png" width="50" height="50"/>
         <image name="empty_menu.png" width="222" height="222"/>
         <image name="empty_provider.png" width="222" height="222"/>
+        <image name="fr.png" width="50" height="50"/>
         <image name="ic_add_image_profile.png" width="76" height="81"/>
         <image name="ic_map.png" width="243" height="243"/>
         <image name="ic_room.png" width="222" height="222"/>
@@ -5355,7 +5441,13 @@
         <image name="icon_setting.png" width="28" height="27"/>
         <image name="line_arrow.png" width="312" height="529"/>
         <image name="logo_2.png" width="899" height="250"/>
+        <image name="mo.png" width="50" height="50"/>
         <image name="profile-icon.png" width="100" height="100"/>
+        <image name="sa.png" width="50" height="50"/>
+        <image name="su.png" width="50" height="50"/>
+        <image name="th.png" width="50" height="50"/>
+        <image name="tu.png" width="50" height="50"/>
         <image name="uncheck.png" width="50" height="50"/>
+        <image name="we.png" width="50" height="50"/>
     </resources>
 </document>
