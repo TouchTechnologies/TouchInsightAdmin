@@ -17,7 +17,7 @@
 #import <SMPageControl/SMPageControl.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <NKJPagerViewController/NKJPagerViewController.h>
+//#import <NKJPagerViewController/NKJPagerViewController.h>
 
 
 //#import <LMAlertView/LMAlertView.h>

@@ -782,6 +782,7 @@ class API_Model {
         }
 
     }
+    
     func Dict2JsonString(dict:[String:AnyObject])->String{
         do {
             let jsonResults = try NSJSONSerialization.dataWithJSONObject(dict, options: [])

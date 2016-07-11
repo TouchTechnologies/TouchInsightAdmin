@@ -131,9 +131,9 @@ class CustomIOS7AlertView: UIView {
     
     // Observe orientation and keyboard changes
     private func setObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.deviceOrientationDidChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.deviceOrientationDidChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     // Create the containerView
@@ -271,9 +271,9 @@ class CustomIOS7AlertView: UIView {
         
         var mainWidth:CGFloat = 0.0
         var mainHeight:CGFloat = 0.0
-        if let cvs:CGSize = containerView.frame.size {
-            mainWidth = cvs.width
-            mainHeight = cvs.height
+        if let cv = containerView{
+            mainWidth = cv.frame.size.width
+            mainHeight = cv.frame.size.height
         }
         
         return CGSizeMake(mainWidth, mainHeight + buttonHeight + buttonsDividerHeight)

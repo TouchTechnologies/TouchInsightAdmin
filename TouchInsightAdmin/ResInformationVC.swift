@@ -48,12 +48,12 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     @IBOutlet var checkinPicker: UIDatePicker!
     @IBOutlet var checkoutPicker: UIDatePicker!
     
-    @IBOutlet var lblAirport: UILabel!
+    //    @IBOutlet var lblAirport: UILabel!
     
     
     // Big Box ==========
     @IBOutlet weak var view_DateSet: UIView!
-    @IBOutlet weak var viewDateArrow: UIView!
+    //    @IBOutlet weak var viewDateArrow: UIView!
     
     @IBOutlet weak var view_BottomSet: UIView!
     
@@ -119,13 +119,10 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //        self.viewDateArrow.transform = CGAffineTransformMakeRotation((45.0 * CGFloat(M_PI)) / 180.0)
+        //self.viewDateArrow.transform = CGAffineTransformMakeRotation((45.0 * CGFloat(M_PI)) / 180.0)
         
         print("View Did Load")
-        self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
-        
+        //self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         
         checkinPicker.hidden = true
         checkinPicker.backgroundColor = UIColor.whiteColor()
@@ -151,8 +148,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))
-//        self.view!.addGestureRecognizer(tap)
+        //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))
+        //        self.view!.addGestureRecognizer(tap)
         
         self.initailLogoImage()
         
@@ -185,8 +182,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //     let strCheckout = dateFormatter.stringFromDate(datePicker.date)
         checkInTxt.text = strCheckin
         //            checkinPicker.hidden = true
-        
     }
+    
     func checkoutPickerChanged(datePicker:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
         
@@ -599,7 +596,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
         checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
         
-        
+        pickerView.frame.origin.x = 0
+        checkinPicker.frame.origin.x = 0
+        pickerView.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
         self.scrollView.contentSize = CGSizeMake(self.view.frame.width, 2150)
@@ -611,11 +610,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     }
     
     override func viewWillAppear(animated: Bool) {
-//        self.viewDidLoad()
-//        self.viewDidAppear(true)
+        //        self.viewDidLoad()
+        //        self.viewDidAppear(true)
         
         
-        self.setObject()
+        //self.setObject()
         self.getProviderByID()
         //        self.getFacility()
         
@@ -807,13 +806,13 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     func getProviderByID()
     {
-//        PKHUD.sharedHUD.dimsBackground = false
-//        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//        
-//        //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-//        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//        PKHUD.sharedHUD.show()
-//        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        //        PKHUD.sharedHUD.dimsBackground = false
+        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        //
+        //        //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        //        PKHUD.sharedHUD.show()
+        //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
         
         let send = API_Model()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -840,7 +839,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 //
                 //            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
             }
-
+            
             
             dispatch_async(dispatch_get_main_queue()) {
                 // update some UI
@@ -907,10 +906,10 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("imagePickerControllerDidCancel")
-//        // self.dismissViewControllerAnimated(true, completion: nil)
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-//        self.navigationController?.pushViewController(vc, animated:true)
-//        dismissViewControllerAnimated(true, completion: nil)
+        //        // self.dismissViewControllerAnimated(true, completion: nil)
+        //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+        //        self.navigationController?.pushViewController(vc, animated:true)
+                dismissViewControllerAnimated(true, completion: nil)
         
     }
     

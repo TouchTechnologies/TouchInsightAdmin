@@ -9,15 +9,15 @@ pod 'Alamofire'
 ##help view
 pod 'EAIntroView'
 pod 'SMPageControl'
-pod 'PagingMenuController'
+pod 'PagingMenuController',' 0.8.0'
 pod 'NKJPagerViewController'
 
 ##Facebook SDK
 ##Alert View
-pod 'SCLAlertView'
+pod 'SCLAlertView','0.5.1'
 #pod 'LMAlertView'
 pod 'RBBAnimation'
-pod 'CustomIOSAlertView'
+pod 'CustomIOSAlertView','0.9.3'
 
 #popup
 pod 'PureLayout'
