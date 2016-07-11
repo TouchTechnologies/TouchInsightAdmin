@@ -284,7 +284,7 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             }else if(keyType == "hotel"){
                 targetVC = storyBoard.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC
             }else if(keyType == "attraction"){
-                targetVC = storyBoard.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC ////////////  FAKE!!!!!!
+                targetVC = storyBoard.instantiateViewControllerWithIdentifier("AttnListVC") as! AttnListVC ////////////  FAKE!!!!!!
             }
             
             self.navigationController?.pushViewController(targetVC, animated: true)

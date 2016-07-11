@@ -120,7 +120,7 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
         let viewControllers = [infoViewController,LocationViewController,RoominfoViewController]
         options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
         let navwidth = self.navigationController?.navigationBar.bounds.size.width
-        print("nav width = \(navwidth)")
+//        print("nav width = \(navwidth)")
         options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
         let menuWidth = navwidth!/3
         options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: false, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
@@ -255,7 +255,7 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
         let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
         send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
             data in
-            print("getProviderByID \(data)")
+            print("getProviderByID(AttnList) \(data)")
             self.appDelegate.providerIDData = data;
             //            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
             //            PKHUD.sharedHUD.hide(afterDelay: 1.0)
