@@ -151,8 +151,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))
-        self.view!.addGestureRecognizer(tap)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))
+//        self.view!.addGestureRecognizer(tap)
         
         self.initailLogoImage()
         

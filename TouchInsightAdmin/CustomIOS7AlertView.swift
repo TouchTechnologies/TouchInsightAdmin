@@ -266,10 +266,17 @@ class CustomIOS7AlertView: UIView {
         print("buttonHeight = \(buttonHeight)")
         print("buttonsDividerHeight = \(buttonsDividerHeight)")
         
-        print("containerView.frame.size.width = \(containerView.frame.size.width)")
-        print("containerView.frame.size.height = \(containerView.frame.size.height)")
+//        print("containerView.frame.size.width = \(containerView.frame.size.width)")
+//        print("containerView.frame.size.height = \(containerView.frame.size.height)")
         
-        return CGSizeMake(containerView.frame.size.width, containerView.frame.size.height + buttonHeight + buttonsDividerHeight)
+        var mainWidth:CGFloat = 0.0
+        var mainHeight:CGFloat = 0.0
+        if let cvs:CGSize = containerView.frame.size {
+            mainWidth = cvs.width
+            mainHeight = cvs.height
+        }
+        
+        return CGSizeMake(mainWidth, mainHeight + buttonHeight + buttonsDividerHeight)
     }
     
     // Calculate the size of the screen
