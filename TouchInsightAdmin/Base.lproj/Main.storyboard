@@ -3155,16 +3155,6 @@
                                                 <rect key="frame" x="178" y="29" width="182" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" id="n8h-yY-SQM">
-                                                        <rect key="frame" x="0.0" y="25" width="182" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="whq-VC-WOU" id="r5M-P7-6HT"/>
-                                                        </connections>
-                                                    </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXi-yz-ufg">
                                                         <rect key="frame" x="0.0" y="8" width="182" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -3172,6 +3162,16 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" id="eF6-JA-R80">
+                                                        <rect key="frame" x="4" y="28" width="175" height="47"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="whq-VC-WOU" id="z2d-xV-Xrs"/>
+                                                        </connections>
+                                                    </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -3289,7 +3289,7 @@
                         <outlet property="checkInTxt" destination="285-oO-0xh" id="U6t-V0-anY"/>
                         <outlet property="checkInView" destination="G9a-cc-pFU" id="asV-zZ-rKg"/>
                         <outlet property="checkOutTitle" destination="jXi-yz-ufg" id="v8h-N6-1t1"/>
-                        <outlet property="checkOutTxt" destination="n8h-yY-SQM" id="cNM-om-FdV"/>
+                        <outlet property="checkOutTxt" destination="eF6-JA-R80" id="lXY-BO-Vvn"/>
                         <outlet property="checkOutView" destination="g7P-VF-TWV" id="rEp-rL-Z0B"/>
                         <outlet property="checkinPicker" destination="SB6-gY-eAu" id="EqS-CQ-f75"/>
                         <outlet property="checkoutPicker" destination="LaK-Ab-MdI" id="vRo-tQ-dCH"/>

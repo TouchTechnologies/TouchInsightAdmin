@@ -304,6 +304,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         self.initailLogoImage()
         
+        
+        
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(hotelInfo)")
@@ -713,8 +715,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         checkOutTitle.center.x = (width/2)/2
         
         
-        checkInTxt.center.x = (width/2)/2
-        checkOutTxt.center.x = (width/2)/2
+//        checkInTxt.center.x = (width/2)/2
+//        checkOutTxt.center.x = (width/2)/2
         
         // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         checkOutView.layer.cornerRadius = 5
@@ -748,6 +750,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         pickerView.frame.origin.x = 0
         checkinPicker.frame.origin.x = 0
+        checkoutPicker.frame.origin.x = 0
         pickerView.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
@@ -839,6 +842,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     func textFieldShouldBeginEditing(textField:UITextField) -> Bool {
         
+        print(textField)
         if(textField == provinceTxt){
             
             pickerView.hidden = false
@@ -874,6 +878,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             return false
         }
         else if(textField == checkOutTxt){
+            print("pppppppp")
             checkoutPicker.hidden = false
             checkinPicker.hidden = true
             txtHotelName.resignFirstResponder()
