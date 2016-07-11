@@ -68,7 +68,7 @@ class AttnMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func viewDidAppear(animated: Bool) {
 //        super.viewDidAppear(true)
         print("viewDidAppear")
-        self.getRoomType()
+//        self.getRoomType()
     }
     
     func getRoomType()
