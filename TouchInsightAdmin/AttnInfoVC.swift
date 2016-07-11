@@ -67,7 +67,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
        override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("View Did Load")
+        print("AttnInfoVC")
         self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
 
         
@@ -92,7 +92,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     //    checkOutTxt.delegate = self
         checkInTxt.delegate = self
 //        print("province Data \(provinceData)")
-print("province Delegate \(appDelegate.provinceName)")
+//        print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard))
