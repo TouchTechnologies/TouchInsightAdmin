@@ -131,9 +131,9 @@ class CustomIOS7AlertView: UIView {
     
     // Observe orientation and keyboard changes
     private func setObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceOrientationDidChange:", name: UIDeviceOrientationDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.deviceOrientationDidChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomIOS7AlertView.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     // Create the containerView
@@ -233,7 +233,7 @@ class CustomIOS7AlertView: UIView {
             )
             
             button.tag = buttonIndex
-            button.addTarget(self, action: "buttonTouchUpInside:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(CustomIOS7AlertView.buttonTouchUpInside(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 
             let colorNormal = buttonColor != nil ? buttonColor : button.tintColor
             let colorHighlighted = buttonColorHighlighted != nil ? buttonColorHighlighted : colorNormal.colorWithAlphaComponent(0.5)
@@ -263,6 +263,12 @@ class CustomIOS7AlertView: UIView {
     
     // Calculate the size of the dialog
     private func calculateDialogSize() -> CGSize {
+        print("buttonHeight = \(buttonHeight)")
+        print("buttonsDividerHeight = \(buttonsDividerHeight)")
+        
+        print("containerView.frame.size.width = \(containerView.frame.size.width)")
+        print("containerView.frame.size.height = \(containerView.frame.size.height)")
+        
         return CGSizeMake(containerView.frame.size.width, containerView.frame.size.height + buttonHeight + buttonsDividerHeight)
     }
     

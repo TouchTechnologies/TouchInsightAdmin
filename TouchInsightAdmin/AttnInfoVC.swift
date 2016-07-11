@@ -567,8 +567,8 @@ func initalertView(){
     }
    
     override func viewWillAppear(animated: Bool) {
-        self.viewDidLoad()
-        self.viewDidAppear(true)
+//        self.viewDidLoad()
+//        self.viewDidAppear(true)
         
         
         self.setObject()

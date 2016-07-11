@@ -75,12 +75,22 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         print(appDelegate.userInfo["userID"]! as String)
         
         if(appDelegate.isLogin){
-            if let avatar = self.appDelegate.userInfo["avatarImage"] {
+            if let avatar = self.appDelegate.userInfo["avatarImage"] where avatar != "" {
                 print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
                 dispatch_async(dispatch_get_main_queue()) {
+//                    var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+//                    if imgProfile == nil {
+//                        imgProfile = UIImage(named: "ic_team.png")
+//                    }
+                    var imgProfile = UIImage()
+                    if let _img = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!) {
+                        imgProfile = _img
+                    }else{
+                        imgProfile = UIImage(named: "ic_team.png")!
+                    }
                     
                     UIView.animateWithDuration(1.0, animations: {
-                        self.imgProfile.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+                        self.imgProfile.image = imgProfile
                     })
                 }
                 
