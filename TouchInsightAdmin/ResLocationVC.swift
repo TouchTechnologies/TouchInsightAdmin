@@ -337,6 +337,9 @@ class ResLocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegat
                 
                 let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 2000, 2000)
                 self.mapView.setRegion(viewRegion, animated:true)
+             
+            
+            
                 print("pointLat : \(pointLat)")
                 self.latTxt.text = pointLat
                 self.longTxt.text = pointLong

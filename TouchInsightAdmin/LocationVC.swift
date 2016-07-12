@@ -340,8 +340,17 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
             
             if(pointLat != "0.000000"){
                 
-                let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 2000, 2000)
-                self.mapView.setRegion(viewRegion, animated:true)
+//                let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 2000, 2000)
+//                self.mapView.setRegion(viewRegion, animated:true)
+//                
+                
+                //                CLLocationCoordinate2D centerCoord = { GEORGIA_TECH_LATITUDE, GEORGIA_TECH_LONGITUDE };
+                //                [mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
+                //            }
+                
+                let centerCoord:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(self.appDelegate.latitude)!, longitude: Double(self.appDelegate.longitude)!)
+                self.mapView.setCenterCoordinate(centerCoord, animated: true)
+                
                 print("pointLat : \(pointLat)")
                 self.latTxt.text = pointLat
                 self.longTxt.text = pointLong
@@ -359,12 +368,25 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
 //            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 100, 100)
 //            self.mapView.setRegion(viewRegion, animated:true)
             
-            let span = MKCoordinateSpanMake(0.075, 0.075)
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112), span: span)
-            mapView.setRegion(region, animated: true)
+//            let span = MKCoordinateSpanMake(0.075, 0.075)
+//            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112), span: span)
+//            mapView.setRegion(region, animated: true)
+            
+            
+//            let centerCoord:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112)
+//            self.mapView.setCenterCoordinate(centerCoord, animated: true)
+////            
+//            let span = MKCoordinateSpanMake(0.075, 0.075)
+//            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112), span: span)
+//            mapView.setRegion(region, animated: true)
+//            
+            
+            let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(13.6947008),Double(101.6475268))
+            //        let viewRegion = MKCoordinateRegion(center: Coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1500000, 1500000)
+            self.mapView.setRegion(viewRegion, animated:true)
+            
         }
-        
-        
         
         
         
