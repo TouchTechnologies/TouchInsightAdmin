@@ -215,12 +215,14 @@ class EditRoominfomationVC:
     }
     
     @IBAction func btnBack(sender: AnyObject) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
         print("Back")
-        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
-        self.navigationController?.presentViewController(nev!, animated: true, completion: { () -> Void in
-            self.appDelegate.viewWithTopButtons.hidden = false
-            self.navunderlive.hidden = true
-        })
+//        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
+//        self.navigationController?.presentViewController(nev!, animated: true, completion: { () -> Void in
+//            self.appDelegate.viewWithTopButtons.hidden = false
+//            self.navunderlive.hidden = true
+//        })
         appDelegate.pagecontrolIndex = 2
 
  // self.performSegueWithIdentifier("backtoinfo", sender: self)

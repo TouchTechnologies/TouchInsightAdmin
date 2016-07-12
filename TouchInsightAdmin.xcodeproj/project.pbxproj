@@ -941,7 +941,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F329F1ED1D2D0FBF0061BA52 /* Restuarant */ = {
+		F329F1ED1D2D0FBF0061BA52 /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
 				F329F1EE1D2D10020061BA52 /* RestuarantListVC.swift */,
@@ -949,11 +949,11 @@
 				F329F1F21D2D10190061BA52 /* ResLocationVC.swift */,
 				F329F1F41D2D10260061BA52 /* ResMenuInfoVC.swift */,
 				F329F1F61D2D10400061BA52 /* ResCreateMenuVC.swift */,
-				F329F1F81D2D10540061BA52 /* ResImageGalleryVC.swift */,
 				F329F1FA1D2D10600061BA52 /* ResEditMenuVC.swift */,
+				F329F1F81D2D10540061BA52 /* ResImageGalleryVC.swift */,
 				F329F1FC1D2D106B0061BA52 /* ResImageCollectionViewCell.swift */,
 			);
-			name = Restuarant;
+			name = Restaurant;
 			sourceTree = "<group>";
 		};
 		F34D52C91C3CF544002AC1EF /* map */ = {
@@ -1029,9 +1029,9 @@
 			isa = PBXGroup;
 			children = (
 				36AD55E31C0C391D001CAB71 /* ProviderListVC.swift */,
-				F329F1ED1D2D0FBF0061BA52 /* Restuarant */,
-				F3D90B4F1C63526D00EEFB21 /* Attraction */,
 				F3B8B51F1C3B844F00768DF9 /* Hotel */,
+				F329F1ED1D2D0FBF0061BA52 /* Restaurant */,
+				F3D90B4F1C63526D00EEFB21 /* Attraction */,
 			);
 			name = Provider;
 			sourceTree = "<group>";
@@ -1044,8 +1044,8 @@
 				F3C6DC011C17D6C10005A621 /* LocationVC.swift */,
 				F3C6DC031C17D6F90005A621 /* RoomInfoVC.swift */,
 				F3C6DC0B1C1805450005A621 /* CreateRoomInfoVC.swift */,
-				F3C6DC1B1C197B710005A621 /* ImageGalleryVC.swift */,
 				F3C6EE1F1C6B2EBC00DB031F /* EditRoominfomationVC.swift */,
+				F3C6DC1B1C197B710005A621 /* ImageGalleryVC.swift */,
 				F3BA1F541C76FF6700B0782C /* ImageCollectionViewCell.swift */,
 			);
 			name = Hotel;

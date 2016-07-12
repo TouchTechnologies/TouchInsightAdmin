@@ -172,13 +172,13 @@ func changeDetial(){
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         self.latTxt.delegate = self
         self.longTxt.delegate = self
         
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
-       
+        
         self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
         self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
 
@@ -469,7 +469,7 @@ func changeDetial(){
         
     }
     override func viewDidDisappear(animated: Bool) {
-        mapView.removeFromSuperview()
+//        mapView.removeFromSuperview()
         print("viewDidDisappear")
     }
     

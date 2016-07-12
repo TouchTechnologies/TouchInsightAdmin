@@ -304,10 +304,6 @@ class ResLocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegat
      */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.latTxt.delegate = self
-        self.longTxt.delegate = self
-        self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
         print("viewDidAppear(Location)")
         
         let pointLat = NSString(format: "%.6f",Double(point.coordinate.latitude)) as String

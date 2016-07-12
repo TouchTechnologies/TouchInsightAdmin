@@ -216,16 +216,20 @@ class ResEditMenuVC:
     }
     
     @IBAction func btnBack(sender: AnyObject) {
-        print("Back")
-        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
-        self.navigationController?.presentViewController(nev!, animated: true, completion: { () -> Void in
-            self.appDelegate.viewWithTopButtons.hidden = false
-            self.navunderlive.hidden = true
-        })
+        
+        self.navigationController?.popViewControllerAnimated(true)
         appDelegate.pagecontrolIndex = 2
-
- // self.performSegueWithIdentifier("backtoinfo", sender: self)
-}
+        
+        //        print("Back")
+        //        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
+        //        self.navigationController?.presentViewController(nev!, animated: true, completion: { () -> Void in
+        //            self.appDelegate.viewWithTopButtons.hidden = false
+        //            self.navunderlive.hidden = true
+        //        })
+        //        appDelegate.pagecontrolIndex = 2
+        
+        // self.performSegueWithIdentifier("backtoinfo", sender: self)
+    }
 
     @IBAction func btnUpdateRoom(sender: AnyObject) {
         print("update room")

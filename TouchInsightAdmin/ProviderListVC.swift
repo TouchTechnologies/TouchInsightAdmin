@@ -10,7 +10,7 @@
 import UIKit
 import PKHUD
 
-class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, CustomIOS7AlertViewDelegate {
+class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, CustomIOS7AlertViewDelegate {
     
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -30,6 +30,8 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     var navunderlive = UIView()
     var Cell = customProviderView()
+    
+    @IBOutlet weak var btnCreateNew: UIButton!
     
     @IBOutlet var tableView: UITableView!
     
@@ -355,8 +357,44 @@ class ProviderListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    var oldScrollY:CGFloat = 0
+    var animateSuccess = true
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let scrollY = self.tableView.contentOffset.y
+        
+//        print("scrollY = \(scrollY)")
+//        print("oldScrollY = \(oldScrollY)")
+        if(animateSuccess){
+            print("scrollY = \(scrollY)")
+            animateSuccess = false
+            if(scrollY > oldScrollY){
+                //            print("UP")
+                UIView.animateWithDuration(0.2, animations:{
+                    self.btnCreateNew.alpha = 0
+                    }, completion: {_ in
+                        self.animateSuccess = true
+                })
+            }else{
+                //            print("DOWN")
+                UIView.animateWithDuration(0.2, animations:{
+                    self.btnCreateNew.alpha = 1
+                    }, completion: {_ in
+                        self.animateSuccess = true
+                })
+            }
+        }
+      
+        oldScrollY = scrollY
+    }
+    
+    func btnAddHiddenAction() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.delegate = self
         
         self.initNavUnderline()
         

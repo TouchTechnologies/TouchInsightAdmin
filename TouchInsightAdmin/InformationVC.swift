@@ -554,10 +554,13 @@ func initalertView(){
         DistanceAirportTxt.layer.borderWidth = 1
         DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
       
-//        buttonsave.translatesAutoresizingMaskIntoConstraints = true
+        
         buttonsave.layer.cornerRadius = 5
-        buttonsave.frame.size.width = (buttonsave.superview?.frame.size.width)! - 20
-        buttonsave.frame.origin.x = 10
+        var frmButtonSave = buttonsave.frame
+        frmButtonSave.size.width = self.view.frame.size.width - 12
+        frmButtonSave.origin.x = 6
+        buttonsave.frame = frmButtonSave
+        
         
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
