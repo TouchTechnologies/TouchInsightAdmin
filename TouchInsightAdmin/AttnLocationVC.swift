@@ -143,7 +143,7 @@ func changeDetial(){
     changLocationBtn.layer.cornerRadius = 5
         Buttonlbl.frame = CGRectMake(0,0,changLocationBtn.frame.size.width,50)
  
-    changLocationBtn.addTarget(self, action: "updateLocation:", forControlEvents: .TouchUpInside)
+    changLocationBtn.addTarget(self, action: #selector(AttnLocationVC.updateLocation(_:)), forControlEvents: .TouchUpInside)
     Buttonlbl.center.y = changLocationBtn.frame.size.height/2
     Buttonlbl.textAlignment = .Center
     Buttonlbl.text = "Change Location"

@@ -738,13 +738,13 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
         hotelFacListView.layer.cornerRadius = 5
-//        hotelFacListView.center.x = width/2
-//        hotelFacListView.layer.bounds.size.width = width - 10
+        hotelFacListView.center.x = width/2
+        hotelFacListView.layer.bounds.size.width = width - 10
         hotelFacListView.layer.borderWidth = 1
         hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
-//        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
-//        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
+        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
+        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
         
 //        lblAddHotelfac.layer.bounds.size.width = 265
 //        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
@@ -786,8 +786,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
         buttonsave.layer.cornerRadius = 5
-//        buttonsave.center.x = width/2 - 16
-//        buttonsave.layer.bounds.size.width = UIScreen.mainScreen().bounds.width - 20
+        buttonsave.center.x = width/2 - 16
+        buttonsave.layer.bounds.size.width = UIScreen.mainScreen().bounds.width - 20
+        
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
         checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
@@ -795,7 +796,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         pickerView.frame.origin.x = 0
         checkinPicker.frame.origin.x = 0
         checkoutPicker.frame.origin.x = 0
-        pickerView.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 2200)
