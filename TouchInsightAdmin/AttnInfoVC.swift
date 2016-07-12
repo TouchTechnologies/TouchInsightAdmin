@@ -351,7 +351,7 @@ func initalertView(){
                 self.tableView.reloadData()
         }
         
-        print("all facility hotel \(appDelegate.facilityHotelDic)")
+        print("all Attc hotel \(appDelegate.facilityHotelDic)")
         
     }
     

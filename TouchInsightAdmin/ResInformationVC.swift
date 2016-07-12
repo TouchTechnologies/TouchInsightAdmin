@@ -529,7 +529,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 "providerInformation" :
                     [
                         "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                        "providerTypeKeyname" : "hotel"
+                        "providerTypeKeyname" : "restaurant"
                 ]
         ]
         
@@ -567,7 +567,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             self.tableView.reloadData()
         }
         
-        print("all facility hotel \(appDelegate.facilityResDic)")
+        print("all facility Restaurant \(appDelegate.facilityResDic)")
         
     }
     
@@ -798,7 +798,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         //self.setObject()
         self.getProviderByID()
-        //        self.getFacility()
+        self.getFacility()
         
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
