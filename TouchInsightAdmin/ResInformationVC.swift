@@ -104,21 +104,17 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         if ( is24Hour != true ) {
             
-            self.checkInView.backgroundColor = UIColor.whiteColor()
-            self.checkOutView.backgroundColor = UIColor.whiteColor()
-            
-            self.checkInTxt.backgroundColor = UIColor.whiteColor()
-            self.checkOutTxt.backgroundColor = UIColor.whiteColor()
-            
-            self.checkInTxt.textColor = UIColor.blackColor()
-            self.checkOutTxt.textColor = UIColor.blackColor()
-            
-            self.checkInTxt.enabled = true
-            self.checkOutTxt.enabled = true
-            
-            is24Hour = true
-            self.imgCheck24h.image = UIImage(named: "check.png")
+            setStatus24(true)
         }else{
+            
+            setStatus24(false)
+        }
+        
+    }
+    
+    func setStatus24(val:Bool) {
+        
+        if ( val == true ) {
             
             self.checkInView.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
             self.checkOutView.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
@@ -132,13 +128,28 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             self.checkInTxt.enabled = false
             self.checkOutTxt.enabled = false
             
+            is24Hour = true
+            self.imgCheck24h.image = UIImage(named: "check.png")
+        }else{
+            
+            
+            self.checkInView.backgroundColor = UIColor.whiteColor()
+            self.checkOutView.backgroundColor = UIColor.whiteColor()
+            
+            self.checkInTxt.backgroundColor = UIColor.whiteColor()
+            self.checkOutTxt.backgroundColor = UIColor.whiteColor()
+            
+            self.checkInTxt.textColor = UIColor.blackColor()
+            self.checkOutTxt.textColor = UIColor.blackColor()
+            
+            self.checkInTxt.enabled = true
+            self.checkOutTxt.enabled = true
             is24Hour = false
             self.imgCheck24h.image = UIImage(named: "uncheck.png")
             
         }
-        
+
     }
-    
     
     
     
@@ -149,7 +160,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     var selectedDay = [
         "mo":"0",
         "tu":"0",
-        "we:":"0",
+        "we":"0",
         "th":"0",
         "fr":"0",
         "sa":"0",
@@ -270,8 +281,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         print("View Did Load")
         
+        setStatus24(true)
         
-        self.imgCheck24h.image = UIImage(named: "check.png")
+       
         
         //self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         
@@ -474,13 +486,13 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                     self.appDelegate.providerData = data
                     print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
                     
-                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+//                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
                     
                     // let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
                     // secondViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
                     //self.navigationController?.pushViewController(secondViewController!, animated: true)
-                    self.dismissViewControllerAnimated(true, completion: nil)
+//                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                     self.appDelegate.viewWithTopButtons.hidden = true
                 }
@@ -694,16 +706,16 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
         hotelFacListView.layer.cornerRadius = 5
-        hotelFacListView.center.x = width/2
-        hotelFacListView.layer.bounds.size.width = width - 10
+//        hotelFacListView.center.x = width/2
+//        hotelFacListView.layer.bounds.size.width = width - 10
         hotelFacListView.layer.borderWidth = 1
         hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
-        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
-        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
+//        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
+//        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
         
-        lblAddHotelfac.layer.bounds.size.width = 265
-        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
+//        lblAddHotelfac.layer.bounds.size.width = 265
+//        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
         
         // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         checkInView.layer.cornerRadius = 5
@@ -742,8 +754,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
         buttonsave.layer.cornerRadius = 5
-        buttonsave.center.x = width/2
-        buttonsave.layer.bounds.size.width = UIScreen.mainScreen().bounds.width - 20
+//        buttonsave.center.x = width/2 - 16
+//        buttonsave.layer.bounds.size.width = UIScreen.mainScreen().bounds.width - 20
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
         checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
@@ -754,12 +766,29 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         pickerView.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.width, 2200)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 2200)
 //        self.view_DateSet.frame.size.width = self.view.frame.width - 16
 //        self.view_BottomSet.frame.size.width = self.view.frame.width - 16
         
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 804
+        
+        
+        var frmBottomSet = self.view_BottomSet.frame
+        frmBottomSet.size.width = 370
+        self.view_BottomSet.frame = frmBottomSet
+        
+        print("self.view.frame")
+        print(self.view.frame)
+        print("------------")
+        print("self.view_DateSet.frame")
+        print(self.view_DateSet.frame)
+        print("------------")
+        print("self.view_BottomSet.frame")
+        print(self.view_BottomSet.frame)
+        print("------------")
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -779,8 +808,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         //scrollView.contentSize = CGSizeMake(width,2150)
         
-        print("scrollwidth = \(scrollView.layer.bounds.size.width)")
-        scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
+        print("scrollwidth = \(scrollView.bounds.size.width)")
+//        scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
+//        scrollView.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
         
         //hide keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResInformationVC.dismissKeyboard))

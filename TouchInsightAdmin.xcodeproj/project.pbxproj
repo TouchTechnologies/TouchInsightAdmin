@@ -145,10 +145,6 @@
 		F36965F31C578D51001F18AD /* ic_livestream_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F36965ED1C578D51001F18AD /* ic_livestream_menu.png */; };
 		F36965F41C578D51001F18AD /* ic_livestream_menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = F36965EE1C578D51001F18AD /* ic_livestream_menu2.png */; };
 		F36AABC81C8EEB2E000B7BFE /* edit_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F36AABC71C8EEB2E000B7BFE /* edit_icon.png */; };
-		F383BF531C7C04F400726ED7 /* RestuarantInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383BF521C7C04F400726ED7 /* RestuarantInfoVC.swift */; };
-		F383BF551C7C081900726ED7 /* RestuarantInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383BF541C7C081900726ED7 /* RestuarantInfoViewController.swift */; };
-		F383BF571C7C082D00726ED7 /* RestLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383BF561C7C082D00726ED7 /* RestLocationViewController.swift */; };
-		F383BF591C7C084200726ED7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383BF581C7C084200726ED7 /* MenuViewController.swift */; };
 		F383BF5C1C7C185500726ED7 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383BF5A1C7C185500726ED7 /* SSRadioButton.swift */; };
 		F383BF5D1C7C185500726ED7 /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383BF5B1C7C185500726ED7 /* SSRadioButtonsController.swift */; };
 		F3A43FBE1C172337000D76CA /* InformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A43FBD1C172337000D76CA /* InformationVC.swift */; };
@@ -429,10 +425,6 @@
 		F36965ED1C578D51001F18AD /* ic_livestream_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_livestream_menu.png; path = images/ic_livestream_menu.png; sourceTree = "<group>"; };
 		F36965EE1C578D51001F18AD /* ic_livestream_menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_livestream_menu2.png; path = images/ic_livestream_menu2.png; sourceTree = "<group>"; };
 		F36AABC71C8EEB2E000B7BFE /* edit_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_icon.png; path = images/edit_icon.png; sourceTree = "<group>"; };
-		F383BF521C7C04F400726ED7 /* RestuarantInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestuarantInfoVC.swift; sourceTree = "<group>"; };
-		F383BF541C7C081900726ED7 /* RestuarantInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestuarantInfoViewController.swift; sourceTree = "<group>"; };
-		F383BF561C7C082D00726ED7 /* RestLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestLocationViewController.swift; sourceTree = "<group>"; };
-		F383BF581C7C084200726ED7 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F383BF5A1C7C185500726ED7 /* SSRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		F383BF5B1C7C185500726ED7 /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		F3A43FBD1C172337000D76CA /* InformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationVC.swift; sourceTree = "<group>"; };
@@ -967,17 +959,6 @@
 			name = PopupMenu;
 			sourceTree = "<group>";
 		};
-		F383BF511C7C042E00726ED7 /* Restuarant+ */ = {
-			isa = PBXGroup;
-			children = (
-				F383BF521C7C04F400726ED7 /* RestuarantInfoVC.swift */,
-				F383BF541C7C081900726ED7 /* RestuarantInfoViewController.swift */,
-				F383BF561C7C082D00726ED7 /* RestLocationViewController.swift */,
-				F383BF581C7C084200726ED7 /* MenuViewController.swift */,
-			);
-			name = "Restuarant+";
-			sourceTree = "<group>";
-		};
 		F3A758291C27F96A00CBB8A0 /* customAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,7 +1003,6 @@
 			isa = PBXGroup;
 			children = (
 				36AD55E31C0C391D001CAB71 /* ProviderListVC.swift */,
-				F383BF511C7C042E00726ED7 /* Restuarant+ */,
 				F329F1ED1D2D0FBF0061BA52 /* Restuarant */,
 				F3D90B4F1C63526D00EEFB21 /* Attraction */,
 				F3B8B51F1C3B844F00768DF9 /* Hotel */,
@@ -1522,9 +1502,7 @@
 				3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */,
 				F3EFB8831C6848950010D24D /* SBScrollView.swift in Sources */,
 				F329F1F91D2D10540061BA52 /* ResImageGalleryVC.swift in Sources */,
-				F383BF571C7C082D00726ED7 /* RestLocationViewController.swift in Sources */,
 				368AB9DC1D2FA1DB007CEC09 /* Resfacility.swift in Sources */,
-				F383BF591C7C084200726ED7 /* MenuViewController.swift in Sources */,
 				F309A38C1C8002520084647D /* introPage4.swift in Sources */,
 				3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */,
 				F30DF8581D2F5B030074B713 /* AttnLocationVC.swift in Sources */,
@@ -1545,7 +1523,6 @@
 				F355232F1C28EF75001F5A27 /* AddProviderAlertVC.swift in Sources */,
 				F34625F31C0831D100E2A82C /* IntroViewVC.swift in Sources */,
 				F30672021C16BFAC001A577F /* customProviderView.swift in Sources */,
-				F383BF531C7C04F400726ED7 /* RestuarantInfoVC.swift in Sources */,
 				F3C6DC1C1C197B710005A621 /* ImageGalleryVC.swift in Sources */,
 				F3627FED1C2BACEC006BC607 /* CNPPopupController.m in Sources */,
 				36AB49CD1C3CED6A0078A936 /* MyCustomPinAnnotationView.m in Sources */,
@@ -1568,7 +1545,6 @@
 				F3B0711B1C0F3F3200DC97CB /* SettingAccountVC.swift in Sources */,
 				36AB49C71C3CE9CF0078A936 /* RNGridMenu.m in Sources */,
 				F3C6EE201C6B2EBD00DB031F /* EditRoominfomationVC.swift in Sources */,
-				F383BF551C7C081900726ED7 /* RestuarantInfoViewController.swift in Sources */,
 				F30DF8561D2F5AF90074B713 /* AttnInfoVC.swift in Sources */,
 				F306727D1C1718E6001A577F /* ProviderInfoVC.swift in Sources */,
 				F383BF5D1C7C185500726ED7 /* SSRadioButtonsController.swift in Sources */,

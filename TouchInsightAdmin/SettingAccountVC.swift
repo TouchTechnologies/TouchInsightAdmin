@@ -38,7 +38,8 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             //             navCon.presentViewController(loginview, animated: true, completion: nil)
             
             
-            navCon.modalTransitionStyle = .CrossDissolve
+//            navCon.modalTransitionStyle = .CrossDissolve
+            navCon.modalTransitionStyle = .CoverVertical
             self.presentViewController(navCon, animated: true, completion: nil)
         }
         
@@ -51,8 +52,8 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
         super.viewDidLoad()
         //        self.navigationController?.navigationBarHidden = false
-        
-        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+//        
+//        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         
         
         
@@ -64,11 +65,13 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     }
     override func viewWillAppear(animated: Bool) {
         
+//        self.navigationController?.navigationBar.tintColor = UIColor.greenColor()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(animated: Bool) {
         
+//        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)
 //        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -84,6 +87,21 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         navunderlive.backgroundColor = UIColor.redColor()
         
         self.navigationController?.navigationBar.addSubview(navunderlive)
+        
+        
+
+        
+//        print("------- navView -------")
+//        for navView in (self.navigationController?.navigationBar.items)! {
+//            let navItem:UINavigationItem = navView
+//            for itenInNav in navItem {
+//                
+//                print(itenInNav)
+//                
+//            }
+////            print(navItem)
+//        }
+//        print("------- navView -------")
         
     }
     
