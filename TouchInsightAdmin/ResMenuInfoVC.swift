@@ -50,12 +50,12 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @IBAction func creataRoomBtn(sender: AnyObject) {
         
-//         self.performSegueWithIdentifier("toCreate", sender: UIButton())
+         self.performSegueWithIdentifier("toCreate", sender: UIButton())
 
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResCreateMenuVC") as! ResCreateMenuVC
-        self.navigationController?.pushViewController(targetVC, animated: true)
-        
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResCreateMenuVC") as! ResCreateMenuVC
+//        self.navigationController?.pushViewController(targetVC, animated: true)
+//        
         print("info add Room")
       
     }
@@ -248,28 +248,25 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "toCreate"{
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toCreate"{
+            
+//            appDelegate.roomIndex = sender!.tag
+        }else if segue.identifier == "toEdit"{
+            
+            print("Sender : \(sender!.view!.tag)")
+            
+            appDelegate.roomIndex = sender!.view!.tag
+            
+//            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
+//            editView.modalTransitionStyle = .CrossDissolve
 //            
-//            
-////            appDelegate.roomIndex = sender!.tag
-//        }
-//        else if segue.identifier == "toEdit"{
-//            
-//            
-//            print("Sender : \(sender!.view!.tag)")
-//            
-//            appDelegate.roomIndex = sender!.view!.tag
-//            
-////            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
-////            editView.modalTransitionStyle = .CrossDissolve
-////            
-////            self.presentViewController(editView, animated: true, completion: nil)
-//        }
-//        
-//        
-//    }
-//    
+//            self.presentViewController(editView, animated: true, completion: nil)
+        }
+        
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
