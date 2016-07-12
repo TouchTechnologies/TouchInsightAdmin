@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/ResInformationVC.swift"
-            timestampString = "489919337.077328"
+            timestampString = "490004879.433301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "day_we_click(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,12 +154,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/ResInformationVC.swift"
-            timestampString = "489919341.102646"
+            timestampString = "490004879.433301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "day_fr_click(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouchInsightAdmin/ResInformationVC.swift"
+            timestampString = "490006063.970204"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1074"
+            endingLineNumber = "1074"
+            landmarkName = "getProviderByID()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

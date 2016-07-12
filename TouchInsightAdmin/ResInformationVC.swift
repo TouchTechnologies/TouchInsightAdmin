@@ -71,7 +71,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             
             self.view_DateSet.hidden = true
             self.view_BottomSet.frame.origin.y = 804
-            
+            self.selectedDay = ["su": "1", "tu": "1", "th": "1", "fr": "1", "we": "1", "sa": "1", "mo": "1"]
 //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
         })
         
@@ -85,8 +85,34 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             self.img_Weekly.image = UIImage(named: "check.png")
             self.img_AllDay.image = UIImage(named: "uncheck.png")
             
+            self.selectedDay = ["su": "0", "tu": "0", "th": "0", "fr": "0", "we": "0", "sa": "0", "mo": "0"]
+            
+            for (day,status) in self.selectedDay
+            {
+                switch day {
+                case  "su":
+                    self.day_su.image = (status == "0") ? UIImage(named: "su.png") : UIImage(named: "su_hover.png")
+                case  "mo":
+                    self.day_mo.image = (status == "0") ? UIImage(named: "mo.png") : UIImage(named: "mo_hover.png")
+                case  "tu":
+                    self.day_tu.image = (status == "0") ? UIImage(named: "tu.png") : UIImage(named: "tu_hover.png")
+                case  "we":
+                    self.day_we.image = (status == "0") ? UIImage(named: "we.png") : UIImage(named: "we_hover.png")
+                case  "th":
+                    self.day_th.image = (status == "0") ? UIImage(named: "th.png") : UIImage(named: "th_hover.png")
+                case  "fr":
+                    self.day_fr.image = (status == "0") ? UIImage(named: "fr.png") : UIImage(named: "fr_hover.png")
+                case  "sa":
+                    self.day_sa.image = (status == "0") ? UIImage(named: "sa.png") : UIImage(named: "sa_hover.png")
+                default:
+                    break;
+                }
+                
+            }
             self.view_DateSet.hidden = false
             self.view_BottomSet.frame.origin.y = 881
+            
+
             
 //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
         })
@@ -130,6 +156,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             
             is24Hour = true
             self.imgCheck24h.image = UIImage(named: "check.png")
+            self.checkOutTxt.text = "00:00"
+            self.checkInTxt.text = "00:00"
         }else{
             
             
@@ -307,6 +335,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         checkOutTxt.delegate = self
         checkInTxt.delegate = self
+        
+        checkinPicker.datePickerMode = UIDatePickerMode.Time
+        checkinPicker.locale = NSLocale(localeIdentifier: "TH")
+        checkoutPicker.datePickerMode = UIDatePickerMode.Time
+        checkoutPicker.locale = NSLocale(localeIdentifier: "TH")
         //print("province Data \(provinceData)")
         print("province Delegate \(appDelegate.provinceName)")
         
@@ -339,9 +372,10 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     func checkinPickerChanged(datePicker:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
-        
+        print("checkinPickerChanged")
         dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateFormat = "HH:mm"
         let strCheckin = dateFormatter.stringFromDate(datePicker.date)
         //     let strCheckout = dateFormatter.stringFromDate(datePicker.date)
         checkInTxt.text = strCheckin
@@ -352,7 +386,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         let dateFormatter = NSDateFormatter()
         
         dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateFormat = "HH:mm"
         let strCheckout = dateFormatter.stringFromDate(datePicker.date)
         //     let strCheckout = dateFormatter.stringFromDate(datePicker.date)
         checkOutTxt.text = strCheckout
@@ -411,6 +446,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     @IBOutlet var buttonsave: UIButton!
     @IBAction func btnSave(sender: AnyObject) {
         print("save")
+        print("selectedDay \(send.Dict2JsonString(selectedDay))")
+        
         //  print ("Province ID : \(provinceID)")
         
         PKHUD.sharedHUD.dimsBackground = false
@@ -420,7 +457,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
         PKHUD.sharedHUD.show()
         
-        //        let send = API_Model()
+        print("BtnSaveData checkIn:  \(checkInTxt.text) checkOut \(checkOutTxt.text)")
+        
         let dataDic = [
             "providerInformation" : [
                 "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
@@ -436,24 +474,18 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 "phone": phonNumberTxt.text!,
                 "website": websiteTxt.text!,
                 "email": emailTxt.text!,
-                //Hotel
-                "hotelPolicyEn": "",
-                "hotelPolicyTh": "",
-                "checkInTime": checkInTxt.text!,
-                "checkOutTime": checkOutTxt.text!,
-                "isBookable": "",
-                "touchbookingpaymentMerchantAccountKeycode": "",
+
+                //Restaurant
+                "restaurantWeekdayOpentime": checkInTxt.text!,
+                "restaurantWeekdayClosetime": checkOutTxt.text!,
+                "restaurantWeekendOpentime": "",
+                "restaurantWeekendClosetime": "",
+                "restaurantTypeDetail": "",
+                "payByCreditCard": "",
+                "openDaily": send.Dict2JsonString(selectedDay),
                 "wifiAvailable": "",
                 "parkingAvailable": "",
-                //                "totalRoom": totalRoomTxt.text!,
-                "openDaily": "",
-                //                "distanceFromCityCenter": distanceCityTxt.text!,
-                //                "distanceToAirport": DistanceAirportTxt.text!,
-                "nonSmokingZone": "",
-                "numberOfBar": "",
-                //                "numberOfFloors": totalFloorTxt.text!,
-                "numberOfRestaurants": "",
-                "timeToAirport": ""
+                "nonSmokingZone": ""
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -863,6 +895,20 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             print("no logo")
             self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
         }
+//        
+////        let dateFormatter = NSDateFormatter()
+//        
+//        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+//        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+////        let strCheckin = dateFormatter.stringFromDate(datePicker.date)
+//        checkinPicker.setDate(NSDate(dateFormatter dateFromString("10:51:00")), animated: true)
+        //     let strCheckout = dateFormatter.stringFromDate(datePicker.date)
+//        checkInTxt.text = strCheckin
+        
+
+//        checkOutTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["restaurant_weekend_closetime"]! as! String)
+        
+
         
     }
     
@@ -1023,8 +1069,117 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 //            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
                 //
                 //            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
+                
+                
+                print("openDaily=======>>>> \(data["GetProviderInformationById"]!["openDaily"])")
+                
+                
+                if let openTime = data["GetProviderInformationById"]!["restaurant_weekday_opentime"]
+                {
+                    
+                    if((openTime as! String) == "00:00:00")
+                    {
+                        self.setStatus24(true)
+                    }else
+                    {
+                        self.setStatus24(false)
+                    }
+                    self.checkInTxt.text = openTime as? String
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+                    dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+                    dateFormatter.dateFormat = "HH:mm"
+                    let date = dateFormatter.dateFromString(openTime as! String)
+                    if let unwrappedDate = date {
+                        self.checkinPicker.setDate(unwrappedDate, animated: false)
+                    }
+                    
+                }
+                else
+                {
+                    self.checkInTxt.text = "10:00"
+                }
+                if let closeTime = data["GetProviderInformationById"]!["restaurant_weekday_closetime"]
+                {
+                    if((closeTime as! String) == "00:00:00")
+                    {
+                        self.setStatus24(true)
+                    }else
+                    {
+                        self.setStatus24(false)
+                    }
+                    self.checkOutTxt.text = closeTime as? String
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+                    dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+                    dateFormatter.dateFormat = "HH:mm"
+                    let date = dateFormatter.dateFromString(closeTime as! String)
+                    if let unwrappedDate = date {
+                        self.checkoutPicker.setDate(unwrappedDate, animated: false)
+                    }
+                    
+                }
+                else
+                {
+                    self.checkOutTxt.text = "12:00"
+                }
+                
+               
+                if let openDailyStr = data["GetProviderInformationById"]!["open_daily"]
+                {
+                    var openDailyDic = ["":""]
+                    if (openDailyStr === NSNull())
+                    {
+                        openDailyDic = ["su": "0", "tu": "0", "th": "0", "fr": "0", "we": "0", "sa": "0", "mo": "0"]
+                    }else
+                    {
+                        openDailyDic = send.jsonEncode(openDailyStr as! String) as! [String : String]
+                    }
+                    
+                    self.img_Weekly.image = UIImage(named: "check.png")
+                    self.img_AllDay.image = UIImage(named: "uncheck.png")
+                    print("aaaaaaaaaaa \(openDailyDic["mo"])")
+                    self.selectedDay = openDailyDic
+                    var allDay = 0
+                    for (day,status) in openDailyDic
+                    {
+                        allDay = allDay + Int(status)!
+                        switch day {
+                        case  "su":
+                            self.day_su.image = (status == "0") ? UIImage(named: "su.png") : UIImage(named: "su_hover.png")
+                        case  "mo":
+                            self.day_mo.image = (status == "0") ? UIImage(named: "mo.png") : UIImage(named: "mo_hover.png")
+                        case  "tu":
+                            self.day_tu.image = (status == "0") ? UIImage(named: "tu.png") : UIImage(named: "tu_hover.png")
+                        case  "we":
+                            self.day_we.image = (status == "0") ? UIImage(named: "we.png") : UIImage(named: "we_hover.png")
+                        case  "th":
+                            self.day_th.image = (status == "0") ? UIImage(named: "th.png") : UIImage(named: "th_hover.png")
+                        case  "fr":
+                            self.day_fr.image = (status == "0") ? UIImage(named: "fr.png") : UIImage(named: "fr_hover.png")
+                        case  "sa":
+                            self.day_sa.image = (status == "0") ? UIImage(named: "sa.png") : UIImage(named: "sa_hover.png")
+                            default:
+                                break;
+                        }
+                        
+                    }
+                    if(allDay == 7)
+                    {
+                        self.view_DateSet.hidden = true
+                        self.img_AllDay.image = UIImage(named: "check.png")
+                        self.img_Weekly.image = UIImage(named: "uncheck.png")
+                    }else
+                    {
+                        self.view_DateSet.hidden = false
+                        self.view_BottomSet.frame.origin.y = 881
+                        self.img_AllDay.image = UIImage(named: "uncheck.png")
+                        self.img_Weekly.image = UIImage(named: "check.png")
+                    }
+
+                    
+                }
             }
-            
             
             dispatch_async(dispatch_get_main_queue()) {
                 // update some UI
