@@ -2287,7 +2287,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" id="meH-Yl-7dM">
-                                <rect key="frame" x="0.0" y="0.0" width="376" height="1316"/>
+                                <rect key="frame" x="0.0" y="-600" width="376" height="1316"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROPERTY RESTAURANT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emH-Xh-OGR" userLabel="PROPERTY RESTAURANT">
@@ -2464,11 +2464,11 @@
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="Odw-jc-i1v">
-                                        <rect key="frame" x="8" y="804" width="360" height="69"/>
+                                        <rect key="frame" x="8" y="804" width="360" height="72"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="NYp-PD-Lsd">
-                                                <rect key="frame" x="0.0" y="6" width="360" height="60"/>
+                                                <rect key="frame" x="0.0" y="6" width="360" height="63"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mo.png" id="tSh-2g-t3M">
@@ -2720,6 +2720,13 @@
                     <connections>
                         <outlet property="HotelDesTxt" destination="fjx-Ur-GKA" id="kEe-uC-7MZ"/>
                         <outlet property="addressTxt" destination="dg6-St-2Ez" id="jAH-ca-lkl"/>
+                        <outlet property="btn_day_fr" destination="lj2-xe-XIh" id="QvB-Sq-xZD"/>
+                        <outlet property="btn_day_mo" destination="ZXp-rh-yCm" id="DDa-6u-ngU"/>
+                        <outlet property="btn_day_sa" destination="HLK-wM-UYa" id="9AW-fF-TZo"/>
+                        <outlet property="btn_day_su" destination="3J2-L0-MHM" id="vAf-Xq-DPb"/>
+                        <outlet property="btn_day_th" destination="oOz-Mf-xHO" id="xXG-Cn-wZo"/>
+                        <outlet property="btn_day_tu" destination="ngd-F6-GhM" id="rDn-e9-gcf"/>
+                        <outlet property="btn_day_we" destination="AE5-ck-NpR" id="r1P-wR-KeC"/>
                         <outlet property="buttonsave" destination="MaC-yY-H7c" id="ynr-J5-scO"/>
                         <outlet property="checkInTitle" destination="xNw-Ok-q3I" id="xNz-oK-buo"/>
                         <outlet property="checkInTxt" destination="285-oO-0xh" id="U6t-V0-anY"/>
@@ -2747,6 +2754,7 @@
                         <outlet property="pickerView" destination="4yY-4C-KR8" id="RF7-UA-C3n"/>
                         <outlet property="provinceTxt" destination="XGH-OW-Vwa" id="dUm-34-oNy"/>
                         <outlet property="scrollView" destination="meH-Yl-7dM" id="4kv-ft-qCz"/>
+                        <outlet property="superviewForDateSet" destination="NYp-PD-Lsd" id="IVe-vW-tQG"/>
                         <outlet property="tableView" destination="aFg-7d-ONJ" id="hMC-nF-2km"/>
                         <outlet property="txtHotelName" destination="DqR-UE-hVF" id="RaS-42-SLH"/>
                         <outlet property="view_BottomSet" destination="Qcn-1o-9wz" id="ChB-EZ-w1E"/>
@@ -3049,8 +3057,8 @@
                         <outlet property="noRoomTitle" destination="I05-Vb-voZ" id="uTV-p6-IFA"/>
                         <outlet property="noRoomimage" destination="hNi-2p-P9N" id="jaD-ai-ryz"/>
                         <outlet property="tableView" destination="JI9-YO-acz" id="qTa-1b-iH1"/>
-                        <segue destination="C55-9P-YcB" kind="push" identifier="toCreate" id="B4X-Im-807"/>
-                        <segue destination="ttu-s9-8HD" kind="push" identifier="toEdit" id="Q5W-eA-eLo"/>
+                        <segue destination="C55-9P-YcB" kind="push" identifier="toCreateMenu" id="B4X-Im-807"/>
+                        <segue destination="ttu-s9-8HD" kind="push" identifier="toEditMenu" id="Q5W-eA-eLo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQr-4g-GT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3263,7 +3271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZEX-RH-OqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3357.5" y="1970.5"/>
+            <point key="canvasLocation" x="3365.5" y="1908.5"/>
         </scene>
         <!--Edit Room-->
         <scene sceneID="Z5w-bT-beR">

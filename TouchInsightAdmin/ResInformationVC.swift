@@ -185,6 +185,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     
     // Date Click
+    @IBOutlet weak var superviewForDateSet: UIView!
     var selectedDay = [
         "mo":"0",
         "tu":"0",
@@ -201,6 +202,14 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     @IBOutlet weak var day_fr: UIImageView!
     @IBOutlet weak var day_sa: UIImageView!
     @IBOutlet weak var day_su: UIImageView!
+    
+    @IBOutlet weak var btn_day_mo: UIButton!
+    @IBOutlet weak var btn_day_tu: UIButton!
+    @IBOutlet weak var btn_day_we: UIButton!
+    @IBOutlet weak var btn_day_th: UIButton!
+    @IBOutlet weak var btn_day_fr: UIButton!
+    @IBOutlet weak var btn_day_sa: UIButton!
+    @IBOutlet weak var btn_day_su: UIButton!
     
     // Day Click
     @IBAction func day_mo_click(sender: AnyObject) {
@@ -810,6 +819,12 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         frmBottomSet.size.width = 370
         self.view_BottomSet.frame = frmBottomSet
         
+        
+        
+        
+        
+        
+        
         print("self.view.frame")
         print(self.view.frame)
         print("------------")
@@ -820,6 +835,56 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         print(self.view_BottomSet.frame)
         print("------------")
         
+        
+        
+        //superviewForDateSet
+//        day_mo
+//        day_tu
+//        day_we
+//        day_th
+//        day_fr
+//        day_sa
+//        day_su
+//        
+//        btn_day_mo
+//        btn_day_tu
+//        btn_day_we
+//        btn_day_th
+//        btn_day_fr
+//        btn_day_sa
+//        btn_day_su
+        
+        let itemWidth = superviewForDateSet.frame.size.width / 7
+        for dateItem in superviewForDateSet.subviews {
+            // UIImageView
+            var n = 0
+            if(dateItem.classForCoder == UIImageView.self){
+                print("is ImageView")
+                dateItem.frame.size.width = itemWidth
+                dateItem.frame.origin.x = itemWidth * CGFloat(n)
+                
+                print("dateItem.frame.origin.x = \(dateItem.frame.origin.x)")
+                
+                n = n + 1
+            }
+            
+            print("--------------")
+        }
+        
+        for dateItem in superviewForDateSet.subviews {
+            // UIButton
+            var n = 0
+            if(dateItem.classForCoder == UIButton.self){
+                dateItem.frame.size.width = itemWidth
+                dateItem.frame.origin.x = itemWidth * CGFloat(n)
+                
+                print("dateItem.frame.origin.x = \(dateItem.frame.origin.x)")
+                
+                n = n + 1
+            }
+            
+            print("--------------")
+        }
         
     }
     
