@@ -71,6 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "GetFacilityAttached":"110100",
         "GetProviderInformationById":"010200",
         "CreateGallery" : "070600",
+        
+        "CreateInfo":"080600",
+        "UpdateInfo":"080700" ,
 
         //Hotel Room Code
         "listRoom":"090100",
