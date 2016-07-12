@@ -358,37 +358,62 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     }
     
     var oldScrollY:CGFloat = 0
+    var oldScrollAction = "down"
     var animateSuccess = true
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let scrollY = self.tableView.contentOffset.y
         
-//        print("scrollY = \(scrollY)")
-//        print("oldScrollY = \(oldScrollY)")
-        if(animateSuccess){
+        var currentScrollAction = "down"
+        if(scrollY > oldScrollY){
+            currentScrollAction = "up"
+        }else{
+            currentScrollAction = "down"
+        }
+        
+        if(animateSuccess && oldScrollAction != currentScrollAction){
             print("scrollY = \(scrollY)")
             animateSuccess = false
             if(scrollY > oldScrollY){
                 //            print("UP")
-                UIView.animateWithDuration(0.2, animations:{
-                    self.btnCreateNew.alpha = 0
-                    }, completion: {_ in
-                        self.animateSuccess = true
-                })
-            }else{
+                self.btnAddHiddenAction(true)
+//                UIView.animateWithDuration(0.2, animations:{
+//                    self.btnCreateNew.alpha = 0
+//                    }, completion: {_ in
+//                        self.animateSuccess = true
+//                        self.oldScrollAction = "up"
+//                })
+            } else {
                 //            print("DOWN")
-                UIView.animateWithDuration(0.2, animations:{
-                    self.btnCreateNew.alpha = 1
-                    }, completion: {_ in
-                        self.animateSuccess = true
-                })
+                self.btnAddHiddenAction(false)
+//                UIView.animateWithDuration(0.2, animations:{
+//                    self.btnCreateNew.alpha = 1
+//                    }, completion: {_ in
+//                        self.animateSuccess = true
+//                        self.oldScrollAction = "down"
+//                })
             }
         }
-      
+        
         oldScrollY = scrollY
     }
     
-    func btnAddHiddenAction() {
-        
+    func btnAddHiddenAction(hidden:Bool) {
+        if(hidden == true){
+            UIView.animateWithDuration(0.2, animations:{
+                self.btnCreateNew.alpha = 0
+                }, completion: {_ in
+                    self.animateSuccess = true
+                    self.oldScrollAction = "up"
+            })
+        }else{
+            print("DOWN")
+            UIView.animateWithDuration(0.2, animations:{
+                self.btnCreateNew.alpha = 1
+                }, completion: {_ in
+                    self.animateSuccess = true
+                    self.oldScrollAction = "down"
+            })
+        }
     }
     
     override func viewDidLoad() {

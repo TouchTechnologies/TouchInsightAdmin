@@ -35,8 +35,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         
-        noRoomimage.frame = CGRectMake(width/2
-- noRoomimage.frame.size.width/2, height/2 - 200, 100, 100)
+        noRoomimage.frame = CGRectMake(width/2 - noRoomimage.frame.size.width/2, height/2 - 200, 100, 100)
         noRoomimage.center.x = width/2
         
         noRoomTitle.frame = CGRectMake(0,  height/2 - 80, width, 30)
@@ -48,13 +47,19 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         noRoomLine.frame = CGRectMake(width/2 - 70, height/2, 140,(height - 150) - noRoomLine.frame.origin.y )
         noRoomLine.center.x = width/2
     }
+    
     @IBAction func creataRoomBtn(sender: AnyObject) {
         
-         self.performSegueWithIdentifier("toCreate", sender: UIButton())
+//         self.performSegueWithIdentifier("toCreate", sender: UIButton())
 
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResCreateMenuVC") as! ResCreateMenuVC
+        self.navigationController?.pushViewController(targetVC, animated: true)
+        
         print("info add Room")
       
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("room")
@@ -132,7 +137,11 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
 //        self.performSegueWithIdentifier("toEdit", sender: indexPath)
         print(" Index Path : \(indexPath.row)")
-
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResEditMenuVC") as! ResEditMenuVC
+        self.navigationController?.pushViewController(targetVC, animated: true)
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -174,7 +183,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        
 //        self.presentViewController(editView, animated: true, completion: nil)
         
-     self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
+     //self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
         
     }
     func deleteTap(gestureRecognizer: UIGestureRecognizer) {
@@ -239,28 +248,28 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toCreate"{
-            
-            
-//            appDelegate.roomIndex = sender!.tag
-        }
-        else if segue.identifier == "toEdit"{
-            
-            
-            print("Sender : \(sender!.view!.tag)")
-            
-            appDelegate.roomIndex = sender!.view!.tag
-            
-//            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
-//            editView.modalTransitionStyle = .CrossDissolve
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "toCreate"{
 //            
-//            self.presentViewController(editView, animated: true, completion: nil)
-        }
-        
-        
-    }
-    
+//            
+////            appDelegate.roomIndex = sender!.tag
+//        }
+//        else if segue.identifier == "toEdit"{
+//            
+//            
+//            print("Sender : \(sender!.view!.tag)")
+//            
+//            appDelegate.roomIndex = sender!.view!.tag
+//            
+////            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
+////            editView.modalTransitionStyle = .CrossDissolve
+////            
+////            self.presentViewController(editView, animated: true, completion: nil)
+//        }
+//        
+//        
+//    }
+//    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -11,22 +11,23 @@ import SCLAlertView
 import PKHUD
 
 
-class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate , UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
+class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var facilityView: UIView!
+//    @IBOutlet var collectionView: UICollectionView!
+//    @IBOutlet var facilityView: UIView!
     @IBOutlet var addButton: UIButton!
     
     var facilitiesRoomAttached = [String]()
-    @IBOutlet weak var roomNameTxt: UITextField!
+    
+    @IBOutlet weak var menuNameTxt: UITextField!
     @IBOutlet weak var shotDescTxt: UITextView!
     @IBOutlet weak var priceTxt: UITextField!
-    @IBOutlet weak var numOfRoomTxt: UITextField!
-    @IBOutlet weak var bedTxt: UITextField!
-    @IBOutlet weak var maxOccupTxt: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var numOfRoomTxt: UITextField!
+//    @IBOutlet weak var bedTxt: UITextField!
+//    @IBOutlet weak var maxOccupTxt: UITextField!
+//    @IBOutlet weak var tableView: UITableView!
     var navunderlive = UIView()
     var width = CGFloat()
     var heigth = CGFloat()
@@ -34,27 +35,82 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
     var roomImageUpload = [UIImage()]
     var roomGallery = [UIImage()]
     
-    var Cell = RoomGalleryCell()
+//    var Cell = RoomGalleryCell()
     
-    @IBAction func plusOccupency(sender: AnyObject) {
-        print("+1")
-        occupencyNum = occupencyNum + 1
-        maxOccupTxt.text = "\(occupencyNum)"
-    }
-
-    @IBAction func minusOccupency(sender: AnyObject) {
-        if(occupencyNum <= 1){
-            
-            occupencyNum = 1
-        }
-        else{
-            occupencyNum = occupencyNum-1
-        }
+    
+    
+    
+    
+    // Spicy Level
+    
+    @IBOutlet weak var viewSplMild: UIView!
+    @IBOutlet weak var viewSplMiddle: UIView!
+    @IBOutlet weak var viewSplHot: UIView!
+    
+    
+    var selectedSpicyLevel = [
+        "mild":"1",
+        "middle":"0",
+        "hot":"0",
+        ]
+    @IBOutlet weak var img_mild: UIImageView!
+    @IBOutlet weak var img_middle: UIImageView!
+    @IBOutlet weak var img_hot: UIImageView!
+    
+    @IBAction func btn_mild_click(sender: AnyObject) {
         
-        maxOccupTxt.text = "\(occupencyNum)"
+        selectedSpicyLevel["mild"] = "1"
+        selectedSpicyLevel["middle"] = "0"
+        selectedSpicyLevel["hot"] = "0"
+        
+        img_mild.image = UIImage(named: "mild_hover.png")
+        img_middle.image = UIImage(named: "middle.png")
+        img_hot.image = UIImage(named: "hot.png")
+        
+        displaySelectedData()
     }
+    
+    @IBAction func btn_middle_click(sender: AnyObject) {
+        
+        selectedSpicyLevel["mild"] = "0"
+        selectedSpicyLevel["middle"] = "1"
+        selectedSpicyLevel["hot"] = "0"
+        
+        img_mild.image = UIImage(named: "mild.png")
+        img_middle.image = UIImage(named: "middle_hover.png")
+        img_hot.image = UIImage(named: "hot.png")
+        
+        displaySelectedData()
+    }
+    
+    @IBAction func btn_hot_click(sender: AnyObject) {
+        
+        selectedSpicyLevel["mild"] = "0"
+        selectedSpicyLevel["middle"] = "0"
+        selectedSpicyLevel["hot"] = "1"
+        
+        img_mild.image = UIImage(named: "mild.png")
+        img_middle.image = UIImage(named: "middle.png")
+        img_hot.image = UIImage(named: "hot_hover.png")
+        
+        displaySelectedData()
+    }
+    
+    func displaySelectedData() {
+        print(selectedSpicyLevel)
+    }
+    
+    
+    
+    
+    
+    
     
     override func viewWillAppear(animated: Bool) {
+        
+        
+        print("viewWillAppear")
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
       //  let width = UIScreen.mainScreen().bounds.size.width
         let contentscrollheight = self.scrollView.layer.bounds.size.height
@@ -71,21 +127,22 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
         self.navigationController?.navigationBarHidden = false
         self.initialSize()
         
+        print("viewDidLoad")
         
-        roomNameTxt.delegate = self
+        menuNameTxt.delegate = self
         priceTxt.delegate = self
-        bedTxt.delegate = self
-        maxOccupTxt.delegate = self
+//        bedTxt.delegate = self
+//        maxOccupTxt.delegate = self
        
         occupencyNum = 1
-        maxOccupTxt.text = "\(occupencyNum)"
+//        maxOccupTxt.text = "\(occupencyNum)"
         
-        numOfRoomTxt.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        numOfRoomTxt.text = "0"
+//        numOfRoomTxt.delegate = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        numOfRoomTxt.text = "0"
         priceTxt.text = "0.00"
         roomGallery.removeAll()
         roomImageUpload.removeAll()
@@ -102,10 +159,10 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
     }
     func initialObject(){
         
-        roomNameTxt.borderStyle = UITextBorderStyle.RoundedRect
-        roomNameTxt.layer.cornerRadius = 5
-        roomNameTxt.layer.borderWidth = 1
-        roomNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        menuNameTxt.borderStyle = UITextBorderStyle.RoundedRect
+        menuNameTxt.layer.cornerRadius = 5
+        menuNameTxt.layer.borderWidth = 1
+        menuNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
         
        // shotDescTxt.borderStyle = UITextBorderStyle.RoundedRect
@@ -118,22 +175,35 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
         priceTxt.layer.borderWidth = 1
         priceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
-        numOfRoomTxt.layer.cornerRadius = 5
-        numOfRoomTxt.layer.borderWidth = 1
-        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
-        bedTxt.layer.cornerRadius = 5
-        bedTxt.layer.borderWidth = 1
-        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
-        maxOccupTxt.layer.cornerRadius = 5
-        maxOccupTxt.layer.borderWidth = 1
-        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        numOfRoomTxt.layer.cornerRadius = 5
+//        numOfRoomTxt.layer.borderWidth = 1
+//        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        bedTxt.layer.cornerRadius = 5
+//        bedTxt.layer.borderWidth = 1
+//        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        maxOccupTxt.layer.cornerRadius = 5
+//        maxOccupTxt.layer.borderWidth = 1
+//        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         addButton.layer.cornerRadius = 5
-        facilityView.layer.cornerRadius = 5
+//        facilityView.layer.cornerRadius = 5
+        
+        
+        self.scrollView.frame.origin.y = 0
+        
+        let splitWidth = self.view.frame.size.width / 3
+        viewSplMild.frame.origin.x = splitWidth * 0
+        viewSplMild.frame.size.width = splitWidth
+        
+        viewSplMiddle.frame.origin.x = splitWidth * 1
+        viewSplMiddle.frame.size.width = splitWidth
+        
+        viewSplHot.frame.origin.x = splitWidth * 2
+        viewSplHot.frame.size.width = splitWidth
         
     }
     func initialSize(){
@@ -178,7 +248,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
             }
             
         }
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     func closealert(sender: UIButton, alertView: CustomIOS7AlertView) {
         alertView.close()
@@ -214,7 +284,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
 
     @IBAction func btnAddRoom(sender: AnyObject) {
         
-        if(roomNameTxt.text != "")
+        if(menuNameTxt.text != "")
         {
             print("Create Room")
             PKHUD.sharedHUD.dimsBackground = false
@@ -232,14 +302,14 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
                 ],
                 //Room
                 "roomType":[
-                    "roomTypeNameEn": roomNameTxt.text!,
+                    "roomTypeNameEn": menuNameTxt.text!,
                     "roomTypeNameTh": "",
                     "roomTypeDescriptionEn": shotDescTxt.text,
-                    "roomTypeDescriptionTh": (numOfRoomTxt.text != "0") ? numOfRoomTxt.text : "0",
+//                    "roomTypeDescriptionTh": (numOfRoomTxt.text != "0") ? numOfRoomTxt.text : "0",
                     "roomTypeAvgPrice": "",
                     "roomTypeCurrentPrice": priceTxt.text,
                     "quantity": "",
-                    "maximumPerson": maxOccupTxt.text,
+//                    "maximumPerson": maxOccupTxt.text,
                     "touchbookingpaymentProductKeycode": ""
                 ],
                 "user" : [
@@ -369,7 +439,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
                         self.facilitiesRoomAttached.append(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"] as! String)
                     }
                 }
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
                 print("============facilitiesRoomAttached.count\(self.facilitiesRoomAttached.count)")
                 
         }
@@ -429,11 +499,11 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
     }
     func dismissKeyboard()
     {
-        roomNameTxt.resignFirstResponder()
+        menuNameTxt.resignFirstResponder()
         priceTxt.resignFirstResponder()
-        numOfRoomTxt.resignFirstResponder()
-        bedTxt.resignFirstResponder()
-        maxOccupTxt.resignFirstResponder()
+//        numOfRoomTxt.resignFirstResponder()
+//        bedTxt.resignFirstResponder()
+//        maxOccupTxt.resignFirstResponder()
         shotDescTxt.resignFirstResponder()
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -467,74 +537,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
 //        return 1
 //    }
 //    
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return roomGallery.count+1
-    }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    {
-        return CGSize(width: collectionView.frame.size.width/3 - 2, height: collectionView.frame.size.width/3-1)
-    }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
-        Cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell",forIndexPath: indexPath) as! RoomGalleryCell
-        
-        print("roomGallery \(roomGallery.count)")
-        if(self.roomGallery.count == 0 || indexPath.row == self.roomGallery.count)
-        {
-            print("if")
-            Cell.imgRoom.image = UIImage(named: "add_image.png")
-            
-        }else
-        {
-            Cell.imgRoom.image = self.roomGallery[indexPath.row]
-            print("else")
-        }
-        
-        print("Cell display")
-        return Cell
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
-        print("didSelectItemAtIndexPath ::: \(indexPath.row)")
-        self.CellTapped(indexPath.item)
-       
-    }
-    func CellTapped(img: AnyObject)
-    {
-       
-        
-        print("Upload Cover RoomImg")
-        
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(myPickerController, animated: true, completion: nil)
-        
-    }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return facilitiesRoomAttached.count
-    }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        if(facilitiesRoomAttached.count == 0){
-            cell.textLabel?.text = ""
-        }
-        else{
-            // var facilitiesAttached:[[String:String]] = []
-            cell.textLabel?.text = facilitiesRoomAttached[indexPath.row]
-            print("facilitiesRoomAttached(table) \(facilitiesRoomAttached[indexPath.row])")
-        }
-        
-        //cell.textLabel?.text = "facility name"
-        return cell
-    }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Select")
-    }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
@@ -542,21 +545,22 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UICollectionViewData
         dismissViewControllerAnimated(true, completion: nil)
         self.roomGallery.append(chosenImage)
         self.roomImageUpload.append(chosenImage)
-        self.collectionView.reloadData()
+//        self.collectionView.reloadData()
     }
+    
     //gestureRecognizer
-
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if(self.view.isDescendantOfView(self.collectionView))
-        {
-            print("if gestureRecognizer")
-            return false
-        }
-        else
-        {
-            print("else gestureRecognizer")
-            return true
-        }
-    }
+//
+//    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+////        if(self.view.isDescendantOfView(self.collectionView))
+////        {
+////            print("if gestureRecognizer")
+////            return false
+////        }
+////        else
+////        {
+////            print("else gestureRecognizer")
+////            return true
+////        }
+//    }
 
 }

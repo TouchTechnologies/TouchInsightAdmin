@@ -13,10 +13,6 @@ import PKHUD
 class ResEditMenuVC:
     UIViewController,
     UITextFieldDelegate,
-    UICollectionViewDelegate,
-    UICollectionViewDataSource,
-    UITableViewDataSource,
-    UITableViewDelegate,
     UIScrollViewDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate ,
@@ -26,8 +22,8 @@ class ResEditMenuVC:
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var tableView: UITableView!
+//    @IBOutlet var collectionView: UICollectionView!
+//    @IBOutlet var tableView: UITableView!
     var facilitiesRoomAttached = [String]()
     var roomCollection = [UIImage]()
 //    var mediaKey:String?
@@ -40,38 +36,83 @@ class ResEditMenuVC:
     var addImageNum = 1
     
     @IBOutlet var updateButton: UIButton!
-    @IBOutlet var facilityView: UIView!
-    @IBOutlet var navbar: UINavigationBar!
-    @IBOutlet weak var roomNameTxt: UITextField!
+//    @IBOutlet var facilityView: UIView!
+//    @IBOutlet var navbar: UINavigationBar!
+    @IBOutlet weak var menuNameTxt: UITextField!
     @IBOutlet weak var shotDescTxt: UITextView!
     @IBOutlet weak var priceTxt: UITextField!
-    @IBOutlet weak var numOfRoomTxt: UITextField!
-    @IBOutlet weak var bedTxt: UITextField!
-    @IBOutlet weak var maxOccupTxt: UITextField!
+//    @IBOutlet weak var numOfRoomTxt: UITextField!
+//    @IBOutlet weak var bedTxt: UITextField!
+//    @IBOutlet weak var maxOccupTxt: UITextField!
     var navunderlive = UIView()
     var width = CGFloat()
     var height = CGFloat()
     
     var Cell = RoomGalleryCell()
     
-    @IBAction func plusOccupency(sender: AnyObject) {
-        print("+1")
-        occupencyNum = occupencyNum + 1
-        maxOccupTxt.text = "\(occupencyNum)"
+    
+    
+    // Spicy Level
+    
+    @IBOutlet weak var viewSplMild: UIView!
+    @IBOutlet weak var viewSplMiddle: UIView!
+    @IBOutlet weak var viewSplHot: UIView!
+    
+    
+    var selectedSpicyLevel = [
+        "mild":"1",
+        "middle":"0",
+        "hot":"0",
+        ]
+    @IBOutlet weak var img_mild: UIImageView!
+    @IBOutlet weak var img_middle: UIImageView!
+    @IBOutlet weak var img_hot: UIImageView!
+    
+    @IBAction func btn_mild_click(sender: AnyObject) {
+        
+        selectedSpicyLevel["mild"] = "1"
+        selectedSpicyLevel["middle"] = "0"
+        selectedSpicyLevel["hot"] = "0"
+        
+        img_mild.image = UIImage(named: "mild_hover.png")
+        img_middle.image = UIImage(named: "middle.png")
+        img_hot.image = UIImage(named: "hot.png")
+        
+        displaySelectedData()
     }
     
-    @IBAction func minusOccupency(sender: AnyObject) {
-        if(occupencyNum <= 1){
+    @IBAction func btn_middle_click(sender: AnyObject) {
         
-            occupencyNum = 1
-        }
-        else{
-            occupencyNum = occupencyNum-1
-        }
+        selectedSpicyLevel["mild"] = "0"
+        selectedSpicyLevel["middle"] = "1"
+        selectedSpicyLevel["hot"] = "0"
         
-        maxOccupTxt.text = "\(occupencyNum)"
+        img_mild.image = UIImage(named: "mild.png")
+        img_middle.image = UIImage(named: "middle_hover.png")
+        img_hot.image = UIImage(named: "hot.png")
         
+        displaySelectedData()
     }
+    
+    @IBAction func btn_hot_click(sender: AnyObject) {
+        
+        selectedSpicyLevel["mild"] = "0"
+        selectedSpicyLevel["middle"] = "0"
+        selectedSpicyLevel["hot"] = "1"
+        
+        img_mild.image = UIImage(named: "mild.png")
+        img_middle.image = UIImage(named: "middle.png")
+        img_hot.image = UIImage(named: "hot_hover.png")
+        
+        displaySelectedData()
+    }
+    
+    func displaySelectedData() {
+        print(selectedSpicyLevel)
+    }
+    
+    
+    
     override func viewWillAppear(animated: Bool) {
         let width = UIScreen.mainScreen().bounds.size.width
         let contentscrollheight = self.scrollView.layer.bounds.size.height
@@ -85,14 +126,14 @@ class ResEditMenuVC:
         print("room index : \(appDelegate.roomIndex)")
         print("RoomID :  \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String)")
     //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
-        roomNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
+        menuNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
         shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
         priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
         
-        numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
-        bedTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
-        maxOccupTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["maximum_person"] as! String)
-        occupencyNum = Int32(maxOccupTxt.text!)!
+//        numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
+//        bedTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
+//        maxOccupTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["maximum_person"] as! String)
+//        occupencyNum = Int32(maxOccupTxt.text!)!
         self.appDelegate.viewWithTopButtons.hidden = true
         self.getFacility()
         
@@ -104,13 +145,13 @@ class ResEditMenuVC:
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         self.getRoomGallery()
-        roomNameTxt.delegate = self
+        menuNameTxt.delegate = self
         priceTxt.delegate = self
-        bedTxt.delegate = self
-        maxOccupTxt.delegate = self
-        numOfRoomTxt.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+//        bedTxt.delegate = self
+//        maxOccupTxt.delegate = self
+//        numOfRoomTxt.delegate = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
         roomGallery.removeAll()
         roomImageUpload.removeAll()
 //        collectionView.delegate = self
@@ -119,7 +160,7 @@ class ResEditMenuVC:
 //        occupencyNum = 1
 //        maxOccupTxt.text = "\(occupencyNum)"
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResEditMenuVC.dismissKeyboard))
         tap.delegate = self
         tap.cancelsTouchesInView = false
         self.view!.addGestureRecognizer(tap)
@@ -129,10 +170,10 @@ class ResEditMenuVC:
          }
     func initialObject(){
         
-        roomNameTxt.borderStyle = UITextBorderStyle.RoundedRect
-        roomNameTxt.layer.cornerRadius = 5
-        roomNameTxt.layer.borderWidth = 1
-        roomNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        menuNameTxt.borderStyle = UITextBorderStyle.RoundedRect
+        menuNameTxt.layer.cornerRadius = 5
+        menuNameTxt.layer.borderWidth = 1
+        menuNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
 
         shotDescTxt.layer.cornerRadius = 5
         shotDescTxt.layer.borderWidth = 1
@@ -143,22 +184,36 @@ class ResEditMenuVC:
         priceTxt.layer.borderWidth = 1
         priceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
-        numOfRoomTxt.layer.cornerRadius = 5
-        numOfRoomTxt.layer.borderWidth = 1
-        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        numOfRoomTxt.layer.cornerRadius = 5
+//        numOfRoomTxt.layer.borderWidth = 1
+//        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        bedTxt.layer.cornerRadius = 5
+//        bedTxt.layer.borderWidth = 1
+//        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        maxOccupTxt.layer.cornerRadius = 5
+//        maxOccupTxt.layer.borderWidth = 1
+//        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+
+//        facilityView.layer.cornerRadius = 5
         
-        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
-        bedTxt.layer.cornerRadius = 5
-        bedTxt.layer.borderWidth = 1
-        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
-        maxOccupTxt.layer.cornerRadius = 5
-        maxOccupTxt.layer.borderWidth = 1
-        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         updateButton.layer.cornerRadius = 5
-        facilityView.layer.cornerRadius = 5
+        
+        self.scrollView.frame.origin.y = 0
+        
+        let splitWidth = self.view.frame.size.width / 3
+        viewSplMild.frame.origin.x = splitWidth * 0
+        viewSplMild.frame.size.width = splitWidth
+        
+        viewSplMiddle.frame.origin.x = splitWidth * 1
+        viewSplMiddle.frame.size.width = splitWidth
+        
+        viewSplHot.frame.origin.x = splitWidth * 2
+        viewSplHot.frame.size.width = splitWidth
         
     }
 
@@ -195,7 +250,7 @@ class ResEditMenuVC:
             }
             
         }
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     func closealert(sender: UIButton, alertView: CustomIOS7AlertView) {
         alertView.close()
@@ -245,14 +300,14 @@ class ResEditMenuVC:
             //Room
             "roomType":[
                 "roomTypeId": (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String),
-                "roomTypeNameEn": roomNameTxt.text!,
+                "roomTypeNameEn": menuNameTxt.text!,
                 "roomTypeNameTh": "",
                 "roomTypeDescriptionEn": shotDescTxt.text,
-                "roomTypeDescriptionTh": numOfRoomTxt.text,
+//                "roomTypeDescriptionTh": numOfRoomTxt.text,
                 "roomTypeAvgPrice":"",
                 "roomTypeCurrentPrice": priceTxt.text,
                 "quantity": "",
-                "maximumPerson": maxOccupTxt.text,
+//                "maximumPerson": maxOccupTxt.text,
                 "touchbookingpaymentProductKeycode": ""
             ],
             "user" : [
@@ -387,7 +442,7 @@ class ResEditMenuVC:
                         self.facilitiesRoomAttached.append(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"] as! String)
                     }
                 }
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
                 print("============facilitiesRoomAttached.count\(self.facilitiesRoomAttached.count)")
                 
         }
@@ -398,7 +453,7 @@ class ResEditMenuVC:
     func updateData(){
         //   print("data All\(appDelegate.roomDic!["ListProviderInformationSummary"]![appDelegate.roomIndex!])")
         
-        //        roomNameTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["roomTypeNameEn"]! as! String)
+        //        menuNameTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["roomTypeNameEn"]! as! String)
         //
         //        shotDescTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["roomTypeDescriptionEn"]! as! String)
         //
@@ -459,11 +514,11 @@ class ResEditMenuVC:
     }
     func dismissKeyboard()
     {
-        roomNameTxt.resignFirstResponder()
+        menuNameTxt.resignFirstResponder()
         priceTxt.resignFirstResponder()
-        numOfRoomTxt.resignFirstResponder()
-        bedTxt.resignFirstResponder()
-        maxOccupTxt.resignFirstResponder()
+//        numOfRoomTxt.resignFirstResponder()
+//        bedTxt.resignFirstResponder()
+//        maxOccupTxt.resignFirstResponder()
         shotDescTxt.resignFirstResponder()
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -603,7 +658,7 @@ class ResEditMenuVC:
         dismissViewControllerAnimated(true, completion: nil)
         self.roomGallery.append(chosenImage)
         self.roomImageUpload.append(chosenImage)
-        self.collectionView.reloadData()
+//        self.collectionView.reloadData()
     }
     func getRoomGallery()
     {
@@ -631,21 +686,21 @@ class ResEditMenuVC:
 //            self.roomGallery = data
             print("UP แล้วจ้า")
 
-            self.collectionView.reloadData()
+//            self.collectionView.reloadData()
         }
         
     }
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if(self.view.isDescendantOfView(self.collectionView))
-        {
-            print("if gestureRecognizer")
-            return false
-        }
-        else
-        {
-            print("else gestureRecognizer")
-            return true
-        }
-    }
+//    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+////        if(self.view.isDescendantOfView(self.collectionView))
+////        {
+////            print("if gestureRecognizer")
+////            return false
+////        }
+////        else
+////        {
+////            print("else gestureRecognizer")
+////            return true
+////        }
+//    }
     
 }
