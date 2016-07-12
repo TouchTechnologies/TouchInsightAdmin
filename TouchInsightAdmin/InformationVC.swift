@@ -85,6 +85,8 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
 
        
         self.setObject()
+        self.getFacility()
+        self.getProviderByID()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -526,8 +528,6 @@ func initalertView(){
         checkInTitle.center.x = (width/2)/2
         checkOutTitle.center.x = (width/2)/2
 
-        
-        
         checkInTxt.center.x = (width/2)/2
         checkOutTxt.center.x = (width/2)/2
         
@@ -554,13 +554,20 @@ func initalertView(){
         DistanceAirportTxt.layer.borderWidth = 1
         DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
       
+//        buttonsave.translatesAutoresizingMaskIntoConstraints = true
         buttonsave.layer.cornerRadius = 5
-//        buttonsave.center.x = width/2
-//        buttonsave.layer.bounds.size.width = UIScreen.mainScreen().bounds.width - 20
+        buttonsave.frame.size.width = (buttonsave.superview?.frame.size.width)! - 20
+        buttonsave.frame.origin.x = 10
+        
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
         checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
-       
+        
+        pickerView.frame.origin.x = 0
+        checkinPicker.frame.origin.x = 0
+        checkoutPicker.frame.origin.x = 0
+        
+        self.scrollView.frame.origin.y = 0
     }
    
     override func viewWillAppear(animated: Bool) {
@@ -568,26 +575,24 @@ func initalertView(){
         //self.viewDidAppear(true)
         super.viewWillAppear(true)
         
-        self.setObject()
-        self.getFacility()
-        self.getProviderByID()
+        //self.setObject()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(InformationVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
         imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
         self.scrollView.addSubview(self.imgHotelLogo)
         
-        scrollView.contentSize = CGSizeMake(width,2150)
+        scrollView.contentSize = CGSizeMake(width,2180)
         
         print("scrollwidth = \(scrollView.layer.bounds.size.width)")
         scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
 
       
         //hide keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
 
-        let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard2")
+        let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard2))
         provinceTxt.addGestureRecognizer(pickerTap)
 //        provinceTxt.resignFirstResponder()
         //set picker view

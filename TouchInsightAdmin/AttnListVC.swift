@@ -115,18 +115,18 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
     func initialInfoVC(){
         infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnInfoVC") as! AttnInfoVC
         LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnLocationVC") as! AttnLocationVC
-        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnMenuInfoVC") as! AttnMenuInfoVC
+//        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnMenuInfoVC") as! AttnMenuInfoVC
         //        let viewControllers = [infoViewController, LocationViewController, RoominfoViewController]
-        let viewControllers = [infoViewController,LocationViewController,RoominfoViewController]
+        let viewControllers = [infoViewController,LocationViewController]
         options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
         let navwidth = self.navigationController?.navigationBar.bounds.size.width
 //        print("nav width = \(navwidth)")
         options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
-        let menuWidth = navwidth!/3
+        let menuWidth = navwidth!/2
         options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: false, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
         options.defaultPage = 0
-        if(appDelegate.pagecontrolIndex == 2){
-            options.defaultPage = 2
+        if(appDelegate.pagecontrolIndex == 1){
+            options.defaultPage = 1
         }
         else{
             options.defaultPage = 0
@@ -173,7 +173,7 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
     func initialImageGalleryVC(){
         
         
-        let galleryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imagegallery") as! ImageGalleryVC
+        let galleryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AttnImageGalleryVC") as! AttnImageGalleryVC
         
         // self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         // self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
