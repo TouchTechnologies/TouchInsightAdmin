@@ -10,6 +10,8 @@
 		00B9E82560320EACC2A21F6E /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA79D0EB5FECAFBD4FD1E306 /* Pods_TouchInsightAdminUITests.framework */; };
 		3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC711C06BA3D0051E850 /* LoginVC.swift */; };
 		3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC731C06DC2A0051E850 /* API_Model.swift */; };
+		366F4FFE1D34FD5B005B6DF1 /* HotelAddContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */; };
+		366F50001D34FD78005B6DF1 /* ResAddContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F4FFF1D34FD78005B6DF1 /* ResAddContentInfo.swift */; };
 		368AB9DC1D2FA1DB007CEC09 /* Resfacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AB9DA1D2FA1DB007CEC09 /* Resfacility.swift */; };
 		368AB9DD1D2FA1DB007CEC09 /* Resfacility.xib in Resources */ = {isa = PBXBuildFile; fileRef = 368AB9DB1D2FA1DB007CEC09 /* Resfacility.xib */; };
 		36AB49C71C3CE9CF0078A936 /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49C61C3CE9CF0078A936 /* RNGridMenu.m */; };
@@ -250,6 +252,8 @@
 		3621BC711C06BA3D0051E850 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3621BC731C06DC2A0051E850 /* API_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_Model.swift; sourceTree = "<group>"; };
 		366CBBDD1C07F6A200484DA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelAddContentInfo.swift; sourceTree = "<group>"; };
+		366F4FFF1D34FD78005B6DF1 /* ResAddContentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResAddContentInfo.swift; sourceTree = "<group>"; };
 		368AB9DA1D2FA1DB007CEC09 /* Resfacility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resfacility.swift; sourceTree = "<group>"; };
 		368AB9DB1D2FA1DB007CEC09 /* Resfacility.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Resfacility.xib; sourceTree = "<group>"; };
 		36AB49C51C3CE9CF0078A936 /* RNGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGridMenu.h; path = Class/RNGridMenu.h; sourceTree = "<group>"; };
@@ -952,6 +956,7 @@
 				F329F1F81D2D10540061BA52 /* ResImageGalleryVC.swift */,
 				F329F1FA1D2D10600061BA52 /* ResEditMenuVC.swift */,
 				F329F1FC1D2D106B0061BA52 /* ResImageCollectionViewCell.swift */,
+				366F4FFF1D34FD78005B6DF1 /* ResAddContentInfo.swift */,
 			);
 			name = Restuarant;
 			sourceTree = "<group>";
@@ -1047,6 +1052,7 @@
 				F3C6DC1B1C197B710005A621 /* ImageGalleryVC.swift */,
 				F3C6EE1F1C6B2EBC00DB031F /* EditRoominfomationVC.swift */,
 				F3BA1F541C76FF6700B0782C /* ImageCollectionViewCell.swift */,
+				366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */,
 			);
 			name = Hotel;
 			sourceTree = "<group>";
@@ -1554,6 +1560,7 @@
 				F3C6DC0C1C1805450005A621 /* CreateRoomInfoVC.swift in Sources */,
 				F355232F1C28EF75001F5A27 /* AddProviderAlertVC.swift in Sources */,
 				F34625F31C0831D100E2A82C /* IntroViewVC.swift in Sources */,
+				366F50001D34FD78005B6DF1 /* ResAddContentInfo.swift in Sources */,
 				F30672021C16BFAC001A577F /* customProviderView.swift in Sources */,
 				F3C6DC1C1C197B710005A621 /* ImageGalleryVC.swift in Sources */,
 				F3627FED1C2BACEC006BC607 /* CNPPopupController.m in Sources */,
@@ -1571,6 +1578,7 @@
 				F3FE68061C1153A0002BF719 /* TestcustomAlertViewController.swift in Sources */,
 				F329F1EF1D2D10020061BA52 /* RestuarantListVC.swift in Sources */,
 				36DC40D61C0587CE001B8E22 /* AppDelegate.swift in Sources */,
+				366F4FFE1D34FD5B005B6DF1 /* HotelAddContentInfo.swift in Sources */,
 				F3B73A2D1C562E4200781D48 /* CustomIOS7AlertView.swift in Sources */,
 				F34D51C11C3CF038002AC1EF /* hotelfacility.swift in Sources */,
 				F3A43FBE1C172337000D76CA /* InformationVC.swift in Sources */,
