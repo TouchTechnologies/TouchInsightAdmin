@@ -50,7 +50,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @IBAction func creataRoomBtn(sender: AnyObject) {
         
-         self.performSegueWithIdentifier("toCreate", sender: UIButton())
+         self.performSegueWithIdentifier("toCreateMenu", sender: UIButton())
 
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResCreateMenuVC") as! ResCreateMenuVC

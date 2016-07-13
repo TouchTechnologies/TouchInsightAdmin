@@ -362,7 +362,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
     }
     override func viewDidDisappear(animated: Bool) {
-        print("viewDidDisappear(hotelInfo)")
+        print("viewDidDisappear(ResInfo)")
         //        appDelegate.facilityHotelStatus.removeAll()
     }
     func initailLogoImage(){
