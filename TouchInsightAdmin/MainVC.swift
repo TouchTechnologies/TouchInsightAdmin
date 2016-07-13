@@ -22,7 +22,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     @IBOutlet var lblEmail: UILabel!
     
     var loadCount = 0
-    var menuList:[String] = ["Provider List","Team","Media","Live Stream"]
+    var menuList:[String] = ["Business Type","Team","Media","Live Stream"]
     var imageName :[String] = ["ic_provider_list","ic_team","ic_media","ic_livestream"]
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

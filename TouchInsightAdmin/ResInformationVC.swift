@@ -376,8 +376,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         if let logo = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
             imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
-        }else
-        {
+        }else{
             print("no avatar")
             imgHotelLogo.image = UIImage(named: "ic_team.png")
         }
@@ -782,18 +781,22 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         checkOutView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
         
-        checkInTitle.center.x = (checkInTitle.superview?.frame.size.width)!/2
         checkInTitle.frame.size.width = (checkInTitle.superview?.frame.size.width)!
+        checkInTitle.center.x = (checkInTitle.superview?.frame.size.width)!/2
+        //checkInTitle.backgroundColor = UIColor.greenColor()
         
-        checkOutTitle.center.x = (checkOutTitle.superview?.frame.size.width)!/2
         checkOutTitle.frame.size.width = (checkOutTitle.superview?.frame.size.width)!
+        checkOutTitle.center.x = (checkOutTitle.superview?.frame.size.width)!/2
+        //checkOutTitle.backgroundColor = UIColor.greenColor()
         
         
-        checkInTxt.center.x = (checkInTxt.superview?.frame.size.width)!/2
         checkInTxt.frame.size.width = (checkInTxt.superview?.frame.size.width)!
+        checkInTxt.center.x = (checkInTxt.superview?.frame.size.width)!/2
+        //checkInTxt.backgroundColor = UIColor.greenColor()
         
-        checkOutTxt.center.x = (checkOutTxt.superview?.frame.size.width)!/2
         checkOutTxt.frame.size.width = (checkOutTxt.superview?.frame.size.width)!
+        checkOutTxt.center.x = (checkOutTxt.superview?.frame.size.width)!/2
+        //checkOutTxt.backgroundColor = UIColor.greenColor()
         
         
         //        distanceCityTxt.borderStyle = UITextBorderStyle.RoundedRect
@@ -833,13 +836,13 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self.view_BottomSet.frame.origin.y = 804
         
         var frmBtnAddFac = btnAddFac.frame
-        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width - 6
+        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
         btnAddFac.frame = frmBtnAddFac
         
         
-        var frmBottomSet = self.view_BottomSet.frame
-        frmBottomSet.size.width = 370
-        self.view_BottomSet.frame = frmBottomSet
+//        var frmBottomSet = self.view_BottomSet.frame
+//        frmBottomSet.size.width = 370
+//        self.view_BottomSet.frame = frmBottomSet
 
         
         

@@ -135,12 +135,12 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        self.performSegueWithIdentifier("toEdit", sender: indexPath)
+        self.performSegueWithIdentifier("toEditMenu", sender: indexPath)
         print(" Index Path : \(indexPath.row)")
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResEditMenuVC") as! ResEditMenuVC
-        self.navigationController?.pushViewController(targetVC, animated: true)
+//        
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResEditMenuVC") as! ResEditMenuVC
+//        self.navigationController?.pushViewController(targetVC, animated: true)
         
     }
     
@@ -249,10 +249,10 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toCreate"{
+        if segue.identifier == "toCreateMenu"{
             
 //            appDelegate.roomIndex = sender!.tag
-        }else if segue.identifier == "toEdit"{
+        }else if segue.identifier == "toEditMenu"{
             
             print("Sender : \(sender!.view!.tag)")
             
