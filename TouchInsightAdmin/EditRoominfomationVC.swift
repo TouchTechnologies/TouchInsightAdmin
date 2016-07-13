@@ -21,7 +21,7 @@ class EditRoominfomationVC:
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate ,
     UIGestureRecognizerDelegate,
-    CustomIOS7AlertViewDelegate {
+CustomIOS7AlertViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()
     @IBOutlet weak var scrollView: UIScrollView!
@@ -29,7 +29,7 @@ class EditRoominfomationVC:
     @IBOutlet var tableView: UITableView!
     var facilitiesRoomAttached = [String]()
     var roomCollection = [UIImage]()
-//    var mediaKey:String?
+    //    var mediaKey:String?
     var roomImage = [UIImageView()]
     var roomGallery = [UIImage()]
     var roomImageUpload = [UIImage()]
@@ -61,7 +61,7 @@ class EditRoominfomationVC:
     
     @IBAction func minusOccupency(sender: AnyObject) {
         if(occupencyNum <= 1){
-        
+            
             occupencyNum = 1
         }
         else{
@@ -76,14 +76,14 @@ class EditRoominfomationVC:
         let contentscrollheight = self.scrollView.layer.bounds.size.height
         scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-       // let contentscrollheight = self.scrollView.layer.bounds.size.height
-       
-       
+        // let contentscrollheight = self.scrollView.layer.bounds.size.height
+        
+        
         
         
         print("room index : \(appDelegate.roomIndex)")
         print("RoomID :  \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String)")
-    //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
+        //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
         roomNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
         shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
         priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
@@ -95,8 +95,8 @@ class EditRoominfomationVC:
         self.appDelegate.viewWithTopButtons.hidden = true
         self.getFacility()
         
-//        self.setFacility(7270)
-//        self.updateData()
+        //        self.setFacility(7270)
+        //        self.updateData()
     }
     
     override func viewDidLoad() {
@@ -112,27 +112,27 @@ class EditRoominfomationVC:
         tableView.dataSource = self
         roomGallery.removeAll()
         roomImageUpload.removeAll()
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
+        //        collectionView.delegate = self
+        //        collectionView.dataSource = self
         
-//        occupencyNum = 1
-//        maxOccupTxt.text = "\(occupencyNum)"
+        //        occupencyNum = 1
+        //        maxOccupTxt.text = "\(occupencyNum)"
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditRoominfomationVC.dismissKeyboard))
         tap.delegate = self
         tap.cancelsTouchesInView = false
         self.view!.addGestureRecognizer(tap)
         
         self.initNavUnderline()
         self.initialObject()
-         }
+    }
     func initialObject(){
         
         roomNameTxt.borderStyle = UITextBorderStyle.RoundedRect
         roomNameTxt.layer.cornerRadius = 5
         roomNameTxt.layer.borderWidth = 1
         roomNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-
+        
         shotDescTxt.layer.cornerRadius = 5
         shotDescTxt.layer.borderWidth = 1
         shotDescTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
@@ -160,11 +160,11 @@ class EditRoominfomationVC:
         facilityView.layer.cornerRadius = 5
         
     }
-
+    
     func initNavUnderline(){
         navunderlive.frame = CGRectMake(self.view.frame.size.width/3, (self.navigationController?.navigationBar.frame.size.height)! - 3, self.view.frame.size.width/3, 3)
         navunderlive.backgroundColor = UIColor.redColor()
-       self.navigationController?.navigationBar.addSubview(navunderlive)
+        self.navigationController?.navigationBar.addSubview(navunderlive)
         
     }
     override func viewDidDisappear(animated: Bool) {
@@ -208,7 +208,7 @@ class EditRoominfomationVC:
         let subView1: UIView = NSBundle.mainBundle().loadNibNamed("roomfacility", owner: self, options: nil)[0] as! UIView
         
         subView1.frame = containerView.bounds
-      
+        
         containerView.addSubview(subView1)
         
         return containerView
@@ -218,19 +218,19 @@ class EditRoominfomationVC:
         
         self.navigationController?.popViewControllerAnimated(true)
         print("Back")
-//        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
-//        self.navigationController?.presentViewController(nev!, animated: true, completion: { () -> Void in
-//            self.appDelegate.viewWithTopButtons.hidden = false
-//            self.navunderlive.hidden = true
-//        })
+        //        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
+        //        self.navigationController?.presentViewController(nev!, animated: true, completion: { () -> Void in
+        //            self.appDelegate.viewWithTopButtons.hidden = false
+        //            self.navunderlive.hidden = true
+        //        })
         appDelegate.pagecontrolIndex = 2
-
- // self.performSegueWithIdentifier("backtoinfo", sender: self)
-}
-
+        
+        // self.performSegueWithIdentifier("backtoinfo", sender: self)
+    }
+    
     @IBAction func btnUpdateRoom(sender: AnyObject) {
         print("update room")
-//        uploadImage()
+        //        uploadImage()
         
         
         let send = API_Model()
@@ -264,13 +264,13 @@ class EditRoominfomationVC:
         send.providerAPI(self.appDelegate.command["UpdateRoomType"]!, dataJson: dataJson){
             data in
             print("data(UpdateRoom) :\(data)")
-//            print("data(roomTypeId) : \(data["roomType"]!["room_type_id"] as! Int)")
+            //            print("data(roomTypeId) : \(data["roomType"]!["room_type_id"] as! Int)")
             self.setFacility(Int(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String)!)
             
         }
         
         
-
+        
         
         
         PKHUD.sharedHUD.dimsBackground = false
@@ -299,7 +299,7 @@ class EditRoominfomationVC:
                     data in
                     
                     print("data getUploadKeyRoomGallery: \(data)")
-                    let mediaKey = data 
+                    let mediaKey = data
                     self.send.uploadImage(mediaKey, image: self.roomImageUpload[index], imageName: imageName){
                         data in
                         if(index == self.roomImageUpload.count-1)
@@ -316,7 +316,7 @@ class EditRoominfomationVC:
                                 self.navunderlive.hidden = true
                                 
                             })
-
+                            
                         }
                     }
                 }
@@ -335,22 +335,22 @@ class EditRoominfomationVC:
                 self.navunderlive.hidden = true
                 
             })
-
+            
         }
-
-
+        
+        
         appDelegate.pagecontrolIndex = 2
-
+        
     }
     
     func getFacility()
     {
         //print("roomDataALL : \(self.appDelegate.roomDic!["roomTypes"])")  7288
         let dataDic =
-        [
-            "roomType": [
-                "roomTypeId": self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String
-            ]
+            [
+                "roomType": [
+                    "roomTypeId": self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String
+                ]
         ]
         
         let dataJson = send.Dict2JsonString(dataDic)
@@ -358,35 +358,35 @@ class EditRoominfomationVC:
         print("Json Get(Room)FacilityAttached :\(send.jsonEncode(dataJson))")
         //Update Provider
         send.providerAPI(self.appDelegate.command["GetRoomTypeFacilityAttached"]!, dataJson: dataJson)
+        {
+            data in
+            print("data(Get(Room)FacilityAttached) :\(data)")
+            print("Count \(data["roomTypeFacilitiesAttached"]!.count )")
+            if(data["roomTypeFacilitiesAttached"]!.count != 0 )
             {
-                data in
-                print("data(Get(Room)FacilityAttached) :\(data)")
-                print("Count \(data["roomTypeFacilitiesAttached"]!.count )")
-                if(data["roomTypeFacilitiesAttached"]!.count != 0 )
+                for i in 0...data["roomTypeFacilitiesAttached"]!.count - 1
                 {
-                    for i in 0...data["roomTypeFacilitiesAttached"]!.count - 1
+                    print(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"])
+                    print("Fac Room Dic WTF : \(self.appDelegate.facilityRoomDic!)")
+                    print("CountWTF : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count)")
+                    for j in 0...self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
                     {
-                        print(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"])
-                        print("Fac Room Dic WTF : \(self.appDelegate.facilityRoomDic!)")
-                        print("CountWTF : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count)")
-                        for j in 0...self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
+                        
+                        if((data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String) == (self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String))
                         {
-
-                            if((data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String) == (self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String))
-                            {
-                                self.appDelegate.facilityRoomStatus[j] = true
-                                print("index : \(j) \(data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String)")
-                                print("index : \(j) \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String)")
-                                
-                            }
+                            self.appDelegate.facilityRoomStatus[j] = true
+                            print("index : \(j) \(data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String)")
+                            print("index : \(j) \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String)")
                             
                         }
-                        self.facilitiesRoomAttached.append(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"] as! String)
+                        
                     }
+                    self.facilitiesRoomAttached.append(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
-                self.tableView.reloadData()
-                print("============facilitiesRoomAttached.count\(self.facilitiesRoomAttached.count)")
-                
+            }
+            self.tableView.reloadData()
+            print("============facilitiesRoomAttached.count\(self.facilitiesRoomAttached.count)")
+            
         }
         
     }
@@ -409,16 +409,16 @@ class EditRoominfomationVC:
         
         print("RoomID \(roomTypeId)")
         var dataDic =
-        [
-            "roomType" :
-                [
-                    "roomTypeId" : roomTypeId,
-            ],
-            "roomTypeFacilitiesAttached" :[],
-            
-            "user" : [
-                "accessToken" : appDelegate.userInfo["accessToken"]!
-            ]
+            [
+                "roomType" :
+                    [
+                        "roomTypeId" : roomTypeId,
+                ],
+                "roomTypeFacilitiesAttached" :[],
+                
+                "user" : [
+                    "accessToken" : appDelegate.userInfo["accessToken"]!
+                ]
         ]
         
         print("RoomFacility : \(appDelegate.facilityRoomDic)")
@@ -427,29 +427,29 @@ class EditRoominfomationVC:
         {
             if (self.appDelegate.facilityRoomStatus[i] as Bool)
             {
-//                "room_type_facility_id": "1",
-//                "facility_keyname": "air",
-//                "quantity": "0",
+                //                "room_type_facility_id": "1",
+                //                "facility_keyname": "air",
+                //                "quantity": "0",
                 facilitiesAttached.append(
                     ["room_type_facility_id": appDelegate.facilityRoomDic!["roomTypeFacilities"]![i]["room_type_facility_id"] as! String,
-                    "facility_keyname": appDelegate.facilityRoomDic!["roomTypeFacilities"]![i]["facility_name_en"] as! String,
-                    "quantity": "0", ])
-      //              print("fac OK \(appDelegate.facilityRoomDic!["roomTypeFacilities"]![i])")
+                        "facility_keyname": appDelegate.facilityRoomDic!["roomTypeFacilities"]![i]["facility_name_en"] as! String,
+                        "quantity": "0", ])
+                //              print("fac OK \(appDelegate.facilityRoomDic!["roomTypeFacilities"]![i])")
             }
-        
+            
         }
         
-            dataDic["roomTypeFacilitiesAttached"] = facilitiesAttached
-            let dataJson = send.Dict2JsonString(dataDic)
+        dataDic["roomTypeFacilitiesAttached"] = facilitiesAttached
+        let dataJson = send.Dict2JsonString(dataDic)
         
-            print("data Send Json(setFac) :\(dataJson)")
-            print("Json Encode :\(send.jsonEncode(dataJson))")
+        print("data Send Json(setFac) :\(dataJson)")
+        print("Json Encode :\(send.jsonEncode(dataJson))")
         //Update SetFacilityAttached
         send.providerAPI(self.appDelegate.command["SetRoomTypeFacilityAttached"]!, dataJson: dataJson){
-                data in
-                print("data(SetRoomFacilityAttached) :\(data)")
-        
-            }
+            data in
+            print("data(SetRoomFacilityAttached) :\(data)")
+            
+        }
     }
     func buttonTapped(btn:SCLButton) {
         self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
@@ -476,23 +476,23 @@ class EditRoominfomationVC:
     
     
     /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     
     
     // MARK: UICollectionViewDataSource
     
-//    func numberOfSectionsInCollectionView(collectionView: UICollectionView)->Int {
-//        //#warning Incomplete method implementation -- Return the number of sections
-//        return 1
-//    }
+    //    func numberOfSectionsInCollectionView(collectionView: UICollectionView)->Int {
+    //        //#warning Incomplete method implementation -- Return the number of sections
+    //        return 1
+    //    }
     
     func imageTapped(img: AnyObject)
     {
@@ -518,18 +518,18 @@ class EditRoominfomationVC:
         self.presentViewController(myPickerController, animated: true, completion: nil)
         
     }
-
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-//        return roomGallery.count+addImageNum
+        //        return roomGallery.count+addImageNum
         return roomGallery.count+1
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
         return CGSize(width: collectionView.frame.size.width/3 - 2, height: collectionView.frame.size.width/3-1)
     }
-   
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
         Cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell",forIndexPath: indexPath) as! RoomGalleryCell
         
@@ -553,7 +553,7 @@ class EditRoominfomationVC:
         print("Did select")
         self.imageTapped(indexPath.item)
     }
- 
+    
     
     
     
@@ -586,7 +586,7 @@ class EditRoominfomationVC:
         print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         
-    
+        
         print("ImagePicker:roomImage")
         let date = NSDate();
         let dateFormatter = NSDateFormatter()
@@ -608,7 +608,7 @@ class EditRoominfomationVC:
         
         send.getRoomGallery(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String){
             data in
-//            PKHUD.sharedHUD.hide(afterDelay: 1.0)
+            //            PKHUD.sharedHUD.hide(afterDelay: 1.0)
             print("data.count \(data.count)")
             print("data.ALL \(data)")
             print("roomGall \(self.roomGallery.count)")
@@ -623,11 +623,11 @@ class EditRoominfomationVC:
                 }
                 
             }
-
             
-//            self.roomGallery = data
+            
+            // self.roomGallery = data
             print("UP แล้วจ้า")
-
+            
             self.collectionView.reloadData()
         }
         

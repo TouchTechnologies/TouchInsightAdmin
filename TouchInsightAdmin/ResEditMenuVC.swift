@@ -50,6 +50,8 @@ class ResEditMenuVC:
     
     var Cell = RoomGalleryCell()
     
+    @IBOutlet var imgHotelLogo: UIImageView!
+    var imageDataForUpload = UIImage()
     
     
     // Spicy Level
@@ -660,8 +662,9 @@ class ResEditMenuVC:
         self.roomImageUpload.append(chosenImage)
 //        self.collectionView.reloadData()
     }
-    func getRoomGallery()
-    {
+    
+    func getRoomGallery(){
+        
         let send = API_Model()
         
         send.getRoomGallery(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String){

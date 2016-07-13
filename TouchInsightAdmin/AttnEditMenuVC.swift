@@ -119,7 +119,7 @@ class AttnEditMenuVC:
 //        occupencyNum = 1
 //        maxOccupTxt.text = "\(occupencyNum)"
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnEditMenuVC.dismissKeyboard))
         tap.delegate = self
         tap.cancelsTouchesInView = false
         self.view!.addGestureRecognizer(tap)

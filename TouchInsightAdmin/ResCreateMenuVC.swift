@@ -32,12 +32,14 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     var width = CGFloat()
     var heigth = CGFloat()
     var occupencyNum = Int32()
-    var roomImageUpload = [UIImage()]
-    var roomGallery = [UIImage()]
+//    var roomImageUpload = [UIImage()]
+//    var roomGallery = [UIImage()]
     
 //    var Cell = RoomGalleryCell()
     
     
+    @IBOutlet var imgHotelLogo: UIImageView!
+    var imageDataForUpload = UIImage()
     
     
     
@@ -144,8 +146,8 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 //        collectionView.dataSource = self
 //        numOfRoomTxt.text = "0"
         priceTxt.text = "0.00"
-        roomGallery.removeAll()
-        roomImageUpload.removeAll()
+//        roomGallery.removeAll()
+//        roomImageUpload.removeAll()
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.dismissKeyboard))
@@ -326,75 +328,71 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                 print("data(addRoom) :\(data)")
                 print("data(roomTypeId) : \(data["roomType"]!["room_type_id"] as! Int)")
                 self.setFacility(data["roomType"]!["room_type_id"] as! Int)
-   
-                print("countImage \(self.roomImageUpload.count) ")
-                if(self.roomImageUpload.count != 0)
-                {
-                    let date = NSDate();
-                    let dateFormatter = NSDateFormatter()
-                    //To prevent displaying either date or time, set the desired style to NoStyle.
-                    dateFormatter.dateFormat = "MM-dd-yyyy-HH-mm"
-                    dateFormatter.timeZone = NSTimeZone()
-                    let imageDate = dateFormatter.stringFromDate(date)
-                    
-                    for index in 0...self.roomImageUpload.count-1
-                    {
-                        let imageName = imageDate + "-" + String(index)+".jpg"
-                        print("ImageName \(imageName)")
-                        send.getUploadKeyRoomGallery(data["roomType"]!["room_type_id"] as! Int,imageName: imageName){
-                            data in
-                            
-                            print("data getUploadKeyRoomGallery: \(data)")
-                            let mediaKey = data
-                            self.send.uploadImage(mediaKey, image: self.roomImageUpload[index], imageName: imageName){
-                                data in
-                                if(index == self.roomImageUpload.count-1)
-                                {
-                                    print("index \(index) count \(self.roomImageUpload.count-1)")
-                                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                                    let alert = SCLAlertView()
-                                    alert.showCircularIcon = false
-                                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                                        self.appDelegate.viewWithTopButtons.hidden = false
-                                        self.navunderlive.hidden = true
-                                        
-                                    })
-                                    
-                                }
-                            }
-                        }
-                    }
-                    
-                }else
-                {
-                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                    let alert = SCLAlertView()
-                    alert.showCircularIcon = false
-                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                        self.appDelegate.viewWithTopButtons.hidden = false
-                        self.navunderlive.hidden = true
-                        
-                    })
-                }
+                
+//                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                
+//                print("countImage \(self.roomImageUpload.count) ")
+//                if(self.roomImageUpload.count != 0){
+//                    let date = NSDate();
+//                    let dateFormatter = NSDateFormatter()
+//                    //To prevent displaying either date or time, set the desired style to NoStyle.
+//                    dateFormatter.dateFormat = "MM-dd-yyyy-HH-mm"
+//                    dateFormatter.timeZone = NSTimeZone()
+//                    let imageDate = dateFormatter.stringFromDate(date)
+//                    
+//                    for index in 0...self.roomImageUpload.count-1
+//                    {
+//                        let imageName = imageDate + "-" + String(index)+".jpg"
+//                        print("ImageName \(imageName)")
+//                        send.getUploadKeyRoomGallery(data["roomType"]!["room_type_id"] as! Int,imageName: imageName){
+//                            data in
+//                            
+//                            print("data getUploadKeyRoomGallery: \(data)")
+//                            let mediaKey = data
+//                            self.send.uploadImage(mediaKey, image: self.roomImageUpload[index], imageName: imageName){
+//                                data in
+//                                if(index == self.roomImageUpload.count-1)
+//                                {
+//                                    print("index \(index) count \(self.roomImageUpload.count-1)")
+//                                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+//                                    let alert = SCLAlertView()
+//                                    alert.showCircularIcon = false
+//                                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+//                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                                        self.appDelegate.viewWithTopButtons.hidden = false
+//                                        self.navunderlive.hidden = true
+//                                        
+//                                    })
+//                                    
+//                                }
+//                            }
+//                        }
+//                    }
+//                    
+//                }else{
+//                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+//                    let alert = SCLAlertView()
+//                    alert.showCircularIcon = false
+//                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+//                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                        self.appDelegate.viewWithTopButtons.hidden = false
+//                        self.navunderlive.hidden = true
+//                        
+//                    })
+//                }
             }
-        }else
-        {
+        }else{
             print("No Data")
             let alert = SCLAlertView()
             alert.showCircularIcon = false
             alert.showInfo("Alert", subTitle: "กรุณากรอกข้อมูล", colorStyle:0xAC332F , closeButtonTitle : "OK")
         }
 
-
-
-
         appDelegate.pagecontrolIndex = 2
         
-
     }
     
     func getFacility()
@@ -541,10 +539,10 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         
         print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        
+        imageDataForUpload = chosenImage
         dismissViewControllerAnimated(true, completion: nil)
-        self.roomGallery.append(chosenImage)
-        self.roomImageUpload.append(chosenImage)
+//        self.roomGallery.append(chosenImage)
+//        self.roomImageUpload.append(chosenImage)
 //        self.collectionView.reloadData()
     }
     
