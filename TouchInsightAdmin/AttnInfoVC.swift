@@ -353,7 +353,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         checkoutPicker.datePickerMode = UIDatePickerMode.Time
         checkoutPicker.locale = NSLocale(localeIdentifier: "TH")
         //print("province Data \(provinceData)")
-        print("province Delegate \(appDelegate.provinceName)")
+//        print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
         //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard))
@@ -361,7 +361,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         self.initailLogoImage()
         
-//        self.getProviderByID()    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        self.getProviderByID()
 //        self.getFacility()        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         
         
@@ -487,18 +487,15 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                 "phone": phonNumberTxt.text!,
                 "website": websiteTxt.text!,
                 "email": emailTxt.text!,
-                
-                //Restaurant
-                "restaurantWeekdayOpentime": checkInTxt.text!,
-                "restaurantWeekdayClosetime": checkOutTxt.text!,
-                "restaurantWeekendOpentime": "",
-                "restaurantWeekendClosetime": "",
-                "restaurantTypeDetail": "",
-                "payByCreditCard": "",
+
+                //Attraction
                 "openDaily": send.Dict2JsonString(selectedDay),
-                "wifiAvailable": "",
-                "parkingAvailable": "",
-                "nonSmokingZone": ""
+                "weekdayOpentime": checkInTxt.text!,
+                "weekdayClosetime": checkOutTxt.text!,
+                "weekendOpentime": "",
+                "weekendClosetime": "",
+                "navigateEn": "",
+                "navigateTh": ""
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -539,7 +536,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     //self.navigationController?.pushViewController(secondViewController!, animated: true)
                     //                    self.dismissViewControllerAnimated(true, completion: nil)
                     
-                    self.appDelegate.viewWithTopButtons.hidden = true
+//                    self.appDelegate.viewWithTopButtons.hidden = true
                 }
                 
             }
@@ -550,19 +547,19 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             
         }
         print("==============================================")
-        self.setFacility()
+//        self.setFacility()
         print("==============================================")
         
         //        print("Facility(status) : \(appDelegate.facilityHotelStatus)")
-        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
-        {
-            //            print("faccccccc \(i)")
-            if(self.appDelegate.facilityHotelStatus[i])
-            {
-                print("Facility :\(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
-            }
-            
-        }
+//        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
+//        {
+//            //            print("faccccccc \(i)")
+//            if(self.appDelegate.facilityHotelStatus[i])
+//            {
+//                print("Facility :\(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
+//            }
+//            
+//        }
     }
     func getFacility()
     {
@@ -1133,11 +1130,10 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                 //
                 //            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
                 
+
+
                 
-                print("openDaily=======>>>> \(data["GetProviderInformationById"]!["openDaily"])")
-                
-                
-                if let openTime = data["GetProviderInformationById"]!["restaurant_weekday_opentime"]
+                if let openTime = data["GetProviderInformationById"]!["weekday_opentime"]
                 {
                     
                     if((openTime as! String) == "00:00:00")
@@ -1162,7 +1158,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                 {
                     self.checkInTxt.text = "10:00"
                 }
-                if let closeTime = data["GetProviderInformationById"]!["restaurant_weekday_closetime"]
+                if let closeTime = data["GetProviderInformationById"]!["weekday_closetime"]
                 {
                     if((closeTime as! String) == "00:00:00")
                     {

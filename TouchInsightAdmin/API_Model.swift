@@ -12,17 +12,14 @@ import RNCryptor
 //import CoreLocation
 class API_Model {
     
-        let _apiUrl = "http://insight.touch-ics.com/_develop/public/api/v1/"
-        let _oldapiUrl = "http://api.touch-ics.com/_develop/2.2/interface/insight"
-        let _uploadAPI = "http://api.touch-ics.com/_develop/2.2/uploadmedia/"
+//        let _apiUrl = "http://insight.touch-ics.com/_develop/public/api/v1/"
+//        let _oldapiUrl = "http://api.touch-ics.com/_develop/2.2/interface/insight"
+//        let _uploadAPI = "http://api.touch-ics.com/_develop/2.2/uploadmedia/"
+
     
-//    let _apiUrl = "http://192.168.9.58/framework/public/api/v1/"
-//    let _oldapiUrl = "http://192.168.9.58/api/interface/insight"
-//    let _uploadAPI = "http://192.168.9.58/api/uploadmedia/"
-    
-//    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
-//    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
-//    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
+    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
     
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -116,7 +113,7 @@ class API_Model {
                 //                print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
-                    //print("JSON: \(JSON)")
+//                    print("providerAPIJSON: \(JSON)")
                     if let jsonStatus = (JSON["status"])
                     {
                         //print("jsonStatus :\(JSON["status"] as! Int)")
@@ -133,6 +130,7 @@ class API_Model {
 //                            print("resultJson")
 //                            print(resultJson)
 //                            print("= = = = = = = =")
+                            print("providerAPIJSON: \(resultJson)")
                             completionHandler(resultJson )
 //                            print("after JsonEncode : \(resultJson)")
 //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
