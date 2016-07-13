@@ -2570,7 +2570,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" id="285-oO-0xh">
                                                         <rect key="frame" x="0.0" y="28" width="175" height="47"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -2580,7 +2580,7 @@
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xNw-Ok-q3I">
                                                         <rect key="frame" x="0.0" y="9" width="175" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -2590,18 +2590,18 @@
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" id="g7P-VF-TWV">
                                                 <rect key="frame" x="188" y="29" width="182" height="75"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXi-yz-ufg">
                                                         <rect key="frame" x="0.0" y="8" width="182" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00:00" textAlignment="center" minimumFontSize="17" id="eF6-JA-R80">
                                                         <rect key="frame" x="4" y="28" width="175" height="47"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -2632,7 +2632,7 @@
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" id="dh8-B6-46b">
                                                 <rect key="frame" x="15" y="167" width="346" height="181"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Highlight feature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OxI-b7-0Tf">
                                                         <rect key="frame" x="20" y="7" width="264" height="26"/>
@@ -2643,7 +2643,7 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="A1a-Uj-ZcN">
                                                         <rect key="frame" x="302" y="4" width="42" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="30"/>
                                                         <state key="normal" title="+">
                                                             <color key="titleColor" red="0.79372328520000002" green="0.19304782149999999" blue="0.1976572871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2654,7 +2654,7 @@
                                                     </button>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aFg-7d-ONJ">
                                                         <rect key="frame" x="9" y="38" width="327" height="135"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="ke8-P6-3Lk">
@@ -2676,7 +2676,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="savebtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MaC-yY-H7c">
                                                 <rect key="frame" x="17" y="367" width="344" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.79372328520000002" green="0.19304782149999999" blue="0.1976572871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                                 <state key="normal" title="SAVE">
@@ -2720,6 +2720,7 @@
                     <connections>
                         <outlet property="HotelDesTxt" destination="fjx-Ur-GKA" id="kEe-uC-7MZ"/>
                         <outlet property="addressTxt" destination="dg6-St-2Ez" id="jAH-ca-lkl"/>
+                        <outlet property="btnAddFac" destination="A1a-Uj-ZcN" id="EDi-Cc-3r9"/>
                         <outlet property="btn_day_fr" destination="lj2-xe-XIh" id="QvB-Sq-xZD"/>
                         <outlet property="btn_day_mo" destination="ZXp-rh-yCm" id="DDa-6u-ngU"/>
                         <outlet property="btn_day_sa" destination="HLK-wM-UYa" id="9AW-fF-TZo"/>
@@ -3261,7 +3262,6 @@
                         <outlet property="img_mild" destination="kDf-kf-g1h" id="Ur5-Ru-LGh"/>
                         <outlet property="menuNameTxt" destination="JPA-Eu-aHV" id="0La-rD-EQi"/>
                         <outlet property="priceTxt" destination="Eoi-7Z-oG9" id="0RE-RS-toa"/>
-                        <outlet property="roomNameTxt" destination="JPA-Eu-aHV" id="vIs-SV-VqQ"/>
                         <outlet property="scrollView" destination="xVQ-mO-FCK" id="h6z-0o-9oH"/>
                         <outlet property="shotDescTxt" destination="2FX-ub-NLK" id="3V8-9t-sll"/>
                         <outlet property="viewSplHot" destination="VLb-Va-0go" id="MJM-vl-kRg"/>
@@ -3271,7 +3271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZEX-RH-OqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3365.5" y="1908.5"/>
+            <point key="canvasLocation" x="3357.5" y="1920.5"/>
         </scene>
         <!--Edit Room-->
         <scene sceneID="Z5w-bT-beR">

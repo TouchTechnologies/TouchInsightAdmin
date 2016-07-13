@@ -41,6 +41,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     @IBOutlet var checkOutTitle: UILabel!
     @IBOutlet var checkInView: UIView!
     @IBOutlet var checkOutView: UIView!
+    
+    @IBOutlet weak var btnAddFac: UIButton!
+    
     //
     //    @IBOutlet var distanceCityTxt: UITextField!
     //    @IBOutlet var DistanceAirportTxt: UITextField!
@@ -178,7 +181,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         }
 
     }
-    
     
     
     
@@ -339,6 +341,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         self.setObject()
         
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -358,6 +361,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         self.initailLogoImage()
         
+        self.getProviderByID()
+        self.getFacility()
         
         
     }
@@ -764,8 +769,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         checkInView.layer.bounds.size.width = width/2 - 10
         checkInView.layer.borderWidth = 1
         checkInView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-        checkInTitle.center.x = (width/2)/2
-        checkOutTitle.center.x = (width/2)/2
         
         
 //        checkInTxt.center.x = (width/2)/2
@@ -777,6 +780,21 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         checkOutView.layer.bounds.size.width = width/2 - 10
         checkOutView.layer.borderWidth = 1
         checkOutView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        
+        
+        checkInTitle.center.x = (checkInTitle.superview?.frame.size.width)!/2
+        checkInTitle.frame.size.width = (checkInTitle.superview?.frame.size.width)!
+        
+        checkOutTitle.center.x = (checkOutTitle.superview?.frame.size.width)!/2
+        checkOutTitle.frame.size.width = (checkOutTitle.superview?.frame.size.width)!
+        
+        
+        checkInTxt.center.x = (checkInTxt.superview?.frame.size.width)!/2
+        checkInTxt.frame.size.width = (checkInTxt.superview?.frame.size.width)!
+        
+        checkOutTxt.center.x = (checkOutTxt.superview?.frame.size.width)!/2
+        checkOutTxt.frame.size.width = (checkOutTxt.superview?.frame.size.width)!
+        
         
         //        distanceCityTxt.borderStyle = UITextBorderStyle.RoundedRect
         //        distanceCityTxt.layer.cornerRadius = 5
@@ -795,8 +813,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
         buttonsave.layer.cornerRadius = 5
-        buttonsave.center.x = width/2 - 16
-        buttonsave.layer.bounds.size.width = UIScreen.mainScreen().bounds.width - 20
+        buttonsave.frame.size.width = self.view.frame.size.width - 20
+        buttonsave.center.x = scrollView.frame.size.width/2
         
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
@@ -814,77 +832,56 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 804
         
+        var frmBtnAddFac = btnAddFac.frame
+        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width - 6
+        btnAddFac.frame = frmBtnAddFac
+        
         
         var frmBottomSet = self.view_BottomSet.frame
         frmBottomSet.size.width = 370
         self.view_BottomSet.frame = frmBottomSet
-        
-        
-        
-        
-        
-        
-        
-        print("self.view.frame")
-        print(self.view.frame)
-        print("------------")
-        print("self.view_DateSet.frame")
-        print(self.view_DateSet.frame)
-        print("------------")
-        print("self.view_BottomSet.frame")
-        print(self.view_BottomSet.frame)
-        print("------------")
-        
+
         
         
         //superviewForDateSet
-//        day_mo
-//        day_tu
-//        day_we
-//        day_th
-//        day_fr
-//        day_sa
-//        day_su
-//        
-//        btn_day_mo
-//        btn_day_tu
-//        btn_day_we
-//        btn_day_th
-//        btn_day_fr
-//        btn_day_sa
-//        btn_day_su
-        
-        let itemWidth = superviewForDateSet.frame.size.width / 7
+        let itemWidth = (superviewForDateSet.frame.size.width / 7)
+        var nImg = 0
         for dateItem in superviewForDateSet.subviews {
             // UIImageView
-            var n = 0
             if(dateItem.classForCoder == UIImageView.self){
-                print("is ImageView")
-                dateItem.frame.size.width = itemWidth
-                dateItem.frame.origin.x = itemWidth * CGFloat(n)
-                
-                print("dateItem.frame.origin.x = \(dateItem.frame.origin.x)")
-                
-                n = n + 1
+                dateItem.frame.size.width = itemWidth - 6
+                dateItem.frame.origin.x = itemWidth * CGFloat(nImg) + 3
+                dateItem.contentMode = .ScaleAspectFit
+
+                nImg += 1
             }
-            
-            print("--------------")
         }
         
+        let itemBtnWidth = superviewForDateSet.frame.size.width / 7
+        var nBtn = 0
         for dateItem in superviewForDateSet.subviews {
-            // UIButton
-            var n = 0
             if(dateItem.classForCoder == UIButton.self){
-                dateItem.frame.size.width = itemWidth
-                dateItem.frame.origin.x = itemWidth * CGFloat(n)
+                dateItem.frame.size.width = itemBtnWidth
+                dateItem.frame.origin.x = itemBtnWidth * CGFloat(nBtn)
                 
-                print("dateItem.frame.origin.x = \(dateItem.frame.origin.x)")
-                
-                n = n + 1
+                nBtn += 1
             }
-            
-            print("--------------")
         }
+        
+        
+        //open and close
+        
+//        let openAndCloseWidth = superviewForDateSet.frame.size.width / 2
+//        var frmCheckIn = checkInView.frame
+//        frmCheckIn.origin.x = 6
+//        frmCheckIn.size.width = openAndCloseWidth - 12
+//        checkInView.frame = frmCheckIn
+//        
+//        var frmCheckOut = checkOutView.frame
+//        frmCheckOut.origin.x = openAndCloseWidth + 6
+//        frmCheckOut.size.width = openAndCloseWidth - 12
+//        checkOutView.frame = frmCheckOut
+        
         
     }
     
@@ -894,8 +891,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
         //self.setObject()
-        self.getProviderByID()
-        self.getFacility()
         
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
@@ -905,7 +900,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         //scrollView.contentSize = CGSizeMake(width,2150)
         
-        print("scrollwidth = \(scrollView.bounds.size.width)")
+//        print("scrollwidth = \(scrollView.bounds.size.width)")
 //        scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
 //        scrollView.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
         
