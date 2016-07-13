@@ -873,10 +873,10 @@ func initalertView(){
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("imagePickerControllerDidCancel")
-       // self.dismissViewControllerAnimated(true, completion: nil)
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-        self.navigationController?.pushViewController(vc, animated:true)
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
+//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+//        self.navigationController?.pushViewController(vc, animated:true)
+//        dismissViewControllerAnimated(true, completion: nil)
      
     }
 

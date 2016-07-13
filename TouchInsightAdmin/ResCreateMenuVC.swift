@@ -38,7 +38,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 //    var Cell = RoomGalleryCell()
     
     
-    @IBOutlet var imgHotelLogo: UIImageView!
+    @IBOutlet var imgMenuLogo: UIImageView!
     var imageDataForUpload = UIImage()
     
     
@@ -107,6 +107,15 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     
     
     
+    func imageTapped(img: AnyObject){
+        print("Upload Cover Img")
+        
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(myPickerController, animated: true, completion: nil)
+        
+    }
     
     override func viewWillAppear(animated: Bool) {
         
@@ -149,11 +158,17 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 //        roomGallery.removeAll()
 //        roomImageUpload.removeAll()
         
+        let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.imageTapped(_:)))
+        ggTapImage.delegate = self
+        ggTapImage.cancelsTouchesInView = false
+        self.imgMenuLogo!.addGestureRecognizer(ggTapImage)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.dismissKeyboard))
         tap.delegate = self
         tap.cancelsTouchesInView = false
         self.view!.addGestureRecognizer(tap)
+        
+        
         
         self.initNavUnderline()
         self.initialObject()
@@ -165,36 +180,25 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         menuNameTxt.layer.cornerRadius = 5
         menuNameTxt.layer.borderWidth = 1
         menuNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
+        menuNameTxt.layer.bounds.size.width = (self.view.frame.size.width) - 10
+        menuNameTxt.center.x = (self.view.frame.size.width)/2
         
        // shotDescTxt.borderStyle = UITextBorderStyle.RoundedRect
         shotDescTxt.layer.cornerRadius = 5
         shotDescTxt.layer.borderWidth = 1
         shotDescTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-        
+        shotDescTxt.layer.bounds.size.width = (self.view.frame.size.width) - 10
+        shotDescTxt.center.x = (self.view?.frame.size.width)!/2
+
         priceTxt.borderStyle = UITextBorderStyle.RoundedRect
         priceTxt.layer.cornerRadius = 5
         priceTxt.layer.borderWidth = 1
         priceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-//        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        numOfRoomTxt.layer.cornerRadius = 5
-//        numOfRoomTxt.layer.borderWidth = 1
-//        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        
-//        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        bedTxt.layer.cornerRadius = 5
-//        bedTxt.layer.borderWidth = 1
-//        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        
-//        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        maxOccupTxt.layer.cornerRadius = 5
-//        maxOccupTxt.layer.borderWidth = 1
-//        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+
         addButton.layer.cornerRadius = 5
-//        facilityView.layer.cornerRadius = 5
-        
-        
+        addButton.layer.bounds.size.width = (self.view.frame.size.width) - 10
+        addButton.center.x = (self.view?.frame.size.width)!/2
+
         self.scrollView.frame.origin.y = 0
         
         let splitWidth = self.view.frame.size.width / 3
@@ -207,7 +211,10 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         viewSplHot.frame.origin.x = splitWidth * 2
         viewSplHot.frame.size.width = splitWidth
         
+        
+        
     }
+    
     func initialSize(){
     width = UIScreen.mainScreen().bounds.size.width
     heigth = UIScreen.mainScreen().bounds.size.height
@@ -270,8 +277,8 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 
     @IBAction func btnBack(sender: AnyObject) {
         
-        self.navigationController?.popViewControllerAnimated(true)
         appDelegate.pagecontrolIndex = 2
+        self.navigationController?.popViewControllerAnimated(true)
         
 //       print("Back")
 //        let nev = self.storyboard?.instantiateViewControllerWithIdentifier("navCon")
@@ -539,7 +546,8 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         
         print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imageDataForUpload = chosenImage
+            imageDataForUpload = chosenImage
+            imgMenuLogo.image = chosenImage
         dismissViewControllerAnimated(true, completion: nil)
 //        self.roomGallery.append(chosenImage)
 //        self.roomImageUpload.append(chosenImage)
@@ -561,4 +569,5 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 ////        }
 //    }
 
+    
 }
