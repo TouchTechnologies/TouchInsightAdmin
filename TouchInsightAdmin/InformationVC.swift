@@ -109,12 +109,11 @@ print("province Delegate \(appDelegate.provinceName)")
     }
     func initailLogoImage(){
         imgHotelLogo.backgroundColor = UIColor.whiteColor()
-        imgHotelLogo.layer.cornerRadius = 10
+        imgHotelLogo.layer.cornerRadius = 0
         if let logo = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
             imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
-        }else
-        {
+        }else{
             print("no avatar")
             imgHotelLogo.image = UIImage(named: "ic_team.png")
         }
@@ -203,7 +202,7 @@ func initalertView(){
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
         PKHUD.sharedHUD.show()
-        PKHUD.sharedHUD.hide(afterDelay: 2.0)
+//        PKHUD.sharedHUD.hide(afterDelay: 2.0)
         
 //        let send = API_Model()
         let dataDic = [
@@ -272,7 +271,8 @@ func initalertView(){
                         print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
                         
                         PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                        PKHUD.sharedHUD.hide(afterDelay: 0.5)
+//                        PKHUD.sharedHUD.hide(animated: false, completion: nil)
                         
                        // let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
                        // secondViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -441,7 +441,13 @@ func initalertView(){
     func setObject(){
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-       
+        
+        imgHotelCover.layer.cornerRadius = 0
+        imgHotelCover.layer.borderWidth = 1
+        imgHotelCover.layer.borderColor = borderColorCG
+        imgHotelCover.layer.bounds.size.width = width - 10
+        imgHotelCover.center.x = width/2
+        
         imgHotelLogo.layer.cornerRadius = 0
         imgHotelLogo.layer.borderWidth = 1
         imgHotelLogo.layer.borderColor = borderColorCG
@@ -454,8 +460,6 @@ func initalertView(){
         txtHotelName.layer.borderColor = borderColorCG
 
         //HotelDesTxt.layer.cornerRadius = 5
-        
-        txtHotelName.borderStyle = UITextBorderStyle.None
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
@@ -575,7 +579,8 @@ func initalertView(){
         checkoutPicker.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)
+        self.scrollView.frame.size.height = self.view.frame.size.height - (198 + 48)
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1573)
     }
    
     override func viewWillAppear(animated: Bool) {
@@ -831,7 +836,7 @@ func initalertView(){
         
         print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imgHotelLogo.contentMode = .ScaleAspectFit //3
+        imgHotelLogo.contentMode = .ScaleAspectFill //3
         self.imgHotelLogo.image = chosenImage //4
         
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
