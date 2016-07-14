@@ -1137,15 +1137,20 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 print("openDaily=======>>>> \(data["GetProviderInformationById"]!["openDaily"])")
                 
                 
-                if let openTime = data["GetProviderInformationById"]!["restaurant_weekday_opentime"]
+                if var openTime = data["GetProviderInformationById"]!["restaurant_weekday_opentime"]
                 {
                     
-                    if((openTime as! String) == "00:00:00")
+                    let myNSString = openTime as! NSString
+                    
+                    openTime = myNSString.substringWithRange(NSRange(location: 0, length: 5))
+                    
+                    if((openTime as! String) == "00:00")
                     {
                         self.setStatus24(true)
                     }else
                     {
                         self.setStatus24(false)
+                        
                     }
                     self.checkInTxt.text = openTime as? String
                     let dateFormatter = NSDateFormatter()
@@ -1162,14 +1167,19 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 {
                     self.checkInTxt.text = "10:00"
                 }
-                if let closeTime = data["GetProviderInformationById"]!["restaurant_weekday_closetime"]
+                if var closeTime = data["GetProviderInformationById"]!["restaurant_weekday_closetime"]
                 {
-                    if((closeTime as! String) == "00:00:00")
+                    let myNSString = closeTime as! NSString
+                    
+                    closeTime = myNSString.substringWithRange(NSRange(location: 0, length: 5))
+                    
+                    if((closeTime as! String) == "00:00")
                     {
                         self.setStatus24(true)
                     }else
                     {
                         self.setStatus24(false)
+                        
                     }
                     self.checkOutTxt.text = closeTime as? String
                     let dateFormatter = NSDateFormatter()
