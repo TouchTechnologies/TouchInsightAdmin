@@ -578,9 +578,20 @@ func initalertView(){
         checkinPicker.frame.origin.x = 0
         checkoutPicker.frame.origin.x = 0
         
+        let navBarHeight:CGFloat = 44.0
+        var frmScrollView = scrollView.frame
+        frmScrollView.origin.y = 0
+        frmScrollView.size.height = self.view.frame.size.height - (navBarHeight + 20 + 48)
+        scrollView.frame = frmScrollView
+        
         self.scrollView.frame.origin.y = 0
-        self.scrollView.frame.size.height = self.view.frame.size.height - (198 + 48)
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1573)
+        
+        print("statusBarFrame = \(UIApplication.sharedApplication().statusBarFrame.height)")
+        print("nav = \(self.navigationController?.navigationBar.frame.size.height)")
+        print("view = \(self.view.frame.size.height)")
+        print("scrollView = \(self.scrollView.frame.size.height)")
+        
     }
    
     override func viewWillAppear(animated: Bool) {
