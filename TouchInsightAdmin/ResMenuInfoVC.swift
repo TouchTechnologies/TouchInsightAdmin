@@ -23,7 +23,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet var noRoomLine: UIImageView!
     
     @IBOutlet var createButton: UIButton!
-    var roomNameData:NSDictionary = ["":""]
+    var menuNameData:NSDictionary = ["":""]
     var editRoomTag = 0
     
     
@@ -62,27 +62,27 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("room")
+        print("menu")
         print("viewDidLoad")
         self.initial()
 //        tableView.frame = self.view.frame
-        let nib = UINib(nibName: "customRoomList", bundle: nil)
+        let nib = UINib(nibName: "customMenuList", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
-        print("roomData2 didLoad :\(roomNameData)")
+        print("Menu Data2 didLoad :\(menuNameData)")
     }
     override func viewDidAppear(animated: Bool) {
 //        super.viewDidAppear(true)
         print("viewDidAppear")
-        //self.getRoomType()
+        self.getMenuType()
     }
     
-    func getRoomType()
+    func getMenuType()
     {
         let send = API_Model()
         let dataDic = [
             "providerInformation" : [
                 "providerId" : appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String,
-                "providerTypeKeyname" : "hotel"
+                "providerTypeKeyname" : "restaurant"
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -92,17 +92,16 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let dataJson = send.Dict2JsonString(dataDic)
 //        print("data Send Json :\(dataJson)")
         print("Json Encode  getRoomType:\(send.jsonEncode(dataJson))")
-        send.providerAPI(self.appDelegate.command["listRoom"]!, dataJson: dataJson){
+        send.providerAPI(self.appDelegate.command["ListMenu"]!, dataJson: dataJson){
             data in
 
-            print("data(RoomType) : \(data)")
-            if(data["roomTypes"]!.count != 0)
+            print("data(MenuType) : \(data)")
+            if(data["menus"]!.count != 0)
             {
-      //          print("data(RoomType) :\(data["roomTypes"]![0])")
-                print("data(CountRoom) : \(data["roomTypes"]!.count)")
+                print("data(CountRoom) : \(data["menus"]!.count)")
                 
-                self.roomNameData = data
-                self.appDelegate.roomDic = data
+                self.menuNameData = data
+                self.appDelegate.menuDic = data
                 self.tableView.hidden = false
                 self.tableView.reloadData()
                 
@@ -117,11 +116,10 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let countRoom = self.roomNameData["roomTypes"]
+        if let countMenu = self.menuNameData["menus"]
         {
-            print("Count Room : \(countRoom.count)")
-            print("countroom :\"(countRoom)")
-            return countRoom.count
+            print("Count Menu : \(countMenu.count)")
+            return countMenu.count
         }
         else
         {
@@ -135,9 +133,9 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.performSegueWithIdentifier("toEditMenu", sender: indexPath)
-        print(" Index Path : \(indexPath.row)")
-//        
+//        self.performSegueWithIdentifier("toEditMenu", sender: indexPath)
+//        print(" Index Path : \(indexPath.row)")
+//
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResEditMenuVC") as! ResEditMenuVC
 //        self.navigationController?.pushViewController(targetVC, animated: true)
@@ -146,11 +144,12 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         appDelegate.roomGalleryIndex = indexPath.row
-        let cell:customRoomListTbl = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customRoomListTbl
-        if let roomName = self.roomNameData["roomTypes"]![indexPath.row]!["room_type_name_en"]!
+        let cell:customMenuListTbl = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customMenuListTbl
+        print("Menuuuuuuuuuu")
+        if let roomName = self.menuNameData["menus"]![indexPath.row]!["menu_name_en"]!
         {
-            cell.roomnameLbl.text = (roomName as! String)
-            cell.numOfRoom.text = "\(self.roomNameData["roomTypes"]![indexPath.row]["room_type_description_th"] as! String) rooms"
+            cell.menuNameLbl.text = (roomName as! String)
+//            cell.numOfRoom.text = "\(self.menuNameData["menus"]![indexPath.row]["room_type_description_th"] as! String) rooms"
             let gestureEdit = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.handleTap(_:)))
             gestureEdit.numberOfTouchesRequired = 1
             cell.editBtn.userInteractionEnabled = true
@@ -167,7 +166,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         }
         else
         {
-            cell.roomnameLbl.text = ""
+            cell.menuNameLbl.text = ""
             cell.numOfRoom.text = ""
         }
         
@@ -183,7 +182,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        
 //        self.presentViewController(editView, animated: true, completion: nil)
         
-     //self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
+     self.performSegueWithIdentifier("toEditMenu", sender: gestureRecognizer)
         
     }
     func deleteTap(gestureRecognizer: UIGestureRecognizer) {
@@ -256,7 +255,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             print("Sender : \(sender!.view!.tag)")
             
-            appDelegate.roomIndex = sender!.view!.tag
+            appDelegate.menuIndex = sender!.view!.tag
             
 //            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
 //            editView.modalTransitionStyle = .CrossDissolve

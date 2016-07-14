@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
     //Restuarant
+    var menuIndex : Int?
+    var menuGalleryIndex : Int?
+    var menuDic:NSDictionary?
     var facilityResDic:NSDictionary?
     var facilityResStatus = [Bool]()
     

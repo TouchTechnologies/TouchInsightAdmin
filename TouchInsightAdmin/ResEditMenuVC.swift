@@ -120,16 +120,25 @@ CustomIOS7AlertViewDelegate {
         scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         // let contentscrollheight = self.scrollView.layer.bounds.size.height
+        let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResEditMenuVC.imageTapped(_:)))
+        ggTapImage.delegate = self
+        ggTapImage.cancelsTouchesInView = false
+        imgMenuLogo.userInteractionEnabled = true
+        self.imgMenuLogo!.addGestureRecognizer(ggTapImage)
+        self.scrollView.addSubview(imgMenuLogo)
         
         
+        print("menu index : \(appDelegate.menuIndex)")
         
-        
-        print("room index : \(appDelegate.roomIndex)")
-        print("RoomID :  \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String)")
+        print("menu data =====> : \(appDelegate.menuDic)")
+        print("menuID :  \(appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_id"] as! String)")
         //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
-        menuNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
-        shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
-        priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
+        menuNameTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_name_en"] as! String)
+        shotDescTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_description_en"] as! String)
+        priceTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_price"] as! String)
+        
+        
+        
         
         //        numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
         //        bedTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
@@ -162,10 +171,7 @@ CustomIOS7AlertViewDelegate {
         //        maxOccupTxt.text = "\(occupencyNum)"
         
         
-        let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResEditMenuVC.imageTapped(_:)))
-        ggTapImage.delegate = self
-        ggTapImage.cancelsTouchesInView = false
-        self.imgMenuLogo!.addGestureRecognizer(ggTapImage)
+
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResEditMenuVC.dismissKeyboard))
         tap.delegate = self
@@ -227,10 +233,6 @@ CustomIOS7AlertViewDelegate {
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(Edit)")
-        for i in 0...appDelegate.facilityRoomStatus.count - 1
-        {
-            appDelegate.facilityRoomStatus[i] = false
-        }
     }
     @IBAction func addFacilityBtn(sender: AnyObject) {
         let alertView = CustomIOS7AlertView()
@@ -297,20 +299,18 @@ CustomIOS7AlertViewDelegate {
         let dataDic = [
             "providerInformation" : [
                 "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                "providerTypeKeyname" : "hotel"
+                "providerTypeKeyname" : "restaurant"
             ],
             //Room
-            "roomType":[
-                "roomTypeId": (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String),
-                "roomTypeNameEn": menuNameTxt.text!,
-                "roomTypeNameTh": "",
-                "roomTypeDescriptionEn": shotDescTxt.text,
-                //                "roomTypeDescriptionTh": numOfRoomTxt.text,
-                "roomTypeAvgPrice":"",
+            "menu":[
+                "menuId":(appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_id"] as! String),
+                "menuNameEn": menuNameTxt.text!,
+                "menuNameTh": "",
+                "menuDescriptionEn": shotDescTxt.text,
+                "menuDescriptionTh": "",
+                "menuPrice": "",
                 "roomTypeCurrentPrice": priceTxt.text,
-                "quantity": "",
-                //                "maximumPerson": maxOccupTxt.text,
-                "touchbookingpaymentProductKeycode": ""
+                "spicyLevel": "0"
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -321,11 +321,9 @@ CustomIOS7AlertViewDelegate {
         
         print("data Send Json :\(dataJson)")
         print("Json Encode :\(send.jsonEncode(dataJson))")
-        send.providerAPI(self.appDelegate.command["UpdateRoomType"]!, dataJson: dataJson){
+        send.providerAPI(self.appDelegate.command["UpdateMenu"]!, dataJson: dataJson){
             data in
             print("data(UpdateRoom) :\(data)")
-            //            print("data(roomTypeId) : \(data["roomType"]!["room_type_id"] as! Int)")
-            self.setFacility(Int(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String)!)
             
         }
         
@@ -368,16 +366,15 @@ CustomIOS7AlertViewDelegate {
                             let alert = SCLAlertView()
                             alert.showCircularIcon = false
                             alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 2.0)
-//                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                            
-//                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                                
-//                                self.appDelegate.viewWithTopButtons.hidden = false
-//                                self.navunderlive.hidden = true
-//                                
-//                            })
+                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
                             
-                            self.navigationController?.popViewControllerAnimated(true)
+                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+                                
+                                self.appDelegate.viewWithTopButtons.hidden = false
+                                self.navunderlive.hidden = true
+                                
+                            })
+                            
                         }
                     }
                 }
@@ -387,17 +384,16 @@ CustomIOS7AlertViewDelegate {
             PKHUD.sharedHUD.hide(afterDelay: 0.1)
             let alert = SCLAlertView()
             alert.showCircularIcon = false
-            alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 2.0)
-//            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//            
-//            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                
-//                self.appDelegate.viewWithTopButtons.hidden = false
-//                self.navunderlive.hidden = true
-//                
-//            })
+            alert.showInfo("Information", subTitle: "Update Menu Success", colorStyle:0xAC332F ,duration: 2.0)
+            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
             
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+                
+                self.appDelegate.viewWithTopButtons.hidden = false
+                self.navunderlive.hidden = true
+                
+            })
+            
         }
         
         

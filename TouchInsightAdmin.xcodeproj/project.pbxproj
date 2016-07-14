@@ -12,6 +12,8 @@
 		3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC731C06DC2A0051E850 /* API_Model.swift */; };
 		366F4FFE1D34FD5B005B6DF1 /* HotelAddContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */; };
 		366F50001D34FD78005B6DF1 /* ResAddContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F4FFF1D34FD78005B6DF1 /* ResAddContentInfo.swift */; };
+		366F50061D373C23005B6DF1 /* customMenuListTbl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F50051D373C23005B6DF1 /* customMenuListTbl.swift */; };
+		366F50081D373C3D005B6DF1 /* customMenuList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366F50071D373C3D005B6DF1 /* customMenuList.xib */; };
 		368AB9DC1D2FA1DB007CEC09 /* Resfacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AB9DA1D2FA1DB007CEC09 /* Resfacility.swift */; };
 		368AB9DD1D2FA1DB007CEC09 /* Resfacility.xib in Resources */ = {isa = PBXBuildFile; fileRef = 368AB9DB1D2FA1DB007CEC09 /* Resfacility.xib */; };
 		36AB49C71C3CE9CF0078A936 /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB49C61C3CE9CF0078A936 /* RNGridMenu.m */; };
@@ -255,6 +257,8 @@
 		366CBBDD1C07F6A200484DA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelAddContentInfo.swift; sourceTree = "<group>"; };
 		366F4FFF1D34FD78005B6DF1 /* ResAddContentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResAddContentInfo.swift; sourceTree = "<group>"; };
+		366F50051D373C23005B6DF1 /* customMenuListTbl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customMenuListTbl.swift; sourceTree = "<group>"; };
+		366F50071D373C3D005B6DF1 /* customMenuList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customMenuList.xib; sourceTree = "<group>"; };
 		368AB9DA1D2FA1DB007CEC09 /* Resfacility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resfacility.swift; sourceTree = "<group>"; };
 		368AB9DB1D2FA1DB007CEC09 /* Resfacility.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Resfacility.xib; sourceTree = "<group>"; };
 		36AB49C51C3CE9CF0078A936 /* RNGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGridMenu.h; path = Class/RNGridMenu.h; sourceTree = "<group>"; };
@@ -1013,7 +1017,9 @@
 				F355232E1C28EF75001F5A27 /* AddProviderAlertVC.swift */,
 				F3C6DC0D1C1821870005A621 /* RoomGalleryCell.swift */,
 				F3A758191C27D6FD00CBB8A0 /* customRoomList.xib */,
+				366F50071D373C3D005B6DF1 /* customMenuList.xib */,
 				F3E6F7721C1EA44D005FE053 /* customRoomListTbl.swift */,
+				366F50051D373C23005B6DF1 /* customMenuListTbl.swift */,
 				F30672011C16BFAC001A577F /* customProviderView.swift */,
 				F3A758151C27D33C00CBB8A0 /* customImgCell.xib */,
 				F3A758131C27CDA900CBB8A0 /* customImgCell.swift */,
@@ -1282,6 +1288,7 @@
 				3B1EFC3D1D334BE700A7F4EA /* we.png in Resources */,
 				F3C6DC0A1C17FDA60005A621 /* line_arrow.png in Resources */,
 				F3E6F76F1C1E872B005FE053 /* introPage.xib in Resources */,
+				366F50081D373C3D005B6DF1 /* customMenuList.xib in Resources */,
 				3B1EFC3A1D334BE700A7F4EA /* tu_hover.png in Resources */,
 				F3A758271C27F16900CBB8A0 /* trash_hover.png in Resources */,
 				F360C2D01C0EDA6900149CCC /* icon App in Resources */,
@@ -1545,6 +1552,7 @@
 				F329F1F91D2D10540061BA52 /* ResImageGalleryVC.swift in Sources */,
 				368AB9DC1D2FA1DB007CEC09 /* Resfacility.swift in Sources */,
 				F309A38C1C8002520084647D /* introPage4.swift in Sources */,
+				366F50061D373C23005B6DF1 /* customMenuListTbl.swift in Sources */,
 				3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */,
 				F30DF8581D2F5B030074B713 /* AttnLocationVC.swift in Sources */,
 				F329F1F71D2D10400061BA52 /* ResCreateMenuVC.swift in Sources */,

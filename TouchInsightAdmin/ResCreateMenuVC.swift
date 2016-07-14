@@ -39,7 +39,8 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     
     
     @IBOutlet var imgMenuLogo: UIImageView!
-    var imageDataForUpload = UIImage()
+    var imageDataForUpload = [UIImage()]
+    var imageNameForUpload:String?
     
     
     
@@ -127,10 +128,13 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         let contentscrollheight = self.scrollView.layer.bounds.size.height
         scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
         self.appDelegate.viewWithTopButtons.hidden = true
-//        self.getFacility()
-//
-//        self.setFacility(7270)
-//        self.updateData()
+        
+        let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.imageTapped(_:)))
+        ggTapImage.delegate = self
+        ggTapImage.cancelsTouchesInView = false
+        imgMenuLogo.userInteractionEnabled = true
+        self.imgMenuLogo!.addGestureRecognizer(ggTapImage)
+        self.scrollView.addSubview(imgMenuLogo)
     }
 
     override func viewDidLoad() {
@@ -156,12 +160,9 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 //        numOfRoomTxt.text = "0"
         priceTxt.text = "0.00"
 //        roomGallery.removeAll()
-//        roomImageUpload.removeAll()
+//        imageDataForUpload.removeAll()
         
-        let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.imageTapped(_:)))
-        ggTapImage.delegate = self
-        ggTapImage.cancelsTouchesInView = false
-        self.imgMenuLogo!.addGestureRecognizer(ggTapImage)
+
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.dismissKeyboard))
         tap.delegate = self
@@ -289,7 +290,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 //        })
         
     }
- 
+
 
     @IBAction func btnAddRoom(sender: AnyObject) {
         
@@ -307,19 +308,17 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
             let dataDic = [
                 "providerInformation" : [
                     "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                    "providerTypeKeyname" : "hotel"
+                    "providerTypeKeyname" : "restaurant"
                 ],
                 //Room
-                "roomType":[
-                    "roomTypeNameEn": menuNameTxt.text!,
-                    "roomTypeNameTh": "",
-                    "roomTypeDescriptionEn": shotDescTxt.text,
-//                    "roomTypeDescriptionTh": (numOfRoomTxt.text != "0") ? numOfRoomTxt.text : "0",
-                    "roomTypeAvgPrice": "",
+                "menu":[
+                    "menuNameEn": menuNameTxt.text!,
+                    "menuNameTh": "",
+                    "menuDescriptionEn": shotDescTxt.text,
+                    "menuDescriptionTh": "",
+                    "menuPrice": "",
                     "roomTypeCurrentPrice": priceTxt.text,
-                    "quantity": "",
-//                    "maximumPerson": maxOccupTxt.text,
-                    "touchbookingpaymentProductKeycode": ""
+                    "spicyLevel": "0"
                 ],
                 "user" : [
                     "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -330,66 +329,60 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
             
             print("data Send Json :\(dataJson)")
             print("Json Encode :\(send.jsonEncode(dataJson))")
-            send.providerAPI(self.appDelegate.command["createRoomType"]!, dataJson: dataJson){
+            send.providerAPI(self.appDelegate.command["CreateMenu"]!, dataJson: dataJson){
                 data in
-                print("data(addRoom) :\(data)")
-                print("data(roomTypeId) : \(data["roomType"]!["room_type_id"] as! Int)")
-                self.setFacility(data["roomType"]!["room_type_id"] as! Int)
+                print("data(addMenu) :\(data)")
                 
 //                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 
-//                print("countImage \(self.roomImageUpload.count) ")
-//                if(self.roomImageUpload.count != 0){
-//                    let date = NSDate();
-//                    let dateFormatter = NSDateFormatter()
-//                    //To prevent displaying either date or time, set the desired style to NoStyle.
-//                    dateFormatter.dateFormat = "MM-dd-yyyy-HH-mm"
-//                    dateFormatter.timeZone = NSTimeZone()
-//                    let imageDate = dateFormatter.stringFromDate(date)
-//                    
-//                    for index in 0...self.roomImageUpload.count-1
-//                    {
-//                        let imageName = imageDate + "-" + String(index)+".jpg"
-//                        print("ImageName \(imageName)")
-//                        send.getUploadKeyRoomGallery(data["roomType"]!["room_type_id"] as! Int,imageName: imageName){
-//                            data in
-//                            
-//                            print("data getUploadKeyRoomGallery: \(data)")
-//                            let mediaKey = data
-//                            self.send.uploadImage(mediaKey, image: self.roomImageUpload[index], imageName: imageName){
-//                                data in
-//                                if(index == self.roomImageUpload.count-1)
+                
+                
+                print("countImage \(self.imageDataForUpload.count) ")
+                if(self.imageDataForUpload.count != 0){
+                    send.getUploadKey(Int(data["providerId"] as! String)!,imageType: "logoImage",imageName: self.imageNameForUpload!){
+                        data in
+                        PKHUD.sharedHUD.dimsBackground = false
+                        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+                        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                        PKHUD.sharedHUD.show()
+                        
+                        print("UPLOAD DATA ::: \(data)")
+                        
+                        send.uploadImage(data, image: self.imageDataForUpload[0], imageName: self.imageNameForUpload!)
+                        {
+                            data in
+//                            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                            print("DataUpload : \(data)")
+                            self.dismissViewControllerAnimated(true, completion: { 
+                                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                            })
+                            
+//                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+//                            self.navigationController?.pushViewController(vc, animated:true)
+//                            self.dismissViewControllerAnimated(true, completion:
 //                                {
-//                                    print("index \(index) count \(self.roomImageUpload.count-1)")
-//                                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-//                                    let alert = SCLAlertView()
-//                                    alert.showCircularIcon = false
-//                                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-//                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                                        self.appDelegate.viewWithTopButtons.hidden = false
-//                                        self.navunderlive.hidden = true
-//                                        
-//                                    })
-//                                    
-//                                }
-//                            }
-//                        }
-//                    }
-//                    
-//                }else{
-//                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-//                    let alert = SCLAlertView()
-//                    alert.showCircularIcon = false
-//                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-//                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                        self.appDelegate.viewWithTopButtons.hidden = false
-//                        self.navunderlive.hidden = true
-//                        
-//                    })
-//                }
+//                                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+//                                    self.imgMenuLogo.image = self.imageDataForUpload[0]
+//                                    self.imgMenuLogo.reloadInputViews()
+//                                })
+                        }
+                        
+                        
+                    }
+                    
+                }else{
+                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+                    let alert = SCLAlertView()
+                    alert.showCircularIcon = false
+                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+                        self.appDelegate.viewWithTopButtons.hidden = false
+                        self.navunderlive.hidden = true
+                        
+                    })
+                }
             }
         }else{
             print("No Data")
@@ -546,8 +539,11 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         
         print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-            imageDataForUpload = chosenImage
+            imageDataForUpload[0] = chosenImage
             imgMenuLogo.image = chosenImage
+            let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+            imageNameForUpload = imageURL.pathComponents![1];
+            print("imageName : \(imageNameForUpload)")
         dismissViewControllerAnimated(true, completion: nil)
 //        self.roomGallery.append(chosenImage)
 //        self.roomImageUpload.append(chosenImage)
