@@ -2705,6 +2705,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <connections>
@@ -2731,6 +2732,7 @@
                                 </date>
                             </datePicker>
                         </subviews>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ww1-Vf-GG6"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -4753,6 +4755,7 @@
                                         </subviews>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="YQp-FU-tm4" id="EKf-zK-Bt8"/>
                                 </connections>
@@ -4777,6 +4780,7 @@
                                 </date>
                             </datePicker>
                         </subviews>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="rGk-Jo-isW"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

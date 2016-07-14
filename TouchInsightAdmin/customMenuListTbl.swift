@@ -21,12 +21,11 @@ class customMenuListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBAction func deleteBtn(sender: AnyObject) {
-        
+        print("delete Btn : \(sender)")
     }
     
     @IBAction func editBtn(sender: AnyObject) {
-        //        print("Edit btn : \(sender)")
-        
+        print("Edit Btn : \(sender)")
     }
     
     

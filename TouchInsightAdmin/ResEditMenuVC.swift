@@ -381,14 +381,16 @@ CustomIOS7AlertViewDelegate {
                             let alert = SCLAlertView()
                             alert.showCircularIcon = false
                             alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 2.0)
-                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                            
+//                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                                
+//                                self.appDelegate.viewWithTopButtons.hidden = false
+//                                self.navunderlive.hidden = true
+//                                
+//                            })
                             
-                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                                
-                                self.appDelegate.viewWithTopButtons.hidden = false
-                                self.navunderlive.hidden = true
-                                
-                            })
+                            self.navigationController?.popViewControllerAnimated(true)
                             
                         }
                     }
@@ -400,14 +402,15 @@ CustomIOS7AlertViewDelegate {
             let alert = SCLAlertView()
             alert.showCircularIcon = false
             alert.showInfo("Information", subTitle: "Update Menu Success", colorStyle:0xAC332F ,duration: 2.0)
-            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-            
-            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                
-                self.appDelegate.viewWithTopButtons.hidden = false
-                self.navunderlive.hidden = true
-                
-            })
+//            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//            
+//            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                
+//                self.appDelegate.viewWithTopButtons.hidden = false
+//                self.navunderlive.hidden = true
+//                
+//            })
+            self.navigationController?.popViewControllerAnimated(true)
             
         }
         

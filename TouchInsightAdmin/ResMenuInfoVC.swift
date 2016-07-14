@@ -143,6 +143,11 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        let targetVC = storyBoard.instantiateViewControllerWithIdentifier("ResEditMenuVC") as! ResEditMenuVC
 //        self.navigationController?.pushViewController(targetVC, animated: true)
         
+        let btnObject = UIButton()
+        btnObject.tag = indexPath.row
+        print("edit tag button : \(btnObject.tag)")
+        self.performSegueWithIdentifier("toEditMenu", sender: btnObject)
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -165,10 +170,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             cell.deleteBtn.tag = indexPath.row
             cell.deleteBtn.addGestureRecognizer(gestureDelete)
             
-
-        }
-        else
-        {
+        }else{
             cell.menuNameLbl.text = ""
             cell.numOfRoom.text = ""
         }
@@ -257,10 +259,17 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
 //            appDelegate.roomIndex = sender!.tag
         }else if segue.identifier == "toEditMenu"{
+            var _tag = 0
+            if sender?.classForCoder == UIButton.self {
+                _tag = sender!.tag
+            }else{
+                _tag = sender!.view!.tag
+            }
             
-            print("Sender : \(sender!.view!.tag)")
+            print("Sender_tag: \(_tag)")
             
-            appDelegate.menuIndex = sender!.view!.tag
+//            appDelegate.menuIndex = sender!.view!.tag
+            appDelegate.menuIndex = _tag
             
 //            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
 //            editView.modalTransitionStyle = .CrossDissolve

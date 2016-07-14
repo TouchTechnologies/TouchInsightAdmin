@@ -130,16 +130,17 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        self.performSegueWithIdentifier("toEdit", sender: indexPath)
-        print(" Index Path : \(indexPath.row)")
+        let btnObject = UIButton()
+        btnObject.tag = indexPath.row
+        print("edit tag button : \(btnObject.tag)")
+        self.performSegueWithIdentifier("toEdit", sender: btnObject)
 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         appDelegate.roomGalleryIndex = indexPath.row
         let cell:customRoomListTbl = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customRoomListTbl
-        if let roomName = self.roomNameData["roomTypes"]![indexPath.row]!["room_type_name_en"]!
-        {
+        if let roomName = self.roomNameData["roomTypes"]![indexPath.row]!["room_type_name_en"]! {
             cell.roomnameLbl.text = (roomName as! String)
             cell.numOfRoom.text = "\(self.roomNameData["roomTypes"]![indexPath.row]["room_type_description_th"] as! String) rooms"
             let gestureEdit = UITapGestureRecognizer(target: self, action: #selector(RoomInfoVC.handleTap(_:)))
@@ -154,12 +155,10 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
             cell.deleteBtn.tag = indexPath.row
             cell.deleteBtn.addGestureRecognizer(gestureDelete)
             
-
-        }
-        else
-        {
+        }else{
             cell.roomnameLbl.text = ""
             cell.numOfRoom.text = ""
+            
         }
         
         return cell
@@ -177,6 +176,7 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
      self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
         
     }
+    
     func deleteTap(gestureRecognizer: UIGestureRecognizer) {
         
         let tag = gestureRecognizer.view!.tag
