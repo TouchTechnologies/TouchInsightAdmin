@@ -439,66 +439,70 @@ func initalertView(){
         // Dispose of any resources that can be recreated.
     }
     func setObject(){
+        
+        let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
        
         imgHotelLogo.layer.cornerRadius = 0
         imgHotelLogo.layer.borderWidth = 1
-        imgHotelLogo.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        imgHotelLogo.layer.borderColor = borderColorCG
    
-        txtHotelName.borderStyle = UITextBorderStyle.RoundedRect
-        txtHotelName.layer.cornerRadius = 0
+        txtHotelName.borderStyle = UITextBorderStyle.None
+//        txtHotelName.layer.cornerRadius = 0
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
         txtHotelName.layer.borderWidth = 1
-        txtHotelName.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        txtHotelName.layer.borderColor = borderColorCG
 
         //HotelDesTxt.layer.cornerRadius = 5
+        
+        txtHotelName.borderStyle = UITextBorderStyle.None
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
-        HotelDesTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        HotelDesTxt.layer.borderColor = borderColorCG
         
         
-        phonNumberTxt.borderStyle = UITextBorderStyle.Bezel
+        phonNumberTxt.borderStyle = UITextBorderStyle.None
         //phonNumberTxt.layer.cornerRadius = 5
         phonNumberTxt.center.x = width/2
         phonNumberTxt.layer.bounds.size.width = width - 10
         phonNumberTxt.layer.borderWidth = 1
-        phonNumberTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        phonNumberTxt.layer.borderColor = borderColorCG
         
         emailTxt.borderStyle = UITextBorderStyle.None
         //emailTxt.layer.cornerRadius = 5
         emailTxt.center.x = width/2
         emailTxt.layer.bounds.size.width = width - 10
         emailTxt.layer.borderWidth = 1
-        emailTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        emailTxt.layer.borderColor = borderColorCG
         
         websiteTxt.borderStyle = UITextBorderStyle.None
         //websiteTxt.layer.cornerRadius = 5
         websiteTxt.center.x = width/2
         websiteTxt.layer.bounds.size.width = width - 10
         websiteTxt.layer.borderWidth = 1
-        websiteTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        websiteTxt.layer.borderColor = borderColorCG
         
         provinceTxt.borderStyle = UITextBorderStyle.None
         //provinceTxt.layer.cornerRadius = 5
         provinceTxt.center.x = width/2
         provinceTxt.layer.bounds.size.width = width - 10
         provinceTxt.layer.borderWidth = 1
-        provinceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        provinceTxt.layer.borderColor = borderColorCG
         
         
         //addressTxt.layer.cornerRadius = 5
         addressTxt.center.x = width/2
         addressTxt.layer.bounds.size.width = width - 10
         addressTxt.layer.borderWidth = 1
-        addressTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        addressTxt.layer.borderColor = borderColorCG
         
         
         //hotelFacListView.layer.cornerRadius = 5
         hotelFacListView.center.x = width/2
         hotelFacListView.layer.bounds.size.width = width - 10
         hotelFacListView.layer.borderWidth = 1
-        hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        hotelFacListView.layer.borderColor = borderColorCG
         
         tableView.center.x = hotelFacListView.layer.bounds.size.width/2
         tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
@@ -511,21 +515,21 @@ func initalertView(){
         totalRoomTxt.center.x = (width/2)/2
         totalRoomTxt.layer.bounds.size.width = width/2 - 10
         totalRoomTxt.layer.borderWidth = 1
-        totalRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        totalRoomTxt.layer.borderColor = borderColorCG
         
         totalFloorTxt.borderStyle = UITextBorderStyle.None
         //totalFloorTxt.layer.cornerRadius = 5
         totalFloorTxt.center.x = width - width/4
         totalFloorTxt.layer.bounds.size.width = width/2 - 10
         totalFloorTxt.layer.borderWidth = 1
-        totalFloorTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        totalFloorTxt.layer.borderColor = borderColorCG
        
        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         //checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
         checkInView.layer.bounds.size.width = width/2 - 10
         checkInView.layer.borderWidth = 1
-        checkInView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        checkInView.layer.borderColor = borderColorCG
         checkInTitle.center.x = (width/2)/2
         checkOutTitle.center.x = (width/2)/2
 
@@ -537,14 +541,14 @@ func initalertView(){
         checkOutView.center.x =  width - width/4
         checkOutView.layer.bounds.size.width = width/2 - 10
         checkOutView.layer.borderWidth = 1
-        checkOutView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        checkOutView.layer.borderColor = borderColorCG
         
         distanceCityTxt.borderStyle = UITextBorderStyle.None
         //distanceCityTxt.layer.cornerRadius = 5
         distanceCityTxt.center.x = (width/2)/2+15
         distanceCityTxt.layer.bounds.size.width = width/2 - 60
         distanceCityTxt.layer.borderWidth = 1
-        distanceCityTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        distanceCityTxt.layer.borderColor = borderColorCG
         
         lblAirport.frame = CGRectMake(distanceCityTxt.frame.origin.x + distanceCityTxt.frame.size.width + 5, distanceCityTxt.frame.origin.y, width/2 - 60, distanceCityTxt.frame.size.height)
         
@@ -553,16 +557,14 @@ func initalertView(){
         DistanceAirportTxt.center.x = width - width/5
         DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
         DistanceAirportTxt.layer.borderWidth = 1
-        DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        DistanceAirportTxt.layer.borderColor = borderColorCG
       
-        
         //buttonsave.layer.cornerRadius = 5
         var frmButtonSave = buttonsave.frame
         frmButtonSave.size.width = self.view.frame.size.width //  - 12
         frmButtonSave.origin.x = 0
         frmButtonSave.origin.y = self.view.frame.size.height - frmButtonSave.size.height
         buttonsave.frame = frmButtonSave
-        
         
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
@@ -816,9 +818,7 @@ func initalertView(){
 //        }
         
     }
-    func imageTapped(img: AnyObject)
-    {
-        
+    func imageTapped(img: AnyObject){
         print("Upload Logo Img")
         
         let myPickerController = UIImagePickerController()
@@ -834,7 +834,6 @@ func initalertView(){
         imgHotelLogo.contentMode = .ScaleAspectFit //3
         self.imgHotelLogo.image = chosenImage //4
         
-
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         let imageName = imageURL.pathComponents![1];
         print("imageName : \(imageName)")
@@ -843,7 +842,6 @@ func initalertView(){
        
         let send = API_Model()
         
-       
         send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: "logoImage",imageName: imageName){
             data in
             PKHUD.sharedHUD.dimsBackground = false
@@ -859,15 +857,11 @@ func initalertView(){
                 data in
 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
 
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-                self.navigationController?.pushViewController(vc, animated:true)
-                self.dismissViewControllerAnimated(true, completion:
-                {
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+//                self.navigationController?.pushViewController(vc, animated:true)
+                self.dismissViewControllerAnimated(true, completion:{_ in
                     PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                    self.imgHotelLogo.image = chosenImage
-                    self.imgHotelLogo.reloadInputViews()
-                }
-                )
+                })
             }
 
 
