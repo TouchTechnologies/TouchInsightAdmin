@@ -281,6 +281,12 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
             longTxt.text = ""
         }
         
+        
+        // ---------- ตั้งค่าแผนที่ให้เป็นประเทศไทยก่อน เมื่อโหลดข้อมูลเสร็จค่อยซูมไปที่จุดนั้น
+        let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(13.6947008),Double(101.6475268))
+        let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1500000, 1500000)
+        self.mapView.setRegion(viewRegion, animated:true)
+        // ---------- จบ
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // stuff

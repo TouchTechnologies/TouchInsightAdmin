@@ -55,7 +55,7 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
     @IBAction func createBtn(sender: AnyObject) {
         let send = API_Model()
         // var titleMessage:String = ""
-        var message:String = "Information"
+        let message:String = "Information"
         //        if self.typeKeyName == typename[2]
         //        {
         //            let dataJson =
@@ -153,7 +153,8 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
                     self.providerNameTxt.text = ""
                     
                     self.tableView.reloadData()
-                    self.removeFromSuperview()
+                
+//                    self.superview!.superview!.removeFromSuperview()
 //                    let provList = ProviderListVC()
 //                    provList.alertDismiss(UIButton())
                     
