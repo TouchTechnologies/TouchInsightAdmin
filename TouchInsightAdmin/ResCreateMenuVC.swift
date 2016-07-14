@@ -231,10 +231,6 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(Create)")
-        for i in 0...appDelegate.facilityRoomStatus.count - 1
-        {
-            appDelegate.facilityRoomStatus[i] = false
-        }
     }
     @IBAction func addFacilityBtn(sender: AnyObject) {
         let alertView = CustomIOS7AlertView()
@@ -353,18 +349,18 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                             data in
 //                            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                             print("DataUpload : \(data)")
-                            self.dismissViewControllerAnimated(true, completion: { 
-                                PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                            })
+                            PKHUD.sharedHUD.hide(afterDelay: 0.1)
+                            let alert = SCLAlertView()
+                            alert.showCircularIcon = false
+                            alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F ,duration: 2.0)
+                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
                             
-//                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-//                            self.navigationController?.pushViewController(vc, animated:true)
-//                            self.dismissViewControllerAnimated(true, completion:
-//                                {
-//                                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//                                    self.imgMenuLogo.image = self.imageDataForUpload[0]
-//                                    self.imgMenuLogo.reloadInputViews()
-//                                })
+                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+                                
+                                self.appDelegate.viewWithTopButtons.hidden = false
+                                self.navunderlive.hidden = true
+                                
+                            })
                         }
                         
                         
@@ -374,7 +370,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                     PKHUD.sharedHUD.hide(afterDelay: 0.1)
                     let alert = SCLAlertView()
                     alert.showCircularIcon = false
-                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+                    alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
                     let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
                     self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
                         self.appDelegate.viewWithTopButtons.hidden = false
@@ -492,7 +488,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         }
     }
     func buttonTapped(btn:SCLButton) {
-        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
+//        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     func dismissKeyboard()
     {
