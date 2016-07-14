@@ -18,11 +18,11 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
    // let chosenImage
     var pickerPick = false
     var pickerType = ""
-    var hotelImage = [UIImageView()]
-    var hotelgalLbl = UILabel()
+    var menuImage = [UIImageView()]
+    var menugalLbl = UILabel()
     var CoverImg = UIImageView()
     var coverImgCell = UIImageView()
-    var hotelGallery = [[String:AnyObject]]()
+    var menuGallery = [[String:AnyObject]]()
     var defultImg = UIImage()
     var Cell = ImageCollectionViewCell()
     @IBOutlet var collectionView: UICollectionView!
@@ -87,7 +87,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
        
         CoverImg.frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
         CoverImg.contentMode = UIViewContentMode.ScaleToFill
-        hotelImage[0].frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
+        menuImage[0].frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
 //        CoverImg.image = UIImage(named: "bg_cctvdefault.png")
        
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
@@ -97,13 +97,13 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         
         
         
-        self.hotelgalLbl.frame = CGRectMake(10 , self.firstV.frame.size.height + 20 , self.firstV.frame.size.width, 30)
-        self.hotelgalLbl.text = "Hotel Image"
-        self.hotelgalLbl.font = UIFont(name: "Helvetica", size: 18)
-        self.scrollView.addSubview(hotelgalLbl)
+        self.menugalLbl.frame = CGRectMake(10 , self.firstV.frame.size.height + 20 , self.firstV.frame.size.width, 30)
+        self.menugalLbl.text = "Hotel Image"
+        self.menugalLbl.font = UIFont(name: "Helvetica", size: 18)
+        self.scrollView.addSubview(menugalLbl)
         
         
-        self.collectionView.frame = CGRectMake(10 , self.hotelgalLbl.frame.origin.y + 50 , self.firstV.bounds.size.width, self.firstV.bounds.size.width)
+        self.collectionView.frame = CGRectMake(10 , self.menugalLbl.frame.origin.y + 50 , self.firstV.bounds.size.width, self.firstV.bounds.size.width)
        
         self.saveButton.frame.origin.y = self.collectionView.frame.origin.y + self.collectionView.frame.size.height + 20
         self.saveButton.frame.size.width = self.collectionView.frame.size.width
@@ -131,7 +131,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     func imageTapped2(img: AnyObject)
     {
-        pickerType = "hotelImage"
+        pickerType = "menuImage"
         
         print("Upload Cover Img2")
         
@@ -148,8 +148,8 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 //
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        print("hotelGallery.count \(hotelGallery.count)")
-        return hotelGallery.count+1
+        print("MenuGallery.count \(menuGallery.count)")
+        return menuGallery.count+1
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
@@ -166,18 +166,18 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         
         
         
-        if (self.hotelGallery.count == 0 || indexPath.row == self.hotelGallery.count)
+        if (self.menuGallery.count == 0 || indexPath.row == self.menuGallery.count)
             
         {
             Cell.imageColl.image = UIImage(named: "add_image.png")
         }else
         {
             
-            print("imageGal \(self.hotelGallery[indexPath.row]["thumbnail"])")
+            print("imageGal \(self.menuGallery[indexPath.row]["thumbnail"])")
             //            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://192.168.9.58/framework/public/resource/insight/hotel/1965/gallery/image/asset-small.jpg")!)!)
             
             
-            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
+            let strURL = (self.menuGallery[indexPath.row]["thumbnail"]) as! String
             if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
                 print("ERROR")
                 Cell.imageColl.removeFromSuperview()
@@ -367,10 +367,10 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 
             
         }
-        else if(pickerType == "hotelImage")
+        else if(pickerType == "menuImage")
         {
             
-            print("ImagePicker:hotelImage")
+            print("ImagePicker:menuImage")
             let date = NSDate();
             let dateFormatter = NSDateFormatter()
             //To prevent displaying either date or time, set the desired style to NoStyle.
@@ -380,14 +380,14 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 //            print("Date Time : \(localDate)")
             
             let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-            print("(hotelImage before) : \(hotelImage.count)")
-            hotelImage[hotelImage.count-1].contentMode = .ScaleAspectFit
-            hotelImage[hotelImage.count-1].image = chosenImage //4
+            print("(menuImage before) : \(menuImage.count)")
+            menuImage[menuImage.count-1].contentMode = .ScaleAspectFit
+            menuImage[menuImage.count-1].image = chosenImage //4
 //            CoverImg.contentMode = .ScaleAspectFit //3
 //            CoverImg.image = chosenImage //4
             let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
 //            let imageName = imageURL.pathComponents![1];
-            print("(hotelImage) : \(hotelImage)")
+            print("(menuImage) : \(menuImage)")
             let send = API_Model()
             imageName = imageName + ".jpg"
             print("imageName : \(imageName)")
@@ -410,21 +410,21 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
                     PKHUD.sharedHUD.contentView = PKHUDProgressView()
                     PKHUD.sharedHUD.hide(afterDelay: 4.0)
                     
-                    self.hotelImage[self.hotelImage.count-1].contentMode = .ScaleAspectFit
+                    self.menuImage[self.menuImage.count-1].contentMode = .ScaleAspectFit
                     
-                    self.hotelImage[self.hotelImage.count-1].image = chosenImage
+                    self.menuImage[self.menuImage.count-1].image = chosenImage
                     //   self.hotelImage[self.hotelImage.count-1].reloadInputViews()
 //                    self.Cell.imageColl.image = chosenImage
 //                    self.Cell.imageColl.reloadInputViews()
                     
-                    self.hotelImage[self.hotelImage.count-1].reloadInputViews()
+                    self.menuImage[self.menuImage.count-1].reloadInputViews()
                     self.dismissViewControllerAnimated(true, completion:
                     {
                         self.Cell.imageColl.image = chosenImage
                         self.Cell.imageColl.reloadInputViews()
                     })
                     
-                    self.hotelGallery.count ==  self.hotelImage.count+1
+                    self.menuGallery.count ==  self.menuImage.count+1
                     self.addImageNum += 1
 //                    self.collectionView.reloadData()
                 }
@@ -445,7 +445,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         send.getGallery(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!){
             data in
             print(": \(data)")
-            self.hotelGallery = data
+            self.menuGallery = data
             self.collectionView.reloadData()
         }
 

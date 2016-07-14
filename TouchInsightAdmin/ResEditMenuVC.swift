@@ -146,7 +146,7 @@ CustomIOS7AlertViewDelegate {
         }else
         {
             print("no logo")
-            imgMenuLogo.image = UIImage(named: "empty_menu.png")
+            imgMenuLogo.image = UIImage(named: "ic_add_image.png")
         }
         menuNameTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_name_en"] as! String)
         shotDescTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_description_en"] as! String)
