@@ -287,13 +287,18 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
                                     let alert = SCLAlertView()
                                     alert.showCircularIcon = false
                                     alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                                        self.appDelegate.viewWithTopButtons.hidden = false
-                                        self.navunderlive.hidden = true
-                                        
-                                    })
                                     
+//                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                                        self.appDelegate.viewWithTopButtons.hidden = false
+//                                        self.navunderlive.hidden = true
+//                                        
+//                                    })
+                                    
+//                                    self.appDelegate.viewWithTopButtons.hidden = false
+//                                    self.navunderlive.hidden = true
+//                                    self.appDelegate.pagecontrolIndex = 2
+                                    self.navigationController?.popViewControllerAnimated(true)
                                 }
                             }
                         }
@@ -305,12 +310,13 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
                     let alert = SCLAlertView()
                     alert.showCircularIcon = false
                     alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                        self.appDelegate.viewWithTopButtons.hidden = false
-                        self.navunderlive.hidden = true
-                        
-                    })
+//                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                        self.appDelegate.viewWithTopButtons.hidden = false
+//                        self.navunderlive.hidden = true
+//                        
+//                    })
+                    self.navigationController?.popViewControllerAnimated(true)
                 }
             }
         }else

@@ -179,115 +179,26 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
         
-        self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
-        self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
         
         
-        if CLLocationManager.locationServicesEnabled(){
-            self.locationManager.delegate = self
-            //            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.startUpdatingLocation()
-            print("OK Location")
-        }
-        else{
-            print("Location service disabled");
-        }
-        
-        print("location")
-        
-        if let latitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]!) {
-            print("latitude  \(latitude)")
-            //latTxt.text = (latitude as! String)
-            
-            
-            //            print("Location(set) : \(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String))")
-            if(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String) != 0 )
-            {
-                self.saveLocationBtn.hidden = true
-                print("Location Set")
-                point.coordinate = CLLocationCoordinate2DMake(Double(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String)!,Double(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["longitude"]! as! String)! )
-                point.name = "Current Name"
-                point.title = "Current Title"
-                point.subtitle = "Current Subtitle"
-                self.mapView.addAnnotation(point)
-                
-                
-            }else{
-                print("No Location Set")
-                
-                
-                
-            }
-            
-            
-        }else{
-            print("No DistanceAirport")
-            latTxt.text = ""
-        }
-        if let longitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["longitude"]!) {
-            print("longitude  \(longitude)")
-            longTxt.text = (longitude as! String)
-        }else{
-            print("No DistanceAirport")
-            longTxt.text = ""
-        }
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         
         
         
-        // Do any additional setup after loading the view.
+        let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(LocationVC.handleLongPress(_:)))
+        lpgr.minimumPressDuration = 1.0
+        //user needs to press for 1 seconds
+        self.mapView.addGestureRecognizer(lpgr)
+        
     }
     override func viewWillAppear(animated: Bool) {
         
         print("viewWillAppear(Location)")
-        self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
-        self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
-        
-        
-        
-        if let latitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]!) {
-            //            print("latitude ::: \(latitude)")
-            
-            latTxt.text = (latitude as! String)
-            // let point: MyCustomPointAnnotation = MyCustomPointAnnotation()
-            
-            
-            //            print("Location(set) : \(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String))")
-            
-            
-            if(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String) != 0 )
-            {
-                print("Location Set")
-                point.coordinate = CLLocationCoordinate2DMake(Double(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]! as! String)!,Double(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["longitude"]! as! String)! )
-                point.name = "Current Name"
-                point.title = "Current Title"
-                point.subtitle = "Current Subtitle"
-                
-                self.mapView.addAnnotation(point)
-            }else{
-                print("No Location Set")
-            }
-            
-            
-        }else{
-            print("No DistanceAirport")
-            latTxt.text = ""
-        }
-        if let longitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["longitude"]!) {
-            //            print("longitude  \(longitude)")
-            longTxt.text = (longitude as! String)
-        }else{
-            print("No DistanceAirport")
-            longTxt.text = ""
-        }
-        
-        
-        // ---------- ตั้งค่าแผนที่ให้เป็นประเทศไทยก่อน เมื่อโหลดข้อมูลเสร็จค่อยซูมไปที่จุดนั้น
-        let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(13.6947008),Double(101.6475268))
-        let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1500000, 1500000)
-        self.mapView.setRegion(viewRegion, animated:true)
-        // ---------- จบ
     }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // stuff
         
@@ -313,97 +224,88 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
      */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear(Location)")
         
-        let pointLat = NSString(format: "%.6f",Double(point.coordinate.latitude)) as String
-        let pointLong =  NSString(format: "%.6f",Double(point.coordinate.longitude)) as String
-        print("pointLat : \(pointLat)")
-        print("lat1 : \(Double(self.appDelegate.latitude)!) long1 \(Double(self.appDelegate.longitude )!)")
+        self.locationManager.startUpdatingLocation()
+        self.mapView.showsUserLocation = true
         
-        print("lat xxxxxx : \((appDelegate.latitude))")
-        print("lng xxxxxx : \((appDelegate.longitude))")
+        print("------- location -------")
         
+        var _lat = ""
+        var _lng = ""
+        var _titleName = ""
         
-        if (appDelegate.latitude != "0.00" && appDelegate.longitude != "0.00"){
-            
-            //Set Center Location
-            print("set Center Location")
-            let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(self.appDelegate.latitude)!,Double(self.appDelegate.longitude)! )
-            print("LATITUDEEE\(Double(self.appDelegate.latitude)!)")
-            //        let viewRegion = MKCoordinateRegion(center: Coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 2000, 2000)
-            self.mapView.setRegion(viewRegion, animated:true)
-            
-            self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
-            self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
+        if let latitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["latitude"]!) {
+            _lat = latitude as! String
+        }
+        
+        if let longitude = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["longitude"]!) {
+            _lng = longitude as! String
+        }
+        
+        if let title = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["name_en"]!) {
+            _titleName = title as! String
+        }
+        
+        print("_lat = \(_lat)")
+        print("_lng = \(_lng)")
+        
+        if((_lat != "" && _lng != "") && (_lat != "0" && _lng != "0")){
             
             self.propertyView2.hidden = true
             self.changLocationBar.hidden = true
             
-            if(pointLat != "0.000000"){
+            self.latTxt.text = NSString(format: "%.6f",Double(_lat)!) as String
+            self.longTxt.text = NSString(format: "%.6f",Double(_lng)!) as String
+            
+            print("Location Set")
+            point.coordinate = CLLocationCoordinate2DMake(Double(_lat)!,Double(_lng)! )
+            point.name = _titleName
+            point.title = _titleName
+            //point.subtitle = "Current Subtitle"
+            self.mapView.addAnnotation(point)
+            
+            let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(_lat)!,Double(_lng)!)
+            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1000, 1000)
+            self.mapView.setRegion(viewRegion, animated:true)
+        }else{
+            
+            self.propertyView2.hidden = false
+            self.changLocationBar.hidden = false
+            
+            
+            self.latTxt.text = _lat
+            self.longTxt.text = _lng
+            
+            if CLLocationManager.locationServicesEnabled(){
                 
-//                let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 2000, 2000)
-//                self.mapView.setRegion(viewRegion, animated:true)
-//                
+                print("locationServicesEnabled true")
                 
-                //                CLLocationCoordinate2D centerCoord = { GEORGIA_TECH_LATITUDE, GEORGIA_TECH_LONGITUDE };
-                //                [mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
-                //            }
+                print("appDelegate.latitude = \(appDelegate.latitude)")
+                print("appDelegate.longitude = \(appDelegate.longitude)")
                 
-                let centerCoord:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(self.appDelegate.latitude)!, longitude: Double(self.appDelegate.longitude)!)
-                self.mapView.setCenterCoordinate(centerCoord, animated: true)
+                if((appDelegate.latitude != "") && (appDelegate.longitude != "")  && (appDelegate.latitude != "0")  && (appDelegate.longitude != "0") ){
+                    
+                    let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(appDelegate.latitude)!,Double(appDelegate.longitude)!)
+                    let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 4000, 4000)
+                    self.mapView.setRegion(viewRegion, animated:true)
+                }else{
+                    
+                    // ---------- ตั้งค่าแผนที่ให้เป็นประเทศไทยก่อน
+                    let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(13.6947008),Double(101.6475268))
+                    let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1500000, 1500000)
+                    self.mapView.setRegion(viewRegion, animated:true)
+                }
                 
-                print("pointLat : \(pointLat)")
-                self.latTxt.text = pointLat
-                self.longTxt.text = pointLong
-                self.changeDetial()
-                self.propertyView2.hidden = false
-                self.changLocationBar.hidden = false
+            }else{
                 
+                print("locationServicesEnabled false")
+                // ---------- ตั้งค่าแผนที่ให้เป็นประเทศไทยก่อน
+                let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(13.6947008),Double(101.6475268))
+                let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1500000, 1500000)
+                self.mapView.setRegion(viewRegion, animated:true)
             }
             
-        }else{
-            //13.3449981,101.5100112
-//            let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(13.3449981,101.5100112)
-//            //print("LATITUDEEE\(Double(self.appDelegate.latitude)!)")
-//            //        let viewRegion = MKCoordinateRegion(center: Coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 100, 100)
-//            self.mapView.setRegion(viewRegion, animated:true)
-            
-//            let span = MKCoordinateSpanMake(0.075, 0.075)
-//            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112), span: span)
-//            mapView.setRegion(region, animated: true)
-            
-            
-//            let centerCoord:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112)
-//            self.mapView.setCenterCoordinate(centerCoord, animated: true)
-////            
-//            let span = MKCoordinateSpanMake(0.075, 0.075)
-//            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 13.3449981, longitude: 101.5100112), span: span)
-//            mapView.setRegion(region, animated: true)
-//            
-            
-            let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(13.6947008),Double(101.6475268))
-            //        let viewRegion = MKCoordinateRegion(center: Coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1500000, 1500000)
-            self.mapView.setRegion(viewRegion, animated:true)
-            
         }
-        
-        
-        
-        print("latChange111:\(self.latTxt.text))")
-        
-        print("latChange111:\(self.longTxt.text)")
-        
-        // self.latTxt.text = NSString(format: "%.6f",Double(self.appDelegate.latitude)!) as String
-        //      self.longTxt.text = NSString(format: "%.6f",Double(self.appDelegate.longitude)!) as String
-        
-        
-        let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(LocationVC.handleLongPress(_:)))
-        lpgr.minimumPressDuration = 1.0
-        //user needs to press for 1 seconds
-        self.mapView.addGestureRecognizer(lpgr)
         
     }
     
