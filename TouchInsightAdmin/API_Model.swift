@@ -541,6 +541,29 @@ class API_Model {
             
         }
     }
+    
+    func getMenuGallery(MenuID:String,completionHandler:[[String:AnyObject]]->())
+    {
+        
+        let dataJson = [
+            "menu" : [
+                "menuId": MenuID
+            ],
+            "page" : [
+                "offset": 0,
+                "limit": 30
+            ]
+        ]
+        
+        providerAPI(self.appDelegate.command["ListRoomTypeGallery"]!, dataJson: Dict2JsonString(dataJson)){
+            data in
+            print("data(All) :\(data)")
+            print("data(Count) :\(data["roomTypeGallery"]!.count)")
+            completionHandler(data["roomTypeGallery"] as! [[String : AnyObject]])
+            
+            
+        }
+    }
     func getUploadKeyRoomGallery(RoomID:Int,imageName:String,completionHandler:String->())
     {
         let dataJson = [
@@ -564,6 +587,34 @@ class API_Model {
         providerAPI(self.appDelegate.command["CreateRoomTypeGallery"]!, dataJson: Dict2JsonString(dataJson)){
             data in
             print("data(getUploadKeyRoomGallery) :\(data)")
+            print("key : \(data["mediaKey"]!)")
+            completionHandler(data["mediaKey"] as! String)
+            
+        }
+    }
+    func getUploadKeyMenuGallery(MenuID:Int,imageName:String,completionHandler:String->())
+    {
+        let dataJson = [
+            "menu" : [
+                "menuId": MenuID
+            ],
+            "menuGallery" : [[
+                "medias" : [
+                    "image": [
+                        "filename" : imageName
+                    ]
+                ]
+                ]],
+            "user" : [
+                "accessToken" : self.appDelegate.userInfo["accessToken"]!
+            ]
+        ]
+        
+        //print("JsonData : \(dataJson)")
+        //get ImageURL
+        providerAPI(self.appDelegate.command["CreateMenuGallery"]!, dataJson: Dict2JsonString(dataJson)){
+            data in
+            print("data(getUploadKeyMenuGallery) :\(data)")
             print("key : \(data["mediaKey"]!)")
             completionHandler(data["mediaKey"] as! String)
             

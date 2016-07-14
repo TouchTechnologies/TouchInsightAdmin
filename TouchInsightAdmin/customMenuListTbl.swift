@@ -1,23 +1,23 @@
 //
-//  customRoomListTbl.swift
+//  customMenuListTbl.swift
 //  TouchInsightAdmin
 //
-//  Created by Touch on 12/14/2558 BE.
-//  Copyright © 2558 weerapons suwanchatree. All rights reserved.
+//  Created by weerapons suwanchatree on 7/14/2559 BE.
+//  Copyright © 2559 weerapons suwanchatree. All rights reserved.
 //
 
 import UIKit
 
-class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollectionViewDelegate{
-
+class customMenuListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollectionViewDelegate{
     
-    @IBOutlet weak var roomnameLbl: UILabel!
+    
+    @IBOutlet weak var menuNameLbl: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var numOfRoom: UILabel!
     @IBOutlet var editBtn: UIButton!
     @IBOutlet var deleteBtn: UIButton!
     @IBOutlet var bgView: UIView!
-    var roomGallery = [[String:AnyObject]]()
+    var menuGallery = [[String:AnyObject]]()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBAction func deleteBtn(sender: AnyObject) {
@@ -25,59 +25,59 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
     }
     
     @IBAction func editBtn(sender: AnyObject) {
-//        print("Edit btn : \(sender)")
+        //        print("Edit btn : \(sender)")
         
     }
     
     
     @IBOutlet var vc: UIView!
-   
+    
     var imgRoom :[String] = ["bg_cctvdefault.png","bg_cctvdefault.png","bg_cctvdefault.png","bg_cctvdefault.png","bg_cctvdefault.png"]
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-       
-
-        print("customRoomListTbl")
+        
+        
+        print("customMenuListTbl")
         let nib = UINib(nibName: "customImgCell", bundle: nil)
         collectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
         bgView.layer.cornerRadius = 5
-         getRoomGallery()
+//        getMenuGallery()
         /*let nib = UINib(nibName: "customImgCell", bundle: nil)
-        self.subCollectionView.registerNib(nib , forCellWithReuseIdentifier: "customImgCell")
-*/
+         self.subCollectionView.registerNib(nib , forCellWithReuseIdentifier: "customImgCell")
+         */
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-      
-         // Configure the view for the selected state
+        
+        // Configure the view for the selected state
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return roomGallery.count
+        return menuGallery.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
         let Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! customImgCell
-        print("imageGal \(self.roomGallery[indexPath.row]["thumbnail"])")
-        Cell.imgCell.image = UIImage(data: NSData(contentsOfURL: NSURL(string: (self.roomGallery[indexPath.row]["thumbnail"] as! String))!)!)
+        print("imageGal \(self.menuGallery[indexPath.row]["thumbnail"])")
+//        Cell.imgCell.image = UIImage(data: NSData(contentsOfURL: NSURL(string: (self.menuGallery[indexPath.row]["thumbnail"] as! String))!)!)
         return Cell
         
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     }
-
-    func getRoomGallery()
+    
+    func getMenuGallery()
     {
         let send = API_Model()
-        print("appDelegate.roomGalleryIndex : \(appDelegate.roomGalleryIndex!)")
-//        print("Room Dic : \(appDelegate.roomDic!["roomTypes"]!)")
-        send.getRoomGallery(appDelegate.roomDic!["roomTypes"]![appDelegate.roomGalleryIndex!]!["room_type_id"] as! String){
+        print("appDelegate.menuGalleryIndex : \(appDelegate.roomGalleryIndex!)")
+        //        print("Room Dic : \(appDelegate.roomDic!["roomTypes"]!)")
+        send.getRoomGallery(appDelegate.menuDic!["menus"]![appDelegate.menuGalleryIndex!]!["room_type_id"] as! String){
             data in
             print("getRoomGallery(customRoomListTbl): \(data)")
-            self.roomGallery = data
+            self.menuGallery = data
             self.collectionView.reloadData()
         }
         
@@ -85,5 +85,6 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
     
     // MARK: UICollectionViewDataSource
     
-
+    
 }
+

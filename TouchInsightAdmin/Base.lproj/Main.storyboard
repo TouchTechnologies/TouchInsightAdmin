@@ -3012,7 +3012,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="210" id="f9a-KQ-lhD" customClass="customRoomListTbl" customModule="TouchInsightAdmin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="210" id="f9a-KQ-lhD" customClass="customMenuListTbl" customModule="TouchInsightAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9a-KQ-lhD" id="xfn-ZQ-0it">
@@ -3092,7 +3092,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l7j-Xk-DNE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l7j-Xk-DNE">
                                         <rect key="frame" x="8" y="160" width="359" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -3272,7 +3272,7 @@
             </objects>
             <point key="canvasLocation" x="3357.5" y="1920.5"/>
         </scene>
-        <!--Edit Room-->
+        <!--Edit Menu-->
         <scene sceneID="Z5w-bT-beR">
             <objects>
                 <viewController storyboardIdentifier="ResEditMenuVC" id="ttu-s9-8HD" customClass="ResEditMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
@@ -3292,7 +3292,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8dt-2M-ht9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8dt-2M-ht9">
                                         <rect key="frame" x="8" y="160" width="359" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -3451,7 +3451,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Room" id="r4p-RW-0Zb">
+                    <navigationItem key="navigationItem" title="Edit Menu" id="r4p-RW-0Zb">
                         <barButtonItem key="leftBarButtonItem" image="Left-32.png" id="GjM-7p-w1g">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -3848,7 +3848,7 @@
             </objects>
             <point key="canvasLocation" x="2916.5" y="2786.5"/>
         </scene>
-        <!--Create Room-->
+        <!--Create Menu-->
         <scene sceneID="MNh-FL-6W1">
             <objects>
                 <viewController storyboardIdentifier="AttnCreateMenuVC" id="3wj-yQ-pVw" customClass="AttnCreateMenuVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
@@ -4084,7 +4084,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Room" id="LFp-xQ-t1L">
+                    <navigationItem key="navigationItem" title="Create Menu" id="LFp-xQ-t1L">
                         <barButtonItem key="leftBarButtonItem" image="Left-32.png" id="sWu-yn-RnQ">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
