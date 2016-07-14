@@ -488,13 +488,11 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
         Cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell",forIndexPath: indexPath) as! RoomGalleryCell
         
         print("roomGallery \(roomGallery.count)")
-        if(self.roomGallery.count == 0 || indexPath.row == self.roomGallery.count)
-        {
+        if(self.roomGallery.count == 0 || indexPath.row == self.roomGallery.count){
             print("if")
             Cell.imgRoom.image = UIImage(named: "add_image.png")
             
-        }else
-        {
+        }else{
             Cell.imgRoom.image = self.roomGallery[indexPath.row]
             print("else")
         }
@@ -510,8 +508,8 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
         self.CellTapped(indexPath.item)
        
     }
-    func CellTapped(img: AnyObject)
-    {
+    
+    func CellTapped(img: AnyObject){
        
         
         print("Upload Cover RoomImg")
