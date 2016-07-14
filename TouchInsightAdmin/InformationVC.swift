@@ -27,6 +27,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     @IBOutlet var tableView: UITableView!
     @IBOutlet var hotelFacListView: UIView!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imgHotelCover: UIImageView!
     @IBOutlet var imgHotelLogo: UIImageView!
     @IBOutlet var txtHotelName: UITextField!
     @IBOutlet var HotelDesTxt: UITextView!
@@ -439,61 +440,61 @@ func initalertView(){
     }
     func setObject(){
        
-        imgHotelLogo.layer.cornerRadius = 5
+        imgHotelLogo.layer.cornerRadius = 0
         imgHotelLogo.layer.borderWidth = 1
         imgHotelLogo.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
    
         txtHotelName.borderStyle = UITextBorderStyle.RoundedRect
-        txtHotelName.layer.cornerRadius = 5
+        txtHotelName.layer.cornerRadius = 0
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
         txtHotelName.layer.borderWidth = 1
         txtHotelName.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
 
-        HotelDesTxt.layer.cornerRadius = 5
+        //HotelDesTxt.layer.cornerRadius = 5
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
         HotelDesTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
         
-        phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        phonNumberTxt.layer.cornerRadius = 5
+        phonNumberTxt.borderStyle = UITextBorderStyle.Bezel
+        //phonNumberTxt.layer.cornerRadius = 5
         phonNumberTxt.center.x = width/2
         phonNumberTxt.layer.bounds.size.width = width - 10
         phonNumberTxt.layer.borderWidth = 1
         phonNumberTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        emailTxt.borderStyle = UITextBorderStyle.RoundedRect
-        emailTxt.layer.cornerRadius = 5
+        emailTxt.borderStyle = UITextBorderStyle.None
+        //emailTxt.layer.cornerRadius = 5
         emailTxt.center.x = width/2
         emailTxt.layer.bounds.size.width = width - 10
         emailTxt.layer.borderWidth = 1
         emailTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        websiteTxt.borderStyle = UITextBorderStyle.RoundedRect
-        websiteTxt.layer.cornerRadius = 5
+        websiteTxt.borderStyle = UITextBorderStyle.None
+        //websiteTxt.layer.cornerRadius = 5
         websiteTxt.center.x = width/2
         websiteTxt.layer.bounds.size.width = width - 10
         websiteTxt.layer.borderWidth = 1
         websiteTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        provinceTxt.borderStyle = UITextBorderStyle.RoundedRect
-        provinceTxt.layer.cornerRadius = 5
+        provinceTxt.borderStyle = UITextBorderStyle.None
+        //provinceTxt.layer.cornerRadius = 5
         provinceTxt.center.x = width/2
         provinceTxt.layer.bounds.size.width = width - 10
         provinceTxt.layer.borderWidth = 1
         provinceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
         
-        addressTxt.layer.cornerRadius = 5
+        //addressTxt.layer.cornerRadius = 5
         addressTxt.center.x = width/2
         addressTxt.layer.bounds.size.width = width - 10
         addressTxt.layer.borderWidth = 1
         addressTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
         
-        hotelFacListView.layer.cornerRadius = 5
+        //hotelFacListView.layer.cornerRadius = 5
         hotelFacListView.center.x = width/2
         hotelFacListView.layer.bounds.size.width = width - 10
         hotelFacListView.layer.borderWidth = 1
@@ -505,22 +506,22 @@ func initalertView(){
         lblAddHotelfac.layer.bounds.size.width = 265
         lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
         
-        totalRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
-        totalRoomTxt.layer.cornerRadius = 5
+        totalRoomTxt.borderStyle = UITextBorderStyle.None
+        //totalRoomTxt.layer.cornerRadius = 5
         totalRoomTxt.center.x = (width/2)/2
         totalRoomTxt.layer.bounds.size.width = width/2 - 10
         totalRoomTxt.layer.borderWidth = 1
         totalRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        totalFloorTxt.borderStyle = UITextBorderStyle.RoundedRect
-        totalFloorTxt.layer.cornerRadius = 5
+        totalFloorTxt.borderStyle = UITextBorderStyle.None
+        //totalFloorTxt.layer.cornerRadius = 5
         totalFloorTxt.center.x = width - width/4
         totalFloorTxt.layer.bounds.size.width = width/2 - 10
         totalFloorTxt.layer.borderWidth = 1
         totalFloorTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
        
        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        checkInView.layer.cornerRadius = 5
+        //checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
         checkInView.layer.bounds.size.width = width/2 - 10
         checkInView.layer.borderWidth = 1
@@ -532,14 +533,14 @@ func initalertView(){
         checkOutTxt.center.x = (width/2)/2
         
        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        checkOutView.layer.cornerRadius = 5
+        //checkOutView.layer.cornerRadius = 5
         checkOutView.center.x =  width - width/4
         checkOutView.layer.bounds.size.width = width/2 - 10
         checkOutView.layer.borderWidth = 1
         checkOutView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
-        distanceCityTxt.borderStyle = UITextBorderStyle.RoundedRect
-        distanceCityTxt.layer.cornerRadius = 5
+        distanceCityTxt.borderStyle = UITextBorderStyle.None
+        //distanceCityTxt.layer.cornerRadius = 5
         distanceCityTxt.center.x = (width/2)/2+15
         distanceCityTxt.layer.bounds.size.width = width/2 - 60
         distanceCityTxt.layer.borderWidth = 1
@@ -547,18 +548,19 @@ func initalertView(){
         
         lblAirport.frame = CGRectMake(distanceCityTxt.frame.origin.x + distanceCityTxt.frame.size.width + 5, distanceCityTxt.frame.origin.y, width/2 - 60, distanceCityTxt.frame.size.height)
         
-        DistanceAirportTxt.borderStyle = UITextBorderStyle.RoundedRect
-        DistanceAirportTxt.layer.cornerRadius = 5
+        DistanceAirportTxt.borderStyle = UITextBorderStyle.None
+        //DistanceAirportTxt.layer.cornerRadius = 5
         DistanceAirportTxt.center.x = width - width/5
         DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
         DistanceAirportTxt.layer.borderWidth = 1
         DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
       
         
-        buttonsave.layer.cornerRadius = 5
+        //buttonsave.layer.cornerRadius = 5
         var frmButtonSave = buttonsave.frame
-        frmButtonSave.size.width = self.view.frame.size.width - 12
-        frmButtonSave.origin.x = 6
+        frmButtonSave.size.width = self.view.frame.size.width //  - 12
+        frmButtonSave.origin.x = 0
+        frmButtonSave.origin.y = self.view.frame.size.height - frmButtonSave.size.height
         buttonsave.frame = frmButtonSave
         
         
@@ -571,6 +573,7 @@ func initalertView(){
         checkoutPicker.frame.origin.x = 0
         
         self.scrollView.frame.origin.y = 0
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)
     }
    
     override func viewWillAppear(animated: Bool) {
