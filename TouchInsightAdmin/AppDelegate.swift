@@ -99,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "CreateMenu":"130600",
         "UpdateMenu":"130700",
         "DeleteMenu":"130800",
+        "getUploadMenuImageURL":"130700",
         "ListMenuGallery":"140100",
         "CreateMenuGallery":"140600",
         "DeleteMenuGallery":"140800",

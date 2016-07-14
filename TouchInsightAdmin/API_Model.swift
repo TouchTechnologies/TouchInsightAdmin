@@ -467,6 +467,37 @@ class API_Model {
             
         }
     }
+
+    func getUploadMenuKey(providerID:Int,menuID:Int,imageType:String,imageName:String,completionHandler:String->())
+    {
+        let dataJson = [
+            "providerInformation" : [
+                "providerId": providerID
+            ],
+            "menu" : [
+                "menuId" : menuID
+            ],
+            "medias" : [
+                imageType : [
+                    "filename": imageName
+                ]
+            ],
+            "user" : [
+                "accessToken" : self.appDelegate.userInfo["accessToken"]!
+            ]
+        ]
+        
+        print("JsonData(getUploadKey) : \(dataJson)")
+        print("Dict2JsonString : \(Dict2JsonString(dataJson))")
+        //get ImageURL
+        providerAPI(self.appDelegate.command["getUploadMenuImageURL"]!, dataJson: Dict2JsonString(dataJson)){
+            data in
+            //            print("data(getImageURL) :\(data)")
+            print("key : \(data["mediaKey"]!)")
+            completionHandler(data["mediaKey"] as! String)
+            
+        }
+    }
     func getGallery(providerID:Int,completionHandler:[[String:AnyObject]]->())
     {
         
@@ -651,6 +682,7 @@ class API_Model {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
                     print("=====================================")
+                        print(response)
                         completionHandler("OK")
                         debugPrint(response)
                         

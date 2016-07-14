@@ -332,15 +332,14 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
             send.providerAPI(self.appDelegate.command["CreateMenu"]!, dataJson: dataJson){
                 data in
                 print("data(addMenu) :\(data)")
-                
+                 print("data(menu) :\(data["menu"]!)")
+                 print("data(menuID) :\(data["menu"]!["menu_id"]!)")
 //                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 
-                
-                
-                print("countImage \(self.imageDataForUpload.count) ")
                 if(self.imageDataForUpload.count != 0){
-                    send.getUploadKey(Int(data["providerId"] as! String)!,imageType: "logoImage",imageName: self.imageNameForUpload!){
+                    send.getUploadMenuKey(Int(data["providerId"] as! String)!, menuID: (data["menu"]!["menu_id"] as! Int), imageType: "logoImage", imageName: self.imageNameForUpload!)
+                    {
                         data in
                         PKHUD.sharedHUD.dimsBackground = false
                         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false

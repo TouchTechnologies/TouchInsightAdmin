@@ -132,7 +132,22 @@ CustomIOS7AlertViewDelegate {
         
         print("menu data =====> : \(appDelegate.menuDic)")
         print("menuID :  \(appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_id"] as! String)")
+//        print("ImageLogo image : \(appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["images"]!)")
+        print("ImageLogo URL : \(appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["images"]!!["logo_image"]!!["extra-small"])")
         //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
+        
+//        if let logoData = UIImage(Data:)
+
+//        imgMenuLogo.image = UIImage(data:NSData(contentsOfURL: NSURL.urlwi))
+        
+        if let logo = self.appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["images"]!!["logo_image"]!!["extra-small"] {
+            print("has logo : \(logo)")
+            imgMenuLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo! as! String)!)!)
+        }else
+        {
+            print("no logo")
+            imgMenuLogo.image = UIImage(named: "empty_menu.png")
+        }
         menuNameTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_name_en"] as! String)
         shotDescTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_description_en"] as! String)
         priceTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_price"] as! String)
