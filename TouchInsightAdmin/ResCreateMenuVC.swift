@@ -353,14 +353,17 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                             let alert = SCLAlertView()
                             alert.showCircularIcon = false
                             alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F ,duration: 2.0)
-                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                            
+//                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                                
+//                                self.appDelegate.viewWithTopButtons.hidden = false
+//                                self.navunderlive.hidden = true
+//                                
+//                            })
                             
-                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                                
-                                self.appDelegate.viewWithTopButtons.hidden = false
-                                self.navunderlive.hidden = true
-                                
-                            })
+                            self.navigationController?.popViewControllerAnimated(true)
+                            
                         }
                         
                         
@@ -371,12 +374,15 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                     let alert = SCLAlertView()
                     alert.showCircularIcon = false
                     alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-                        self.appDelegate.viewWithTopButtons.hidden = false
-                        self.navunderlive.hidden = true
-                        
-                    })
+//                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
+//                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
+//                        self.appDelegate.viewWithTopButtons.hidden = false
+//                        self.navunderlive.hidden = true
+//                        
+//                    })
+                    
+                    self.navigationController?.popViewControllerAnimated(true)    
+                
                 }
             }
         }else{

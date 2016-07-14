@@ -438,6 +438,7 @@ func initalertView(){
         print("didReseive")
         // Dispose of any resources that can be recreated.
     }
+    
     func setObject(){
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor

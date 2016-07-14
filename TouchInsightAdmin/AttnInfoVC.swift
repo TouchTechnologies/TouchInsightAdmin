@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate{
+class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate{
     let width = UIScreen.mainScreen().bounds.size.width
     let height = UIScreen.mainScreen().bounds.size.height
     
@@ -23,9 +23,9 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     
     var facilitiesResAttached = [String]()
     
-    @IBOutlet var lblAddHotelfac: UILabel!
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var hotelFacListView: UIView!
+//    @IBOutlet var lblAddHotelfac: UILabel!
+//    @IBOutlet var tableView: UITableView!
+//    @IBOutlet var hotelFacListView: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imgHotelLogo: UIImageView!
     @IBOutlet var txtHotelName: UITextField!
@@ -342,8 +342,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         self.setObject()
         
         
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
         
         checkOutTxt.delegate = self
         checkInTxt.delegate = self
@@ -432,7 +432,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             }
             
         }
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     //    func closealert(alertView : CustomIOS7AlertView){
@@ -606,7 +606,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     self.facilitiesResAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
         }
         
         print("all facility Attraction \(appDelegate.facilityResDic)")
@@ -747,14 +747,14 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         addressTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
         
-        hotelFacListView.layer.cornerRadius = 5
-        hotelFacListView.center.x = width/2
-        hotelFacListView.layer.bounds.size.width = width - 10
-        hotelFacListView.layer.borderWidth = 1
-        hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-        
-        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
-        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
+//        hotelFacListView.layer.cornerRadius = 5
+//        hotelFacListView.center.x = width/2
+//        hotelFacListView.layer.bounds.size.width = width - 10
+//        hotelFacListView.layer.borderWidth = 1
+//        hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+//        
+//        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
+//        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
         
         //        lblAddHotelfac.layer.bounds.size.width = 265
         //        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
@@ -796,21 +796,21 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //checkOutTxt.backgroundColor = UIColor.greenColor()
         
         
-        //        distanceCityTxt.borderStyle = UITextBorderStyle.RoundedRect
-        //        distanceCityTxt.layer.cornerRadius = 5
-        //        distanceCityTxt.center.x = (width/2)/2+15
-        //        distanceCityTxt.layer.bounds.size.width = width/2 - 60
-        //        distanceCityTxt.layer.borderWidth = 1
-        //        distanceCityTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        // distanceCityTxt.borderStyle = UITextBorderStyle.RoundedRect
+        // distanceCityTxt.layer.cornerRadius = 5
+        // distanceCityTxt.center.x = (width/2)/2+15
+        // distanceCityTxt.layer.bounds.size.width = width/2 - 60
+        // distanceCityTxt.layer.borderWidth = 1
+        // distanceCityTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         //
-        //        lblAirport.frame = CGRectMake(distanceCityTxt.frame.origin.x + distanceCityTxt.frame.size.width + 5, distanceCityTxt.frame.origin.y, width/2 - 60, distanceCityTxt.frame.size.height)
+        // lblAirport.frame = CGRectMake(distanceCityTxt.frame.origin.x + distanceCityTxt.frame.size.width + 5, distanceCityTxt.frame.origin.y, width/2 - 60, distanceCityTxt.frame.size.height)
         //
-        //        DistanceAirportTxt.borderStyle = UITextBorderStyle.RoundedRect
-        //        DistanceAirportTxt.layer.cornerRadius = 5
-        //        DistanceAirportTxt.center.x = width - width/5
-        //        DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
-        //        DistanceAirportTxt.layer.borderWidth = 1
-        //        DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        // DistanceAirportTxt.borderStyle = UITextBorderStyle.RoundedRect
+        // DistanceAirportTxt.layer.cornerRadius = 5
+        // DistanceAirportTxt.center.x = width - width/5
+        // DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
+        // DistanceAirportTxt.layer.borderWidth = 1
+        // DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
         buttonsave.layer.cornerRadius = 5
         buttonsave.frame.size.width = self.view.frame.size.width - 20
@@ -832,9 +832,9 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 804
         
-        var frmBtnAddFac = btnAddFac.frame
-        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
-        btnAddFac.frame = frmBtnAddFac
+//        var frmBtnAddFac = btnAddFac.frame
+//        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
+//        btnAddFac.frame = frmBtnAddFac
         
         
         //        var frmBottomSet = self.view_BottomSet.frame
@@ -1073,28 +1073,28 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
      }
      */
     
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return facilitiesResAttached.count
-    }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        if(facilitiesResAttached.count == 0){
-            cell.textLabel?.text = ""
-        }
-        else{
-            // var facilitiesAttached:[[String:String]] = []
-            cell.textLabel?.text = facilitiesResAttached[indexPath.row]
-            print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
-        }
-        
-        //cell.textLabel?.text = "facility name"
-        return cell
-    }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Select")
-    }
-    
+//    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return facilitiesResAttached.count
+//    }
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+//        if(facilitiesResAttached.count == 0){
+//            cell.textLabel?.text = ""
+//        }
+//        else{
+//            // var facilitiesAttached:[[String:String]] = []
+//            cell.textLabel?.text = facilitiesResAttached[indexPath.row]
+//            print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
+//        }
+//        
+//        //cell.textLabel?.text = "facility name"
+//        return cell
+//    }
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        print("Select")
+//    }
+//    
     func getProviderByID()
     {
         //        PKHUD.sharedHUD.dimsBackground = false

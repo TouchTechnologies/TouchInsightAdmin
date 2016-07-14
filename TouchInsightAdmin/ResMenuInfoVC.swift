@@ -78,6 +78,9 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func getMenuType()
     {
+        
+        print("getMenuType")
+        
         let send = API_Model()
         let dataDic = [
             "providerInformation" : [
@@ -217,10 +220,12 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 print("data(DeleteRoomType) :\(data)")
                 SCLAlertView().showTitle("Delete", subTitle: "ลบ Room สำเร็จ", duration: 1.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
                 
+                //self.navigationController?.popViewControllerAnimated(true)
+                
                 //back to room list view
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-                self.appDelegate.pagecontrolIndex = 2
-                self.navigationController?.pushViewController(vc, animated:true)
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+//                self.appDelegate.pagecontrolIndex = 2
+//                self.navigationController?.pushViewController(vc, animated:true)
                 
               // self.appDelegate.viewWithTopButtons.hidden = false
               
