@@ -1057,16 +1057,28 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
         //                    }
         
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
-        {
-//            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
-            
+        self._viewEmptyCover.userInteractionEnabled = false
+        self._viewEmptyLogo.userInteractionEnabled = false
+        
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
             self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
-        }
-        else
-        {
+            self._viewEmptyLogo.hidden = true
+        }else{
             print("no logo")
-            self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+            self.imgHotelLogo.image = UIImage()
+            self._viewEmptyLogo.hidden = false
+        }
+        
+        
+        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
+            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
+            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
+            self._viewEmptyCover.hidden = true
+        }else{
+            print("no cover")
+            self.imgHotelCover.image = UIImage()
+            self._viewEmptyCover.hidden = false
         }
 //        
 ////        let dateFormatter = NSDateFormatter()

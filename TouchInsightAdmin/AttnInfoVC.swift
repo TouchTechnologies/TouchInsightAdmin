@@ -975,7 +975,10 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         {
             print("no logo")
             self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+            
         }
+        
+        
         //
         ////        let dateFormatter = NSDateFormatter()
         //
