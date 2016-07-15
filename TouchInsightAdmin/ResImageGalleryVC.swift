@@ -252,24 +252,15 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 //        }
        
         
-        if let coverImg = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] {
-        print("Has Cover img")
-//        if(coverImg as! String == "http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png"){
-            if(coverImg as! String == "http://insight.touch-ics.com/_develop/public/resource/insight/hotel/default/cover/default.png"){
+        if let coverImage = appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] as! String? {
+            if coverImage.rangeOfString("cover/default.png") != nil {
+                let urlLogo = NSURL(string: coverImage)
+                CoverImg.hnk_setImageFromURL(urlLogo!)
+            }else
+            {
+                CoverImg.hnk_setImageFromURL(NSURL(string:(appDelegate.providerIDData!["GetProviderInformationById"]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!,placeholder: UIImage(named: "bg_cctvdefault.png"))
+            }
             
-            print("URL Defult")
-                      CoverImg.image = UIImage(named: "bg_cctvdefault.png")
-                    }
-                    else{
-              print("URL not Defult")
-                      CoverImg.image =  UIImage(data: NSData(contentsOfURL: NSURL(string:coverImg as! String)!)!)
-                    
-                    }
-        
-        }
-        else{
-          print("No Cover img")
-            CoverImg.image = UIImage(named: "bg_cctvdefault.png")
         }
 
         
@@ -340,7 +331,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
             
             send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: "coverImage",imageName: imageName){
                 data in
-                //print(data)
+                print(data)
                 self.mediaKey = data
                 send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName){
                     data in

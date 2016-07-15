@@ -254,11 +254,21 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         CoverImg.image = UIImage(named: "bg_cctvdefault.png")
-        if let coverImage = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"]  as! String? {
-            if coverImage.rangeOfString("cover/default.png") == nil {
+//        if let coverImage = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"]  as! String? {
+//            if coverImage.rangeOfString("cover/default.png") == nil {
+//                let urlLogo = NSURL(string: coverImage)
+//                CoverImg.hnk_setImageFromURL(urlLogo!)
+//            }
+//        }
+        if let coverImage = appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] as! String? {
+            if coverImage.rangeOfString("cover/default.png") != nil {
                 let urlLogo = NSURL(string: coverImage)
                 CoverImg.hnk_setImageFromURL(urlLogo!)
+            }else
+            {
+                CoverImg.hnk_setImageFromURL(NSURL(string:(appDelegate.providerIDData!["GetProviderInformationById"]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!,placeholder: UIImage(named: "bg_cctvdefault.png"))
             }
+            
         }
         
         
@@ -420,7 +430,7 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                 {
                     data in
                     PKHUD.sharedHUD.contentView = PKHUDProgressView()
-                    PKHUD.sharedHUD.hide(afterDelay: 4.0)
+                    PKHUD.sharedHUD.hide(afterDelay: 0)
                     
                     self.hotelImage[self.hotelImage.count-1].contentMode = .ScaleAspectFit
                     

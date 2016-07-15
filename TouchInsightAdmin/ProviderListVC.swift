@@ -314,12 +314,23 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
         
         if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String? {
-//            if coverImage.rangeOfString("cover/default.png") == nil {
-//                let urlLogo = NSURL(string: coverImage)
-//                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
-//            }
-            self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:coverImage)!)
+            print("CoverImage \(coverImage)")
+//        if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["huge"] as! String?
+//        {
+        
+            if coverImage.rangeOfString("cover/default.png") != nil {
+                let urlLogo = NSURL(string: coverImage)
+                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
+            }else
+            {
+                print("Image::: \(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!)")
+                self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!)
+            }
             
+            
+        }else
+        {
+            self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String?)!)!)
         }
         
         Cell.lblProviderType.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String)
@@ -335,7 +346,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
             PKHUD.sharedHUD.dimsBackground = false
             PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
             
-            //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+            //PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
             //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
