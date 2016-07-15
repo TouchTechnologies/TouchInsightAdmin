@@ -158,11 +158,11 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         {
             cell.menuNameLbl.text = (roomName as! String)
 //            cell.numOfRoom.text = "\(self.menuNameData["menus"]![indexPath.row]["room_type_description_th"] as! String) rooms"
-            let gestureEdit = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.handleTap(_:)))
-            gestureEdit.numberOfTouchesRequired = 1
-            cell.editBtn.userInteractionEnabled = true
-            cell.editBtn.tag = indexPath.row
-            cell.editBtn.addGestureRecognizer(gestureEdit)
+            //let gestureEdit = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.handleTap(_:)))
+            //gestureEdit.numberOfTouchesRequired = 1
+            //cell.editBtn.userInteractionEnabled = true
+            //cell.editBtn.tag = indexPath.row
+            //cell.editBtn.addGestureRecognizer(gestureEdit)
             
             let gestureDelete = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.deleteTap(_:)))
             gestureDelete.numberOfTouchesRequired = 1
@@ -172,7 +172,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
         }else{
             cell.menuNameLbl.text = ""
-            cell.numOfRoom.text = ""
+            //cell.numOfRoom.text = ""
         }
         
         return cell
