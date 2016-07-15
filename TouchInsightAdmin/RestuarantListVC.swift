@@ -26,7 +26,6 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
     
     var options = PagingMenuOptions()
     
-    
     @IBOutlet var containnerView: UIView!
     
     @IBAction func backtomyproviderBtn(sender: AnyObject) {

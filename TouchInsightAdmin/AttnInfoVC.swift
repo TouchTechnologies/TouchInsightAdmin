@@ -22,6 +22,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     var facilitiesAttached:[[String:String]] = []
     
     var facilitiesResAttached = [String]()
+    @IBOutlet var lblTitleHeader: UILabel!
     
 //    @IBOutlet var lblAddHotelfac: UILabel!
 //    @IBOutlet var tableView: UITableView!
@@ -72,10 +73,14 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             self.img_AllDay.image = UIImage(named: "check.png")
             self.img_Weekly.image = UIImage(named: "uncheck.png")
             
-            self.view_DateSet.hidden = true
-            self.view_BottomSet.frame.origin.y = 804
+            self.view_DateSet.alpha = 0
+            self.view_BottomSet.frame.origin.y = 756
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 928)
             self.selectedDay = ["su": "1", "tu": "1", "th": "1", "fr": "1", "we": "1", "sa": "1", "mo": "1"]
             //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
+            },completion: {_ in
+                
+                self.view_DateSet.hidden = true
         })
         
     }
@@ -112,12 +117,18 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                 }
                 
             }
+            
             self.view_DateSet.hidden = false
-            self.view_BottomSet.frame.origin.y = 881
+            self.view_DateSet.alpha = 1
+            self.view_BottomSet.frame.origin.y = 828
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1000)
             
             
             
             //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
+            },completion: {_ in
+                
+                //self.view_DateSet.hidden = false
         })
         
         
@@ -371,8 +382,6 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //        appDelegate.facilityHotelStatus.removeAll()
     }
     func initailLogoImage(){
-        imgHotelLogo.backgroundColor = UIColor.whiteColor()
-        imgHotelLogo.layer.cornerRadius = 10
         if let logo = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
             imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
@@ -759,6 +768,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //        lblAddHotelfac.layer.bounds.size.width = 265
         //        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
         
+        
         // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
@@ -812,25 +822,36 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         // DistanceAirportTxt.layer.borderWidth = 1
         // DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
         
-        buttonsave.layer.cornerRadius = 5
-        buttonsave.frame.size.width = self.view.frame.size.width - 20
-        buttonsave.center.x = scrollView.frame.size.width/2
+        var frmButtonSave = buttonsave.frame
+        frmButtonSave.size.width = self.view.frame.size.width //  - 12
+        frmButtonSave.origin.x = 0
+        frmButtonSave.origin.y = self.view.frame.size.height - frmButtonSave.size.height
+        buttonsave.frame = frmButtonSave
         
-        pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
-        checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
-        checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
+        pickerView.center.y = UIScreen.mainScreen().bounds.height - 250
+        checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 250
+        checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 250
         
         pickerView.frame.origin.x = 0
         checkinPicker.frame.origin.x = 0
         checkoutPicker.frame.origin.x = 0
         
+        pickerView.frame.size.width = UIScreen.mainScreen().bounds.width
+        checkinPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        checkoutPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        
+        
+        let navBarHeight:CGFloat = 44.0
+        var frmScrollView = scrollView.frame
+        frmScrollView.origin.y = 0
+        frmScrollView.size.height = UIScreen.mainScreen().bounds.height - (navBarHeight + 54 + 46) // - 10
+        scrollView.frame = frmScrollView
+        
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 2200)
-        //        self.view_DateSet.frame.size.width = self.view.frame.width - 16
-        //        self.view_BottomSet.frame.size.width = self.view.frame.width - 16
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 928)
         
         self.view_DateSet.hidden = true
-        self.view_BottomSet.frame.origin.y = 804
+        self.view_BottomSet.frame.origin.y = 756
         
 //        var frmBtnAddFac = btnAddFac.frame
 //        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
@@ -1236,20 +1257,19 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                         }
                         
                     }
-                    if(allDay == 7)
-                    {
+                    if(allDay == 7){
                         self.view_DateSet.hidden = true
+                        self.view_BottomSet.frame.origin.y = 756
+                        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 928)
                         self.img_AllDay.image = UIImage(named: "check.png")
                         self.img_Weekly.image = UIImage(named: "uncheck.png")
-                    }else
-                    {
+                    }else{
                         self.view_DateSet.hidden = false
-                        self.view_BottomSet.frame.origin.y = 881
+                        self.view_BottomSet.frame.origin.y = 828
+                        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1000)
                         self.img_AllDay.image = UIImage(named: "uncheck.png")
                         self.img_Weekly.image = UIImage(named: "check.png")
                     }
-                    
-                    
                 }
             }
             

@@ -23,10 +23,12 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     var facilitiesResAttached = [String]()
     
+    @IBOutlet var lblTitleHeader: UILabel!
     @IBOutlet var lblAddHotelfac: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var hotelFacListView: UIView!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imgHotelCover: UIImageView!
     @IBOutlet var imgHotelLogo: UIImageView!
     @IBOutlet var txtHotelName: UITextField!
     @IBOutlet var HotelDesTxt: UITextView!
@@ -44,6 +46,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     @IBOutlet weak var btnAddFac: UIButton!
     
+    @IBOutlet var _viewEmptyCover: UIView!
+    @IBOutlet var _viewEmptyLogo: UIView!
+    
     //
     //    @IBOutlet var distanceCityTxt: UITextField!
     //    @IBOutlet var DistanceAirportTxt: UITextField!
@@ -53,6 +58,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     //    @IBOutlet var lblAirport: UILabel!
     
+    let myPickerController = UIImagePickerController()
     
     // Big Box ==========
     @IBOutlet weak var view_DateSet: UIView!
@@ -73,9 +79,12 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             self.img_Weekly.image = UIImage(named: "uncheck.png")
             
             self.view_DateSet.hidden = true
-            self.view_BottomSet.frame.origin.y = 804
+            self.view_BottomSet.frame.origin.y = 912
             self.selectedDay = ["su": "1", "tu": "1", "th": "1", "fr": "1", "we": "1", "sa": "1", "mo": "1"]
 //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
+            
+            
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1454)
         })
         
     }
@@ -113,9 +122,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 
             }
             self.view_DateSet.hidden = false
-            self.view_BottomSet.frame.origin.y = 881
+            self.view_BottomSet.frame.origin.y = 984
             
-
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1526)
             
 //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
         })
@@ -303,6 +312,118 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     
     
+    
+    /////////////////// Restaurant Service
+    // Wifi
+    var selectedService = [
+        "wifi":"0",
+        "parking":"0",
+        "smonking":"0",
+        ]
+    @IBOutlet weak var btnWifiServiceYes: UIButton!
+    @IBOutlet weak var btnWifiServiceNo: UIButton!
+    @IBOutlet weak var imgWifiServiceYes: UIImageView!
+    @IBOutlet weak var imgWifiServiceNo: UIImageView!
+    @IBOutlet weak var lblWifiServiceYes: UILabel!
+    @IBOutlet weak var lblWifiServiceNo: UILabel!
+    
+    @IBAction func btnWifiServiceYesClick(sender: AnyObject) {
+        print("btnWifiServiceYesClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["wifi"] = "1"
+            self.lblWifiServiceYes.textColor = UIColor.blackColor()
+            self.lblWifiServiceNo.textColor = UIColor.grayColor()
+            self.imgWifiServiceYes.image = UIImage(named: "check.png")
+            self.imgWifiServiceNo.image = UIImage(named: "uncheck.png")
+            
+        })
+    }
+    
+    @IBAction func btnWifiServiceNoClick(sender: AnyObject) {
+        print("btnWifiServiceNoClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["wifi"] = "0"
+            self.lblWifiServiceYes.textColor = UIColor.grayColor()
+            self.lblWifiServiceNo.textColor = UIColor.blackColor()
+            self.imgWifiServiceYes.image = UIImage(named: "uncheck.png")
+            self.imgWifiServiceNo.image = UIImage(named: "check.png")
+            
+        })
+        
+    }
+    
+    // Parking
+    @IBOutlet weak var btnParkingServiceYes: UIButton!
+    @IBOutlet weak var btnParkingServiceNo: UIButton!
+    @IBOutlet weak var imgParkingServiceYes: UIImageView!
+    @IBOutlet weak var imgParkingServiceNo: UIImageView!
+    @IBOutlet weak var lblParkingServiceYes: UILabel!
+    @IBOutlet weak var lblParkingServiceNo: UILabel!
+    
+    @IBAction func btnParkingServiceYesClick(sender: AnyObject) {
+        print("btnParkingServiceYesClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["parking"] = "1"
+            self.lblParkingServiceYes.textColor = UIColor.blackColor()
+            self.lblParkingServiceNo.textColor = UIColor.grayColor()
+            self.imgParkingServiceYes.image = UIImage(named: "check.png")
+            self.imgParkingServiceNo.image = UIImage(named: "uncheck.png")
+            
+        })
+    }
+    
+    @IBAction func btnParkingServiceNoClick(sender: AnyObject) {
+        print("btnParkingServiceNoClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["parking"] = "0"
+            self.lblParkingServiceYes.textColor = UIColor.grayColor()
+            self.lblParkingServiceNo.textColor = UIColor.blackColor()
+            self.imgParkingServiceYes.image = UIImage(named: "uncheck.png")
+            self.imgParkingServiceNo.image = UIImage(named: "check.png")
+            
+        })
+        
+    }
+    
+    
+    // Smonking
+    @IBOutlet weak var btnSmonkingServiceYes: UIButton!
+    @IBOutlet weak var btnSmonkingServiceNo: UIButton!
+    @IBOutlet weak var imgSmonkingServiceYes: UIImageView!
+    @IBOutlet weak var imgSmonkingServiceNo: UIImageView!
+    @IBOutlet weak var lblSmonkingServiceYes: UILabel!
+    @IBOutlet weak var lblSmonkingServiceNo: UILabel!
+    
+    @IBAction func btnSmonkingServiceYesClick(sender: AnyObject) {
+        print("btnSmonkingServiceYesClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["smonking"] = "1"
+            self.lblSmonkingServiceYes.textColor = UIColor.blackColor()
+            self.lblSmonkingServiceNo.textColor = UIColor.grayColor()
+            self.imgSmonkingServiceYes.image = UIImage(named: "check.png")
+            self.imgSmonkingServiceNo.image = UIImage(named: "uncheck.png")
+            
+        })
+    }
+    
+    @IBAction func btnSmonkingServiceNoClick(sender: AnyObject) {
+        print("btnSmonkingServiceNoClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["smonking"] = "0"
+            self.lblSmonkingServiceYes.textColor = UIColor.grayColor()
+            self.lblSmonkingServiceNo.textColor = UIColor.blackColor()
+            self.imgSmonkingServiceYes.image = UIImage(named: "uncheck.png")
+            self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
+            
+        })
+        
+    }
+    
+    
+    
+    /////////////////
+    
+    
     var button = UIButton()
     
     var SCALING_Y = (1024.0/480.0)
@@ -364,14 +485,13 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self.getProviderByID()
         self.getFacility()
         
+        btn_WeeklyClick(UIButton())
         
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(ResInfo)")
     }
     func initailLogoImage(){
-        imgHotelLogo.backgroundColor = UIColor.whiteColor()
-        imgHotelLogo.layer.cornerRadius = 10
         if let logo = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
             imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
@@ -543,10 +663,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 
             }
             
-            
-            
-            
-            
+                        
         }
         print("==============================================")
         self.setFacility()
@@ -577,7 +694,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 ]
         ]
         
-        
         print("Resfac Dic \(appDelegate.facilityResDic)")
         print("Resfac status \(appDelegate.facilityResStatus)")
         print("Resfac DicCount \(appDelegate.facilityResDic?.count)")
@@ -595,10 +711,12 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             {
                 for i in 0...data["facilitiesAttached"]!.count - 1
                 {
-                    print(data["facilitiesAttached"]![i]["facility_keyname"])
-                    print("CountWTF : \(self.appDelegate.facilityResDic!["facilities"]!.count)")
-                    for j in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1
-                    {
+                    
+                    //print(data["facilitiesAttached"]![i]["facility_keyname"])
+                    //print("CountWTF : \(self.appDelegate.facilityResDic!["facilities"]!.count)")
+
+                     //HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+                    for j in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1{
                         //                    print("facilitiesAttachedID \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"])")
                         
                         if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String))
@@ -610,6 +728,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                         }
                         
                     }
+                     //HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+                    
+                    
                     self.facilitiesResAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
@@ -700,148 +821,133 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     }
     func setObject(){
         
-        imgHotelLogo.layer.cornerRadius = 5
-        imgHotelLogo.layer.borderWidth = 1
-        imgHotelLogo.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
-        txtHotelName.borderStyle = UITextBorderStyle.RoundedRect
-        txtHotelName.layer.cornerRadius = 5
+        lblTitleHeader.layer.bounds.size.width = width
+        lblTitleHeader.center.x = width/2
+        
+        imgHotelCover.layer.cornerRadius = 0
+        imgHotelCover.layer.borderWidth = 1
+        imgHotelCover.layer.borderColor = borderColorCG
+        imgHotelCover.layer.bounds.size.width = width - 10
+        imgHotelCover.center.x = width/2
+        
+        _viewEmptyCover.center.x = width/2
+        
+        imgHotelLogo.layer.cornerRadius = 0
+        imgHotelLogo.layer.borderWidth = 1
+        imgHotelLogo.layer.borderColor = borderColorCG
+        
+        txtHotelName.borderStyle = UITextBorderStyle.None
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
         txtHotelName.layer.borderWidth = 1
-        txtHotelName.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        txtHotelName.layer.borderColor = borderColorCG
         
-        HotelDesTxt.layer.cornerRadius = 5
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
-        HotelDesTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        HotelDesTxt.layer.borderColor = borderColorCG
         
         
-        phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        phonNumberTxt.layer.cornerRadius = 5
+        phonNumberTxt.borderStyle = UITextBorderStyle.None
         phonNumberTxt.center.x = width/2
         phonNumberTxt.layer.bounds.size.width = width - 10
         phonNumberTxt.layer.borderWidth = 1
-        phonNumberTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        phonNumberTxt.layer.borderColor = borderColorCG
         
-        emailTxt.borderStyle = UITextBorderStyle.RoundedRect
-        emailTxt.layer.cornerRadius = 5
+        emailTxt.borderStyle = UITextBorderStyle.None
         emailTxt.center.x = width/2
         emailTxt.layer.bounds.size.width = width - 10
         emailTxt.layer.borderWidth = 1
-        emailTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        emailTxt.layer.borderColor = borderColorCG
         
-        websiteTxt.borderStyle = UITextBorderStyle.RoundedRect
-        websiteTxt.layer.cornerRadius = 5
+        websiteTxt.borderStyle = UITextBorderStyle.None
         websiteTxt.center.x = width/2
         websiteTxt.layer.bounds.size.width = width - 10
         websiteTxt.layer.borderWidth = 1
-        websiteTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        websiteTxt.layer.borderColor = borderColorCG
         
-        provinceTxt.borderStyle = UITextBorderStyle.RoundedRect
-        provinceTxt.layer.cornerRadius = 5
+        provinceTxt.borderStyle = UITextBorderStyle.None
         provinceTxt.center.x = width/2
         provinceTxt.layer.bounds.size.width = width - 10
         provinceTxt.layer.borderWidth = 1
-        provinceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        provinceTxt.layer.borderColor = borderColorCG
         
-        
-        addressTxt.layer.cornerRadius = 5
         addressTxt.center.x = width/2
         addressTxt.layer.bounds.size.width = width - 10
         addressTxt.layer.borderWidth = 1
-        addressTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        addressTxt.layer.borderColor = borderColorCG
         
-        
-        hotelFacListView.layer.cornerRadius = 5
         hotelFacListView.center.x = width/2
         hotelFacListView.layer.bounds.size.width = width - 10
         hotelFacListView.layer.borderWidth = 1
-        hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        hotelFacListView.layer.borderColor = borderColorCG
         
         tableView.center.x = hotelFacListView.layer.bounds.size.width/2
         tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
         
-//        lblAddHotelfac.layer.bounds.size.width = 265
-//        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
+        lblAddHotelfac.layer.bounds.size.width = 265
+        lblAddHotelfac.frame.origin.x = 10
         
-        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
         checkInView.layer.bounds.size.width = width/2 - 10
         checkInView.layer.borderWidth = 1
-        checkInView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        checkInView.layer.borderColor = borderColorCG
+        checkInTitle.center.x = (width/2)/2
+        checkOutTitle.center.x = (width/2)/2
         
+        checkInTxt.center.x = (width/2)/2
+        checkOutTxt.center.x = (width/2)/2
         
-//        checkInTxt.center.x = (width/2)/2
-//        checkOutTxt.center.x = (width/2)/2
+        checkInTxt.layer.borderWidth = 0
+        checkOutTxt.layer.borderWidth = 0
         
-        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        checkOutView.layer.cornerRadius = 5
         checkOutView.center.x =  width - width/4
         checkOutView.layer.bounds.size.width = width/2 - 10
         checkOutView.layer.borderWidth = 1
-        checkOutView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        checkOutView.layer.borderColor = borderColorCG
         
         
-        checkInTitle.frame.size.width = (checkInTitle.superview?.frame.size.width)!
-        checkInTitle.center.x = (checkInTitle.superview?.frame.size.width)!/2
-        //checkInTitle.backgroundColor = UIColor.greenColor()
-        
-        checkOutTitle.frame.size.width = (checkOutTitle.superview?.frame.size.width)!
-        checkOutTitle.center.x = (checkOutTitle.superview?.frame.size.width)!/2
-        //checkOutTitle.backgroundColor = UIColor.greenColor()
+        var frmBtnAddFac = btnAddFac.frame
+        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
+        btnAddFac.frame = frmBtnAddFac
         
         
-        checkInTxt.frame.size.width = (checkInTxt.superview?.frame.size.width)!
-        checkInTxt.center.x = (checkInTxt.superview?.frame.size.width)!/2
-        //checkInTxt.backgroundColor = UIColor.greenColor()
-        
-        checkOutTxt.frame.size.width = (checkOutTxt.superview?.frame.size.width)!
-        checkOutTxt.center.x = (checkOutTxt.superview?.frame.size.width)!/2
-        //checkOutTxt.backgroundColor = UIColor.greenColor()
+        var frmButtonSave = buttonsave.frame
+        frmButtonSave.size.width = self.view.frame.size.width //  - 12
+        frmButtonSave.origin.x = 0
+        frmButtonSave.origin.y = self.view.frame.size.height - frmButtonSave.size.height
+        buttonsave.frame = frmButtonSave
         
         
-        //        distanceCityTxt.borderStyle = UITextBorderStyle.RoundedRect
-        //        distanceCityTxt.layer.cornerRadius = 5
-        //        distanceCityTxt.center.x = (width/2)/2+15
-        //        distanceCityTxt.layer.bounds.size.width = width/2 - 60
-        //        distanceCityTxt.layer.borderWidth = 1
-        //        distanceCityTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        //
-        //        lblAirport.frame = CGRectMake(distanceCityTxt.frame.origin.x + distanceCityTxt.frame.size.width + 5, distanceCityTxt.frame.origin.y, width/2 - 60, distanceCityTxt.frame.size.height)
-        //
-        //        DistanceAirportTxt.borderStyle = UITextBorderStyle.RoundedRect
-        //        DistanceAirportTxt.layer.cornerRadius = 5
-        //        DistanceAirportTxt.center.x = width - width/5
-        //        DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
-        //        DistanceAirportTxt.layer.borderWidth = 1
-        //        DistanceAirportTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        buttonsave.layer.cornerRadius = 5
-        buttonsave.frame.size.width = self.view.frame.size.width - 20
-        buttonsave.center.x = scrollView.frame.size.width/2
-        
-        pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
-        checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
-        checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
+        pickerView.center.y = UIScreen.mainScreen().bounds.height - 250
+        checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 250
+        checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 250
         
         pickerView.frame.origin.x = 0
         checkinPicker.frame.origin.x = 0
         checkoutPicker.frame.origin.x = 0
         
+        pickerView.frame.size.width = UIScreen.mainScreen().bounds.width
+        checkinPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        checkoutPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        
+        
+        let navBarHeight:CGFloat = 44.0
+        var frmScrollView = scrollView.frame
+        frmScrollView.origin.y = 0
+        frmScrollView.size.height = UIScreen.mainScreen().bounds.height - (navBarHeight + 54 + 46) // - 10
+        scrollView.frame = frmScrollView
+        
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 2200)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1526)
 //        self.view_DateSet.frame.size.width = self.view.frame.width - 16
 //        self.view_BottomSet.frame.size.width = self.view.frame.width - 16
         
         self.view_DateSet.hidden = true
-        self.view_BottomSet.frame.origin.y = 804
+        self.view_BottomSet.frame.origin.y = 912
         
-        var frmBtnAddFac = btnAddFac.frame
-        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
-        btnAddFac.frame = frmBtnAddFac
         
         
 //        var frmBottomSet = self.view_BottomSet.frame
@@ -900,11 +1006,15 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         //self.setObject()
         
+        let tapAddCover = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
+        imgHotelCover.userInteractionEnabled = true
+        imgHotelCover.tag = 1
+        imgHotelCover.addGestureRecognizer(tapAddCover)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
+        let tapAddLogo = UITapGestureRecognizer(target:self, action:#selector(ResInformationVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
-        imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
-        self.scrollView.addSubview(self.imgHotelLogo)
+        imgHotelLogo.tag = 2
+        imgHotelLogo.addGestureRecognizer(tapAddLogo)
         
         //scrollView.contentSize = CGSizeMake(width,2150)
         
@@ -1181,8 +1291,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                     if((closeTime as! String) == "00:00")
                     {
                         self.setStatus24(true)
-                    }else
-                    {
+                    }else{
                         self.setStatus24(false)
                         
                     }
@@ -1240,19 +1349,18 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             default:
                                 break;
                         }
-                        
                     }
-                    if(allDay == 7)
-                    {
+                    if(allDay == 7){
                         self.view_DateSet.hidden = true
                         self.img_AllDay.image = UIImage(named: "check.png")
                         self.img_Weekly.image = UIImage(named: "uncheck.png")
-                    }else
-                    {
+                        
+                    }else{
                         self.view_DateSet.hidden = false
-                        self.view_BottomSet.frame.origin.y = 881
+                        self.view_BottomSet.frame.origin.y = 912
                         self.img_AllDay.image = UIImage(named: "uncheck.png")
                         self.img_Weekly.image = UIImage(named: "check.png")
+                        
                     }
 
                     
@@ -1266,14 +1374,25 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
     }
-    func imageTapped(img: AnyObject)
-    {
+    
+    var _pickerType = ""
+    func imageTapped(sender: AnyObject){
         
         print("Upload Logo Img")
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
+        //        print("Upload Logo Img")
+        let _gg = sender as! UITapGestureRecognizer
+        print(_gg.view)
+        
+        if( _gg.view?.tag == 1){
+            _pickerType = "cover"
+        }else if( _gg.view?.tag == 2){
+            _pickerType = "logo"
+        }
+        //        print("---------")
+        
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        myPickerController.allowsEditing = false
         self.presentViewController(myPickerController, animated: true, completion: nil)
         
     }
@@ -1281,10 +1400,30 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         print("ImagePicker")
         
-        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imgHotelLogo.contentMode = .ScaleAspectFit //3
-        self.imgHotelLogo.image = chosenImage //4
+        let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        var _imageType = ""
+        if(_pickerType == "cover"){
+            
+            print("cover")
+            // upload Cover
+            self.imgHotelCover.contentMode = .ScaleAspectFill
+            self.imgHotelCover.image = chosenImage
+            _imageType = "coverImage"
+            
+        }else if(_pickerType == "logo"){
+            print("logo")
+            
+            // Upload LOGO
+            self.imgHotelLogo.contentMode = .ScaleAspectFill
+            self.imgHotelLogo.image = chosenImage
+            _imageType = "logoImage"
+            
+        }
+        
+//        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+//        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+//        imgHotelLogo.contentMode = .ScaleAspectFit //3
+//        self.imgHotelLogo.image = chosenImage //4
         
         
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
@@ -1294,7 +1433,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        imgHotelLogo.reloadInputViews()
         
         let send = API_Model()
-        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: "logoImage",imageName: imageName){
+        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
             data in
             PKHUD.sharedHUD.dimsBackground = false
             PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
@@ -1308,21 +1447,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             {
                 data in
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-//                PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//                self.imgHotelLogo.image = chosenImage
-//                self.imgHotelLogo.reloadInputViews()
-//                self.navigationController?.popViewControllerAnimated(true)
-//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-//                self.navigationController?.pushViewController(vc, animated:true)
-                self.dismissViewControllerAnimated(true, completion:
-                    {
-                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                        self.navigationController?.popViewControllerAnimated(true)
-                        self.imgHotelLogo.image = chosenImage
-                        self.imgHotelLogo.reloadInputViews()
-                        
-                    }
-                )
+                self.dismissViewControllerAnimated(true, completion:{_ in
+                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                })
             }
         }
     }
@@ -1332,7 +1459,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //        // self.dismissViewControllerAnimated(true, completion: nil)
         //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
         //        self.navigationController?.pushViewController(vc, animated:true)
-                dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
         
     }
     
