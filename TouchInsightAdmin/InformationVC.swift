@@ -1021,9 +1021,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
                     self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
         
-                    self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
-        
-                    self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
         
                     self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
         
@@ -1039,8 +1036,56 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
                     
                     self.txtTimeToAirport.text = (data["GetProviderInformationById"]!["time_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["time_to_airport"] as! String
-
                     
+                    
+                    
+                    
+                    
+//                    self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
+//                    
+//                    self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
+
+                    if var checkIn = data["GetProviderInformationById"]!["check_in_time"]
+                    {
+                        let myNSString = checkIn as! NSString
+                        
+                        checkIn = myNSString.substringWithRange(NSRange(location: 0, length: 5))
+                    
+                        self.checkInTxt.text = checkIn as? String
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+                        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+                        dateFormatter.dateFormat = "HH:mm"
+                        let date = dateFormatter.dateFromString(checkIn as! String)
+                        if let unwrappedDate = date {
+                            self.checkoutPicker.setDate(unwrappedDate, animated: false)
+                        }
+                        
+                    }else
+                    {
+                        self.checkInTxt.text = "00:00"
+                    }
+                    if var checkOut = data["GetProviderInformationById"]!["check_out_time"]
+                    {
+                        let myNSString = checkOut as! NSString
+                        
+                        checkOut = myNSString.substringWithRange(NSRange(location: 0, length: 5))
+                        
+                        self.checkOutTxt.text = checkOut as? String
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+                        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+                        dateFormatter.dateFormat = "HH:mm"
+                        let date = dateFormatter.dateFromString(checkOut as! String)
+                        if let unwrappedDate = date {
+                            self.checkoutPicker.setDate(unwrappedDate, animated: false)
+                        }
+                        
+                    }else
+                    {
+                        self.checkOutTxt.text = "00:00"
+                    }
+
                     
                     
                     if((data["GetProviderInformationById"]!["is_bookable"] as! String) == "1")
