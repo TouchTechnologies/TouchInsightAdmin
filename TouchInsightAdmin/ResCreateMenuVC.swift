@@ -306,8 +306,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                     "menuNameTh": "",
                     "menuDescriptionEn": shotDescTxt.text,
                     "menuDescriptionTh": "",
-                    "menuPrice": "",
-                    "roomTypeCurrentPrice": priceTxt.text,
+                    "menuPrice":priceTxt.text,
                     "spicyLevel": strSpiciLevel
                 ],
                 "user" : [
@@ -327,7 +326,8 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
 //                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 
-                if(self.imageDataForUpload.count != 0){
+                if(self.imageDataForUpload.count != 0)
+                {
                     send.getUploadMenuKey(Int(data["providerId"] as! String)!, menuID: (data["menu"]!["menu_id"] as! Int), imageType: "logoImage", imageName: self.imageNameForUpload!)
                     {
                         data in
@@ -347,15 +347,6 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                             let alert = SCLAlertView()
                             alert.showCircularIcon = false
                             alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F ,duration: 2.0)
-//                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                            
-//                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                                
-//                                self.appDelegate.viewWithTopButtons.hidden = false
-//                                self.navunderlive.hidden = true
-//                                
-//                            })
-                            
                             self.navigationController?.popViewControllerAnimated(true)
                             
                         }
@@ -368,12 +359,6 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                     let alert = SCLAlertView()
                     alert.showCircularIcon = false
                     alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-//                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                        self.appDelegate.viewWithTopButtons.hidden = false
-//                        self.navunderlive.hidden = true
-//                        
-//                    })
                     
                     self.navigationController?.popViewControllerAnimated(true)    
                 
@@ -540,9 +525,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
             imageNameForUpload = imageURL.pathComponents![1];
             print("imageName : \(imageNameForUpload)")
         dismissViewControllerAnimated(true, completion: nil)
-//        self.roomGallery.append(chosenImage)
-//        self.roomImageUpload.append(chosenImage)
-//        self.collectionView.reloadData()
+
     }
     
     //gestureRecognizer
