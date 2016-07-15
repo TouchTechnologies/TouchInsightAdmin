@@ -13,20 +13,13 @@ class customMenuListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
     
     @IBOutlet weak var menuNameLbl: UILabel!
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var numOfRoom: UILabel!
-    @IBOutlet var editBtn: UIButton!
     @IBOutlet var deleteBtn: UIButton!
     @IBOutlet var bgView: UIView!
     var menuGallery = [[String:AnyObject]]()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBAction func deleteBtn(sender: AnyObject) {
-        
-    }
-    
-    @IBAction func editBtn(sender: AnyObject) {
-        //        print("Edit btn : \(sender)")
-        
+        print("delete Btn : \(sender)")
     }
     
     
