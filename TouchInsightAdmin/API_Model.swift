@@ -16,7 +16,7 @@ class API_Model {
     let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
     let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
 
-    
+    // test to tak
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let _osVersion = UIDevice.currentDevice().systemVersion
