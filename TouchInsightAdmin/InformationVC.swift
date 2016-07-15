@@ -170,8 +170,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         print("viewDidDisappear(hotelInfo)")
     }
     func initailLogoImage(){
-        imgHotelLogo.backgroundColor = UIColor.whiteColor()
-        imgHotelLogo.layer.cornerRadius = 0
         if let logo = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
             imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
@@ -407,8 +405,12 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             {
                 for i in 0...data["facilitiesAttached"]!.count - 1
                 {
+                    
+                    
+                    // HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
                     print(data["facilitiesAttached"]![i]["facility_keyname"])
-                    print("CountWTF : \(self.appDelegate.facilityHotelDic!["facilities"]!.count)")
+                    //print("CountWTF : \(self.appDelegate.facilityHotelDic!["facilities"]!.count)")
+                    
                     for j in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1
                     {
                         //                    print("facilitiesAttachedID \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"])")
@@ -422,6 +424,9 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                         }
                         
                     }
+                    // HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+                    
+                    
                     self.facilitiesHotelAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
@@ -537,13 +542,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         imgHotelLogo.layer.borderColor = borderColorCG
         
         txtHotelName.borderStyle = UITextBorderStyle.None
-        //        txtHotelName.layer.cornerRadius = 0
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
         txtHotelName.layer.borderWidth = 1
         txtHotelName.layer.borderColor = borderColorCG
         
-        //HotelDesTxt.layer.cornerRadius = 5
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
@@ -551,42 +554,34 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         
         phonNumberTxt.borderStyle = UITextBorderStyle.None
-        //phonNumberTxt.layer.cornerRadius = 5
         phonNumberTxt.center.x = width/2
         phonNumberTxt.layer.bounds.size.width = width - 10
         phonNumberTxt.layer.borderWidth = 1
         phonNumberTxt.layer.borderColor = borderColorCG
         
         emailTxt.borderStyle = UITextBorderStyle.None
-        //emailTxt.layer.cornerRadius = 5
         emailTxt.center.x = width/2
         emailTxt.layer.bounds.size.width = width - 10
         emailTxt.layer.borderWidth = 1
         emailTxt.layer.borderColor = borderColorCG
         
         websiteTxt.borderStyle = UITextBorderStyle.None
-        //websiteTxt.layer.cornerRadius = 5
         websiteTxt.center.x = width/2
         websiteTxt.layer.bounds.size.width = width - 10
         websiteTxt.layer.borderWidth = 1
         websiteTxt.layer.borderColor = borderColorCG
         
         provinceTxt.borderStyle = UITextBorderStyle.None
-        //provinceTxt.layer.cornerRadius = 5
         provinceTxt.center.x = width/2
         provinceTxt.layer.bounds.size.width = width - 10
         provinceTxt.layer.borderWidth = 1
         provinceTxt.layer.borderColor = borderColorCG
         
-        
-        //addressTxt.layer.cornerRadius = 5
         addressTxt.center.x = width/2
         addressTxt.layer.bounds.size.width = width - 10
         addressTxt.layer.borderWidth = 1
         addressTxt.layer.borderColor = borderColorCG
         
-        
-        //hotelFacListView.layer.cornerRadius = 5
         hotelFacListView.center.x = width/2
         hotelFacListView.layer.bounds.size.width = width - 10
         hotelFacListView.layer.borderWidth = 1
@@ -596,26 +591,21 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
         
         lblAddHotelfac.layer.bounds.size.width = 265
-        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
+        lblAddHotelfac.frame.origin.x = 10
         
         totalRoomTxt.borderStyle = UITextBorderStyle.None
-        //totalRoomTxt.layer.cornerRadius = 5
         totalRoomTxt.layer.bounds.size.width = width/2 - 10
         totalRoomTxt.center.x = (width/2)/2
         totalRoomTxt.layer.borderWidth = 1
         totalRoomTxt.layer.borderColor = borderColorCG
         
         totalFloorTxt.borderStyle = UITextBorderStyle.None
-        //totalFloorTxt.layer.cornerRadius = 5
         totalFloorTxt.layer.bounds.size.width = width/2 - 10
         totalFloorTxt.center.x = width - width/4
         totalFloorTxt.layer.borderWidth = 1
         totalFloorTxt.layer.borderColor = borderColorCG
         
-        
-        
         totalResTxt.borderStyle = UITextBorderStyle.None
-        //totalResTxt.layer.cornerRadius = 5
         totalResTxt.layer.bounds.size.width = width/2 - 10
         totalResTxt.center.x = (width/2)/2
         totalResTxt.layer.borderWidth = 1
@@ -623,15 +613,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         
         totalBarTxt.borderStyle = UITextBorderStyle.None
-        //totalBarTxt.layer.cornerRadius = 5
         totalBarTxt.layer.bounds.size.width = width/2 - 10
         totalBarTxt.center.x = width - width/4
         totalBarTxt.layer.borderWidth = 1
         totalBarTxt.layer.borderColor = borderColorCG
         
-        
-        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        //checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
         checkInView.layer.bounds.size.width = width/2 - 10
         checkInView.layer.borderWidth = 1
@@ -645,15 +631,12 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         checkInTxt.layer.borderWidth = 0
         checkOutTxt.layer.borderWidth = 0
         
-        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        //checkOutView.layer.cornerRadius = 5
         checkOutView.center.x =  width - width/4
         checkOutView.layer.bounds.size.width = width/2 - 10
         checkOutView.layer.borderWidth = 1
         checkOutView.layer.borderColor = borderColorCG
         
         distanceCityTxt.borderStyle = UITextBorderStyle.None
-        //distanceCityTxt.layer.cornerRadius = 5
         distanceCityTxt.center.x = (width/2)/2+15
         distanceCityTxt.layer.bounds.size.width = width/2 - 60
         distanceCityTxt.layer.borderWidth = 1
@@ -662,12 +645,10 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         lblAirport.frame = CGRectMake(distanceCityTxt.frame.origin.x + distanceCityTxt.frame.size.width + 5, distanceCityTxt.frame.origin.y, width/2 - 60, distanceCityTxt.frame.size.height)
         
         DistanceAirportTxt.borderStyle = UITextBorderStyle.None
-        //DistanceAirportTxt.layer.cornerRadius = 5
         DistanceAirportTxt.center.x = width - width/5
         DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
         DistanceAirportTxt.layer.borderWidth = 1
         DistanceAirportTxt.layer.borderColor = borderColorCG
-        
         
         
         var frmBtnAddFac = btnAddFac.frame
@@ -675,7 +656,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         btnAddFac.frame = frmBtnAddFac
         
         
-        //buttonsave.layer.cornerRadius = 5
         var frmButtonSave = buttonsave.frame
         frmButtonSave.size.width = self.view.frame.size.width //  - 12
         frmButtonSave.origin.x = 0
@@ -693,13 +673,16 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         checkoutPicker.frame.origin.x = 0
         timetoairportPicker.frame.origin.x = 0
         
+        pickerView.frame.size.width = UIScreen.mainScreen().bounds.width
+        checkinPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        checkoutPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        timetoairportPicker.frame.size.width = UIScreen.mainScreen().bounds.width
         
         let navBarHeight:CGFloat = 44.0
         var frmScrollView = scrollView.frame
         frmScrollView.origin.y = 0
         frmScrollView.size.height = UIScreen.mainScreen().bounds.height - (navBarHeight + 54 + 46) // - 10
         scrollView.frame = frmScrollView
-        //        scrollView.backgroundColor = UIColor.redColor()
         
         self.scrollView.frame.origin.y = 0
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1544)
@@ -810,6 +793,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         if(textField == provinceTxt){
             
+            self.view.endEditing(true)
             pickerView.hidden = false
             txtHotelName.resignFirstResponder()
             emailTxt.resignFirstResponder()
@@ -831,7 +815,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             
         }
         else if(textField == checkInTxt){
-            
+            self.view.endEditing(true)
             checkinPicker.hidden = false
             checkoutPicker.hidden = true
             timetoairportPicker.hidden = true
@@ -854,6 +838,8 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             return false
         }
         else if(textField == checkOutTxt){
+            
+            self.view.endEditing(true)
             checkoutPicker.hidden = false
             checkinPicker.hidden = true
             timetoairportPicker.hidden = true
@@ -875,6 +861,8 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             return false
         }
         else if(textField == txtTimeToAirport){
+            
+            self.view.endEditing(true)
             checkoutPicker.hidden = true
             checkinPicker.hidden = true
             timetoairportPicker.hidden = false

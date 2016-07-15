@@ -13,7 +13,7 @@ import SCLAlertView
 class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-     var editView = EditRoominfomationVC()
+//     var editView = EditRoominfomationVC()
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var tableView: UITableView!
 
@@ -28,15 +28,14 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
     
     
     func initial(){
-    
-    lblTitle.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 30)
-    tableView.frame = CGRectMake(0, 30,UIScreen.mainScreen().bounds.size.width , UIScreen.mainScreen().bounds.size.height)
-    createButton.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 90, UIScreen.mainScreen().bounds.size.height - 90, 80, 80)
+        
+        lblTitle.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 30)
+        tableView.frame = CGRectMake(0, 30,UIScreen.mainScreen().bounds.size.width , UIScreen.mainScreen().bounds.size.height)
+        createButton.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 90, UIScreen.mainScreen().bounds.size.height - 90, 80, 80)
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         
-        noRoomimage.frame = CGRectMake(width/2
-- noRoomimage.frame.size.width/2, height/2 - 200, 100, 100)
+        noRoomimage.frame = CGRectMake(width/2 - noRoomimage.frame.size.width/2, height/2 - 200, 100, 100)
         noRoomimage.center.x = width/2
         
         noRoomTitle.frame = CGRectMake(0,  height/2 - 80, width, 30)
@@ -48,6 +47,7 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
         noRoomLine.frame = CGRectMake(width/2 - 70, height/2, 140,(height - 150) - noRoomLine.frame.origin.y )
         noRoomLine.center.x = width/2
     }
+    
     @IBAction func creataRoomBtn(sender: AnyObject) {
         
          self.performSegueWithIdentifier("toCreate", sender: UIButton())

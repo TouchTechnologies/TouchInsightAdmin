@@ -55,7 +55,7 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.navigationController?.setNavigationBarHidden(false, animated: true)
       //  let width = UIScreen.mainScreen().bounds.size.width
         let contentscrollheight = self.scrollView.layer.bounds.size.height
         scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
@@ -68,7 +68,7 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = false
+        //self.navigationController?.navigationBarHidden = false
         self.initialSize()
         
         
@@ -200,7 +200,7 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
         
         
         self.navigationController?.popViewControllerAnimated(true)
-        appDelegate.pagecontrolIndex = 2
+//        appDelegate.pagecontrolIndex = 2
         
 //
 //       print("Back")
@@ -433,7 +433,7 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
         }
     }
     func buttonTapped(btn:SCLButton) {
-        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
+        //self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     func dismissKeyboard()
     {
@@ -509,7 +509,8 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
        
     }
     
-    func CellTapped(img: AnyObject){
+    func CellTapped(img: AnyObject)
+    {
        
         
         print("Upload Cover RoomImg")
