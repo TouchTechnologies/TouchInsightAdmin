@@ -368,7 +368,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(ResInfo)")
-        appDelegate.facilityResStatus.removeAll()
     }
     func initailLogoImage(){
         imgHotelLogo.backgroundColor = UIColor.whiteColor()
@@ -578,6 +577,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 ]
         ]
         
+        
+        print("Resfac Dic \(appDelegate.facilityResDic)")
+        print("Resfac status \(appDelegate.facilityResStatus)")
+        print("Resfac DicCount \(appDelegate.facilityResDic?.count)")
+        print("Resfac statusCount \(appDelegate.facilityResStatus.count)")
         let dataJson = send.Dict2JsonString(dataDic)
         print("data Send Json :\(dataJson)")
         print("Json GetFacilityAttached :\(send.jsonEncode(dataJson))")
@@ -887,6 +891,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
     }
+
     
     override func viewWillAppear(animated: Bool) {
         //        self.viewDidLoad()
@@ -1088,7 +1093,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         else{
             // var facilitiesAttached:[[String:String]] = []
             cell.textLabel?.text = facilitiesResAttached[indexPath.row]
-            print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
+            print("facilitiesResAttached(table) \(facilitiesResAttached[indexPath.row])")
         }
         
         //cell.textLabel?.text = "facility name"

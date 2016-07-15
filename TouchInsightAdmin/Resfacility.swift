@@ -39,7 +39,7 @@ class Resfacility: UIView {
         print("index: \(indexPath.row)")
         print("Facility Image Url :\(appDelegate.facilityResDic!["facilities"]![indexPath.row]["images"]!!["icons"]!!["lighten"] as! String)")
         
-        if(!appDelegate.facilityHotelStatus[indexPath.row])
+        if(!appDelegate.facilityResStatus[indexPath.row])
         {
             if let url  = NSURL(string: appDelegate.facilityResDic!["facilities"]![indexPath.row]["images"]!!["icons"]!!["lighten"] as! String),
                 data = NSData(contentsOfURL: url)
@@ -71,7 +71,7 @@ class Resfacility: UIView {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         
-        appDelegate.facilityHotelStatus[indexPath.row] = (appDelegate.facilityHotelStatus[indexPath.row]) ? false:true
+        appDelegate.facilityResStatus[indexPath.row] = (appDelegate.facilityResStatus[indexPath.row]) ? false:true
         collectionView.reloadItemsAtIndexPaths([indexPath])
         
     }

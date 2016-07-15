@@ -207,7 +207,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             ]
             
             let dataHotelJson = send.Dict2JsonString(dataHotelDic)
-            print("dataJson:Hotel(Facility) : \(dataHotelJson)")
+//            print("dataJson:Hotel(Facility) : \(dataHotelJson)")
             send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataHotelJson){
                 data in
                 if(self.loadCount == 1)
