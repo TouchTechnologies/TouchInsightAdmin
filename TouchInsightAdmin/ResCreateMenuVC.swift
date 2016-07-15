@@ -51,21 +51,18 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     @IBOutlet weak var viewSplHot: UIView!
     
     
-    var selectedSpicyLevel = [
-        "mild":"1",
-        "middle":"0",
-        "hot":"0",
-        ]
+//    var selectedSpicyLevel = [
+//        "mild":"1",
+//        "middle":"0",
+//        "hot":"0",
+//        ]
     @IBOutlet weak var img_mild: UIImageView!
     @IBOutlet weak var img_middle: UIImageView!
     @IBOutlet weak var img_hot: UIImageView!
-    
+    var strSpiciLevel = ""
     @IBAction func btn_mild_click(sender: AnyObject) {
         
-        selectedSpicyLevel["mild"] = "1"
-        selectedSpicyLevel["middle"] = "0"
-        selectedSpicyLevel["hot"] = "0"
-        
+        strSpiciLevel = "0"
         img_mild.image = UIImage(named: "mild_hover.png")
         img_middle.image = UIImage(named: "middle.png")
         img_hot.image = UIImage(named: "hot.png")
@@ -75,9 +72,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     
     @IBAction func btn_middle_click(sender: AnyObject) {
         
-        selectedSpicyLevel["mild"] = "0"
-        selectedSpicyLevel["middle"] = "1"
-        selectedSpicyLevel["hot"] = "0"
+        strSpiciLevel = "1"
         
         img_mild.image = UIImage(named: "mild.png")
         img_middle.image = UIImage(named: "middle_hover.png")
@@ -88,9 +83,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     
     @IBAction func btn_hot_click(sender: AnyObject) {
         
-        selectedSpicyLevel["mild"] = "0"
-        selectedSpicyLevel["middle"] = "0"
-        selectedSpicyLevel["hot"] = "1"
+        strSpiciLevel = "2"
         
         img_mild.image = UIImage(named: "mild.png")
         img_middle.image = UIImage(named: "middle.png")
@@ -100,7 +93,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
     }
     
     func displaySelectedData() {
-        print(selectedSpicyLevel)
+        print(strSpiciLevel)
     }
     
     
@@ -301,6 +294,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
             PKHUD.sharedHUD.show()
             
             let send = API_Model()
+           
             let dataDic = [
                 "providerInformation" : [
                     "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
@@ -314,7 +308,7 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                     "menuDescriptionTh": "",
                     "menuPrice": "",
                     "roomTypeCurrentPrice": priceTxt.text,
-                    "spicyLevel": "0"
+                    "spicyLevel": strSpiciLevel
                 ],
                 "user" : [
                     "accessToken" : appDelegate.userInfo["accessToken"]!

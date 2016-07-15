@@ -8,13 +8,18 @@
 
 import UIKit
 
-class customMenuListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollectionViewDelegate{
+class customMenuListTbl: UITableViewCell /*,UICollectionViewDataSource ,UICollectionViewDelegate */ {
     
     
     @IBOutlet weak var menuNameLbl: UILabel!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var deleteBtn: UIButton!
-    @IBOutlet var bgView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var imgLogo:UIImageView!
+    @IBOutlet weak var imgLevel:UIImageView!
+    @IBOutlet weak var lblLevel:UILabel!
+    @IBOutlet weak var lblPrice:UILabel!
+    
     var menuGallery = [[String:AnyObject]]()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -32,8 +37,8 @@ class customMenuListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
         
         
         print("customMenuListTbl")
-        let nib = UINib(nibName: "customImgCell", bundle: nil)
-        collectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
+        //let nib = UINib(nibName: "customImgCell", bundle: nil)
+        //collectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
         bgView.layer.cornerRadius = 5
 //        getMenuGallery()
         /*let nib = UINib(nibName: "customImgCell", bundle: nil)
@@ -47,34 +52,34 @@ class customMenuListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
         
         // Configure the view for the selected state
     }
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return menuGallery.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
-        let Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! customImgCell
-        print("imageGal \(self.menuGallery[indexPath.row]["thumbnail"])")
-//        Cell.imgCell.image = UIImage(data: NSData(contentsOfURL: NSURL(string: (self.menuGallery[indexPath.row]["thumbnail"] as! String))!)!)
-        return Cell
-        
-    }
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    }
-    
-    func getMenuGallery()
-    {
-        let send = API_Model()
-        print("appDelegate.menuGalleryIndex : \(appDelegate.roomGalleryIndex!)")
-        //        print("Room Dic : \(appDelegate.roomDic!["roomTypes"]!)")
-        send.getRoomGallery(appDelegate.menuDic!["menus"]![appDelegate.menuGalleryIndex!]!["room_type_id"] as! String){
-            data in
-            print("getRoomGallery(customRoomListTbl): \(data)")
-            self.menuGallery = data
-            self.collectionView.reloadData()
-        }
-        
-    }
+//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        //#warning Incomplete method implementation -- Return the number of items in the section
+//        return menuGallery.count
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
+//        let Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! customImgCell
+//        print("imageGal \(self.menuGallery[indexPath.row]["thumbnail"])")
+////        Cell.imgCell.image = UIImage(data: NSData(contentsOfURL: NSURL(string: (self.menuGallery[indexPath.row]["thumbnail"] as! String))!)!)
+//        return Cell
+//        
+//    }
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//    }
+//    
+//    func getMenuGallery()
+//    {
+//        let send = API_Model()
+//        print("appDelegate.menuGalleryIndex : \(appDelegate.roomGalleryIndex!)")
+//        //        print("Room Dic : \(appDelegate.roomDic!["roomTypes"]!)")
+//        send.getRoomGallery(appDelegate.menuDic!["menus"]![appDelegate.menuGalleryIndex!]!["room_type_id"] as! String){
+//            data in
+//            print("getRoomGallery(customRoomListTbl): \(data)")
+//            self.menuGallery = data
+//            self.collectionView.reloadData()
+//        }
+//        
+//    }
     
     // MARK: UICollectionViewDataSource
     
