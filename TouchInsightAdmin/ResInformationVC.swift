@@ -694,7 +694,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 ]
         ]
         
-        
         print("Resfac Dic \(appDelegate.facilityResDic)")
         print("Resfac status \(appDelegate.facilityResStatus)")
         print("Resfac DicCount \(appDelegate.facilityResDic?.count)")
@@ -715,6 +714,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                     
                     //print(data["facilitiesAttached"]![i]["facility_keyname"])
                     //print("CountWTF : \(self.appDelegate.facilityResDic!["facilities"]!.count)")
+
                      //HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
                     for j in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1{
                         //                    print("facilitiesAttachedID \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"])")
