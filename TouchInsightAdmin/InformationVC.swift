@@ -358,10 +358,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 
             }
             
-            
-            
-            
-            
         }
         print("==============================================")
         self.setFacility()
