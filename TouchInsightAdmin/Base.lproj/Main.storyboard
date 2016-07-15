@@ -2707,7 +2707,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="ELg-QU-9pA">
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="ELg-QU-9pA">
                                         <rect key="frame" x="96" y="57" width="181" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -2724,7 +2724,7 @@
                                             </imageView>
                                         </subviews>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="sxu-YF-6O3">
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="sxu-YF-6O3">
                                         <rect key="frame" x="28" y="159" width="46" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -2862,13 +2862,6 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aYU-e3-V39">
-                                                <rect key="frame" x="136" y="369" width="96" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnBookableYesClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="pmF-Hc-5rX"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wifi Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gCn-HJ-gis">
                                                 <rect key="frame" x="12" y="368" width="98" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2891,13 +2884,6 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c4h-b3-28e">
-                                                <rect key="frame" x="235" y="369" width="116" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnBookableNoClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="o39-v1-Hew"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cmo-cz-CD2">
                                                 <rect key="frame" x="184" y="438" width="68" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2905,13 +2891,6 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7en-B2-KVZ">
-                                                <rect key="frame" x="136" y="427" width="96" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnBookableYesClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="Yaa-ZO-s8H"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parking Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JP3-42-kyv">
                                                 <rect key="frame" x="12" y="426" width="120" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2934,13 +2913,6 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m35-oE-Woq">
-                                                <rect key="frame" x="235" y="427" width="116" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnBookableNoClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="NZW-f0-wx3"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DB7-gW-oq1">
                                                 <rect key="frame" x="184" y="496" width="68" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2948,13 +2920,6 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OvI-oq-wCZ">
-                                                <rect key="frame" x="136" y="485" width="96" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnBookableYesClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="HGh-Zb-fek"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smonking Zone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gHK-YL-d8a">
                                                 <rect key="frame" x="12" y="484" width="120" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2977,11 +2942,52 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aYU-e3-V39">
+                                                <rect key="frame" x="136" y="369" width="91" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnBookableYesClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="pmF-Hc-5rX"/>
+                                                    <action selector="btnWifiServiceYesClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="PEB-SH-efN"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c4h-b3-28e">
+                                                <rect key="frame" x="228" y="369" width="123" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnBookableNoClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="o39-v1-Hew"/>
+                                                    <action selector="btnWifiServiceNoClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="LCx-ha-L5i"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7en-B2-KVZ">
+                                                <rect key="frame" x="136" y="427" width="91" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnBookableYesClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="Yaa-ZO-s8H"/>
+                                                    <action selector="btnParkingServiceYesClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="P09-yU-AQd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m35-oE-Woq">
+                                                <rect key="frame" x="228" y="427" width="123" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnBookableNoClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="NZW-f0-wx3"/>
+                                                    <action selector="btnParkingServiceNoClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="2vc-Fb-fPs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OvI-oq-wCZ">
+                                                <rect key="frame" x="136" y="485" width="91" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnBookableYesClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="HGh-Zb-fek"/>
+                                                    <action selector="btnSmonkingServiceYesClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="PLF-uR-2xP"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TuL-Rh-yKf">
-                                                <rect key="frame" x="235" y="485" width="116" height="42"/>
+                                                <rect key="frame" x="228" y="485" width="123" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <connections>
                                                     <action selector="btnBookableNoClick:" destination="k7i-V7-9SC" eventType="touchUpInside" id="2ti-jl-p1K"/>
+                                                    <action selector="btnSmonkingServiceNoClick:" destination="whq-VC-WOU" eventType="touchUpInside" id="CVA-jb-UVZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -3035,6 +3041,12 @@
                         <outlet property="_viewEmptyLogo" destination="sxu-YF-6O3" id="Svc-b1-7M9"/>
                         <outlet property="addressTxt" destination="dg6-St-2Ez" id="jAH-ca-lkl"/>
                         <outlet property="btnAddFac" destination="A1a-Uj-ZcN" id="EDi-Cc-3r9"/>
+                        <outlet property="btnParkingServiceNo" destination="m35-oE-Woq" id="Si9-1d-S76"/>
+                        <outlet property="btnParkingServiceYes" destination="7en-B2-KVZ" id="47I-Cd-vRA"/>
+                        <outlet property="btnSmonkingServiceNo" destination="TuL-Rh-yKf" id="ugz-WF-HbA"/>
+                        <outlet property="btnSmonkingServiceYes" destination="OvI-oq-wCZ" id="uXd-0j-MGt"/>
+                        <outlet property="btnWifiServiceNo" destination="c4h-b3-28e" id="Lon-9B-BY7"/>
+                        <outlet property="btnWifiServiceYes" destination="aYU-e3-V39" id="oHc-Tb-jzt"/>
                         <outlet property="btn_day_fr" destination="lj2-xe-XIh" id="QvB-Sq-xZD"/>
                         <outlet property="btn_day_mo" destination="ZXp-rh-yCm" id="DDa-6u-ngU"/>
                         <outlet property="btn_day_sa" destination="HLK-wM-UYa" id="9AW-fF-TZo"/>
@@ -3063,10 +3075,22 @@
                         <outlet property="imgCheck24h" destination="pbc-gB-zEX" id="v3y-Xf-w7J"/>
                         <outlet property="imgHotelCover" destination="cbM-7r-o0w" id="CqG-UO-Eaz"/>
                         <outlet property="imgHotelLogo" destination="Obb-sf-cso" id="JYi-ca-4g4"/>
+                        <outlet property="imgParkingServiceNo" destination="D5v-Hi-M3X" id="JrY-Hd-MhV"/>
+                        <outlet property="imgParkingServiceYes" destination="Eih-oq-ez1" id="d0R-ri-xfa"/>
+                        <outlet property="imgSmonkingServiceNo" destination="8IK-sv-1vm" id="19h-Qe-LYU"/>
+                        <outlet property="imgSmonkingServiceYes" destination="Ijm-DC-waG" id="BwU-xJ-eYX"/>
+                        <outlet property="imgWifiServiceNo" destination="hhq-cP-BUE" id="bCs-4Q-6aQ"/>
+                        <outlet property="imgWifiServiceYes" destination="ajY-ac-eX6" id="6C1-Dl-xbA"/>
                         <outlet property="img_AllDay" destination="Jbg-Ku-Vr3" id="uEn-0x-cOl"/>
                         <outlet property="img_Weekly" destination="wck-ON-hlf" id="GAl-3B-NRc"/>
                         <outlet property="lblAddHotelfac" destination="OxI-b7-0Tf" id="GDy-a4-J6F"/>
+                        <outlet property="lblParkingServiceNo" destination="ysg-Jb-rgH" id="ns1-S8-vJ6"/>
+                        <outlet property="lblParkingServiceYes" destination="Cmo-cz-CD2" id="C8S-Pd-51c"/>
+                        <outlet property="lblSmonkingServiceNo" destination="xmq-Ar-D0p" id="c3Q-GS-M7j"/>
+                        <outlet property="lblSmonkingServiceYes" destination="DB7-gW-oq1" id="MYz-io-Ryo"/>
                         <outlet property="lblTitleHeader" destination="emH-Xh-OGR" id="WSG-D0-kFB"/>
+                        <outlet property="lblWifiServiceNo" destination="bOr-z5-3I9" id="rBg-Zh-Ocv"/>
+                        <outlet property="lblWifiServiceYes" destination="RR2-qM-N7c" id="ce7-KY-hfv"/>
                         <outlet property="phonNumberTxt" destination="iX8-7R-nc3" id="20E-9L-avc"/>
                         <outlet property="pickerView" destination="4yY-4C-KR8" id="RF7-UA-C3n"/>
                         <outlet property="provinceTxt" destination="XGH-OW-Vwa" id="dUm-34-oNy"/>

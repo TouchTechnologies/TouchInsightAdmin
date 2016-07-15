@@ -315,6 +315,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     /////////////////// Restaurant Service
     // Wifi
+    var selectedService = [
+        "wifi":"0",
+        "parking":"0",
+        "smonking":"0",
+        ]
     @IBOutlet weak var btnWifiServiceYes: UIButton!
     @IBOutlet weak var btnWifiServiceNo: UIButton!
     @IBOutlet weak var imgWifiServiceYes: UIImageView!
@@ -323,8 +328,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     @IBOutlet weak var lblWifiServiceNo: UILabel!
     
     @IBAction func btnWifiServiceYesClick(sender: AnyObject) {
+        print("btnWifiServiceYesClick")
         UIView.animateWithDuration(0.25, animations: {_ in
-            
+            self.selectedService["wifi"] = "1"
             self.lblWifiServiceYes.textColor = UIColor.blackColor()
             self.lblWifiServiceNo.textColor = UIColor.grayColor()
             self.imgWifiServiceYes.image = UIImage(named: "check.png")
@@ -334,12 +340,80 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     }
     
     @IBAction func btnWifiServiceNoClick(sender: AnyObject) {
+        print("btnWifiServiceNoClick")
         UIView.animateWithDuration(0.25, animations: {_ in
-            
+            self.selectedService["wifi"] = "0"
             self.lblWifiServiceYes.textColor = UIColor.grayColor()
             self.lblWifiServiceNo.textColor = UIColor.blackColor()
             self.imgWifiServiceYes.image = UIImage(named: "uncheck.png")
             self.imgWifiServiceNo.image = UIImage(named: "check.png")
+            
+        })
+        
+    }
+    
+    // Parking
+    @IBOutlet weak var btnParkingServiceYes: UIButton!
+    @IBOutlet weak var btnParkingServiceNo: UIButton!
+    @IBOutlet weak var imgParkingServiceYes: UIImageView!
+    @IBOutlet weak var imgParkingServiceNo: UIImageView!
+    @IBOutlet weak var lblParkingServiceYes: UILabel!
+    @IBOutlet weak var lblParkingServiceNo: UILabel!
+    
+    @IBAction func btnParkingServiceYesClick(sender: AnyObject) {
+        print("btnParkingServiceYesClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["parking"] = "1"
+            self.lblParkingServiceYes.textColor = UIColor.blackColor()
+            self.lblParkingServiceNo.textColor = UIColor.grayColor()
+            self.imgParkingServiceYes.image = UIImage(named: "check.png")
+            self.imgParkingServiceNo.image = UIImage(named: "uncheck.png")
+            
+        })
+    }
+    
+    @IBAction func btnParkingServiceNoClick(sender: AnyObject) {
+        print("btnParkingServiceNoClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["parking"] = "0"
+            self.lblParkingServiceYes.textColor = UIColor.grayColor()
+            self.lblParkingServiceNo.textColor = UIColor.blackColor()
+            self.imgParkingServiceYes.image = UIImage(named: "uncheck.png")
+            self.imgParkingServiceNo.image = UIImage(named: "check.png")
+            
+        })
+        
+    }
+    
+    
+    // Smonking
+    @IBOutlet weak var btnSmonkingServiceYes: UIButton!
+    @IBOutlet weak var btnSmonkingServiceNo: UIButton!
+    @IBOutlet weak var imgSmonkingServiceYes: UIImageView!
+    @IBOutlet weak var imgSmonkingServiceNo: UIImageView!
+    @IBOutlet weak var lblSmonkingServiceYes: UILabel!
+    @IBOutlet weak var lblSmonkingServiceNo: UILabel!
+    
+    @IBAction func btnSmonkingServiceYesClick(sender: AnyObject) {
+        print("btnSmonkingServiceYesClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["smonking"] = "1"
+            self.lblSmonkingServiceYes.textColor = UIColor.blackColor()
+            self.lblSmonkingServiceNo.textColor = UIColor.grayColor()
+            self.imgSmonkingServiceYes.image = UIImage(named: "check.png")
+            self.imgSmonkingServiceNo.image = UIImage(named: "uncheck.png")
+            
+        })
+    }
+    
+    @IBAction func btnSmonkingServiceNoClick(sender: AnyObject) {
+        print("btnSmonkingServiceNoClick")
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.selectedService["smonking"] = "0"
+            self.lblSmonkingServiceYes.textColor = UIColor.grayColor()
+            self.lblSmonkingServiceNo.textColor = UIColor.blackColor()
+            self.imgSmonkingServiceYes.image = UIImage(named: "uncheck.png")
+            self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
             
         })
         
@@ -645,20 +719,20 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                     //print(data["facilitiesAttached"]![i]["facility_keyname"])
                     //print("CountWTF : \(self.appDelegate.facilityResDic!["facilities"]!.count)")
 
-                    // HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-//                    for j in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1{
-//                        //                    print("facilitiesAttachedID \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"])")
-//                        
-//                        if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String))
-//                        {
-//                            self.appDelegate.facilityResStatus[j] = true
-//                            print("index : \(j) \(data["facilitiesAttached"]![i]["facility_id"] as! String)")
-//                            print("index : \(j) \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String)")
-//                            
-//                        }
-//                        
-//                    }
-                    // HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+                     //HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+                    for j in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1{
+                        //                    print("facilitiesAttachedID \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"])")
+                        
+                        if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String))
+                        {
+                            self.appDelegate.facilityResStatus[j] = true
+                            print("index : \(j) \(data["facilitiesAttached"]![i]["facility_id"] as! String)")
+                            print("index : \(j) \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String)")
+                            
+                        }
+                        
+                    }
+                     //HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
                     
                     
                     self.facilitiesResAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)

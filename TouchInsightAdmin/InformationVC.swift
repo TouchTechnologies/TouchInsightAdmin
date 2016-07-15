@@ -378,6 +378,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             
         }
     }
+    
     func getFacility()
     {
         
