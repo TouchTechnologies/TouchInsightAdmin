@@ -1308,14 +1308,19 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             {
                 data in
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-                self.navigationController?.pushViewController(vc, animated:true)
+//                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+//                self.imgHotelLogo.image = chosenImage
+//                self.imgHotelLogo.reloadInputViews()
+//                self.navigationController?.popViewControllerAnimated(true)
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+//                self.navigationController?.pushViewController(vc, animated:true)
                 self.dismissViewControllerAnimated(true, completion:
                     {
                         PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                        self.navigationController?.popViewControllerAnimated(true)
                         self.imgHotelLogo.image = chosenImage
                         self.imgHotelLogo.reloadInputViews()
+                        
                     }
                 )
             }
