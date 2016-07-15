@@ -20,9 +20,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     var pickerPick = false
     var mediaKey:String!
     var facilitiesAttached:[[String:String]] = []
-
-    var facilitiesHotelAttached = [String]()
     
+    var facilitiesHotelAttached = [String]()
+    var selectedBookable = "0"
+    
+    @IBOutlet var lblTitleHeader: UILabel!
     @IBOutlet var lblAddHotelfac: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var hotelFacListView: UIView!
@@ -49,18 +51,56 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     @IBOutlet var checkInView: UIView!
     @IBOutlet var checkOutView: UIView!
     
+    @IBOutlet var btnAddFac: UIButton!
+    
     @IBOutlet var distanceCityTxt: UITextField!
     @IBOutlet var DistanceAirportTxt: UITextField!
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var checkinPicker: UIDatePicker!
     @IBOutlet var checkoutPicker: UIDatePicker!
+    @IBOutlet var timetoairportPicker: UIDatePicker!
     
     @IBOutlet var lblAirport: UILabel!
+    @IBOutlet var txtTimeToAirport: UITextField!
     
     @IBOutlet var _viewEmptyCover: UIView!
     @IBOutlet var _viewEmptyLogo: UIView!
     
-       var button = UIButton()
+    // Bookable
+    @IBOutlet weak var btnBookableYes: UIButton!
+    @IBOutlet weak var btnBookableNo: UIButton!
+    @IBOutlet weak var imgBookableYes: UIImageView!
+    @IBOutlet weak var imgBookableNo: UIImageView!
+    @IBOutlet weak var lblBookableYes: UILabel!
+    @IBOutlet weak var lblBookableNo: UILabel!
+    
+    @IBAction func btnBookableYesClick(sender: AnyObject) {
+        selectedBookable = "1"
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+            self.lblBookableYes.textColor = UIColor.blackColor()
+            self.lblBookableNo.textColor = UIColor.grayColor()
+            self.imgBookableYes.image = UIImage(named: "check.png")
+            self.imgBookableNo.image = UIImage(named: "uncheck.png")
+
+        })
+    }
+    
+    @IBAction func btnBookableNoClick(sender: AnyObject) {
+        selectedBookable = "0"
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+            self.lblBookableYes.textColor = UIColor.grayColor()
+            self.lblBookableNo.textColor = UIColor.blackColor()
+            self.imgBookableYes.image = UIImage(named: "uncheck.png")
+            self.imgBookableNo.image = UIImage(named: "check.png")
+            
+        })
+        
+    }
+    
+    
+    var button = UIButton()
     
     var SCALING_Y = (1024.0/480.0)
     var SCALING_X = (768.0/360.0)
@@ -69,15 +109,15 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     @IBAction func addHotelFacilityBtn(sender: AnyObject) {
         
-       self.initalertView()
+        self.initalertView()
         
     }
-       override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         print("View Did Load")
         self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
-
+        
         myPickerController.delegate = self
         
         checkinPicker.hidden = true
@@ -88,11 +128,15 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         checkoutPicker.backgroundColor = UIColor.whiteColor()
         checkoutPicker.addTarget(self, action: #selector(InformationVC.checkoutPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
+        timetoairportPicker.hidden = true
+        timetoairportPicker.backgroundColor = UIColor.whiteColor()
+        timetoairportPicker.addTarget(self, action: #selector(InformationVC.timeToAirportPickerChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.hidden = true
-
-       
+        
+        
         self.setObject()
         self.getFacility()
         self.getProviderByID()
@@ -100,10 +144,21 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         tableView.delegate = self
         tableView.dataSource = self
         
-    //    checkOutTxt.delegate = self
+        checkOutTxt.delegate = self
         checkInTxt.delegate = self
-//        print("province Data \(provinceData)")
-print("province Delegate \(appDelegate.provinceName)")
+        txtTimeToAirport.delegate = self
+        
+        checkinPicker.datePickerMode = UIDatePickerMode.Time
+        checkinPicker.locale = NSLocale(localeIdentifier: "TH")
+        checkoutPicker.datePickerMode = UIDatePickerMode.Time
+        checkoutPicker.locale = NSLocale(localeIdentifier: "TH")
+        timetoairportPicker.datePickerMode = UIDatePickerMode.Time
+        timetoairportPicker.locale = NSLocale(localeIdentifier: "TH")
+        
+        //
+        
+        //        print("province Data \(provinceData)")
+        print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard))
@@ -124,41 +179,55 @@ print("province Delegate \(appDelegate.provinceName)")
             print("no avatar")
             imgHotelLogo.image = UIImage(named: "ic_team.png")
         }
-       
-    }
-   
-func checkinPickerChanged(datePicker:UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
         
-        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        let strCheckin = dateFormatter.stringFromDate(datePicker.date)
-   //     let strCheckout = dateFormatter.stringFromDate(datePicker.date)
-            checkInTxt.text = strCheckin
-//            checkinPicker.hidden = true
+    }
     
-}
+    func checkinPickerChanged(datePicker:UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        print("checkinPickerChanged")
+        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateFormat = "HH:mm"
+        let strCheckin = dateFormatter.stringFromDate(datePicker.date)
+        // let strCheckout = dateFormatter.stringFromDate(datePicker.date)
+        checkInTxt.text = strCheckin
+        // checkinPicker.hidden = true
+        
+    }
     func checkoutPickerChanged(datePicker:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
         
         dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateFormat = "HH:mm"
         let strCheckout = dateFormatter.stringFromDate(datePicker.date)
-        //     let strCheckout = dateFormatter.stringFromDate(datePicker.date)
+        // let strCheckout = dateFormatter.stringFromDate(datePicker.date)
         checkOutTxt.text = strCheckout
-//        checkoutPicker.hidden = true
+        // checkoutPicker.hidden = true
         
     }
-
-func initalertView(){
+    func timeToAirportPickerChanged(datePicker:UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateFormat = "HH:mm"
+        let str = dateFormatter.stringFromDate(datePicker.date)
+        // let strCheckout = dateFormatter.stringFromDate(datePicker.date)
+        txtTimeToAirport.text = str
+        // checkoutPicker.hidden = true
+        
+    }
+    
+    func initalertView(){
         let alertView = CustomIOS7AlertView()
         alertView.containerView = createContainerView()
-       alertView.delegate = self
-       alertView.buttonColor = UIColor.redColor()
-    //  alertView.buttonHeight = 0
-       alertView.show()
+        alertView.delegate = self
+        alertView.buttonColor = UIColor.redColor()
+        //  alertView.buttonHeight = 0
+        alertView.show()
     }
-
+    
     func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
         alertView.close()
         
@@ -177,31 +246,31 @@ func initalertView(){
         tableView.reloadData()
     }
     
-//    func closealert(alertView : CustomIOS7AlertView){
-//        alertView.close()
-//    tableView.reloadData()
-//    }
+    //    func closealert(alertView : CustomIOS7AlertView){
+    //        alertView.close()
+    //    tableView.reloadData()
+    //    }
     // Create a custom container view
     func createContainerView() -> UIView {
-       //let width = UIScreen.mainScreen().bounds.size.width
+        //let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         let containerView = UIView(frame: CGRectMake(0, 0, 300 , height - 100))
         
         let subView1: hotelfacility = NSBundle.mainBundle().loadNibNamed("hotelfacility", owner: self, options: nil)[0] as! hotelfacility
         subView1.frame = containerView.bounds
-       // subView1.closeAlert.addTarget(self, action: "closealert:", forControlEvents: .TouchUpInside)
-       // sibview.frame = CGRectMake(0, 0, 300, 400)
-       // sibview.backgroundColor = UIColor.greenColor()
+        // subView1.closeAlert.addTarget(self, action: "closealert:", forControlEvents: .TouchUpInside)
+        // sibview.frame = CGRectMake(0, 0, 300, 400)
+        // sibview.backgroundColor = UIColor.greenColor()
         containerView.addSubview(subView1)
         
         return containerView
     }
-
+    
     
     @IBOutlet var buttonsave: UIButton!
     @IBAction func btnSave(sender: AnyObject) {
         print("save")
-      //  print ("Province ID : \(provinceID)")
+        //  print ("Province ID : \(provinceID)")
         
         PKHUD.sharedHUD.dimsBackground = false
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
@@ -209,9 +278,9 @@ func initalertView(){
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
         PKHUD.sharedHUD.show()
-//        PKHUD.sharedHUD.hide(afterDelay: 2.0)
+        //        PKHUD.sharedHUD.hide(afterDelay: 2.0)
         
-//        let send = API_Model()
+        //        let send = API_Model()
         let dataDic = [
             "providerInformation" : [
                 "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
@@ -247,7 +316,7 @@ func initalertView(){
                 "timeToAirport": ""
             ],
             "user" : [
-            "accessToken" : appDelegate.userInfo["accessToken"]!
+                "accessToken" : appDelegate.userInfo["accessToken"]!
             ]
         ]
         
@@ -260,55 +329,55 @@ func initalertView(){
             data in
             print("data :\(data)")
             self.send.getUserInfo(self.appDelegate.userInfo["userID"]! as String)
-                {
+            {
+                data in
+                print("data : \(data)")
+                
+                
+                let dataJson = "{\"providerUser\":\"\(data["email"]!)\"}"
+                //                    print("appDelegate :\(self.appDelegate.userInfo["email"])")
+                print("dataSendJson : \(dataJson)")
+                self.send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJson){
                     data in
-                    print("data : \(data)")
-
                     
-                    let dataJson = "{\"providerUser\":\"\(data["email"]!)\"}"
-//                    print("appDelegate :\(self.appDelegate.userInfo["email"])")
-                    print("dataSendJson : \(dataJson)")
-                    self.send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJson){
-                        data in
-                        
-                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
-                        
-                        print("listProvider count:\(data["ListProviderInformationSummary"]!.count)")
-                        self.appDelegate.providerData = data
-                        print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
-                        
-                        PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                        PKHUD.sharedHUD.hide(afterDelay: 0.5)
-//                        PKHUD.sharedHUD.hide(animated: false, completion: nil)
-                        
-                       // let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-                       // secondViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-                        //self.navigationController?.pushViewController(secondViewController!, animated: true)
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                        
-                        self.appDelegate.viewWithTopButtons.hidden = true
-                    }
+                    print("listProvider :\(data["ListProviderInformationSummary"]!)")
                     
+                    print("listProvider count:\(data["ListProviderInformationSummary"]!.count)")
+                    self.appDelegate.providerData = data
+                    print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
+                    
+                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                    PKHUD.sharedHUD.hide(afterDelay: 0.5)
+                    //                        PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    
+                    // let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
+                    // secondViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+                    //self.navigationController?.pushViewController(secondViewController!, animated: true)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    self.appDelegate.viewWithTopButtons.hidden = true
+                }
+                
             }
             
-
             
-
+            
+            
             
         }
         print("==============================================")
-       self.setFacility()
+        self.setFacility()
         print("==============================================")
         
-//        print("Facility(status) : \(appDelegate.facilityHotelStatus)")
+        //        print("Facility(status) : \(appDelegate.facilityHotelStatus)")
         for i in 0...appDelegate.facilityHotelDic!["facilities"]!.count - 1
         {
-//            print("faccccccc \(i)")
+            //            print("faccccccc \(i)")
             if(self.appDelegate.facilityHotelStatus[i])
             {
-            print("Facility :\(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)")
+                print("Facility :\(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)")
             }
-           
+            
         }
     }
     func getFacility()
@@ -317,12 +386,12 @@ func initalertView(){
         facilitiesHotelAttached.removeAll()
         
         let dataDic =
-        [
-            "providerInformation" :
-                [
-                    "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                    "providerTypeKeyname" : "hotel"
-            ]
+            [
+                "providerInformation" :
+                    [
+                        "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
+                        "providerTypeKeyname" : "hotel"
+                ]
         ]
         
         let dataJson = send.Dict2JsonString(dataDic)
@@ -330,10 +399,10 @@ func initalertView(){
         print("Json GetFacilityAttached :\(send.jsonEncode(dataJson))")
         //Update Provider
         send.providerAPI(self.appDelegate.command["GetFacilityAttached"]!, dataJson: dataJson)
-            {
+        {
             data in
             print("data(GetFacilityAttached) :\(data)")
-                print("Count \(data["facilitiesAttached"]!.count )")
+            print("Count \(data["facilitiesAttached"]!.count )")
             if(data["facilitiesAttached"]!.count != 0 )
             {
                 for i in 0...data["facilitiesAttached"]!.count - 1
@@ -342,21 +411,21 @@ func initalertView(){
                     print("CountWTF : \(self.appDelegate.facilityHotelDic!["facilities"]!.count)")
                     for j in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1
                     {
-//                    print("facilitiesAttachedID \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"])")
-                    
+                        //                    print("facilitiesAttachedID \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"])")
+                        
                         if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"] as! String))
                         {
                             self.appDelegate.facilityHotelStatus[j] = true
                             print("index : \(j) \(data["facilitiesAttached"]![i]["facility_id"] as! String)")
                             print("index : \(j) \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"] as! String)")
-                    
+                            
                         }
-                    
+                        
                     }
                     self.facilitiesHotelAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
-                self.tableView.reloadData()
+            self.tableView.reloadData()
         }
         
         print("all facility hotel \(appDelegate.facilityHotelDic)")
@@ -366,17 +435,17 @@ func initalertView(){
     func setFacility()
     {
         var dataDic =
-        [
-            "providerInformation" :
             [
-                "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                "providerTypeKeyname" : "hotel"
-            ],
-            "facilitiesAttached" :[],
-            
-            "user" : [
-                "accessToken" : appDelegate.userInfo["accessToken"]!
-            ]
+                "providerInformation" :
+                    [
+                        "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
+                        "providerTypeKeyname" : "hotel"
+                ],
+                "facilitiesAttached" :[],
+                
+                "user" : [
+                    "accessToken" : appDelegate.userInfo["accessToken"]!
+                ]
         ]
         
         //var facilitiesAttached:[[String:String]] = []
@@ -393,18 +462,18 @@ func initalertView(){
                 
                 self.facilitiesHotelAttached.append(appDelegate.facilityHotelDic!["facilities"]![i]["facility_name_en"] as! String)
                 
-          
+                
             }
-
+            
         }
         
         dataDic["facilitiesAttached"] = facilitiesAttached
         let dataJson = send.Dict2JsonString(dataDic)
-//        print("facilitiesAttached : \(facilitiesAttached[1]["facility_keyname"])")
-//        print("facilitiesAttached(Count) : \(facilitiesAttached.count)")
+        //        print("facilitiesAttached : \(facilitiesAttached[1]["facility_keyname"])")
+        //        print("facilitiesAttached(Count) : \(facilitiesAttached.count)")
         
-//        print("data Send Json :\(dataJson)")
-//        print("Json Encode :\(send.jsonEncode(dataJson))")
+        //        print("data Send Json :\(dataJson)")
+        //        print("Json Encode :\(send.jsonEncode(dataJson))")
         //Update SetFacilityAttached
         
         send.providerAPI(self.appDelegate.command["SetFacilityAttached"]!, dataJson: dataJson){
@@ -413,7 +482,7 @@ func initalertView(){
             
         }
     }
-
+    
     func dismissKeyboard() {
         txtHotelName.resignFirstResponder()
         emailTxt.resignFirstResponder()
@@ -423,6 +492,7 @@ func initalertView(){
         totalFloorTxt.resignFirstResponder()
         checkInTxt.resignFirstResponder()
         checkOutTxt.resignFirstResponder()
+        txtTimeToAirport.resignFirstResponder()
         distanceCityTxt.resignFirstResponder()
         DistanceAirportTxt.resignFirstResponder()
         
@@ -432,7 +502,7 @@ func initalertView(){
         pickerView.hidden = true
         checkinPicker.hidden = true
         checkoutPicker.hidden = true
-        
+        timetoairportPicker.hidden = true
     }
     
     func dismissKeyboard2() {
@@ -440,7 +510,7 @@ func initalertView(){
         provinceTxt.resignFirstResponder()
         
     }
-   
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print("didReseive")
@@ -450,6 +520,9 @@ func initalertView(){
     func setObject(){
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        
+        lblTitleHeader.layer.bounds.size.width = width
+        lblTitleHeader.center.x = width/2
         
         imgHotelCover.layer.cornerRadius = 0
         imgHotelCover.layer.borderWidth = 1
@@ -462,14 +535,14 @@ func initalertView(){
         imgHotelLogo.layer.cornerRadius = 0
         imgHotelLogo.layer.borderWidth = 1
         imgHotelLogo.layer.borderColor = borderColorCG
-   
+        
         txtHotelName.borderStyle = UITextBorderStyle.None
-//        txtHotelName.layer.cornerRadius = 0
+        //        txtHotelName.layer.cornerRadius = 0
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
         txtHotelName.layer.borderWidth = 1
         txtHotelName.layer.borderColor = borderColorCG
-
+        
         //HotelDesTxt.layer.cornerRadius = 5
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
@@ -556,8 +629,8 @@ func initalertView(){
         totalBarTxt.layer.borderWidth = 1
         totalBarTxt.layer.borderColor = borderColorCG
         
-       
-       // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
+        
+        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         //checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
         checkInView.layer.bounds.size.width = width/2 - 10
@@ -565,14 +638,14 @@ func initalertView(){
         checkInView.layer.borderColor = borderColorCG
         checkInTitle.center.x = (width/2)/2
         checkOutTitle.center.x = (width/2)/2
-
+        
         checkInTxt.center.x = (width/2)/2
         checkOutTxt.center.x = (width/2)/2
         
         checkInTxt.layer.borderWidth = 0
         checkOutTxt.layer.borderWidth = 0
         
-       // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
+        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         //checkOutView.layer.cornerRadius = 5
         checkOutView.center.x =  width - width/4
         checkOutView.layer.bounds.size.width = width/2 - 10
@@ -594,7 +667,14 @@ func initalertView(){
         DistanceAirportTxt.layer.bounds.size.width = width/2 - 60
         DistanceAirportTxt.layer.borderWidth = 1
         DistanceAirportTxt.layer.borderColor = borderColorCG
-      
+        
+        
+        
+        var frmBtnAddFac = btnAddFac.frame
+        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
+        btnAddFac.frame = frmBtnAddFac
+        
+        
         //buttonsave.layer.cornerRadius = 5
         var frmButtonSave = buttonsave.frame
         frmButtonSave.size.width = self.view.frame.size.width //  - 12
@@ -602,23 +682,27 @@ func initalertView(){
         frmButtonSave.origin.y = self.view.frame.size.height - frmButtonSave.size.height
         buttonsave.frame = frmButtonSave
         
+        
         pickerView.center.y = UIScreen.mainScreen().bounds.height - 250
         checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 250
         checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 250
+        timetoairportPicker.center.y = UIScreen.mainScreen().bounds.height - 250
         
         pickerView.frame.origin.x = 0
         checkinPicker.frame.origin.x = 0
         checkoutPicker.frame.origin.x = 0
+        timetoairportPicker.frame.origin.x = 0
+        
         
         let navBarHeight:CGFloat = 44.0
         var frmScrollView = scrollView.frame
         frmScrollView.origin.y = 0
         frmScrollView.size.height = UIScreen.mainScreen().bounds.height - (navBarHeight + 54 + 46) // - 10
         scrollView.frame = frmScrollView
-//        scrollView.backgroundColor = UIColor.redColor()
+        //        scrollView.backgroundColor = UIColor.redColor()
         
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1354)
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1544)
         
         print("statusBarFrame = \(UIApplication.sharedApplication().statusBarFrame.height)")
         print("nav = \(self.navigationController?.navigationBar.frame.size.height)")
@@ -627,7 +711,7 @@ func initalertView(){
         print("scrollView = \(self.scrollView.frame.size.height)")
         
     }
-   
+    
     override func viewWillAppear(animated: Bool) {
         //self.viewDidLoad()
         //self.viewDidAppear(true)
@@ -649,29 +733,29 @@ func initalertView(){
         
         
         
-//        scrollView.contentSize = CGSizeMake(width,2180)
+        //        scrollView.contentSize = CGSizeMake(width,2180)
         
         print("scrollwidth = \(scrollView.layer.bounds.size.width)")
-       // scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
-
-      
+        // scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
+        
+        
         //hide keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard))
         self.view!.addGestureRecognizer(tap)
-
+        
         let pickerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InformationVC.dismissKeyboard2))
         provinceTxt.addGestureRecognizer(pickerTap)
-//        provinceTxt.resignFirstResponder()
+        //        provinceTxt.resignFirstResponder()
         //set picker view
-
-
-      //  print("picker : \(pickerView.layer.bounds.size.height)")
         
-
         
-      //  print("data All\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!])")
+        //  print("picker : \(pickerView.layer.bounds.size.height)")
+        
+        
+        
+        //  print("data All\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!])")
         txtHotelName.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["name_en"]! as! String)
-    //    imgHotelLogo.image = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]! as! String)
+        //    imgHotelLogo.image = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]! as! String)
         HotelDesTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["short_description_en"]! as! String)
         phonNumberTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["phone"]! as! String)
         emailTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["email"]! as! String)
@@ -682,15 +766,15 @@ func initalertView(){
         //print("Logooooo \((appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]))");
         self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
         
-      
-//                    if(pickerPick == false){
-//                     
-//                    }
-//                    else{
-//                        
-//                         self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
-//                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
-//                    }
+        
+        //                    if(pickerPick == false){
+        //
+        //                    }
+        //                    else{
+        //
+        //                         self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+        //                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
+        //                    }
         
         self._viewEmptyCover.userInteractionEnabled = false
         self._viewEmptyLogo.userInteractionEnabled = false
@@ -723,7 +807,7 @@ func initalertView(){
     }
     
     func textFieldShouldBeginEditing(textField:UITextField) -> Bool {
-
+        
         if(textField == provinceTxt){
             
             pickerView.hidden = false
@@ -735,20 +819,22 @@ func initalertView(){
             totalFloorTxt.resignFirstResponder()
             checkInTxt.resignFirstResponder()
             checkOutTxt.resignFirstResponder()
+            txtTimeToAirport.resignFirstResponder()
             distanceCityTxt.resignFirstResponder()
             DistanceAirportTxt.resignFirstResponder()
             
             HotelDesTxt.resignFirstResponder()
             addressTxt.resignFirstResponder()
             phonNumberTxt.resignFirstResponder()
-
-        return false
-           
+            
+            return false
+            
         }
         else if(textField == checkInTxt){
             
             checkinPicker.hidden = false
             checkoutPicker.hidden = true
+            timetoairportPicker.hidden = true
             txtHotelName.resignFirstResponder()
             emailTxt.resignFirstResponder()
             websiteTxt.resignFirstResponder()
@@ -757,18 +843,20 @@ func initalertView(){
             totalFloorTxt.resignFirstResponder()
             checkInTxt.resignFirstResponder()
             checkOutTxt.resignFirstResponder()
+            txtTimeToAirport.resignFirstResponder()
             distanceCityTxt.resignFirstResponder()
             DistanceAirportTxt.resignFirstResponder()
             
             HotelDesTxt.resignFirstResponder()
             addressTxt.resignFirstResponder()
             phonNumberTxt.resignFirstResponder()
-       
-        return false
+            
+            return false
         }
         else if(textField == checkOutTxt){
             checkoutPicker.hidden = false
             checkinPicker.hidden = true
+            timetoairportPicker.hidden = true
             txtHotelName.resignFirstResponder()
             emailTxt.resignFirstResponder()
             websiteTxt.resignFirstResponder()
@@ -777,30 +865,52 @@ func initalertView(){
             totalFloorTxt.resignFirstResponder()
             checkInTxt.resignFirstResponder()
             checkOutTxt.resignFirstResponder()
+            txtTimeToAirport.resignFirstResponder()
             distanceCityTxt.resignFirstResponder()
             DistanceAirportTxt.resignFirstResponder()
             
             HotelDesTxt.resignFirstResponder()
             addressTxt.resignFirstResponder()
             phonNumberTxt.resignFirstResponder()
-         return false
+            return false
+        }
+        else if(textField == txtTimeToAirport){
+            checkoutPicker.hidden = true
+            checkinPicker.hidden = true
+            timetoairportPicker.hidden = false
+            txtHotelName.resignFirstResponder()
+            emailTxt.resignFirstResponder()
+            websiteTxt.resignFirstResponder()
+            provinceTxt.resignFirstResponder()
+            totalRoomTxt.resignFirstResponder()
+            totalFloorTxt.resignFirstResponder()
+            checkInTxt.resignFirstResponder()
+            checkOutTxt.resignFirstResponder()
+            txtTimeToAirport.resignFirstResponder()
+            distanceCityTxt.resignFirstResponder()
+            DistanceAirportTxt.resignFirstResponder()
+            
+            HotelDesTxt.resignFirstResponder()
+            addressTxt.resignFirstResponder()
+            phonNumberTxt.resignFirstResponder()
+            return false
         }
         
-    
+        
         return true
-    
+        
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField != provinceTxt){
-        
+            
             textField.resignFirstResponder()
-
-         return true
+            
+            return true
         }
         
-            return true
+        return true
     }
-
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -816,19 +926,19 @@ func initalertView(){
     {
         provinceTxt.text = appDelegate.provinceName[row]
         provinceID = Int(appDelegate.provinceID[row])!
-//        pickerView.hidden = true
-        }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        //        pickerView.hidden = true
     }
-    */
-
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return facilitiesHotelAttached.count
@@ -836,15 +946,15 @@ func initalertView(){
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         if(facilitiesHotelAttached.count == 0){
-         cell.textLabel?.text = ""
+            cell.textLabel?.text = ""
         }
         else{
-       // var facilitiesAttached:[[String:String]] = []
-       cell.textLabel?.text = facilitiesHotelAttached[indexPath.row]
-        print("facilitiesHotelAttached(table) \(facilitiesHotelAttached[indexPath.row])")
+            // var facilitiesAttached:[[String:String]] = []
+            cell.textLabel?.text = facilitiesHotelAttached[indexPath.row]
+            print("facilitiesHotelAttached(table) \(facilitiesHotelAttached[indexPath.row])")
         }
         
-       //cell.textLabel?.text = "facility name"
+        //cell.textLabel?.text = "facility name"
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -853,37 +963,37 @@ func initalertView(){
     
     func getProviderByID()
     {
-//        PKHUD.sharedHUD.dimsBackground = false
-//        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//        
-////        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-//        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//        PKHUD.sharedHUD.show()
-//        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//        
-//        let send = API_Model()
-//        print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
-//        
-//        let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
-//        send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
-//            data in
-//            print("getProviderByID \(data)")
-//            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-//            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-////            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
-//            
-//            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
-//            
-//            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
-//            
-//            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
-//            
-//            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
-//            
-//            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
-//            
-//            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
-//        }
+        //        PKHUD.sharedHUD.dimsBackground = false
+        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        //
+        ////        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        //        PKHUD.sharedHUD.show()
+        //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        //
+        //        let send = API_Model()
+        //        print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
+        //
+        //        let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
+        //        send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
+        //            data in
+        //            print("getProviderByID \(data)")
+        //            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+        //            PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        ////            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
+        //
+        //            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
+        //
+        //            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
+        //
+        //            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
+        //
+        //            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
+        //
+        //            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
+        //
+        //            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
+        //        }
         
     }
     
@@ -898,7 +1008,7 @@ func initalertView(){
         }else if( _gg.view?.tag == 2){
             _pickerType = "logo"
         }
-//        print("---------")
+        //        print("---------")
         
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         myPickerController.allowsEditing = false
@@ -933,8 +1043,8 @@ func initalertView(){
         let imageName = imageURL.pathComponents![1];
         print("imageName : \(imageName)")
         pickerPick = true
-//        imgHotelLogo.reloadInputViews()
-       
+        //        imgHotelLogo.reloadInputViews()
+        
         let send = API_Model()
         
         send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
@@ -943,33 +1053,33 @@ func initalertView(){
             PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
-
+            
             print("UPLOAD DATA ::: \(data)")
             self.mediaKey = data
-           
+            
             send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
             {
                 data in
-//                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-
-//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-//                self.navigationController?.pushViewController(vc, animated:true)
+                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                
+                //                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+                //                self.navigationController?.pushViewController(vc, animated:true)
                 self.dismissViewControllerAnimated(true, completion:{_ in
                     PKHUD.sharedHUD.hide(animated: false, completion: nil)
                 })
             }
-
-
+            
+            
         }
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("imagePickerControllerDidCancel")
         self.dismissViewControllerAnimated(true, completion: nil)
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-//        self.navigationController?.pushViewController(vc, animated:true)
-//        dismissViewControllerAnimated(true, completion: nil)
-     
+        //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
+        //        self.navigationController?.pushViewController(vc, animated:true)
+        //        dismissViewControllerAnimated(true, completion: nil)
+        
     }
-
+    
 }
