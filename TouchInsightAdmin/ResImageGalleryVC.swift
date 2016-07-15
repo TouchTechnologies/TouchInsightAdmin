@@ -24,7 +24,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
     var coverImgCell = UIImageView()
     var menuGallery = [[String:AnyObject]]()
     var defultImg = UIImage()
-    var Cell = ImageCollectionViewCell()
+    var Cell = ResImageCollectionViewCell()
     @IBOutlet var collectionView: UICollectionView!
     var photoGall : [String] = []
     var addImageNum = 0
@@ -157,7 +157,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
         
-      Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! ImageCollectionViewCell
+      Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! ResImageCollectionViewCell
     return Cell
         
 }

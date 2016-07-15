@@ -24,7 +24,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @IBOutlet var createButton: UIButton!
     var menuNameData:NSDictionary = ["":""]
-    var editRoomTag = 0
+    var editMenuTag = 0
     
     
     func initial(){
@@ -197,7 +197,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             cell.imgLevel.image = UIImage(named: "mild.png")
         }
         
-        if let logo_image = self.menuNameData["menus"]![indexPath.row]!["images"]! as? String{
+        if let logo_image = self.menuNameData["menus"]![indexPath.row]!["images"]!!["logo_image"]!!["extra-small"] as? String{
             cell.imgLogo.hnk_setImageFromURL(NSURL(string: logo_image)!)
             
         }else{
@@ -230,6 +230,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         print("Delete tag button : \(tag)")
         
         let alertView = SCLAlertView()
+
         alertView.addButton("YES"){
             print("Yessssssssss")
             let send = API_Model()
@@ -237,9 +238,9 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 "providerInformation" : [
                     "providerId" : self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String,
                 ],
-                //Room
-                "roomType":[
-                    "roomTypeId": (self.appDelegate.roomDic!["roomTypes"]![tag]!["room_type_id"] as! String)
+                //Menu
+                "menu":[
+                    "menuId": (self.appDelegate.menuDic!["menus"]![tag]!["menu_id"] as! String)
                 ],
                 "user" : [
                     "accessToken" : self.appDelegate.userInfo["accessToken"]!
@@ -250,35 +251,28 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             print("data Send Json :\(dataJson)")
             print("Json Encode :\(send.jsonEncode(dataJson))")
-            send.providerAPI(self.appDelegate.command["DeleteRoomType"]!, dataJson: dataJson){
+            send.providerAPI(self.appDelegate.command["DeleteMenu"]!, dataJson: dataJson){
                 data in
                 print("data(DeleteRoomType) :\(data)")
-                SCLAlertView().showTitle("Delete", subTitle: "ลบ Room สำเร็จ", duration: 1.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
-                
-                //self.navigationController?.popViewControllerAnimated(true)
-                
-                //back to room list view
-//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-//                self.appDelegate.pagecontrolIndex = 2
-//                self.navigationController?.pushViewController(vc, animated:true)
-                
-              // self.appDelegate.viewWithTopButtons.hidden = false
+                SCLAlertView().showTitle("Delete", subTitle: "ลบ Menu สำเร็จ", duration: 1.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
+                self.navigationController?.popViewControllerAnimated(true)
+//                self.tableView.reloadData()
               
             }
             
         }
         alertView.showCircularIcon = false
-        alertView.showInfo("Delete", subTitle: "คุณต้องการลบข้อมูล Room ใช่หรือไม่?",closeButtonTitle: "NO",colorStyle:0xAC332F)
+        alertView.showInfo("Delete", subTitle: "คุณต้องการลบข้อมูล Menu ใช่หรือไม่?",closeButtonTitle: "NO",colorStyle:0xAC332F)
         
         
     }
 
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        editRoomTag = indexPath.row
+        editMenuTag = indexPath.row
         print("aaaaaa")
     }
     func editRoomAction(sender : UIButton){
-        print("Edit Room Action")
+        print("Edit Menu Action")
         
         //self.performSegueWithIdentifier("toEdit", sender: UIButton())
 

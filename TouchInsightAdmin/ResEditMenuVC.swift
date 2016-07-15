@@ -28,8 +28,8 @@ CustomIOS7AlertViewDelegate {
     var roomCollection = [UIImage]()
     //    var mediaKey:String?
     var roomImage = [UIImageView()]
-    var roomGallery = [UIImage()]
-    var roomImageUpload = [UIImage()]
+//    var roomGallery = [UIImage()]
+//    var roomImageUpload = [UIImage()]
     var roomImageNum = 0
     var occupencyNum = Int32()
     var addImageNum = 1
@@ -50,7 +50,8 @@ CustomIOS7AlertViewDelegate {
 //    var Cell = RoomGalleryCell()
     
     @IBOutlet var imgMenuLogo: UIImageView!
-    var imageDataForUpload = UIImage()
+    var imageDataForUpload = [UIImage()]
+    var imageNameForUpload:String = ""
     
     
     // Spicy Level
@@ -69,8 +70,9 @@ CustomIOS7AlertViewDelegate {
     @IBOutlet weak var img_middle: UIImageView!
     @IBOutlet weak var img_hot: UIImageView!
     
+    var strSpiciLevel = ""
     @IBAction func btn_mild_click(sender: AnyObject) {
-        
+        strSpiciLevel = "0"
         selectedSpicyLevel["mild"] = "1"
         selectedSpicyLevel["middle"] = "0"
         selectedSpicyLevel["hot"] = "0"
@@ -83,7 +85,7 @@ CustomIOS7AlertViewDelegate {
     }
     
     @IBAction func btn_middle_click(sender: AnyObject) {
-        
+        strSpiciLevel = "1"
         selectedSpicyLevel["mild"] = "0"
         selectedSpicyLevel["middle"] = "1"
         selectedSpicyLevel["hot"] = "0"
@@ -96,7 +98,7 @@ CustomIOS7AlertViewDelegate {
     }
     
     @IBAction func btn_hot_click(sender: AnyObject) {
-        
+        strSpiciLevel = "2"
         selectedSpicyLevel["mild"] = "0"
         selectedSpicyLevel["middle"] = "0"
         selectedSpicyLevel["hot"] = "1"
@@ -136,24 +138,48 @@ CustomIOS7AlertViewDelegate {
         //print("ImageLogo URL : \(appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["images"]!!["logo_image"]!!["extra-small"])")
         //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
         
-//        if let logoData = UIImage(Data:)
-
-//        imgMenuLogo.image = UIImage(data:NSData(contentsOfURL: NSURL.urlwi))
-        
-        
-//        
-//        if let logo = self.appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["images"]!!["logo_image"]!!["extra-small"] {
-//            print("has logo : \(logo)")
-//            imgMenuLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo! as! String)!)!)
-//        }else{
-//            print("no logo")
-//            imgMenuLogo.image = UIImage(named: "ic_add_image.png")
-//        }
-//        menuNameTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_name_en"] as! String)
-//        shotDescTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_description_en"] as! String)
-//        priceTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_price"] as! String)
-//        
-        
+        if let logo = self.appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["images"]!!["logo_image"]!!["extra-small"] {
+            print("has logo : \(logo)")
+            imgMenuLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo! as! String)!)!)
+        }else{
+            print("no logo")
+            imgMenuLogo.image = UIImage(named: "ic_add_image.png")
+        }
+        menuNameTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_name_en"] as! String)
+        shotDescTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_description_en"] as! String)
+        priceTxt.text = (appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["menu_price"] as! String)
+//
+        if let spicy_level = appDelegate.menuDic!["menus"]![appDelegate.menuIndex!]!["spicy_level"]
+        {
+            strSpiciLevel = spicy_level as! String
+        }else
+        {
+            strSpiciLevel = "0"
+        }
+        switch strSpiciLevel{
+        case "0":
+            img_mild.image = UIImage(named: "mild_hover.png")
+            img_middle.image = UIImage(named: "middle.png")
+            img_hot.image = UIImage(named: "hot.png")
+            break
+        case "1":
+            img_mild.image = UIImage(named: "mild.png")
+            img_middle.image = UIImage(named: "middle_hover.png")
+            img_hot.image = UIImage(named: "hot.png")
+            break
+        case "2":
+            img_mild.image = UIImage(named: "mild.png")
+            img_middle.image = UIImage(named: "middle.png")
+            img_hot.image = UIImage(named: "hot_hover.png")
+            break
+        default:
+            img_mild.image = UIImage(named: "mild_hover.png")
+            img_middle.image = UIImage(named: "middle.png")
+            img_hot.image = UIImage(named: "hot.png")
+            break
+            
+        }
+    
         
         
         //        numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
@@ -178,8 +204,8 @@ CustomIOS7AlertViewDelegate {
         //        numOfRoomTxt.delegate = self
         //        tableView.delegate = self
         //        tableView.dataSource = self
-        roomGallery.removeAll()
-        roomImageUpload.removeAll()
+//        roomGallery.removeAll()
+//        roomImageUpload.removeAll()
         //        collectionView.delegate = self
         //        collectionView.dataSource = self
         
@@ -324,9 +350,8 @@ CustomIOS7AlertViewDelegate {
                 "menuNameTh": "",
                 "menuDescriptionEn": shotDescTxt.text,
                 "menuDescriptionTh": "",
-                "menuPrice": "",
-                "roomTypeCurrentPrice": priceTxt.text,
-                "spicyLevel": "0"
+                "menuPrice": priceTxt.text,
+                "spicyLevel": strSpiciLevel
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -334,18 +359,8 @@ CustomIOS7AlertViewDelegate {
         ]
         
         let dataJson = send.Dict2JsonString(dataDic)
-        
         print("data Send Json :\(dataJson)")
         print("Json Encode :\(send.jsonEncode(dataJson))")
-        send.providerAPI(self.appDelegate.command["UpdateMenu"]!, dataJson: dataJson){
-            data in
-            print("data(UpdateRoom) :\(data)")
-            
-        }
-        
-        
-        
-        
         
         PKHUD.sharedHUD.dimsBackground = false
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
@@ -353,121 +368,54 @@ CustomIOS7AlertViewDelegate {
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
         PKHUD.sharedHUD.show()
-        
-        
-        print("countImage \(roomImageUpload.count) ")
-        if(roomImageUpload.count != 0)
-        {
-            let date = NSDate();
-            let dateFormatter = NSDateFormatter()
-            //To prevent displaying either date or time, set the desired style to NoStyle.
-            dateFormatter.dateFormat = "MM-dd-yyyy-HH-mm"
-            dateFormatter.timeZone = NSTimeZone()
-            let imageDate = dateFormatter.stringFromDate(date)
+        send.providerAPI(self.appDelegate.command["UpdateMenu"]!, dataJson: dataJson){
+            data in
+            print("data(UpdateRoom) :\(data)")
             
-            for index in 0...self.roomImageUpload.count-1
-            {
-                let imageName = imageDate + "-" + String(index)+".jpg"
-                print("ImageName \(imageName)")
-                send.getUploadKeyRoomGallery(Int(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String)!,imageName: imageName){
-                    data in
-                    
-                    print("data getUploadKeyRoomGallery: \(data)")
-                    let mediaKey = data
-                    self.send.uploadImage(mediaKey, image: self.roomImageUpload[index], imageName: imageName){
-                        data in
-                        if(index == self.roomImageUpload.count-1)
-                        {
-                            PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                            let alert = SCLAlertView()
-                            alert.showCircularIcon = false
-                            alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 2.0)
-                            self.navigationController?.popViewControllerAnimated(true)
-                            
-//                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                            
-//                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                                
-//                                self.appDelegate.viewWithTopButtons.hidden = false
-//                                self.navunderlive.hidden = true
-//                                
-//                            })
-                            
-                            
-                        }
-                    }
-                }
-            }
-        }else
+            print("imageDataForUpload.count : \(self.imageDataForUpload.count)")
+            print("name : \(self.imageDataForUpload)")
+        if(self.imageNameForUpload != "")
         {
+            send.getUploadMenuKey(Int(data["providerId"] as! String)!, menuID: Int(data["menu"]!["menu_id"] as! String)!, imageType: "logoImage", imageName: self.imageNameForUpload)
+            {
+                data in
+                PKHUD.sharedHUD.dimsBackground = false
+                PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+                PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                PKHUD.sharedHUD.show()
+                
+                print("UPLOAD DATA ::: \(data)")
+                
+                send.uploadImage(data, image: self.imageDataForUpload[0], imageName: self.imageNameForUpload)
+                {
+                    data in
+                    //                            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                    print("DataUpload : \(data)")
+                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+                    let alert = SCLAlertView()
+                    alert.showCircularIcon = false
+                    alert.showInfo("Information", subTitle: "Update Menu Success", colorStyle:0xAC332F ,duration: 2.0)
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                
+                
+            }
+            
+        }else{
             PKHUD.sharedHUD.hide(afterDelay: 0.1)
             let alert = SCLAlertView()
             alert.showCircularIcon = false
-            alert.showInfo("Information", subTitle: "Update Menu Success", colorStyle:0xAC332F ,duration: 2.0)
-//            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//            
-//            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                
-//                self.appDelegate.viewWithTopButtons.hidden = false
-//                self.navunderlive.hidden = true
-//                
-//            })
+            alert.showInfo("Information", subTitle: "Update Menu Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+            
             self.navigationController?.popViewControllerAnimated(true)
             
         }
-        
-        
+        }
         appDelegate.pagecontrolIndex = 2
         
     }
-    
-//    func getFacility()
-//    {
-//        //print("roomDataALL : \(self.appDelegate.roomDic!["roomTypes"])")  7288
-//        let dataDic =
-//            [
-//                "roomType": [
-//                    "roomTypeId": self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String
-//                ]
-//        ]
-//        
-//        let dataJson = send.Dict2JsonString(dataDic)
-//        print("data Send Json :\(dataJson)")
-//        print("Json Get(Room)FacilityAttached :\(send.jsonEncode(dataJson))")
-//        //Update Provider
-//        send.providerAPI(self.appDelegate.command["GetRoomTypeFacilityAttached"]!, dataJson: dataJson)
-//        {
-//            data in
-//            print("data(Get(Room)FacilityAttached) :\(data)")
-//            print("Count \(data["roomTypeFacilitiesAttached"]!.count )")
-//            if(data["roomTypeFacilitiesAttached"]!.count != 0 )
-//            {
-//                for i in 0...data["roomTypeFacilitiesAttached"]!.count - 1
-//                {
-//                    print(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"])
-//                    print("Fac Room Dic WTF : \(self.appDelegate.facilityRoomDic!)")
-//                    print("CountWTF : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count)")
-//                    for j in 0...self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
-//                    {
-//                        
-//                        if((data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String) == (self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String))
-//                        {
-//                            self.appDelegate.facilityRoomStatus[j] = true
-//                            print("index : \(j) \(data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String)")
-//                            print("index : \(j) \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String)")
-//                            
-//                        }
-//                        
-//                    }
-//                    self.facilitiesRoomAttached.append(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"] as! String)
-//                }
-//            }
-//            //                self.tableView.reloadData()
-//            print("============facilitiesRoomAttached.count\(self.facilitiesRoomAttached.count)")
-//            
-//        }
-//        
-//    }
+
     
     
     func updateData(){
@@ -585,9 +533,13 @@ CustomIOS7AlertViewDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        print("ImagePicker")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imageDataForUpload = chosenImage
+        imageDataForUpload[0] = chosenImage
         imgMenuLogo.image = chosenImage
+        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        imageNameForUpload = imageURL.pathComponents![1];
+        print("imageName : \(imageNameForUpload)")
         dismissViewControllerAnimated(true, completion: nil)
         
     }
