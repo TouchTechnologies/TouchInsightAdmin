@@ -663,10 +663,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 
             }
             
-            
-            
-            
-            
+                        
         }
         print("==============================================")
         self.setFacility()
