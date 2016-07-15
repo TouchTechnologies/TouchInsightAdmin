@@ -38,6 +38,10 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     @IBOutlet var addressTxt: UITextView!
     @IBOutlet var totalRoomTxt: UITextField!
     @IBOutlet var totalFloorTxt: UITextField!
+    
+    @IBOutlet var totalResTxt: UITextField!
+    @IBOutlet var totalBarTxt: UITextField!
+    
     @IBOutlet var checkInTxt: UITextField!
     @IBOutlet var checkInTitle: UILabel!
     @IBOutlet var checkOutTxt: UITextField!
@@ -53,12 +57,15 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     @IBOutlet var lblAirport: UILabel!
     
+    @IBOutlet var _viewEmptyCover: UIView!
+    @IBOutlet var _viewEmptyLogo: UIView!
     
        var button = UIButton()
     
     var SCALING_Y = (1024.0/480.0)
     var SCALING_X = (768.0/360.0)
-   
+    
+    let myPickerController = UIImagePickerController()
     
     @IBAction func addHotelFacilityBtn(sender: AnyObject) {
         
@@ -71,6 +78,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         print("View Did Load")
         self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
 
+        myPickerController.delegate = self
         
         checkinPicker.hidden = true
         checkinPicker.backgroundColor = UIColor.whiteColor()
@@ -408,7 +416,7 @@ func initalertView(){
     }
 
     func dismissKeyboard() {
-       txtHotelName.resignFirstResponder()
+        txtHotelName.resignFirstResponder()
         emailTxt.resignFirstResponder()
         websiteTxt.resignFirstResponder()
         provinceTxt.resignFirstResponder()
@@ -423,10 +431,11 @@ func initalertView(){
         addressTxt.resignFirstResponder()
         phonNumberTxt.resignFirstResponder()
         pickerView.hidden = true
-       checkinPicker.hidden = true
-       checkoutPicker.hidden = true
+        checkinPicker.hidden = true
+        checkoutPicker.hidden = true
         
     }
+    
     func dismissKeyboard2() {
         print("dismissKeyboard2")
         provinceTxt.resignFirstResponder()
@@ -448,6 +457,8 @@ func initalertView(){
         imgHotelCover.layer.borderColor = borderColorCG
         imgHotelCover.layer.bounds.size.width = width - 10
         imgHotelCover.center.x = width/2
+        
+        _viewEmptyCover.center.x = width/2
         
         imgHotelLogo.layer.cornerRadius = 0
         imgHotelLogo.layer.borderWidth = 1
@@ -517,17 +528,35 @@ func initalertView(){
         
         totalRoomTxt.borderStyle = UITextBorderStyle.None
         //totalRoomTxt.layer.cornerRadius = 5
-        totalRoomTxt.center.x = (width/2)/2
         totalRoomTxt.layer.bounds.size.width = width/2 - 10
+        totalRoomTxt.center.x = (width/2)/2
         totalRoomTxt.layer.borderWidth = 1
         totalRoomTxt.layer.borderColor = borderColorCG
         
         totalFloorTxt.borderStyle = UITextBorderStyle.None
         //totalFloorTxt.layer.cornerRadius = 5
-        totalFloorTxt.center.x = width - width/4
         totalFloorTxt.layer.bounds.size.width = width/2 - 10
+        totalFloorTxt.center.x = width - width/4
         totalFloorTxt.layer.borderWidth = 1
         totalFloorTxt.layer.borderColor = borderColorCG
+        
+        
+        
+        totalResTxt.borderStyle = UITextBorderStyle.None
+        //totalResTxt.layer.cornerRadius = 5
+        totalResTxt.layer.bounds.size.width = width/2 - 10
+        totalResTxt.center.x = (width/2)/2
+        totalResTxt.layer.borderWidth = 1
+        totalResTxt.layer.borderColor = borderColorCG
+        
+        
+        totalBarTxt.borderStyle = UITextBorderStyle.None
+        //totalBarTxt.layer.cornerRadius = 5
+        totalBarTxt.layer.bounds.size.width = width/2 - 10
+        totalBarTxt.center.x = width - width/4
+        totalBarTxt.layer.borderWidth = 1
+        totalBarTxt.layer.borderColor = borderColorCG
+        
        
        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         //checkInView.layer.cornerRadius = 5
@@ -540,6 +569,9 @@ func initalertView(){
 
         checkInTxt.center.x = (width/2)/2
         checkOutTxt.center.x = (width/2)/2
+        
+        checkInTxt.layer.borderWidth = 0
+        checkOutTxt.layer.borderWidth = 0
         
        // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
         //checkOutView.layer.cornerRadius = 5
@@ -571,9 +603,9 @@ func initalertView(){
         frmButtonSave.origin.y = self.view.frame.size.height - frmButtonSave.size.height
         buttonsave.frame = frmButtonSave
         
-        pickerView.center.y = UIScreen.mainScreen().bounds.height - 200
-        checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 200
-        checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 200
+        pickerView.center.y = UIScreen.mainScreen().bounds.height - 250
+        checkinPicker.center.y = UIScreen.mainScreen().bounds.height - 250
+        checkoutPicker.center.y = UIScreen.mainScreen().bounds.height - 250
         
         pickerView.frame.origin.x = 0
         checkinPicker.frame.origin.x = 0
@@ -582,15 +614,17 @@ func initalertView(){
         let navBarHeight:CGFloat = 44.0
         var frmScrollView = scrollView.frame
         frmScrollView.origin.y = 0
-        frmScrollView.size.height = self.view.frame.size.height - (navBarHeight + 20 + 48)
+        frmScrollView.size.height = UIScreen.mainScreen().bounds.height - (navBarHeight + 54 + 46) // - 10
         scrollView.frame = frmScrollView
+//        scrollView.backgroundColor = UIColor.redColor()
         
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1573)
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1354)
         
         print("statusBarFrame = \(UIApplication.sharedApplication().statusBarFrame.height)")
         print("nav = \(self.navigationController?.navigationBar.frame.size.height)")
         print("view = \(self.view.frame.size.height)")
+        print("UIScreen = \(UIScreen.mainScreen().applicationFrame)")
         print("scrollView = \(self.scrollView.frame.size.height)")
         
     }
@@ -602,15 +636,24 @@ func initalertView(){
         
         //self.setObject()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(InformationVC.imageTapped(_:)))
-        imgHotelLogo.userInteractionEnabled = true
-        imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
-        self.scrollView.addSubview(self.imgHotelLogo)
         
-        scrollView.contentSize = CGSizeMake(width,2180)
+        let tapAddCover = UITapGestureRecognizer(target:self, action:#selector(InformationVC.imageTapped(_:)))
+        imgHotelCover.userInteractionEnabled = true
+        imgHotelCover.tag = 1
+        imgHotelCover.addGestureRecognizer(tapAddCover)
+        
+        let tapAddLogo = UITapGestureRecognizer(target:self, action:#selector(InformationVC.imageTapped(_:)))
+        imgHotelLogo.userInteractionEnabled = true
+        imgHotelLogo.tag = 2
+        imgHotelLogo.addGestureRecognizer(tapAddLogo)
+        //self.scrollView.addSubview(self.imgHotelLogo)
+        
+        
+        
+//        scrollView.contentSize = CGSizeMake(width,2180)
         
         print("scrollwidth = \(scrollView.layer.bounds.size.width)")
-        scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
+       // scrollView.layer.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1).CGColor
 
       
         //hide keyboard
@@ -637,7 +680,7 @@ func initalertView(){
         provinceTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["province_name_en"]! as! String)
         provinceID = Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["province_id"]! as! String)!
         addressTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["address_en"]! as! String)
-        print("Logooooo \((appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]))");
+        //print("Logooooo \((appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]))");
         self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
         
       
@@ -649,20 +692,29 @@ func initalertView(){
 //                         self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
 //                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
 //                    }
-
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
-        {
-            
-            
-        print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
-            
-            
+        
+        self._viewEmptyCover.userInteractionEnabled = false
+        self._viewEmptyLogo.userInteractionEnabled = false
+        
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
             self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
-        }
-        else
-        {
+            self._viewEmptyLogo.hidden = true
+        }else{
             print("no logo")
-            self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+            self.imgHotelLogo.image = UIImage()
+            self._viewEmptyLogo.hidden = false
+        }
+        
+        
+        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
+            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
+            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
+            self._viewEmptyCover.hidden = true
+        }else{
+            print("no cover")
+            self.imgHotelCover.image = UIImage()
+            self._viewEmptyCover.hidden = false
         }
         
     }
@@ -835,21 +887,48 @@ func initalertView(){
 //        }
         
     }
-    func imageTapped(img: AnyObject){
-        print("Upload Logo Img")
+    
+    var _pickerType = ""
+    func imageTapped(sender: AnyObject){
+        //        print("Upload Logo Img")
+        let _gg = sender as! UITapGestureRecognizer
+        print(_gg.view)
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
+        if( _gg.view?.tag == 1){
+            _pickerType = "cover"
+        }else if( _gg.view?.tag == 2){
+            _pickerType = "logo"
+        }
+//        print("---------")
+        
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        myPickerController.allowsEditing = false
         self.presentViewController(myPickerController, animated: true, completion: nil)
         
     }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         print("ImagePicker")
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imgHotelLogo.contentMode = .ScaleAspectFill //3
-        self.imgHotelLogo.image = chosenImage //4
+        let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        var _imageType = ""
+        if(_pickerType == "cover"){
+            
+            print("cover")
+            // upload Cover
+            self.imgHotelCover.contentMode = .ScaleAspectFill
+            self.imgHotelCover.image = chosenImage
+            _imageType = "coverImage"
+            
+        }else if(_pickerType == "logo"){
+            print("logo")
+            
+            // Upload LOGO
+            self.imgHotelLogo.contentMode = .ScaleAspectFill
+            self.imgHotelLogo.image = chosenImage
+            _imageType = "logoImage"
+            
+        }
         
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         let imageName = imageURL.pathComponents![1];
@@ -859,7 +938,7 @@ func initalertView(){
        
         let send = API_Model()
         
-        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: "logoImage",imageName: imageName){
+        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
             data in
             PKHUD.sharedHUD.dimsBackground = false
             PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
@@ -877,7 +956,7 @@ func initalertView(){
 //                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
 //                self.navigationController?.pushViewController(vc, animated:true)
                 self.dismissViewControllerAnimated(true, completion:{_ in
-                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
                 })
             }
 

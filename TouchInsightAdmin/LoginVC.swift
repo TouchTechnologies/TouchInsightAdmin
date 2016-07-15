@@ -88,36 +88,42 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         return true;
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         self.view!.endEditing(true)
         return true
     }
-    func keyboardDidShow(notification: NSNotification) {
+    func keyboardWillShow(notification: NSNotification) {
         
-        //        alert.frame = popupView.bounds    }, completion: nil)
-        // Assign new frame to your view
-        let width: CGFloat = UIScreen.mainScreen().bounds.size.width
-        let height: CGFloat = UIScreen.mainScreen().bounds.size.height
-        var keyboardInfo: [NSObject : AnyObject] = notification.userInfo!
-        let keyboardFrameBegin: NSValue = keyboardInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
-        let keyboardFrameBeginRect: CGRect =
-        keyboardFrameBegin.CGRectValue()
-        self.view!.frame = CGRectMake(0,-keyboardFrameBeginRect.size.height/2, width, height)
-        //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+            //        alert.frame = popupView.bounds    }, completion: nil)
+            // Assign new frame to your view
+            let width: CGFloat = UIScreen.mainScreen().bounds.size.width
+            let height: CGFloat = UIScreen.mainScreen().bounds.size.height
+            var keyboardInfo: [NSObject : AnyObject] = notification.userInfo!
+            let keyboardFrameBegin: NSValue = keyboardInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
+            let keyboardFrameBeginRect: CGRect =
+                keyboardFrameBegin.CGRectValue()
+            self.view!.frame = CGRectMake(0,-keyboardFrameBeginRect.size.height/2, width, height)
+            //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
+            
+        })
         
     }
     
-    func keyboardDidHide(notification: NSNotification) {
+    func keyboardWillHide(notification: NSNotification) {
         
-        let width: CGFloat = UIScreen.mainScreen().bounds.size.width
-        let height: CGFloat = UIScreen.mainScreen().bounds.size.height
-        self.view!.frame = CGRectMake(0, 0, width, height)
-        
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+            let width: CGFloat = UIScreen.mainScreen().bounds.size.width
+            let height: CGFloat = UIScreen.mainScreen().bounds.size.height
+            self.view!.frame = CGRectMake(0, 0, width, height)
+        })
     }
     
     func setViewStyle(){
