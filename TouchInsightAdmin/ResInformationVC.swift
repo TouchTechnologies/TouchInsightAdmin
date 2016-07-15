@@ -314,8 +314,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     
     
     /////////////////// Restaurant Service
-    
-    
     // Wifi
     @IBOutlet weak var btnWifiServiceYes: UIButton!
     @IBOutlet weak var btnWifiServiceNo: UIButton!
