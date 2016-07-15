@@ -301,7 +301,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 "hotelPolicyTh": "",
                 "checkInTime": checkInTxt.text!,
                 "checkOutTime": checkOutTxt.text!,
-                "isBookable": "",
+                "isBookable": selectedBookable,
                 "touchbookingpaymentMerchantAccountKeycode": "",
                 "wifiAvailable": "",
                 "parkingAvailable": "",
@@ -310,10 +310,10 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 "distanceFromCityCenter": distanceCityTxt.text!,
                 "distanceToAirport": DistanceAirportTxt.text!,
                 "nonSmokingZone": "",
-                "numberOfBar": "",
+                "numberOfBar": totalBarTxt.text!,
                 "numberOfFloors": totalFloorTxt.text!,
-                "numberOfRestaurants": "",
-                "timeToAirport": ""
+                "numberOfRestaurants": totalResTxt.text!,
+                "timeToAirport": txtTimeToAirport.text!
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -767,6 +767,41 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
         
         
+        
+        
+        
+//        totalRoomTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["total_room"]! as! String)
+//        
+//        
+//        totalFloorTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["number_of_floors"]! as! String)
+//        
+//        totalResTxt.text =  (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["number_of_restaurants"]! as! String)
+//        
+//        
+//        totalBarTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["number_of_bar"]! as! String)
+//        
+//        
+//        checkInTxt.text =  (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["checkInTime"]! as! String)
+//        
+//        checkOutTxt.text =  (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["checkOutTime"]! as! String)
+//        
+//        distanceCityTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["distanceFromCityCenter"]! as! String)
+//        
+//        DistanceAirportTxt.text =  (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["address_en"]! as! String)
+//        
+//        txtTimeToAirport.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["distanceToAirport"]! as! String)
+
+        
+        
+        
+        
+        
+        
+    
+    
+        
+        
+        
         //                    if(pickerPick == false){
         //
         //                    }
@@ -963,37 +998,70 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     func getProviderByID()
     {
-        //        PKHUD.sharedHUD.dimsBackground = false
-        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        //
-        ////        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        //        PKHUD.sharedHUD.show()
-        //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        //
-        //        let send = API_Model()
-        //        print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
-        //
-        //        let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
-        //        send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
-        //            data in
-        //            print("getProviderByID \(data)")
-        //            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-        //            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        ////            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
-        //
-        //            self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
-        //
-        //            self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
-        //
-        //            self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
-        //
-        //            self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
-        //
-        //            self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
-        //
-        //            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
-        //        }
+                PKHUD.sharedHUD.dimsBackground = false
+                PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        
+        //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+                PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        
+                let send = API_Model()
+                print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
+        
+                let dataJson = "{\"providerId\":\"\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"] as! String)\"}"
+                send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
+                    data in
+                    print("getProviderByID \(data)")
+                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+        //            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
+        
+                    self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
+        
+                    self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
+        
+                    self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
+        
+                    self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
+        
+                    self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
+        
+                    self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
+                    
+                    
+                    self.totalResTxt.text = (data["GetProviderInformationById"]!["number_of_restaurants"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_restaurants"] as! String
+                    
+                    
+                    
+                    self.totalBarTxt.text = (data["GetProviderInformationById"]!["number_of_bar"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_bar"] as! String
+                        
+    
+                    
+                    self.txtTimeToAirport.text = (data["GetProviderInformationById"]!["time_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["time_to_airport"] as! String
+
+                    
+                    
+                    
+                    if((data["GetProviderInformationById"]!["is_bookable"] as! String) == "1")
+                    {
+                        
+                        self.selectedBookable = "1"
+                            self.lblBookableYes.textColor = UIColor.blackColor()
+                            self.lblBookableNo.textColor = UIColor.grayColor()
+                            self.imgBookableYes.image = UIImage(named: "check.png")
+                            self.imgBookableNo.image = UIImage(named: "uncheck.png")
+                    }else
+                    {
+                        self.selectedBookable = "0"
+                        self.lblBookableYes.textColor = UIColor.grayColor()
+                        self.lblBookableNo.textColor = UIColor.blackColor()
+                        self.imgBookableYes.image = UIImage(named: "uncheck.png")
+                        self.imgBookableNo.image = UIImage(named: "check.png")
+                    }
+
+                    
+                }
         
     }
     
