@@ -16,49 +16,20 @@
                 <subviews>
                     <view contentMode="scaleToFill" id="S9F-8k-BJJ">
                         <rect key="frame" x="8" y="8" width="359" height="161"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" id="ytZ-Ey-maw">
-                                <rect key="frame" x="-400" y="0.0" width="354" height="141"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" id="hp1-FY-TxM">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="141"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="1" id="2yA-3D-cWX">
-                                            <size key="itemSize" width="124" height="124"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <connections>
-                                            <outlet property="dataSource" destination="K8f-Ml-tw4" id="3pm-sa-0Pa"/>
-                                            <outlet property="delegate" destination="K8f-Ml-tw4" id="dez-9J-t4U"/>
-                                        </connections>
-                                    </collectionView>
-                                </subviews>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j8P-SH-9Rd">
-                                <rect key="frame" x="217" y="48" width="120" height="31"/>
+                                <rect key="frame" x="217" y="48" width="142" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Uor-NU-cHh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Uor-NU-cHh">
                                 <rect key="frame" x="0.0" y="0.0" width="155" height="161"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fBh-24-N5p">
-                                <rect key="frame" x="319" y="121" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="trash.png"/>
-                                <connections>
-                                    <action selector="deleteBtn:" destination="K8f-Ml-tw4" eventType="touchUpInside" id="TlS-ft-mRi"/>
-                                </connections>
-                            </button>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l49-6O-d1L">
                                 <rect key="frame" x="166" y="5" width="193" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -77,7 +48,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fBh-24-N5p">
+                                <rect key="frame" x="308" y="110" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="trash_hover.png"/>
+                                <state key="highlighted" image="trash_hover.png"/>
+                                <connections>
+                                    <action selector="deleteBtn:" destination="K8f-Ml-tw4" eventType="touchUpInside" id="TlS-ft-mRi"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="HNl-Kz-N27">
+                        <rect key="frame" x="0.0" y="177" width="375" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -86,16 +72,18 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bgView" destination="S9F-8k-BJJ" id="KEJ-2c-fip"/>
-                <outlet property="collectionView" destination="hp1-FY-TxM" id="ymz-mZ-KBg"/>
                 <outlet property="deleteBtn" destination="fBh-24-N5p" id="NNf-tf-10l"/>
+                <outlet property="imgLevel" destination="11T-L0-0ak" id="hAy-RZ-d8y"/>
+                <outlet property="imgLogo" destination="Uor-NU-cHh" id="K1o-8Z-y1v"/>
+                <outlet property="lblLevel" destination="j8P-SH-9Rd" id="BpU-Lx-Ej1"/>
+                <outlet property="lblPrice" destination="vxs-vb-aEA" id="AoL-5N-Rdw"/>
                 <outlet property="menuNameLbl" destination="l49-6O-d1L" id="bSL-C4-Iku"/>
-                <outlet property="vc" destination="ytZ-Ey-maw" id="WBJ-dA-rfj"/>
             </connections>
             <point key="canvasLocation" x="173.5" y="615"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="mild_hover.png" width="50" height="50"/>
-        <image name="trash.png" width="50" height="50"/>
+        <image name="trash_hover.png" width="50" height="50"/>
     </resources>
 </document>

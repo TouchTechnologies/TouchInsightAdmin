@@ -154,29 +154,62 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         appDelegate.roomGalleryIndex = indexPath.row
         let cell:customMenuListTbl = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customMenuListTbl
         print("Menuuuuuuuuuu")
+        print(self.menuNameData["menus"]![indexPath.row]!)
+        
+        let gestureDelete = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.deleteTap(_:)))
+        gestureDelete.numberOfTouchesRequired = 1
+        cell.deleteBtn.userInteractionEnabled = true
+        cell.deleteBtn.tag = indexPath.row
+        cell.deleteBtn.addGestureRecognizer(gestureDelete)
+        
         if let roomName = self.menuNameData["menus"]![indexPath.row]!["menu_name_en"]!
         {
             cell.menuNameLbl.text = (roomName as! String)
-//            cell.numOfRoom.text = "\(self.menuNameData["menus"]![indexPath.row]["room_type_description_th"] as! String) rooms"
-            //let gestureEdit = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.handleTap(_:)))
-            //gestureEdit.numberOfTouchesRequired = 1
-            //cell.editBtn.userInteractionEnabled = true
-            //cell.editBtn.tag = indexPath.row
-            //cell.editBtn.addGestureRecognizer(gestureEdit)
-            
-            let gestureDelete = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.deleteTap(_:)))
-            gestureDelete.numberOfTouchesRequired = 1
-            cell.deleteBtn.userInteractionEnabled = true
-            cell.deleteBtn.tag = indexPath.row
-            cell.deleteBtn.addGestureRecognizer(gestureDelete)
             
         }else{
             cell.menuNameLbl.text = ""
-            //cell.numOfRoom.text = ""
         }
         
+        if let menu_price = self.menuNameData["menus"]![indexPath.row]!["menu_price"]!{
+            cell.lblPrice.text = menu_price as? String
+            
+        }else{
+            cell.lblPrice.text = "..."
+        
+        }
+        
+        if let spicy_level = self.menuNameData["menus"]![indexPath.row]!["spicy_level"]! as? String{
+            switch spicy_level {
+            case "0","mild":
+                cell.imgLevel.image = UIImage(named: "mild_hover.png")
+                cell.lblLevel.text = "Mild"
+            case "1","middle":
+                cell.imgLevel.image = UIImage(named: "middle_hover.png")
+                cell.lblLevel.text = "Middle"
+            case "2","hot":
+                cell.imgLevel.image = UIImage(named: "hot_hover.png")
+                cell.lblLevel.text = "Hot"
+            default:
+                cell.imgLevel.image = UIImage(named: "mild.png")
+                cell.lblLevel.text = "Mild"
+            }
+        }else{
+            cell.imgLevel.image = UIImage(named: "mild.png")
+        }
+        
+        if let logo_image = self.menuNameData["menus"]![indexPath.row]!["images"]! as? String{
+            cell.imgLogo.hnk_setImageFromURL(NSURL(string: logo_image)!)
+            
+        }else{
+            cell.imgLogo.image = UIImage(named: "ic_no_image.png")
+            
+        }
+        
+        
+        //
         return cell
     }
+    
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
         
         let tag = gestureRecognizer.view!.tag
