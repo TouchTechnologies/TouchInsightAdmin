@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/InformationVC.swift"
-            timestampString = "481620309.514927"
+            timestampString = "490252231.176559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "530"
-            endingLineNumber = "530"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "setObject()"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/ResInformationVC.swift"
-            timestampString = "490006063.970204"
+            timestampString = "490252231.176559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1074"
-            endingLineNumber = "1074"
+            startingLineNumber = "1079"
+            endingLineNumber = "1079"
             landmarkName = "ResInformationVC"
             landmarkType = "3">
          </BreakpointContent>

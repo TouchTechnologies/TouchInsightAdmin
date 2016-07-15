@@ -368,7 +368,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(ResInfo)")
-        //        appDelegate.facilityHotelStatus.removeAll()
     }
     func initailLogoImage(){
         imgHotelLogo.backgroundColor = UIColor.whiteColor()
@@ -423,7 +422,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self.facilitiesResAttached.removeAll()
         for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
         {
-            if (self.appDelegate.facilityHotelStatus[i] as Bool)
+            if (self.appDelegate.facilityResStatus[i] as Bool)
             {
                 
                 self.facilitiesResAttached.append(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)
@@ -557,7 +556,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
         {
             //            print("faccccccc \(i)")
-            if(self.appDelegate.facilityHotelStatus[i])
+            if(self.appDelegate.facilityResStatus[i])
             {
                 print("Facility :\(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
             }
@@ -578,6 +577,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 ]
         ]
         
+        
+        print("Resfac Dic \(appDelegate.facilityResDic)")
+        print("Resfac status \(appDelegate.facilityResStatus)")
+        print("Resfac DicCount \(appDelegate.facilityResDic?.count)")
+        print("Resfac statusCount \(appDelegate.facilityResStatus.count)")
         let dataJson = send.Dict2JsonString(dataDic)
         print("data Send Json :\(dataJson)")
         print("Json GetFacilityAttached :\(send.jsonEncode(dataJson))")
@@ -599,7 +603,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                         
                         if((data["facilitiesAttached"]![i]["facility_id"] as! String) == (self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String))
                         {
-                            self.appDelegate.facilityHotelStatus[j] = true
+                            self.appDelegate.facilityResStatus[j] = true
                             print("index : \(j) \(data["facilitiesAttached"]![i]["facility_id"] as! String)")
                             print("index : \(j) \(self.appDelegate.facilityResDic!["facilities"]![j]!["facility_id"] as! String)")
                             
@@ -636,7 +640,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self.facilitiesResAttached.removeAll()
         for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
         {
-            if (self.appDelegate.facilityHotelStatus[i] as Bool)
+            if (self.appDelegate.facilityResStatus[i] as Bool)
             {
                 facilitiesAttached.append(
                     ["facility_id": appDelegate.facilityResDic!["facilities"]![i]["facility_id"] as! String,
@@ -887,6 +891,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
     }
+
     
     override func viewWillAppear(animated: Bool) {
         //        self.viewDidLoad()
@@ -1088,7 +1093,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         else{
             // var facilitiesAttached:[[String:String]] = []
             cell.textLabel?.text = facilitiesResAttached[indexPath.row]
-            print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
+            print("facilitiesResAttached(table) \(facilitiesResAttached[indexPath.row])")
         }
         
         //cell.textLabel?.text = "facility name"

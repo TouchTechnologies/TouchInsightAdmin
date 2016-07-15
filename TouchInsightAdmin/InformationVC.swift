@@ -113,7 +113,6 @@ print("province Delegate \(appDelegate.provinceName)")
     }
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear(hotelInfo)")
-//        appDelegate.facilityHotelStatus.removeAll()
     }
     func initailLogoImage(){
         imgHotelLogo.backgroundColor = UIColor.whiteColor()
