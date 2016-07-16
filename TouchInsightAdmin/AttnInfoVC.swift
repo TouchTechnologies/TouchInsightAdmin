@@ -975,7 +975,10 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         {
             print("no logo")
             self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+            
         }
+        
+        
         //
         ////        let dateFormatter = NSDateFormatter()
         //
@@ -1322,9 +1325,6 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             {
                 data in
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-                self.navigationController?.pushViewController(vc, animated:true)
                 self.dismissViewControllerAnimated(true, completion:
                     {
                         PKHUD.sharedHUD.hide(afterDelay: 1.0)

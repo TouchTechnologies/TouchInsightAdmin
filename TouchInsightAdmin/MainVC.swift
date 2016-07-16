@@ -177,7 +177,12 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func getFacility(){
+        PKHUD.sharedHUD.dimsBackground = false
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         
+        //PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
         
         var dataIsLoaded = false
         if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
@@ -210,10 +215,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
 //            print("dataJson:Hotel(Facility) : \(dataHotelJson)")
             send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataHotelJson){
                 data in
-                if(self.loadCount == 1)
-                {
-                    //PKHUD.sharedHUD.hide(animated: true, completion: nil)
-                }
+
                 self.loadCount += 1
                 self.appDelegate.facilityHotelDic = data
                 print("=====================================================================================")
@@ -224,6 +226,10 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 for _ in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1
                 {
                     self.appDelegate.facilityHotelStatus.append(false)
+                }
+                if(self.loadCount == 2)
+                {
+                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 
                 print("Facility Hotel Status :\(self.appDelegate.facilityHotelStatus.count)")
@@ -244,6 +250,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             print("dataJson(Facility) : \(dataRoomJson)")
             send.providerAPI(appDelegate.command["ListRoomFacility"]!, dataJson: dataRoomJson){
                 data in
+
                 self.appDelegate.facilityRoomDic = data
                 print("=====================================================================================")
                 print("Data Facility(Room) :\(data)")
@@ -254,7 +261,10 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 {
                     self.appDelegate.facilityRoomStatus.append(false)
                 }
-                
+                if(self.loadCount == 2)
+                {
+                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                }
                 print("Facility Room Status :\(self.appDelegate.facilityRoomStatus.count)")
             }
             
@@ -274,10 +284,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             print("dataJson:Restuarant(Facility) : \(dataResDic)")
             send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataResJson){
                 data in
-                if(self.loadCount == 1)
-                {
-                    //PKHUD.sharedHUD.hide(animated: true, completion: nil)
-                }
+
                 self.loadCount += 1
                 self.appDelegate.facilityResDic = data
                 print("=====================================================================================")
@@ -288,6 +295,10 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 for _ in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1
                 {
                     self.appDelegate.facilityResStatus.append(false)
+                }
+                if(self.loadCount == 2)
+                {
+                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 
                 print("Facility restuarant Status :\(self.appDelegate.facilityResStatus.count)")

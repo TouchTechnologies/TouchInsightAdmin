@@ -443,7 +443,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         setStatus24(true)
         
-       
+       myPickerController.delegate = self
         
         //self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         
@@ -615,9 +615,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 "restaurantTypeDetail": "",
                 "payByCreditCard": "",
                 "openDaily": send.Dict2JsonString(selectedDay),
-                "wifiAvailable": "",
-                "parkingAvailable": "",
-                "nonSmokingZone": ""
+                "wifi_available": self.selectedService["wifi"]!,
+                "parkingAvailable": self.selectedService["parking"]!,
+                "nonSmokingZone": self.selectedService["smonking"]!
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -1000,8 +1000,6 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
 
     
     override func viewWillAppear(animated: Bool) {
-        //        self.viewDidLoad()
-        //        self.viewDidAppear(true)
         
         
         //self.setObject()
@@ -1059,19 +1057,28 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
         //                    }
         
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
-        {
-            
-            
+        self._viewEmptyCover.userInteractionEnabled = false
+        self._viewEmptyLogo.userInteractionEnabled = false
+        
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
             print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
-            
-            
             self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
-        }
-        else
-        {
+            self._viewEmptyLogo.hidden = true
+        }else{
             print("no logo")
-            self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+            self.imgHotelLogo.image = UIImage()
+            self._viewEmptyLogo.hidden = false
+        }
+        
+        
+        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
+            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
+            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
+            self._viewEmptyCover.hidden = true
+        }else{
+            print("no cover")
+            self.imgHotelCover.image = UIImage()
+            self._viewEmptyCover.hidden = false
         }
 //        
 ////        let dateFormatter = NSDateFormatter()
@@ -1352,18 +1359,115 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                     }
                     if(allDay == 7){
                         self.view_DateSet.hidden = true
+                        self.view_BottomSet.frame.origin.y = 912
                         self.img_AllDay.image = UIImage(named: "check.png")
                         self.img_Weekly.image = UIImage(named: "uncheck.png")
                         
                     }else{
                         self.view_DateSet.hidden = false
-                        self.view_BottomSet.frame.origin.y = 912
                         self.img_AllDay.image = UIImage(named: "uncheck.png")
                         self.img_Weekly.image = UIImage(named: "check.png")
                         
                     }
-
                     
+
+                    if let wifi = data["GetProviderInformationById"]!["wifi_available"]
+                    {
+                        if(wifi === NSNull())
+                        {
+                            self.selectedService["wifi"] = "0"
+                            self.lblWifiServiceYes.textColor = UIColor.grayColor()
+                            self.lblWifiServiceNo.textColor = UIColor.blackColor()
+                            self.imgWifiServiceYes.image = UIImage(named: "uncheck.png")
+                            self.imgWifiServiceNo.image = UIImage(named: "check.png")
+                        }else
+                        {
+                            if ((wifi as! String) == "0")
+                            {
+                                self.selectedService["wifi"] = "0"
+                                self.lblWifiServiceYes.textColor = UIColor.grayColor()
+                                self.lblWifiServiceNo.textColor = UIColor.blackColor()
+                                self.imgWifiServiceYes.image = UIImage(named: "uncheck.png")
+                                self.imgWifiServiceNo.image = UIImage(named: "check.png")
+                            }else
+                            {
+                                self.selectedService["wifi"] = "1"
+                                self.lblWifiServiceYes.textColor = UIColor.blackColor()
+                                self.lblWifiServiceNo.textColor = UIColor.grayColor()
+                                self.imgWifiServiceYes.image = UIImage(named: "check.png")
+                                self.imgWifiServiceNo.image = UIImage(named: "uncheck.png")
+                                
+                                
+                            }
+ 
+                        }
+
+                    }
+                    if let parking = data["GetProviderInformationById"]!["parking_available"]
+                    {
+                        if(parking === NSNull())
+                        {
+                            self.selectedService["parking"] = "0"
+                            self.lblParkingServiceYes.textColor = UIColor.grayColor()
+                            self.lblParkingServiceNo.textColor = UIColor.blackColor()
+                            self.imgParkingServiceYes.image = UIImage(named: "uncheck.png")
+                            self.imgParkingServiceNo.image = UIImage(named: "check.png")
+                        }else
+                        {
+                            if ((parking as! String) == "0")
+                            {
+                                self.selectedService["parking"] = "0"
+                                self.lblParkingServiceYes.textColor = UIColor.grayColor()
+                                self.lblParkingServiceNo.textColor = UIColor.blackColor()
+                                self.imgParkingServiceYes.image = UIImage(named: "uncheck.png")
+                                self.imgParkingServiceNo.image = UIImage(named: "check.png")
+                            }else
+                            {
+                                self.selectedService["parking"] = "1"
+                                self.lblParkingServiceYes.textColor = UIColor.blackColor()
+                                self.lblParkingServiceNo.textColor = UIColor.grayColor()
+                                self.imgParkingServiceYes.image = UIImage(named: "check.png")
+                                self.imgParkingServiceNo.image = UIImage(named: "uncheck.png")
+                                
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    if let smonking = data["GetProviderInformationById"]!["non_smoking_zone"]
+                    {
+                        if(smonking === NSNull())
+                        {
+                            self.selectedService["smonking"] = "0"
+                            self.lblSmonkingServiceYes.textColor = UIColor.grayColor()
+                            self.lblSmonkingServiceNo.textColor = UIColor.blackColor()
+                            self.imgSmonkingServiceYes.image = UIImage(named: "uncheck.png")
+                            self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
+                        }else
+                        {
+                            if ((smonking as! String) == "0")
+                            {
+                                self.selectedService["smonking"] = "0"
+                                self.lblSmonkingServiceYes.textColor = UIColor.grayColor()
+                                self.lblSmonkingServiceNo.textColor = UIColor.blackColor()
+                                self.imgSmonkingServiceYes.image = UIImage(named: "uncheck.png")
+                                self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
+                            }else
+                            {
+                                self.selectedService["smonking"] = "1"
+                                self.lblSmonkingServiceYes.textColor = UIColor.blackColor()
+                                self.lblSmonkingServiceNo.textColor = UIColor.grayColor()
+                                self.imgSmonkingServiceYes.image = UIImage(named: "check.png")
+                                self.imgSmonkingServiceNo.image = UIImage(named: "uncheck.png")
+                                
+                                
+                            }
+                            
+                        }
+                        
+                    }
+
                 }
             }
             
@@ -1447,8 +1551,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             {
                 data in
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                self.dismissViewControllerAnimated(true, completion:{_ in
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                self.dismissViewControllerAnimated(true, completion:
+                    {
+                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                        self.imgHotelLogo.image = chosenImage
+                        self.imgHotelLogo.reloadInputViews()
                 })
             }
         }

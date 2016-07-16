@@ -1158,12 +1158,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
             {
                 data in
-                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                
-                //                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("providerinfo") as! ProviderInfoVC
-                //                self.navigationController?.pushViewController(vc, animated:true)
-                self.dismissViewControllerAnimated(true, completion:{_ in
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                self.dismissViewControllerAnimated(true, completion:
+                    {
+                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                        self.imgHotelLogo.image = chosenImage
+                        self.imgHotelLogo.reloadInputViews()
                 })
             }
             
