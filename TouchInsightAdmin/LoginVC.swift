@@ -49,8 +49,8 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
 //       userNameTxt.text = "pair@p.z"
 //       passWordTxt.text = "12345678"
         
-//        userNameTxt.text = "teerstudio@hotmail.com"
-//        passWordTxt.text = "master99"
+        userNameTxt.text = "teerstudio@hotmail.com"
+        passWordTxt.text = "master99"
        
         userNameTxt.delegate = self
         passWordTxt.delegate = self
