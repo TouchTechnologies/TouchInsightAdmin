@@ -840,6 +840,7 @@ class API_Model {
             return ""
         }
     }
+    
     func jsonEncode(jsonString:String)->NSDictionary
     {
 
