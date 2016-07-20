@@ -24,9 +24,9 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     var facilitiesResAttached = [String]()
     @IBOutlet var lblTitleHeader: UILabel!
     
-//    @IBOutlet var lblAddHotelfac: UILabel!
-//    @IBOutlet var tableView: UITableView!
-//    @IBOutlet var hotelFacListView: UIView!
+    //    @IBOutlet var lblAddHotelfac: UILabel!
+    //    @IBOutlet var tableView: UITableView!
+    //    @IBOutlet var hotelFacListView: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imgHotelLogo: UIImageView!
     @IBOutlet var txtHotelName: UITextField!
@@ -353,8 +353,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         self.setObject()
         
         
-//        tableView.delegate = self
-//        tableView.dataSource = self
+        //        tableView.delegate = self
+        //        tableView.dataSource = self
         
         checkOutTxt.delegate = self
         checkInTxt.delegate = self
@@ -364,7 +364,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         checkoutPicker.datePickerMode = UIDatePickerMode.Time
         checkoutPicker.locale = NSLocale(localeIdentifier: "TH")
         //print("province Data \(provinceData)")
-//        print("province Delegate \(appDelegate.provinceName)")
+        //        print("province Delegate \(appDelegate.provinceName)")
         
         //hide keybord when tap view
         //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AttnInfoVC.dismissKeyboard))
@@ -373,7 +373,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         self.initailLogoImage()
         
         self.getProviderByID()
-//        self.getFacility()        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        //        self.getFacility()        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         
         
     }
@@ -441,7 +441,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             }
             
         }
-//        tableView.reloadData()
+        //        tableView.reloadData()
     }
     
     //    func closealert(alertView : CustomIOS7AlertView){
@@ -496,7 +496,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                 "phone": phonNumberTxt.text!,
                 "website": websiteTxt.text!,
                 "email": emailTxt.text!,
-
+                
                 //Attraction
                 "openDaily": send.Dict2JsonString(selectedDay),
                 "weekdayOpentime": checkInTxt.text!,
@@ -545,7 +545,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     //self.navigationController?.pushViewController(secondViewController!, animated: true)
                     //                    self.dismissViewControllerAnimated(true, completion: nil)
                     
-//                    self.appDelegate.viewWithTopButtons.hidden = true
+                    //                    self.appDelegate.viewWithTopButtons.hidden = true
                 }
                 
             }
@@ -556,19 +556,19 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             
         }
         print("==============================================")
-//        self.setFacility()
+        //        self.setFacility()
         print("==============================================")
         
         //        print("Facility(status) : \(appDelegate.facilityHotelStatus)")
-//        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
-//        {
-//            //            print("faccccccc \(i)")
-//            if(self.appDelegate.facilityHotelStatus[i])
-//            {
-//                print("Facility :\(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
-//            }
-//            
-//        }
+        //        for i in 0...appDelegate.facilityResDic!["facilities"]!.count - 1
+        //        {
+        //            //            print("faccccccc \(i)")
+        //            if(self.appDelegate.facilityHotelStatus[i])
+        //            {
+        //                print("Facility :\(appDelegate.facilityResDic!["facilities"]![i]["facility_name_en"] as! String)")
+        //            }
+        //            
+        //        }
     }
     func getFacility()
     {
@@ -615,7 +615,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     self.facilitiesResAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
-//            self.tableView.reloadData()
+            //            self.tableView.reloadData()
         }
         
         print("all facility Attraction \(appDelegate.facilityResDic)")
@@ -702,68 +702,66 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     }
     func setObject(){
         
-        imgHotelLogo.layer.cornerRadius = 5
-        imgHotelLogo.layer.borderWidth = 1
-        imgHotelLogo.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
-        txtHotelName.borderStyle = UITextBorderStyle.RoundedRect
-        txtHotelName.layer.cornerRadius = 5
+        imgHotelLogo.layer.cornerRadius = 0
+        imgHotelLogo.layer.borderWidth = 1
+        imgHotelLogo.layer.borderColor = borderColorCG
+        
+        
+        txtHotelName.borderStyle = UITextBorderStyle.None
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
         txtHotelName.layer.borderWidth = 1
-        txtHotelName.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        txtHotelName.layer.borderColor = borderColorCG
         
-        HotelDesTxt.layer.cornerRadius = 5
+        
+        HotelDesTxt.layer.cornerRadius = 0
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
-        HotelDesTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        HotelDesTxt.layer.borderColor = borderColorCG
         
         
-        phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        phonNumberTxt.layer.cornerRadius = 5
+        phonNumberTxt.borderStyle = UITextBorderStyle.None
         phonNumberTxt.center.x = width/2
         phonNumberTxt.layer.bounds.size.width = width - 10
         phonNumberTxt.layer.borderWidth = 1
-        phonNumberTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        phonNumberTxt.layer.borderColor = borderColorCG
         
-        emailTxt.borderStyle = UITextBorderStyle.RoundedRect
-        emailTxt.layer.cornerRadius = 5
+        emailTxt.borderStyle = UITextBorderStyle.None
         emailTxt.center.x = width/2
         emailTxt.layer.bounds.size.width = width - 10
         emailTxt.layer.borderWidth = 1
-        emailTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        emailTxt.layer.borderColor = borderColorCG
         
-        websiteTxt.borderStyle = UITextBorderStyle.RoundedRect
-        websiteTxt.layer.cornerRadius = 5
+        websiteTxt.borderStyle = UITextBorderStyle.None
         websiteTxt.center.x = width/2
         websiteTxt.layer.bounds.size.width = width - 10
         websiteTxt.layer.borderWidth = 1
-        websiteTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        websiteTxt.layer.borderColor = borderColorCG
         
-        provinceTxt.borderStyle = UITextBorderStyle.RoundedRect
-        provinceTxt.layer.cornerRadius = 5
+        provinceTxt.borderStyle = UITextBorderStyle.None
         provinceTxt.center.x = width/2
         provinceTxt.layer.bounds.size.width = width - 10
         provinceTxt.layer.borderWidth = 1
-        provinceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        provinceTxt.layer.borderColor = borderColorCG
         
-        
-        addressTxt.layer.cornerRadius = 5
+        addressTxt.layer.cornerRadius = 0
         addressTxt.center.x = width/2
         addressTxt.layer.bounds.size.width = width - 10
         addressTxt.layer.borderWidth = 1
-        addressTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        addressTxt.layer.borderColor = borderColorCG
         
         
-//        hotelFacListView.layer.cornerRadius = 5
-//        hotelFacListView.center.x = width/2
-//        hotelFacListView.layer.bounds.size.width = width - 10
-//        hotelFacListView.layer.borderWidth = 1
-//        hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-//        
-//        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
-//        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
+        //        hotelFacListView.layer.cornerRadius = 5
+        //        hotelFacListView.center.x = width/2
+        //        hotelFacListView.layer.bounds.size.width = width - 10
+        //        hotelFacListView.layer.borderWidth = 1
+        //        hotelFacListView.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        //        
+        //        tableView.center.x = hotelFacListView.layer.bounds.size.width/2
+        //        tableView.layer.bounds.size.width = hotelFacListView.layer.bounds.size.width - 10
         
         //        lblAddHotelfac.layer.bounds.size.width = 265
         //        lblAddHotelfac.center.x = hotelFacListView.layer.bounds.size.width/2 - 10
@@ -853,9 +851,9 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 756
         
-//        var frmBtnAddFac = btnAddFac.frame
-//        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
-//        btnAddFac.frame = frmBtnAddFac
+        //        var frmBtnAddFac = btnAddFac.frame
+        //        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
+        //        btnAddFac.frame = frmBtnAddFac
         
         
         //        var frmBottomSet = self.view_BottomSet.frame
@@ -1097,28 +1095,28 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
      }
      */
     
-//    
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return facilitiesResAttached.count
-//    }
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-//        if(facilitiesResAttached.count == 0){
-//            cell.textLabel?.text = ""
-//        }
-//        else{
-//            // var facilitiesAttached:[[String:String]] = []
-//            cell.textLabel?.text = facilitiesResAttached[indexPath.row]
-//            print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
-//        }
-//        
-//        //cell.textLabel?.text = "facility name"
-//        return cell
-//    }
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        print("Select")
-//    }
-//    
+    //    
+    //    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //        return facilitiesResAttached.count
+    //    }
+    //    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    //        if(facilitiesResAttached.count == 0){
+    //            cell.textLabel?.text = ""
+    //        }
+    //        else{
+    //            // var facilitiesAttached:[[String:String]] = []
+    //            cell.textLabel?.text = facilitiesResAttached[indexPath.row]
+    //            print("facilitiesHotelAttached(table) \(facilitiesResAttached[indexPath.row])")
+    //        }
+    //        
+    //        //cell.textLabel?.text = "facility name"
+    //        return cell
+    //    }
+    //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    //        print("Select")
+    //    }
+    //    
     func getProviderByID()
     {
         //        PKHUD.sharedHUD.dimsBackground = false
@@ -1154,8 +1152,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                 //
                 //            self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
                 
-
-
+                
+                
                 
                 if var openTime = data["GetProviderInformationById"]!["weekday_opentime"]
                 {
@@ -1201,7 +1199,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     }else
                     {
                         self.setStatus24(false)
-
+                        
                     }
                     self.checkOutTxt.text = closeTime as? String
                     

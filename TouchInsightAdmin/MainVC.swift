@@ -32,15 +32,16 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     @IBOutlet weak var viewUserInfo: UIView!
     @IBOutlet weak var mainScrollView: UIScrollView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate.isLogin = true
         
         
-//        PKHUD.sharedHUD.dimsBackground = true
-//        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//        PKHUD.sharedHUD.show()
+        //        PKHUD.sharedHUD.dimsBackground = true
+        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        //        PKHUD.sharedHUD.show()
         
         
         
@@ -56,17 +57,17 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         imgProfile.layer.cornerRadius = imgProfile.frame.size.height/2
         
         
-//        if let avatar = self.appDelegate.userInfo["avatarImage"] {
-//            print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-//            dispatch_async(dispatch_get_main_queue()) {
-//                
-//                self.imgProfile.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
-//            }
-//            
-//        }else{
-//            print("no avatar")
-//            imgProfile.image = UIImage(named: "ic_team.png")
-//        }
+        //        if let avatar = self.appDelegate.userInfo["avatarImage"] {
+        //            print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
+        //            dispatch_async(dispatch_get_main_queue()) {
+        //                
+        //                self.imgProfile.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+        //            }
+        //            
+        //        }else{
+        //            print("no avatar")
+        //            imgProfile.image = UIImage(named: "ic_team.png")
+        //        }
         
         
         print("FirstName : \(self.appDelegate.userInfo["firstName"])")
@@ -78,10 +79,10 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             if let avatar = self.appDelegate.userInfo["avatarImage"] where avatar != "" {
                 print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
                 dispatch_async(dispatch_get_main_queue()) {
-//                    var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
-//                    if imgProfile == nil {
-//                        imgProfile = UIImage(named: "ic_team.png")
-//                    }
+                    //                    var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+                    //                    if imgProfile == nil {
+                    //                        imgProfile = UIImage(named: "ic_team.png")
+                    //                    }
                     var imgProfile = UIImage()
                     if let _img = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!) {
                         imgProfile = _img
@@ -107,27 +108,26 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         
         
         
-//        let device = DeviceDetail()
-//        print(device)     // prints for example "iPhone 6 Plus"
-//        if device == .iPhone4 || device == .iPhone4s {
-//            print("OK iPhone4s")
-//            // Do something
-//        } else {
-//            // Do something else
-//            print("OK i'm not iPhone4s")
-//        }
+        //        let device = DeviceDetail()
+        //        print(device)     // prints for example "iPhone 6 Plus"
+        //        if device == .iPhone4 || device == .iPhone4s {
+        //            print("OK iPhone4s")
+        //            // Do something
+        //        } else {
+        //            // Do something else
+        //            print("OK i'm not iPhone4s")
+        //        }
         
         
         let deviceH = self.view.bounds.height
         print("deviceH = \(deviceH)")
         if deviceH <= 480.0 {
-//            self.viewUserInfo.frame.size.height = 180.0
-//            self.mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 667)
+            //            self.viewUserInfo.frame.size.height = 180.0
+            //            self.mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 667)
         }
-
+        
         
     }
-    
     
     
     func getProvince(){
@@ -136,14 +136,14 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         if let dicData = self.appDelegate.provinceDic as NSDictionary? {
             
             let arrData = dicData["ListProvince"] as! NSArray
-//            print(arrData.count)
+            //            print(arrData.count)
             if(arrData.count > 0){
                 dataIsLoaded = true
             }
         }
         
         if(!dataIsLoaded){
-        
+            
             let send = API_Model()
             send.providerAPI(appDelegate.command["listProvince"]!, dataJson: "{}"){
                 data in
@@ -151,11 +151,13 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     //PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 self.loadCount += 1
-//                print("=====================================================================================")
-//                //print("Province Data : \(data["ListProvince"]![0])")
-//                print("All Province data :\(data)")
-//                
-//                print("=====================================================================================")
+                //                print("=====================================================================================")
+                //                //print("Province Data : \(data["ListProvince"]![0])")
+                //                print("All Province data :\(data)")
+                //                
+                //                print("=====================================================================================")
+                
+                
                 self.appDelegate.provinceDic = data
                 for index in 0...self.appDelegate.provinceDic!["ListProvince"]!.count - 1{
                     
@@ -167,9 +169,12 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     self.appDelegate.provinceName.append(self.appDelegate.provinceDic!["ListProvince"]![index]["province_name_en"] as! String)
                     
                 }
-//                print("Count: \(self.appDelegate.provinceDic!["ListProvince"]!.count)")
-//                
-//                print("ProvinceName :\(self.appDelegate.provinceName)")
+                //                print("Count: \(self.appDelegate.provinceDic!["ListProvince"]!.count)")
+                //                
+                //                print("ProvinceName :\(self.appDelegate.provinceName)")
+            
+                
+            
             }
             
         }
@@ -196,7 +201,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         
         
         if(!dataIsLoaded){
-         
+            
             
             let send = API_Model()
             
@@ -212,10 +217,10 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             ]
             
             let dataHotelJson = send.Dict2JsonString(dataHotelDic)
-//            print("dataJson:Hotel(Facility) : \(dataHotelJson)")
+            //            print("dataJson:Hotel(Facility) : \(dataHotelJson)")
             send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataHotelJson){
                 data in
-
+                
                 self.loadCount += 1
                 self.appDelegate.facilityHotelDic = data
                 print("=====================================================================================")
@@ -250,7 +255,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             print("dataJson(Facility) : \(dataRoomJson)")
             send.providerAPI(appDelegate.command["ListRoomFacility"]!, dataJson: dataRoomJson){
                 data in
-
+                
                 self.appDelegate.facilityRoomDic = data
                 print("=====================================================================================")
                 print("Data Facility(Room) :\(data)")
@@ -284,11 +289,11 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             print("dataJson:Restuarant(Facility) : \(dataResDic)")
             send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataResJson){
                 data in
-
+                
                 self.loadCount += 1
                 self.appDelegate.facilityResDic = data
                 print("=====================================================================================")
-//                print("Data restuarant Facility :\(data)")
+                //                print("Data restuarant Facility :\(data)")
                 print("facility(restuarant) : \(self.appDelegate.facilityResDic!["facilities"]! as! NSArray)")
                 print("Hotel(Count) : \(self.appDelegate.facilityResDic!["facilities"]!.count as Int)")
                 print("=====================================================================================")
@@ -311,8 +316,8 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     override func viewWillAppear(animated: Bool) {
         appDelegate.isLogin = true
         print("before")
-//        self.navigationController?.navigationController?.navigationBarHidden = true
-
+        //        self.navigationController?.navigationController?.navigationBarHidden = true
+        
         
         
         
@@ -343,18 +348,18 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     override func viewDidAppear(animated: Bool) {
         
-//        if appDelegate.isDisplayLoginSuccess != true {
-//            appDelegate.isDisplayLoginSuccess = true
-//            
-//            let titleMessage = "Login Success"
-//            let message = "ยินดีต้อนรับเข้าสู่ระบบ"
-//            
-//            alertView.showCircularIcon = false
-//            self.alertView.showTitle(titleMessage, subTitle: message, style: SCLAlertViewStyle.Success, closeButtonTitle: "OK" , duration: 5.0, colorStyle: 0xAC332F, colorTextButton: 0xFFFFFF)
-//            
-//            
-//            print("appDelegate.isDisplayLoginSuccess = true")
-//        }
+        //        if appDelegate.isDisplayLoginSuccess != true {
+        //            appDelegate.isDisplayLoginSuccess = true
+        //            
+        //            let titleMessage = "Login Success"
+        //            let message = "ยินดีต้อนรับเข้าสู่ระบบ"
+        //            
+        //            alertView.showCircularIcon = false
+        //            self.alertView.showTitle(titleMessage, subTitle: message, style: SCLAlertViewStyle.Success, closeButtonTitle: "OK" , duration: 5.0, colorStyle: 0xAC332F, colorTextButton: 0xFFFFFF)
+        //            
+        //            
+        //            print("appDelegate.isDisplayLoginSuccess = true")
+        //        }
         
         
     }
@@ -413,7 +418,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             
             
             
-//            performSegueWithIdentifier("loadprovider", sender: self)
+            //            performSegueWithIdentifier("loadprovider", sender: self)
             //let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
             // self.navigationController!.pushViewController(providerlist!, animated: true)
             print("You select Provider menu")
@@ -439,22 +444,23 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         print("---------prepareForSegue---------")
         print(segue.identifier)
         if (segue.identifier == "loadprovider") {
-//            PKHUD.sharedHUD.dimsBackground = false
-//            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//            PKHUD.sharedHUD.show()
+            //            PKHUD.sharedHUD.dimsBackground = false
+            //            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+            //            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            //            PKHUD.sharedHUD.show()
             
-//            let nav = segue.destinationViewController as! UINavigationController
-//            let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-////            nav.pushViewController(providerlist!, animated: true)
-//            self.navigationController?.pushViewController(providerlist!, animated: true)
-//            
-            
-            
+            //            let nav = segue.destinationViewController as! UINavigationController
+            //            let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
+            ////            nav.pushViewController(providerlist!, animated: true)
+            //            self.navigationController?.pushViewController(providerlist!, animated: true)
+            //            
             
             
-//            let mainView = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-//            self.navigationController?.pushViewController(mainView!, animated: true)
+            
+            
+            //            let mainView = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+            //            self.navigationController?.pushViewController(mainView!, animated: true)
+            
             
             
             // pass data to next view

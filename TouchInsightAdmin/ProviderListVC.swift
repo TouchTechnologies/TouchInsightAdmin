@@ -408,19 +408,12 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         }
         
         if(scrollY == 0){
-            UIView.animateWithDuration(2.0, animations: {
-                
+            UIView.animateWithDuration(0.2, animations:{
+                self.btnCreateNew.alpha = 1
                 }, completion: {_ in
-                    
-                    UIView.animateWithDuration(0.2, animations:{
-                        self.btnCreateNew.alpha = 1
-                        }, completion: {_ in
-                            self.animateSuccess = true
-                            self.oldScrollAction = "down"
-                    })
-                    
+                    self.animateSuccess = true
+                    self.oldScrollAction = "down"
             })
-            
         }
 
         

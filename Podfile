@@ -1,6 +1,7 @@
 # Uncomment this line to define a global platform for your project1
 platform :ios, '8.0'
 # Uncomment this line if you're using Swift
+# source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 ##getServer Json Data
 #pod 'AF' # 'AFNetworking' ?
@@ -36,7 +37,6 @@ pod 'Fabric'
 pod 'Crashlytics'
 
 target 'TouchInsightAdmin' do
-
 
 end
 
