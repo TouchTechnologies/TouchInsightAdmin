@@ -6,203 +6,193 @@
 	<dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>CustomIOSAlertView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>EAIntroView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>EARestrictedScrollView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>HanekeSwift.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>NKJPagerViewController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>PKHUD.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>PagingMenuController-PagingMenuController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>PagingMenuController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TouchInsightAdmin.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TouchInsightAdminTests.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-TouchInsightAdminUITests.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>Pods.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>PureLayout.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>QRCodeReader.swift.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>RBBAnimation.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>RNCryptor.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>RNGridMenu.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>18</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SCLAlertView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>19</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SMPageControl.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>20</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00817E44FC41508B6814F480AD5EFB83</key>
+		<key>10EFB16C1B09C1B8CB0061AD6FEC575B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>035F97664702AFBD2340075BB59C3931</key>
+		<key>23D4B5C9CC657B68134305BFEB076270</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>055D8DC71D2006D25FC9943024AA072C</key>
+		<key>2C2B1953A91633859BF7AD238FF567A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0C8F0D36B8144A33E49BC96C438A7066</key>
+		<key>58D74B137F9E11FB9FF80D36DE2536BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2A86883F5D4BFF526CC60319A3E3A304</key>
+		<key>5A597B34D61089CB35A383E3970D6FDC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30433A1C316DD89FD54148E5F21A958C</key>
+		<key>5BBB34170986C897E8931C1768FD6EE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30BA75A8DD6B2F547BC31F29BAA5F9E6</key>
+		<key>67A268A22239C74EFB7FB75EDEF5993B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41299199BB91DF7B4C3F29625EE65928</key>
+		<key>6D4ED094E3CEEB9546EE879E21DC29AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A5F71C0203CE5ABD4D9CD7ADC89FB04</key>
+		<key>7251B954C3EEE914AD951E782A3F1EF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7CEDA58133D98EFCBC063BE59A175A3E</key>
+		<key>7641E39F30CA89F0BA400B72182261CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E7776DF70C1F13CED6DCDD42CFE76F2</key>
+		<key>777F96B093015EBB27EEE562C9870E74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8150F35EFADB7B56363A0351DAFD7FCA</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8240A687A12B3496C485DFBEB80E79E2</key>
+		<key>874FC1ECBD9142CF2394C1B359307AD4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF6821D9C60648A222A9ADD3A043CFEF</key>
+		<key>9ADAE0D60D3E77C4FE7E2BCB6EAD657C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0BE77B5775254E9F38A700B4CE67F15</key>
+		<key>AB045440E0FF21FA9AA0E0A151C95FDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF419A8A0901A8423937CA6218A291F7</key>
+		<key>BB234C6B513D7EAD73A79D0CF8A63F38</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9185976AB2DC70446EBA54C877F9130</key>
+		<key>D8BF146EAE696DCA97C90C51BE045947</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECBCEF5CE650C579A6DE72D4F5A1A07D</key>
+		<key>EA4FD8C4CE21396EE7F69CDAF0D5EAAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ED13E4FBD3970AA38E4B8F3C0BC40F15</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0AA667ADDB5E835815BD200981A826F</key>
+		<key>F6F0516F82D07656D12F1C0716898F73</key>
 		<dict>
 			<key>primary</key>
 			<true/>

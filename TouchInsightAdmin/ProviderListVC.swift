@@ -381,6 +381,8 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
             currentScrollAction = "down"
         }
         
+        print("scrollY = \(scrollY)")
+        
         if(animateSuccess && oldScrollAction != currentScrollAction){
             print("scrollY = \(scrollY)")
             animateSuccess = false
@@ -405,6 +407,16 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
             }
         }
         
+        if(scrollY == 0){
+            UIView.animateWithDuration(0.2, animations:{
+                self.btnCreateNew.alpha = 1
+                }, completion: {_ in
+                    self.animateSuccess = true
+                    self.oldScrollAction = "down"
+            })
+        }
+
+        
         oldScrollY = scrollY
     }
     
@@ -416,6 +428,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
                     self.animateSuccess = true
                     self.oldScrollAction = "up"
             })
+            
         }else{
             print("DOWN")
             UIView.animateWithDuration(0.2, animations:{

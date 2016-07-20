@@ -670,10 +670,10 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         checkoutPicker.frame.origin.x = 0
         timetoairportPicker.frame.origin.x = 0
         
-        pickerView.frame.size.width = UIScreen.mainScreen().bounds.width
-        checkinPicker.frame.size.width = UIScreen.mainScreen().bounds.width
-        checkoutPicker.frame.size.width = UIScreen.mainScreen().bounds.width
-        timetoairportPicker.frame.size.width = UIScreen.mainScreen().bounds.width
+        pickerView.frame.size.width = self.view.frame.size.width
+        checkinPicker.frame.size.width = self.view.frame.size.width
+        checkoutPicker.frame.size.width = self.view.frame.size.width
+        timetoairportPicker.frame.size.width = self.view.frame.size.width
         
         let navBarHeight:CGFloat = 44.0
         var frmScrollView = scrollView.frame
@@ -1099,11 +1099,12 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     func imageTapped(sender: AnyObject){
         //        print("Upload Logo Img")
         let _gg = sender as! UITapGestureRecognizer
-        print(_gg.view)
+        let tag = Int((_gg.view?.tag)!)
+        print(tag)
         
-        if( _gg.view?.tag == 1){
+        if(tag == 1){
             _pickerType = "cover"
-        }else if( _gg.view?.tag == 2){
+        }else if(tag == 2){
             _pickerType = "logo"
         }
         //        print("---------")
@@ -1155,17 +1156,15 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             print("UPLOAD DATA ::: \(data)")
             self.mediaKey = data
             
-            send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
-            {
+            send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName){
                 data in
                 self.dismissViewControllerAnimated(true, completion:
                     {
                         PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                        self.imgHotelLogo.image = chosenImage
-                        self.imgHotelLogo.reloadInputViews()
+//                        self.imgHotelLogo.image = chosenImage
+//                        self.imgHotelLogo.reloadInputViews()
                 })
             }
-            
             
         }
     }

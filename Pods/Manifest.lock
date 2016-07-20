@@ -22,19 +22,19 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Crashlytics
-  - CustomIOSAlertView
+  - CustomIOSAlertView (= 0.9.3)
   - EAIntroView
   - Fabric
   - HanekeSwift
   - NKJPagerViewController
-  - PagingMenuController
+  - PagingMenuController (= 0.8.0)
   - PKHUD
   - PureLayout
   - QRCodeReader.swift
   - RBBAnimation
   - RNCryptor
   - RNGridMenu
-  - SCLAlertView
+  - SCLAlertView (= 0.5.1)
   - SMPageControl
 
 SPEC CHECKSUMS:
@@ -56,4 +56,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: 2074c7381e68ba33a68d0eb339ff966e6fd629f8
+
+COCOAPODS: 1.0.1

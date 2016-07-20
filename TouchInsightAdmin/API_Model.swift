@@ -15,23 +15,23 @@ class API_Model {
     let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
     let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
     let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
-
+    
     // test to tak
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let _osVersion = UIDevice.currentDevice().systemVersion
     let _UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
     let _SecretKey = "BcILclihFSTbm3tGpfKfrbdW"
-
     
-
+    
+    
     func post2Server(apiName:String,POST_Data:[String:AnyObject],completionHandler:[String:AnyObject]->()){
         Alamofire.request(.GET, "\(_apiUrl)\(apiName)", parameters: POST_Data)
             .responseJSON { response in
-//                print(response.request)  // original URL request
-//                print(response.response) // URL response
-//                print(response.data)     // server data
-//                print(response.result)   // result of response serialization
+                //                print(response.request)  // original URL request
+                //                print(response.response) // URL response
+                //                print(response.data)     // server data
+                //                print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
@@ -83,7 +83,7 @@ class API_Model {
     }
     func providerAPI(apiCode:String,dataJson:String,completionHandler:NSDictionary->()){
         
-//        print("dataJson \(dataJson)")
+        //        print("dataJson \(dataJson)")
         let IV_Key64 = "XVVdXHhYU2A="
         let data = enCrypt(dataJson, base64IV: IV_Key64)
         let param: [String:AnyObject] = [
@@ -99,8 +99,8 @@ class API_Model {
             "mask": IV_Key64,
             "data": data
         ]
-
-//        print("data All \(param)")
+        
+        //        print("data All \(param)")
         Alamofire.request(.POST, "\(_oldapiUrl)", parameters: param,encoding: .JSON)
             .responseJSON { response in
                 //                print(response.request)  // original URL request
@@ -109,7 +109,7 @@ class API_Model {
                 //                print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
-//                    print("providerAPIJSON: \(JSON)")
+                    //                    print("providerAPIJSON: \(JSON)")
                     if let jsonStatus = (JSON["status"])
                     {
                         //print("jsonStatus :\(JSON["status"] as! Int)")
@@ -120,19 +120,19 @@ class API_Model {
                             let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
                             //print("============================================")
                             
-//                            print("before JsonEncode : \(result)")
+                            //                            print("before JsonEncode : \(result)")
                             //completionHandler(JSON as! [String : AnyObject])
                             let resultJson = self.jsonEncode(result as String)
-//                            print("resultJson")
-//                            print(resultJson)
-//                            print("= = = = = = = =")
+                            //                            print("resultJson")
+                            //                            print(resultJson)
+                            //                            print("= = = = = = = =")
                             print("providerAPIJSON: \(resultJson)")
                             completionHandler(resultJson )
-//                            print("after JsonEncode : \(resultJson)")
-//                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
+                            //                            print("after JsonEncode : \(resultJson)")
+                            //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
                         }
                     }
-
+                    
                     
                 }
                 
@@ -172,7 +172,7 @@ class API_Model {
                         print("jsonStatus :\(JSON["status"] as! Int)")
                         if (jsonStatus as! Int == 4051){
                             print("Error")
-//                            print("Data \(self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64))")
+                            //                            print("Data \(self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64))")
                             print("Message \(JSON["message"])")
                         }else
                         {
@@ -202,7 +202,7 @@ class API_Model {
             "latitude": latitude,
             "longitude":longitude
         ]
-
+        
         print("UUID : \(_UUID)")
         print("latitude: \(latitude)")
         print("longitude: \(longitude)")
@@ -213,12 +213,12 @@ class API_Model {
             .responseJSON { response in
                 print("---------------------------------------------------------------------")
                 print("Login")
-//                print(response.request)  // original URL request
+                //                print(response.request)  // original URL request
                 print(response.response) // URL response
-//                print(response.data)     // server data
-//                print(response.result)   // result of response serialization
+                //                print(response.data)     // server data
+                //                print(response.result)   // result of response serialization
                 print("---------------------------------------------------------------------")
-//                print("Code \(response.response?.valueForKey("status code") as! String)")
+                //                print("Code \(response.response?.valueForKey("status code") as! String)")
                 if let JSON = response.result.value {
                     print("JSON(Login): \(JSON)")
                     
@@ -230,34 +230,33 @@ class API_Model {
                             if code == nil{
                                 data["status"] = true
                                 data["userID"] = (JSON["userId"] as! String)
-//                                data["accessToken"] = JSON["accessToken"]
-//                                print("accessToken : \(JSON["accessToken"] as! String)")
+                                //                                data["accessToken"] = JSON["accessToken"]
+                                //                                print("accessToken : \(JSON["accessToken"] as! String)")
                                 self.appDelegate.userInfo["accessToken"] = (JSON["accessToken"] as! String)
                                 self.appDelegate.userInfo["userID"] = (JSON["userId"] as! String)
                                 self.appDelegate.userInfo["passWord"] = password
                                 print("Login(User ID) \(JSON["userId"]!)")
                                 Alamofire.request(.GET, "\(self._apiUrl)users/\(JSON["userId"] as! String)/avatars", parameters: ["": ""])
                                     .responseJSON { response in
-//                                        print(response.request)  // original URL request
-//                                        print(response.response) // URL response
-//                                        print(response.data)     // server data
-//                                        print(response.result)   // result of response serialization
+                                        //                                        print(response.request)  // original URL request
+                                        //                                        print(response.response) // URL response
+                                        //                                        print(response.data)     // server data
+                                        //                                        print(response.result)   // result of response serialization
                                         
                                         if let JSON = response.result.value {
-//                                            print("JSON avatar login : \(JSON["small"])")
+                                            //                                            print("JSON avatar login : \(JSON["small"])")
                                             self.appDelegate.userInfo["avatarImage"] = (JSON["small"] as! String)
                                         }
                                 }
-//                                print("userID\(JSON["userId"] as! String)")
-//                                self.getUserInfo(JSON["userId"] as! String)
-//                                print("success")
+                                //                                print("userID\(JSON["userId"] as! String)")
+                                //                                self.getUserInfo(JSON["userId"] as! String)
+                                //                                print("success")
                             }else{
                                 data["status"] = false
                             }
                         }
-
-                        for var index = 0 ;index < error?.count ;index++
-                        {
+                        
+                        for (var index = 0 ;index < error?.count ;index += 1){
                             print("field\(index) \(error![index]["field"] as! String)")
                             if (error![index]["field"] as! String) == "username"
                             {
@@ -268,14 +267,13 @@ class API_Model {
                                 data["field"] = error![index]["field"]
                                 data["message"] = "password ผิด"
                             }
-                            
                         }
                         completionHandler(data)
                     }
                 }
         }
     }
-
+    
     func Register(firstName:String,lastName:String,mobile:String,email:String,passWord:String,completionHandler:[String:AnyObject]->())
     {
         let parameters = [
@@ -295,8 +293,8 @@ class API_Model {
                 if let JSON = response.result.value {
                     
                     print("JSON(Regis): \(JSON)")
-//                    print("code \(JSON["code"] as! Int)")
-//                    print("message \(JSON["message"] as! String)")
+                    //                    print("code \(JSON["code"] as! Int)")
+                    //                    print("message \(JSON["message"] as! String)")
                     
                     
                     if let error = JSON["errors"]{
@@ -309,13 +307,13 @@ class API_Model {
                                 data["status"] = false
                             }
                         }
-//                        for var index = 0 ;index < error?.count ;index++
-//                        {
-//                            print("errors \(error![index]["field"] as! String)")
-//                        }
+                        //                        for var index = 0 ;index < error?.count ;index++
+                        //                        {
+                        //                            print("errors \(error![index]["field"] as! String)")
+                        //                        }
                         for var index = 0 ;index < error?.count ;index++
                         {
-//                            print("field\(index) \(error![index]["field"] as! String)")
+                            //                            print("field\(index) \(error![index]["field"] as! String)")
                             if (error![index]["field"] as! String) == "email"
                             {
                                 data["field"] = error![index]["field"]
@@ -323,7 +321,7 @@ class API_Model {
                             }
                             
                         }
-
+                        
                         completionHandler(data)
                     }
                     
@@ -339,8 +337,8 @@ class API_Model {
         let imageData = UIImageJPEGRepresentation(image, 0.5)
         var data = [String:AnyObject]()
         let base64String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-//        var manager = Manager.sharedInstance
-//        manager.session.configuration.HTTPAdditionalHeaders = ["Content-Type": "image/png"]
+        //        var manager = Manager.sharedInstance
+        //        manager.session.configuration.HTTPAdditionalHeaders = ["Content-Type": "image/png"]
         print("base64String : \(base64String)")
         
         let URL = NSURL(string: "\(_apiUrl)users/\(userID)/avatars?encoding=base64")!
@@ -372,15 +370,15 @@ class API_Model {
         print("param : \(parameters)")
         print("userID : \(appDelegate.userInfo["userID"]!)")
         print("ID : \(appDelegate.userInfo["id"]!)")
-
+        
         Alamofire.request(.PATCH, "\(_apiUrl)users/\(appDelegate.userInfo["userID"]!)", parameters: parameters,encoding: .JSON)
             .responseJSON { response in
                 
                 if let JSON = response.result.value {
                     
                     print("JSON(userUpdate): \(JSON)")
-//                    print("code \(JSON["code"] as! Int)")
-//                    print("message \(JSON["message"] as! String)")
+                    //                    print("code \(JSON["code"] as! Int)")
+                    //                    print("message \(JSON["message"] as! String)")
                     
                     if let error = JSON["errors"]{
                         var data: [String:AnyObject] = [:]
@@ -394,7 +392,7 @@ class API_Model {
                         }
                         for var index = 0 ;index < error?.count ;index++
                         {
-
+                            
                             
                         }
                         
@@ -429,7 +427,7 @@ class API_Model {
                     self.appDelegate.userInfo["id"] = (JSON["id"] as! String)
                     
                     
-//                    print("proFileName(getUserInfo) :\(self.appDelegate.userInfo["profileName"])")
+                    //                    print("proFileName(getUserInfo) :\(self.appDelegate.userInfo["profileName"])")
                     completionHandler(data)
                 }
                 
@@ -457,13 +455,13 @@ class API_Model {
         //get ImageURL
         providerAPI(self.appDelegate.command["getUploadImageURL"]!, dataJson: Dict2JsonString(dataJson)){
             data in
-//            print("data(getImageURL) :\(data)")
+            //            print("data(getImageURL) :\(data)")
             print("key : \(data["mediaKey"]!)")
             completionHandler(data["mediaKey"] as! String)
             
         }
     }
-
+    
     func getUploadMenuKey(providerID:Int,menuID:Int,imageType:String,imageName:String,completionHandler:String->())
     {
         let dataJson = [
@@ -529,7 +527,7 @@ class API_Model {
                         "filename" : imageName
                     ]
                 ]
-            ]],
+                ]],
             "user" : [
                 "accessToken" : self.appDelegate.userInfo["accessToken"]!
             ]
@@ -541,7 +539,7 @@ class API_Model {
         providerAPI(self.appDelegate.command["CreateGallery"]!, dataJson: Dict2JsonString(dataJson)){
             data in
             //            print("data(getImageURL) :\(data)")
-//            print("CreateGallery key : \(data["mediaKey"]!)")
+            //            print("CreateGallery key : \(data["mediaKey"]!)")
             completionHandler(data["mediaKey"] as! String)
             
         }
@@ -603,7 +601,7 @@ class API_Model {
                         "filename" : imageName
                     ]
                 ]
-            ]],
+                ]],
             "user" : [
                 "accessToken" : self.appDelegate.userInfo["accessToken"]!
             ]
@@ -655,10 +653,10 @@ class API_Model {
             "file": ""
         ]
         
-//        let _uploadAPI = "http://192.168.9.58/api/uploadmedia/"
+        //        let _uploadAPI = "http://192.168.9.58/api/uploadmedia/"
         let API_URL = _uploadAPI+mediaKey
         print("UPload AI URL : \(API_URL)")
-//        let API_URL = "http://192.168.9.58/api/uploadmedia/\(mediaKey)"
+        //        let API_URL = "http://192.168.9.58/api/uploadmedia/\(mediaKey)"
         
         Alamofire.upload(.POST, API_URL, multipartFormData: {
             multipartFormData in
@@ -677,7 +675,7 @@ class API_Model {
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
-                    print("=====================================")
+                        print("=====================================")
                         print(response)
                         completionHandler("OK")
                         debugPrint(response)
@@ -687,7 +685,7 @@ class API_Model {
                     print(encodingError)
                 }
         })
-
+        
     }
     func uploadImageArray(mediaKey:String,image:[UIImage],imageName:String,completionHandler:String->())
     {
@@ -732,21 +730,21 @@ class API_Model {
         })
         
     }
-
+    
     func deCrypt(base64Data:String,base64IV:String)->NSString
     {
         let decodedData = NSData(base64EncodedString:base64Data, options:NSDataBase64DecodingOptions(rawValue: 0) )
         
-//        print("==================================")
+        //        print("==================================")
         
         let IV_KEY:NSData = NSData(base64EncodedString: base64IV, options:NSDataBase64DecodingOptions(rawValue: 0) )!
-//        print("IV Key : \(IV_KEY)")
+        //        print("IV Key : \(IV_KEY)")
         let IV_STRING = NSString(data: IV_KEY, encoding: NSUTF8StringEncoding)
         let IV_Byte = [UInt8]((IV_STRING as! String).utf8)
         
-//        print("==================================")
-//        print("Decode Data : \(decodedData! as NSData)") // my plain data
-//        print("decodedData?.length \((decodedData?.length)! as Int)")
+        //        print("==================================")
+        //        print("Decode Data : \(decodedData! as NSData)") // my plain data
+        //        print("decodedData?.length \((decodedData?.length)! as Int)")
         let mydata_len : Int = ((decodedData?.length)! as Int)
         let keyData : NSData = ("BcILclihFSTbm3tGpfKfrbdW").dataUsingEncoding(NSUTF8StringEncoding)!
         //init
@@ -764,19 +762,19 @@ class API_Model {
             
             let myResult : NSData = NSData(bytes: buffer, length: num_bytes_encrypted)
             free(buffer)
-//            print("decrypt \(myResult)")
+            //            print("decrypt \(myResult)")
             
             let stringResult = NSString(data: myResult, encoding:NSUTF8StringEncoding)
-//            print("my decrypt string : \(stringResult!)")
+            //            print("my decrypt string : \(stringResult!)")
             jsonEncode(stringResult as! String)
-//            return myResult
+            //            return myResult
             return stringResult!
         }else{
             free(buffer)
             return ""
             
         }
-
+        
     }
     func enCrypt(data:String,base64IV:String)->String
     {
@@ -787,12 +785,12 @@ class API_Model {
         let myKeyData : NSData = ("BcILclihFSTbm3tGpfKfrbdW" as NSString).dataUsingEncoding(NSUTF8StringEncoding)!
         let myRawData : NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
         //        var base64RawData = myRawData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-//        print("RawData :\(myRawData)")
+        //        print("RawData :\(myRawData)")
         //        print("RawDataBase64 :\(base64RawData)")
         //        var iv : [UInt8] = [56, 101, 63, 23, 96, 182, 209, 205]  // I didn't use
         
         let IV_KEY:NSData = NSData(base64EncodedString: base64IV, options:NSDataBase64DecodingOptions(rawValue: 0) )!
-//        print("IV Key : \(IV_KEY)")
+        //        print("IV Key : \(IV_KEY)")
         let IV_STRING = NSString(data: IV_KEY, encoding: NSUTF8StringEncoding)
         let IV_Byte = [UInt8]((IV_STRING as! String).utf8)
         
@@ -820,19 +818,19 @@ class API_Model {
             let myResult: NSData = NSData(bytes: buffer, length: num_bytes_encrypted)
             
             free(buffer)
-//            print("my result \(myResult)") //This just prints the data
+            //            print("my result \(myResult)") //This just prints the data
             
-//            let keyData: NSData = myResult
-           // let hexString = keyData.toHexString()
-           // print("hex result \(hexString)") // I needed a hex string output
+            //            let keyData: NSData = myResult
+            // let hexString = keyData.toHexString()
+            // print("hex result \(hexString)") // I needed a hex string output
             
             let base64Send = myResult.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
             //            let secretData: NSData = "BcILclihFSTbm3tGpfKfrbdW".dataUsingEncoding(NSUTF8StringEncoding)!
             //            let SecretBase64 = secretData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
             
             //            print("Secret: \(SecretBase64)")
-//            print("Data Send \(base64Send)")
-//            SendData = base64Send
+            //            print("Data Send \(base64Send)")
+            //            SendData = base64Send
             //            myDecrypt(myResult) // sent straight to the decryption function to test the data output is the same
             return base64Send
         }else{
@@ -840,16 +838,17 @@ class API_Model {
             return ""
         }
     }
+    
     func jsonEncode(jsonString:String)->NSDictionary
     {
-
+        
         let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         do {
             let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
-//            print("Json Encode \(jsonResult! as NSDictionary)")
+            //            print("Json Encode \(jsonResult! as NSDictionary)")
             return jsonResult! as NSDictionary
-//            return (jsonResult! as! [String : AnyObject])
-//            print("ListProviderInformationSummary : \(jsonResult!["ListProviderInformationSummary"])")
+            //            return (jsonResult! as! [String : AnyObject])
+            //            print("ListProviderInformationSummary : \(jsonResult!["ListProviderInformationSummary"])")
         } catch let error as NSError {
             print(error)
             let error = [
@@ -857,7 +856,7 @@ class API_Model {
             ]
             return error
         }
-
+        
     }
     
     func Dict2JsonString(dict:[String:AnyObject])->String{
@@ -868,23 +867,23 @@ class API_Model {
             let json = NSString(data: jsonResults, encoding: NSUTF8StringEncoding)
             if let jsonString = json {
                 //print("JsonString :\(json)")
-//                print("JsonEncode :\(jsonEncode(jsonString as String))")
+                //                print("JsonEncode :\(jsonEncode(jsonString as String))")
                 return jsonString as String
                 
             }
         } catch {
             // failure
             print("Fetch failed: \((error as NSError).localizedDescription)")
-//            return "{\"status\":}"
+            //            return "{\"status\":}"
         }
         
         return "{\"status\":}"
     }
     func createProvider(data:[String:AnyObject])
     {
-//        
-//        let dataJson1 = "{\"providerInformation\":{\"providerTypeKeyname\":\"\(data["providerTypeKeyname"]!)\",\"nameEn\":\"\(data["nameEn"]!)\",\"nameTh\":\"\(data["nameTh"]!)\"},\"user\":{\"accessToken\": \"\(appDelegate.userInfo["accessToken"]!)\"}}"
-//        print("Create Provider \(data)")
+        //        
+        //        let dataJson1 = "{\"providerInformation\":{\"providerTypeKeyname\":\"\(data["providerTypeKeyname"]!)\",\"nameEn\":\"\(data["nameEn"]!)\",\"nameTh\":\"\(data["nameTh"]!)\"},\"user\":{\"accessToken\": \"\(appDelegate.userInfo["accessToken"]!)\"}}"
+        //        print("Create Provider \(data)")
         let providerInformation = [
             "providerTypeKeyname" : data["providerTypeKeyname"]!,
             "nameEn"              : data["nameEn"]!,
@@ -900,16 +899,16 @@ class API_Model {
         
         let dataaaa = Dict2JsonString(dataJson)
         print("last Json String : \(Dict2JsonString(dataJson))")
-//        var newString = convertDict2Json(dataJson).stringByReplacingOccurrencesOfString("\"{", withString: "{")
-//        newString = newString.stringByReplacingOccurrencesOfString("}\"", withString: "}")
+        //        var newString = convertDict2Json(dataJson).stringByReplacingOccurrencesOfString("\"{", withString: "{")
+        //        newString = newString.stringByReplacingOccurrencesOfString("}\"", withString: "}")
         print("new  : \(dataaaa)")
-//        print("data1: \(dataJson1)")
+        //        print("data1: \(dataJson1)")
         print("JsonEncode : \(jsonEncode(dataaaa))")
         providerAPI("010600", dataJson: dataaaa){
             data in
             print(data["data"])
         }
-//        print("Json \(dataJson)")
+        //        print("Json \(dataJson)")
     }
     func listProvider(providerUser:String)
     {
@@ -918,13 +917,13 @@ class API_Model {
         providerAPI("010100", dataJson: dataJson){
             data in
             print("listProvider :\(data["ListProviderInformationSummary"]!.count)")
-//            return data
+            //            return data
         }
-       
+        
     }
     
     /////////////////////Hotel Room/////////////////
     
-//    func
+    //    func
     
 }

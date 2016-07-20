@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B9E82560320EACC2A21F6E /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA79D0EB5FECAFBD4FD1E306 /* Pods_TouchInsightAdminUITests.framework */; };
 		3621BC721C06BA3D0051E850 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC711C06BA3D0051E850 /* LoginVC.swift */; };
 		3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621BC731C06DC2A0051E850 /* API_Model.swift */; };
 		366F4FFE1D34FD5B005B6DF1 /* HotelAddContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */; };
@@ -82,10 +81,11 @@
 		3B1EFC4F1D34B05E00A7F4EA /* middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC491D34B05E00A7F4EA /* middle.png */; };
 		3B1EFC501D34B05E00A7F4EA /* mild_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */; };
 		3B1EFC511D34B05E00A7F4EA /* mild.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4B1D34B05E00A7F4EA /* mild.png */; };
+		3B43946A1D3CDACA005B4E6C /* mUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4394691D3CDACA005B4E6C /* mUserData.swift */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
-		AA80F0CD0E347322119E7B3F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87384BA852B3AF1C8F18E95 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		B8CDD7123E502FBD74B067E6 /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABCAD2284E3E22EA5E20AD1 /* Pods_TouchInsightAdmin.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F24F9966DC721025CE6606AE /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9063A03D5791765A570BD1A2 /* Pods_TouchInsightAdminTests.framework */; };
+		5B76C9029231FFEF3B0CF5D9 /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */; };
+		DCD7B72B9F6D85A9110D07F0 /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */; };
+		F273F69F11DDB3D8D68CBA8B /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */; };
 		F30671FF1C1691B4001A577F /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = F30671FD1C1691B4001A577F /* add_image.png */; };
 		F30672001C1691B4001A577F /* add_team.png in Resources */ = {isa = PBXBuildFile; fileRef = F30671FE1C1691B4001A577F /* add_team.png */; };
 		F30672021C16BFAC001A577F /* customProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30672011C16BFAC001A577F /* customProviderView.swift */; };
@@ -248,7 +248,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		23F6C8A1F9546DB3D135DA4D /* Pods-TouchInsightAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.release.xcconfig"; sourceTree = "<group>"; };
+		0B426E892197920C0AEE1B09 /* Pods-TouchInsightAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3538A651F6C808F8DD33CE72 /* Pods-TouchInsightAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.release.xcconfig"; sourceTree = "<group>"; };
 		361C9A771C0833B30062BE11 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		361C9A7B1C08342B0062BE11 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		361C9A7D1C0834690062BE11 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -361,16 +363,17 @@
 		3B1EFC491D34B05E00A7F4EA /* middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = middle.png; sourceTree = "<group>"; };
 		3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mild_hover.png; sourceTree = "<group>"; };
 		3B1EFC4B1D34B05E00A7F4EA /* mild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mild.png; sourceTree = "<group>"; };
+		3B4394691D3CDACA005B4E6C /* mUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mUserData.swift; path = Model/mUserData.swift; sourceTree = "<group>"; };
+		3B43946B1D3CE12D005B4E6C /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
+		3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
-		427DE01B69BDBEFAE740808A /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
-		5FAAF46D78AD6BF755A39B7D /* Pods-TouchInsightAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.debug.xcconfig"; sourceTree = "<group>"; };
-		9063A03D5791765A570BD1A2 /* Pods_TouchInsightAdminTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1EB870CA033F93996479EE8 /* Pods-TouchInsightAdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		BC3ADC742B0C53943066E46C /* Pods-TouchInsightAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
+		40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
+		905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B324094B2CADF4857C78DA99 /* Pods-TouchInsightAdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5E838701804ADF9A30604D9 /* Pods-TouchInsightAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D87384BA852B3AF1C8F18E95 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D97B5761106C0F94677CFF66 /* Pods-TouchInsightAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DA79D0EB5FECAFBD4FD1E306 /* Pods_TouchInsightAdminUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EABCAD2284E3E22EA5E20AD1 /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30671FD1C1691B4001A577F /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_image.png; path = images/add_image.png; sourceTree = "<group>"; };
 		F30671FE1C1691B4001A577F /* add_team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_team.png; path = images/add_team.png; sourceTree = "<group>"; };
 		F30672011C16BFAC001A577F /* customProviderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customProviderView.swift; sourceTree = "<group>"; };
@@ -545,8 +548,7 @@
 				36E394541C40BA22004402B7 /* RNGridMenu.framework in Frameworks */,
 				36E394551C40BA22004402B7 /* SCLAlertView.framework in Frameworks */,
 				36E394561C40BA22004402B7 /* SMPageControl.framework in Frameworks */,
-				B8CDD7123E502FBD74B067E6 /* Pods_TouchInsightAdmin.framework in Frameworks */,
-				AA80F0CD0E347322119E7B3F /* Pods.framework in Frameworks */,
+				F273F69F11DDB3D8D68CBA8B /* Pods_TouchInsightAdmin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +556,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F24F9966DC721025CE6606AE /* Pods_TouchInsightAdminTests.framework in Frameworks */,
+				DCD7B72B9F6D85A9110D07F0 /* Pods_TouchInsightAdminTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +564,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00B9E82560320EACC2A21F6E /* Pods_TouchInsightAdminUITests.framework in Frameworks */,
+				5B76C9029231FFEF3B0CF5D9 /* Pods_TouchInsightAdminUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +604,7 @@
 				36DC40F41C0587CF001B8E22 /* TouchInsightAdminUITests */,
 				36DC40D31C0587CE001B8E22 /* Products */,
 				7ECF8A2867ED54DC2E6CC22F /* Frameworks */,
-				5894FEA3BDD64A374C45D53D /* Pods */,
+				E12DFA38ECBBD5EAA54645C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -622,6 +624,7 @@
 				36DC412C1C05C726001B8E22 /* asset */,
 				36DC41231C05C5E2001B8E22 /* View */,
 				F3D90B4D1C63520C00EEFB21 /* Controller */,
+				3B4394681D3CDA7D005B4E6C /* Model */,
 				36DC41161C05C55E001B8E22 /* Class */,
 				36DC40D51C0587CE001B8E22 /* AppDelegate.swift */,
 				36DC40D71C0587CF001B8E22 /* ViewController.swift */,
@@ -883,22 +886,19 @@
 			name = "Spicy Level";
 			sourceTree = "<group>";
 		};
-		5894FEA3BDD64A374C45D53D /* Pods */ = {
+		3B4394681D3CDA7D005B4E6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5FAAF46D78AD6BF755A39B7D /* Pods-TouchInsightAdmin.debug.xcconfig */,
-				427DE01B69BDBEFAE740808A /* Pods-TouchInsightAdmin.release.xcconfig */,
-				D97B5761106C0F94677CFF66 /* Pods-TouchInsightAdminTests.debug.xcconfig */,
-				23F6C8A1F9546DB3D135DA4D /* Pods-TouchInsightAdminTests.release.xcconfig */,
-				A1EB870CA033F93996479EE8 /* Pods-TouchInsightAdminUITests.debug.xcconfig */,
-				BC3ADC742B0C53943066E46C /* Pods-TouchInsightAdminUITests.release.xcconfig */,
+				3B4394691D3CDACA005B4E6C /* mUserData.swift */,
 			);
-			name = Pods;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		7ECF8A2867ED54DC2E6CC22F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B43946B1D3CE12D005B4E6C /* Realm.framework */,
+				3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */,
 				F3337AA61CA9383100644F91 /* bundle1.o */,
 				36CD93171C7EA92E00E5A414 /* PKHUD.framework */,
 				36CD93151C7EA92900E5A414 /* Alamofire.framework */,
@@ -945,11 +945,24 @@
 				36DC410B1C05941C001B8E22 /* FBSDKLoginKit.framework */,
 				36DC410C1C05941C001B8E22 /* FBSDKShareKit.framework */,
 				D87384BA852B3AF1C8F18E95 /* Pods.framework */,
-				EABCAD2284E3E22EA5E20AD1 /* Pods_TouchInsightAdmin.framework */,
-				9063A03D5791765A570BD1A2 /* Pods_TouchInsightAdminTests.framework */,
-				DA79D0EB5FECAFBD4FD1E306 /* Pods_TouchInsightAdminUITests.framework */,
+				40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */,
+				E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */,
+				2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E12DFA38ECBBD5EAA54645C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B426E892197920C0AEE1B09 /* Pods-TouchInsightAdmin.debug.xcconfig */,
+				640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */,
+				905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */,
+				3538A651F6C808F8DD33CE72 /* Pods-TouchInsightAdminTests.release.xcconfig */,
+				B324094B2CADF4857C78DA99 /* Pods-TouchInsightAdminUITests.debug.xcconfig */,
+				D5E838701804ADF9A30604D9 /* Pods-TouchInsightAdminUITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		F329F1ED1D2D0FBF0061BA52 /* Restaurant */ = {
@@ -1099,16 +1112,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36DC40FA1C0587CF001B8E22 /* Build configuration list for PBXNativeTarget "TouchInsightAdmin" */;
 			buildPhases = (
-				036630B058D8E971AB662407 /* Check Pods Manifest.lock */,
 				C9C73E8E2AADD19B0FF31FC6 /* [CP] Check Pods Manifest.lock */,
 				36DC40CE1C0587CE001B8E22 /* Sources */,
 				36DC40CF1C0587CE001B8E22 /* Frameworks */,
 				36DC40D01C0587CE001B8E22 /* Resources */,
 				3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */,
 				5FDDBFD69044B021B2268B8B /* [CP] Copy Pods Resources */,
-				F369AA9B1D2E3E730025FAB7 /* ShellScript */,
-				D81A09BAD4F5FA531E4D9402 /* Embed Pods Frameworks */,
-				CB7ED8D4389808F8DB636DD3 /* Copy Pods Resources */,
+				F369AA9B1D2E3E730025FAB7 /* Fabric Script */,
 			);
 			buildRules = (
 			);
@@ -1357,21 +1367,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		036630B058D8E971AB662407 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		2621053E6A43EFE5478C8F4A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1462,21 +1457,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		CB7ED8D4389808F8DB636DD3 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF6809E639188673AF42D589 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1490,21 +1470,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D81A09BAD4F5FA531E4D9402 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E24C4EA3E2D4F75C235466D7 /* [CP] Copy Pods Resources */ = {
@@ -1522,13 +1487,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F369AA9B1D2E3E730025FAB7 /* ShellScript */ = {
+		F369AA9B1D2E3E730025FAB7 /* Fabric Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Fabric Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -1545,6 +1511,7 @@
 				F329F1E11D2BA8A10061BA52 /* EAIntroPage.h in Sources */,
 				F329F1FD1D2D106B0061BA52 /* ResImageCollectionViewCell.swift in Sources */,
 				F329F1E21D2BA8A10061BA52 /* EAIntroPage.m in Sources */,
+				3B43946A1D3CDACA005B4E6C /* mUserData.swift in Sources */,
 				F329F1E31D2BA8A10061BA52 /* EAIntroView.h in Sources */,
 				F329F1E41D2BA8A10061BA52 /* EAIntroView.m in Sources */,
 				3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */,
@@ -1749,12 +1716,12 @@
 		};
 		36DC40FB1C0587CF001B8E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FAAF46D78AD6BF755A39B7D /* Pods-TouchInsightAdmin.debug.xcconfig */;
+			baseConfigurationReference = 0B426E892197920C0AEE1B09 /* Pods-TouchInsightAdmin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thirawat Phannet (9U54D3YCXA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thirawat Phannet (9U54D3YCXA)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1763,12 +1730,62 @@
 					"$(PROJECT_DIR)/TouchInsightAdmin/FacebookSDK",
 					"$(PROJECT_DIR)/FacebookSDK",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = TouchInsightAdmin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"CustomIOSAlertView\"",
+					"-framework",
+					"\"EAIntroView\"",
+					"-framework",
+					"\"EARestrictedScrollView\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"Haneke\"",
+					"-framework",
+					"\"NKJPagerViewController\"",
+					"-framework",
+					"\"PKHUD\"",
+					"-framework",
+					"\"PagingMenuController\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"QRCodeReader\"",
+					"-framework",
+					"\"RBBAnimation\"",
+					"-framework",
+					"\"RNCryptor\"",
+					"-framework",
+					"\"RNGridMenu\"",
+					"-framework",
+					"\"SCLAlertView\"",
+					"-framework",
+					"\"SMPageControl\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.co.Touchtechnologies.SeeitLiveThailandAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b8f34c1e-da79-459d-b0ef-7997dd7d5206";
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchInsightAdmin/TouchInsightAdmin-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1776,12 +1793,12 @@
 		};
 		36DC40FC1C0587CF001B8E22 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 427DE01B69BDBEFAE740808A /* Pods-TouchInsightAdmin.release.xcconfig */;
+			baseConfigurationReference = 640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Touch Technologies Co., Ltd. (28WCARLR9T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Touch Technologies Co., Ltd. (28WCARLR9T)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1790,12 +1807,62 @@
 					"$(PROJECT_DIR)/TouchInsightAdmin/FacebookSDK",
 					"$(PROJECT_DIR)/FacebookSDK",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = TouchInsightAdmin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"CustomIOSAlertView\"",
+					"-framework",
+					"\"EAIntroView\"",
+					"-framework",
+					"\"EARestrictedScrollView\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"Haneke\"",
+					"-framework",
+					"\"NKJPagerViewController\"",
+					"-framework",
+					"\"PKHUD\"",
+					"-framework",
+					"\"PagingMenuController\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"QRCodeReader\"",
+					"-framework",
+					"\"RBBAnimation\"",
+					"-framework",
+					"\"RNCryptor\"",
+					"-framework",
+					"\"RNGridMenu\"",
+					"-framework",
+					"\"SCLAlertView\"",
+					"-framework",
+					"\"SMPageControl\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.co.Touchtechnologies.SeeitLiveThailandAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c1531f34-b304-4659-bcec-692226bc6f2b";
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchInsightAdmin/TouchInsightAdmin-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1803,7 +1870,7 @@
 		};
 		36DC40FE1C0587CF001B8E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D97B5761106C0F94677CFF66 /* Pods-TouchInsightAdminTests.debug.xcconfig */;
+			baseConfigurationReference = 905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TouchInsightAdminTests/Info.plist;
@@ -1816,7 +1883,7 @@
 		};
 		36DC40FF1C0587CF001B8E22 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23F6C8A1F9546DB3D135DA4D /* Pods-TouchInsightAdminTests.release.xcconfig */;
+			baseConfigurationReference = 3538A651F6C808F8DD33CE72 /* Pods-TouchInsightAdminTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TouchInsightAdminTests/Info.plist;
@@ -1829,7 +1896,7 @@
 		};
 		36DC41011C0587CF001B8E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1EB870CA033F93996479EE8 /* Pods-TouchInsightAdminUITests.debug.xcconfig */;
+			baseConfigurationReference = B324094B2CADF4857C78DA99 /* Pods-TouchInsightAdminUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TouchInsightAdminUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1842,7 +1909,7 @@
 		};
 		36DC41021C0587CF001B8E22 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC3ADC742B0C53943066E46C /* Pods-TouchInsightAdminUITests.release.xcconfig */;
+			baseConfigurationReference = D5E838701804ADF9A30604D9 /* Pods-TouchInsightAdminUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TouchInsightAdminUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
