@@ -331,7 +331,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 data in
                 print("data : \(data)")
                 
-                
                 let dataJson = "{\"providerUser\":\"\(data["email"]!)\"}"
                 //                    print("appDelegate :\(self.appDelegate.userInfo["email"])")
                 print("dataSendJson : \(dataJson)")
