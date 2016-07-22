@@ -125,9 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let userData = self.userInfo
         print("---getlistProvider()---")
         
-        print("---userData---")
-        print(userData["email"])
-        print("--------------")
+//        print("---userData---")
+//        print(userData["email"])
+//        print("--------------")
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             // do some task

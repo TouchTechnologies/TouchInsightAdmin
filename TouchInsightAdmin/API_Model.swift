@@ -137,6 +137,9 @@ class API_Model {
 //                
 //        }
         
+        
+        
+        
         let request = Alamofire.request(.POST, String(_oldapiUrl), parameters: param, encoding: .JSON, headers: .None)
         request.validate()
         request.responseJSON{ response in
@@ -163,9 +166,11 @@ class API_Model {
                         //                            print(resultJson)
                         //                            print("= = = = = = = =")
                         
-                        print(">>>providerAPIJSON<<<")
+                        print("---->>>provider APIJSON<<<-----")
+                        print(dataJson)
+                        print("-------------------------------")
                         print(result)
-                        print("||||>>>providerAPIJSON<<<||||")
+                        print("||||>>>provider APIJSON<<<||||")
                         
                         completionHandler(resultJson )
                         //                            print("after JsonEncode : \(resultJson)")
@@ -250,21 +255,21 @@ class API_Model {
         print(reqUrl)
         Alamofire.request(.POST, reqUrl, parameters: parameters)
             .responseJSON { response in
-                print("---------------------------------------------------------------------")
-                print("Login")
-                //                print(response.request)  // original URL request
-                print(response.response) // URL response
-                //                print(response.data)     // server data
-                //                print(response.result)   // result of response serialization
-                print("---------------------------------------------------------------------")
-                //                print("Code \(response.response?.valueForKey("status code") as! String)")
+//                print("---------------------------------------------------------------------")
+//                print("Login")
+//                //                print(response.request)  // original URL request
+//                print(response.response) // URL response
+//                //                print(response.data)     // server data
+//                //                print(response.result)   // result of response serialization
+//                print("---------------------------------------------------------------------")
+//                //                print("Code \(response.response?.valueForKey("status code") as! String)")
                 if let JSON = response.result.value {
-                    print("JSON(Login): \(JSON)")
+                    //print("JSON(Login): \(JSON)")
                     
                     if let error = JSON["errors"]{
                         var data: [String:AnyObject] = [:]
                         if let code = JSON["code"]{
-                            print("code : : \(code)")
+                            //print("code : : \(code)")
                             if code == nil{
                                 data["status"] = true
                                 data["userID"] = (JSON["userId"] as! String)
@@ -273,7 +278,7 @@ class API_Model {
                                 self.appDelegate.userInfo["accessToken"] = (JSON["accessToken"] as! String)
                                 self.appDelegate.userInfo["userID"] = (JSON["userId"] as! String)
                                 self.appDelegate.userInfo["passWord"] = password
-                                print("Login(User ID) \(JSON["userId"]!)")
+                                //print("Login(User ID) \(JSON["userId"]!)")
                                 Alamofire.request(.GET, "\(self._apiUrl)users/\(JSON["userId"] as! String)/avatars", parameters: ["": ""])
                                     .responseJSON { response in
                                         //                                        print(response.request)  // original URL request
@@ -295,7 +300,7 @@ class API_Model {
                         }
                         
                         for (var index = 0 ;index < error?.count ;index += 1){
-                            print("field\(index) \(error![index]["field"] as! String)")
+                            //print("field\(index) \(error![index]["field"] as! String)")
                             if (error![index]["field"] as! String) == "username"{
                                 data["field"] = error![index]["field"]
                                 data["message"] = "username ไม่มีในระบบ"
@@ -347,8 +352,8 @@ class API_Model {
                         //                        {
                         //                            print("errors \(error![index]["field"] as! String)")
                         //                        }
-                        for index in 0..<error!.count {
-                        //for var index = 0 ;index < error?.count ;index++{
+                        //for index in 0..<error!.count {
+                        for var index = 0 ;index < error?.count ;index += 1 {
                             //                            print("field\(index) \(error![index]["field"] as! String)")
                             if (error![index]["field"] as! String) == "email"
                             {

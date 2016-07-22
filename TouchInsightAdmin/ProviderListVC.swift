@@ -380,10 +380,10 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
             currentScrollAction = "down"
         }
         
-        print("scrollY = \(scrollY)")
+        //print("scrollY = \(scrollY)")
         
         if(animateSuccess && oldScrollAction != currentScrollAction){
-            print("scrollY = \(scrollY)")
+            //print("scrollY = \(scrollY)")
             animateSuccess = false
             if(scrollY > oldScrollY){
                 //            print("UP")
@@ -429,7 +429,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
             })
             
         }else{
-            print("DOWN")
+            //print("DOWN")
             UIView.animateWithDuration(0.2, animations:{
                 self.btnCreateNew.alpha = 1
                 }, completion: {_ in

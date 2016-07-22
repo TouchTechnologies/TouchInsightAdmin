@@ -217,21 +217,25 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 
                 self.loadCount += 1
                 self.appDelegate.facilityHotelDic = data
-                print("=====================================================================================")
-                //            print("Data Facility :\(data)")
-                print("facility(Hotel) : \(self.appDelegate.facilityHotelDic!["facilities"]! as! NSArray)")
-                print("Hotel(Count) : \(self.appDelegate.facilityHotelDic!["facilities"]!.count as Int)")
-                print("=====================================================================================")
-                for _ in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1
-                {
+                
+                print("========== Data Facility hotel ==========")
+                print(send.Dict2JsonString(data as! [String : AnyObject]))
+                print("---------- Data Facility hotel ----------")
+                
+                
+//                print("=====================================================================================")
+//                //            print("Data Facility :\(data)")
+//                print("facility(Hotel) : \(self.appDelegate.facilityHotelDic!["facilities"]! as! NSArray)")
+//                print("Hotel(Count) : \(self.appDelegate.facilityHotelDic!["facilities"]!.count as Int)")
+//                print("=====================================================================================")
+                for _ in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1{
                     self.appDelegate.facilityHotelStatus.append(false)
                 }
-                if(self.loadCount == 2)
-                {
+                if(self.loadCount == 2){
                     PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 
-                print("Facility Hotel Status :\(self.appDelegate.facilityHotelStatus.count)")
+//                print("Facility Hotel Status :\(self.appDelegate.facilityHotelStatus.count)")
             }
             
             let dataRoomDic =
@@ -246,16 +250,21 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             
             
             let dataRoomJson = send.Dict2JsonString(dataRoomDic)
-            print("dataJson(Facility) : \(dataRoomJson)")
+//            print("dataJson(Facility) : \(dataRoomJson)")
             send.providerAPI(appDelegate.command["ListRoomFacility"]!, dataJson: dataRoomJson){
                 data in
                 
                 self.appDelegate.facilityRoomDic = data
-                print("=====================================================================================")
-                print("Data Facility(Room) :\(data)")
-                print("facility(room) : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]! as! NSArray)")
-                print("Room(Count) : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count as Int)")
-                print("=====================================================================================")
+                
+                print("========== Data Facility hotel room ==========")
+                print(send.Dict2JsonString(data as! [String : AnyObject]))
+                print("---------- Data Facility hotel room ----------")
+                
+//                print("=====================================================================================")
+//                print("Data Facility(Room) :\(data)")
+//                print("facility(room) : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]! as! NSArray)")
+//                print("Room(Count) : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count as Int)")
+//                print("=====================================================================================")
                 for _ in 0...self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
                 {
                     self.appDelegate.facilityRoomStatus.append(false)
@@ -264,7 +273,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 {
                     PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
-                print("Facility Room Status :\(self.appDelegate.facilityRoomStatus.count)")
+//                print("Facility Room Status :\(self.appDelegate.facilityRoomStatus.count)")
             }
             
             
@@ -280,17 +289,22 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             ]
             
             let dataResJson = send.Dict2JsonString(dataResDic)
-            print("dataJson:Restuarant(Facility) : \(dataResDic)")
+//            print("dataJson:Restuarant(Facility) : \(dataResDic)")
             send.providerAPI(appDelegate.command["ListFacility"]!, dataJson: dataResJson){
                 data in
                 
                 self.loadCount += 1
                 self.appDelegate.facilityResDic = data
-                print("=====================================================================================")
-                //                print("Data restuarant Facility :\(data)")
-                print("facility(restuarant) : \(self.appDelegate.facilityResDic!["facilities"]! as! NSArray)")
-                print("Hotel(Count) : \(self.appDelegate.facilityResDic!["facilities"]!.count as Int)")
-                print("=====================================================================================")
+                
+                print("========== Data Facility restaurant ==========")
+                print(send.Dict2JsonString(data as! [String : AnyObject]))
+                print("---------- Data Facility restaurant ----------")
+                
+//                print("=====================================================================================")
+//                //                print("Data restuarant Facility :\(data)")
+//                print("facility(restuarant) : \(self.appDelegate.facilityResDic!["facilities"]! as! NSArray)")
+//                print("Hotel(Count) : \(self.appDelegate.facilityResDic!["facilities"]!.count as Int)")
+//                print("=====================================================================================")
                 for _ in 0...self.appDelegate.facilityResDic!["facilities"]!.count - 1
                 {
                     self.appDelegate.facilityResStatus.append(false)
@@ -300,7 +314,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 
-                print("Facility restuarant Status :\(self.appDelegate.facilityResStatus.count)")
+//                print("Facility restuarant Status :\(self.appDelegate.facilityResStatus.count)")
             }
             
         }

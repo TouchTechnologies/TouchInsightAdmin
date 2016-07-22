@@ -1140,6 +1140,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             
             print("cover")
             // upload Cover
+            self._viewEmptyCover.hidden = true
             self.imgHotelCover.contentMode = .ScaleAspectFill
             self.imgHotelCover.image = chosenImage
             _imageType = "coverImage"
@@ -1148,6 +1149,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
             print("logo")
             
             // Upload LOGO
+            self._viewEmptyLogo.hidden = true
             self.imgHotelLogo.contentMode = .ScaleAspectFill
             self.imgHotelLogo.image = chosenImage
             _imageType = "logoImage"
@@ -1163,41 +1165,44 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         self.dismissViewControllerAnimated(true, completion:nil)
         UIView.animateWithDuration(0.10, animations: {}, completion: {_ in
-            let send = API_Model()
-            send.getUploadKey(Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
-                data in
-                PKHUD.sharedHUD.show()
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 
-                print("UPLOAD DATA ::: \(data)")
-                self.mediaKey = data
-                
-                send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName){
-                    data in
-                    
-                    if(self._pickerType == "cover"){
-                        print("cover")
-                        //let _coverServer = data["debug"]!["total_room"]!["sssss"]
-                        let _coverLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
+                    let send = API_Model()
+                    send.getUploadKey(Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
+                        data in
+                        PKHUD.sharedHUD.show()
                         
-                        print("_coverLocal = \(_coverLocal)")
-                        self.imgHotelCover.image = chosenImage
+                        print("UPLOAD DATA ::: \(data)")
+                        self.mediaKey = data
                         
-                    }else if(self._pickerType == "logo"){
-                        print("logo")
-                        let _logoLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]
-                        print("_logoLocal = \(_logoLocal)")
-
-                        self.imgHotelLogo.image = chosenImage
+                        send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName){
+                            data in
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                if(self._pickerType == "cover"){
+                                    print("cover")
+                                    //let _coverServer = data["debug"]!["total_room"]!["sssss"]
+                                    let _coverLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
+                                    
+                                    print("_coverLocal = \(_coverLocal)")
+                                    self.imgHotelCover.image = chosenImage
+                                    
+                                }else if(self._pickerType == "logo"){
+                                    print("logo")
+                                    let _logoLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]
+                                    print("_logoLocal = \(_logoLocal)")
+                                    
+                                    self.imgHotelLogo.image = chosenImage
+                                }
+                                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                            }
+                  
+                        }
                     }
-                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
-                }
             }
+            
         })
-        
-        
-        
-        
-        
         
     }
     
