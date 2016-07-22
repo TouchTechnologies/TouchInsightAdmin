@@ -7,11 +7,12 @@ PODS:
     - EARestrictedScrollView (~> 0.2.0)
   - EARestrictedScrollView (0.2.0)
   - Fabric (1.6.7)
+  - FileProvider (0.1.0)
   - HanekeSwift (0.10.1)
   - NKJPagerViewController (1.1.1)
   - PagingMenuController (0.8.0)
   - PKHUD (3.1.0)
-  - PureLayout (3.0.1)
+  - PureLayout (3.0.2)
   - QRCodeReader.swift (6.0.0)
   - RBBAnimation (0.4.0)
   - RNCryptor (4.0.0)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - CustomIOSAlertView (= 0.9.3)
   - EAIntroView
   - Fabric
+  - FileProvider
   - HanekeSwift
   - NKJPagerViewController
   - PagingMenuController (= 0.8.0)
@@ -44,11 +46,12 @@ SPEC CHECKSUMS:
   EAIntroView: 73abfa89caa311f450af876421d950b96679e845
   EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FileProvider: f3e2f023ee2d235f9104982ed085b39ee4c95516
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   NKJPagerViewController: 35c49bb83f235102c09b3b5e40ef2d463b2637e2
   PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
-  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   QRCodeReader.swift: 4aa8b0f88847a51312d6ffd2cafc387962da9dd8
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
   RNCryptor: 59d6483908115af5c12b884db23392024e52a5fe
@@ -56,6 +59,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-PODFILE CHECKSUM: 2074c7381e68ba33a68d0eb339ff966e6fd629f8
+PODFILE CHECKSUM: 3d997ec6642207b6fe756781e921cb85b4918f86
 
 COCOAPODS: 1.0.1

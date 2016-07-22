@@ -10,12 +10,12 @@ pod 'Alamofire'
 ##help view
 pod 'EAIntroView'
 pod 'SMPageControl'
-pod 'PagingMenuController',' 0.8.0'
+pod 'PagingMenuController',' 0.8.0' # fixed version 0.8.0
 pod 'NKJPagerViewController'
 
 ##Facebook SDK
 ##Alert View
-pod 'SCLAlertView','0.5.1'
+pod 'SCLAlertView','0.5.1' # fixed version 0.5.1
 #pod 'LMAlertView'
 pod 'RBBAnimation'
 pod 'CustomIOSAlertView','0.9.3'
@@ -23,6 +23,7 @@ pod 'CustomIOSAlertView','0.9.3'
 #popup
 pod 'PureLayout'
 pod 'RNGridMenu'
+
 #encryp
 pod 'RNCryptor'
 #HUD
@@ -35,6 +36,8 @@ pod 'QRCodeReader.swift'
 
 pod 'Fabric'
 pod 'Crashlytics'
+
+pod 'FileProvider'
 
 target 'TouchInsightAdmin' do
 

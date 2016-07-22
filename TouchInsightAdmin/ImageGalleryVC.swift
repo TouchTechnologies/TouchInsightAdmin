@@ -45,7 +45,7 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        print("data All\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!])")
 //        print("provider ID\(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!)")
         print("addImage")
-        let send = API_Model()
+        //let send = API_Model()
 //        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageName: "aaaaa"){
 //            data in
 //            print(data)
@@ -90,7 +90,7 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         hotelImage[0].frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
 //        CoverImg.image = UIImage(named: "bg_cctvdefault.png")
        
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ImageGalleryVC.imageTapped(_:)))
         CoverImg.userInteractionEnabled = true
         CoverImg.addGestureRecognizer(tapGestureRecognizer)
         self.firstV.addSubview(self.CoverImg)

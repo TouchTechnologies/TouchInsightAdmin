@@ -957,6 +957,11 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         
         //superviewForDateSet
+        view_DateSet.frame.size.width = self.scrollView.frame.width - 12
+        view_DateSet.center.x = self.scrollView.frame.width / 2
+        superviewForDateSet.frame.size.width = view_DateSet.frame.size.width
+        superviewForDateSet.frame.origin.x = 0
+        
         let itemWidth = (superviewForDateSet.frame.size.width / 7)
         var nImg = 0
         for dateItem in superviewForDateSet.subviews {

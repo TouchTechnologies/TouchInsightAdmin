@@ -91,7 +91,7 @@ class IntroViewVC: UIViewController,EAIntroDelegate {
      
         let intro: EAIntroView = EAIntroView(frame: UIScreen.mainScreen().bounds, andPages: [page1 , page2 ,page3 ,page4,page5])
         intro.skipButton = btnSkip
-        intro.skipButton.addTarget(self, action: "loadMainPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        intro.skipButton.addTarget(self, action: #selector(IntroViewVC.loadMainPage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         intro.skipButtonY = height - 20;
         //intro.skipButton.hidden = false
         intro.pageControl.hidden = false

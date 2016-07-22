@@ -31,6 +31,8 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     var navunderlive = UIView()
     var Cell = customProviderView()
     
+    let hLoader = PKHUD.sharedHUD
+    
     @IBOutlet weak var btnCreateNew: UIButton!
     
     @IBOutlet var tableView: UITableView!
@@ -341,14 +343,10 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     func reloadData() {
         
+        hLoader.show()
+        
         appDelegate.getlistProvider{data in
             
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            
-            //PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            PKHUD.sharedHUD.show()
             //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
             if (data["ListProviderInformationSummary"]!.count != 0){
                 let nib = UINib(nibName: "customProviderListVC", bundle: nil)
@@ -358,12 +356,13 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
                 //                print("====================Provider Data==============================")
                 self.tableView.reloadData()
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                
+                self.hLoader.hide(animated: false, completion: nil)
                 
             }else{
                 self.tableView.hidden = true
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                self.hLoader.hide(animated: false, completion: nil)
             }
         }
     }
@@ -442,6 +441,12 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // init Loader
+        hLoader.dimsBackground = false
+        hLoader.userInteractionOnUnderlyingViewsEnabled = false
+        hLoader.contentView = PKHUDProgressView()
+        hLoader.show()
         
         self.tableView.delegate = self
         

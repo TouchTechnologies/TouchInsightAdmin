@@ -100,42 +100,81 @@ class API_Model {
             "data": data
         ]
         
-        //        print("data All \(param)")
-        Alamofire.request(.POST, "\(_oldapiUrl)", parameters: param,encoding: .JSON)
-            .responseJSON { response in
-                //                print(response.request)  // original URL request
-                //                print(response.response) // URL response
-                //                print(response.data)     // server data
-                //                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    //                    print("providerAPIJSON: \(JSON)")
-                    if let jsonStatus = (JSON["status"])
-                    {
-                        //print("jsonStatus :\(JSON["status"] as! Int)")
-                        if (jsonStatus as! Int == 4051){
-                            print("Error")
-                        }else
-                        {
-                            let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
-                            //print("============================================")
-                            
-                            //                            print("before JsonEncode : \(result)")
-                            //completionHandler(JSON as! [String : AnyObject])
-                            let resultJson = self.jsonEncode(result as String)
-                            //                            print("resultJson")
-                            //                            print(resultJson)
-                            //                            print("= = = = = = = =")
-                            print("providerAPIJSON: \(resultJson)")
-                            completionHandler(resultJson )
-                            //                            print("after JsonEncode : \(resultJson)")
-                            //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
-                        }
+//        //        print("data All \(param)")
+//        Alamofire.request(.POST, "\(_oldapiUrl)", parameters: param,encoding: .JSON)
+//            .responseJSON { response in
+//                //                print(response.request)  // original URL request
+//                //                print(response.response) // URL response
+//                //                print(response.data)     // server data
+//                //                print(response.result)   // result of response serialization
+//                
+//                if let JSON = response.result.value {
+//                    //                    print("providerAPIJSON: \(JSON)")
+//                    if let jsonStatus = (JSON["status"])
+//                    {
+//                        //print("jsonStatus :\(JSON["status"] as! Int)")
+//                        if (jsonStatus as! Int == 4051){
+//                            print("Error")
+//                        }else{
+//                            let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
+//                            //print("============================================")
+//                            
+//                            //                            print("before JsonEncode : \(result)")
+//                            //completionHandler(JSON as! [String : AnyObject])
+//                            let resultJson = self.jsonEncode(result as String)
+//                            //                            print("resultJson")
+//                            //                            print(resultJson)
+//                            //                            print("= = = = = = = =")
+//                            print("providerAPIJSON: \(resultJson)")
+//                            completionHandler(resultJson )
+//                            //                            print("after JsonEncode : \(resultJson)")
+//                            //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
+//                        }
+//                    }
+//                    
+//                    
+//                }
+//                
+//        }
+        
+        let request = Alamofire.request(.POST, String(_oldapiUrl), parameters: param, encoding: .JSON, headers: .None)
+        request.validate()
+        request.responseJSON{ response in
+            //                print(response.request)  // original URL request
+            //                print(response.response) // URL response
+            //                print(response.data)     // server data
+            //                print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                //                    print("providerAPIJSON: \(JSON)")
+                if let jsonStatus = (JSON["status"])
+                {
+                    //print("jsonStatus :\(JSON["status"] as! Int)")
+                    if (jsonStatus as! Int == 4051){
+                        print("Error")
+                    }else{
+                        let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
+                        //print("============================================")
+                        
+                        //                            print("before JsonEncode : \(result)")
+                        //completionHandler(JSON as! [String : AnyObject])
+                        let resultJson = self.jsonEncode(result as String)
+                        //                            print("resultJson")
+                        //                            print(resultJson)
+                        //                            print("= = = = = = = =")
+                        
+                        print(">>>providerAPIJSON<<<")
+                        print(result)
+                        print("||||>>>providerAPIJSON<<<||||")
+                        
+                        completionHandler(resultJson )
+                        //                            print("after JsonEncode : \(resultJson)")
+                        //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
                     }
-                    
-                    
                 }
                 
+                
+            }
         }
     }
     func getProvince(apiCode:String,dataJson:String,completionHandler:NSDictionary->()){
@@ -222,8 +261,7 @@ class API_Model {
                 if let JSON = response.result.value {
                     print("JSON(Login): \(JSON)")
                     
-                    if let error = JSON["errors"]
-                    {
+                    if let error = JSON["errors"]{
                         var data: [String:AnyObject] = [:]
                         if let code = JSON["code"]{
                             print("code : : \(code)")
@@ -258,12 +296,10 @@ class API_Model {
                         
                         for (var index = 0 ;index < error?.count ;index += 1){
                             print("field\(index) \(error![index]["field"] as! String)")
-                            if (error![index]["field"] as! String) == "username"
-                            {
+                            if (error![index]["field"] as! String) == "username"{
                                 data["field"] = error![index]["field"]
                                 data["message"] = "username ไม่มีในระบบ"
-                            }else if (error![index]["field"] as! String) == "password"
-                            {
+                            }else if (error![index]["field"] as! String) == "password"{
                                 data["field"] = error![index]["field"]
                                 data["message"] = "password ผิด"
                             }
@@ -311,8 +347,8 @@ class API_Model {
                         //                        {
                         //                            print("errors \(error![index]["field"] as! String)")
                         //                        }
-                        for var index = 0 ;index < error?.count ;index++
-                        {
+                        for index in 0..<error!.count {
+                        //for var index = 0 ;index < error?.count ;index++{
                             //                            print("field\(index) \(error![index]["field"] as! String)")
                             if (error![index]["field"] as! String) == "email"
                             {
@@ -321,6 +357,11 @@ class API_Model {
                             }
                             
                         }
+                        
+                        
+//                        for index in 0..<error!.count {
+//                            print(index)
+//                        }
                         
                         completionHandler(data)
                     }
@@ -390,11 +431,15 @@ class API_Model {
                                 data["status"] = false
                             }
                         }
-                        for var index = 0 ;index < error?.count ;index++
-                        {
-                            
-                            
+                        
+                        for index in 0..<error!.count {
+                            print(index)
                         }
+                        
+//                        for( var index = 0 ;index < error?.count ;index += 1){
+//                            
+//                            
+//                        }
                         
                         completionHandler(data)
                     }

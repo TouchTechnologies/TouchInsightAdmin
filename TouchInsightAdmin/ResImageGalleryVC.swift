@@ -45,7 +45,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 //        print("data All\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!])")
 //        print("provider ID\(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!)")
         print("addImage")
-        let send = API_Model()
+        //let send = API_Model()
 //        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageName: "aaaaa"){
 //            data in
 //            print(data)
@@ -90,7 +90,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         menuImage[0].frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
 //        CoverImg.image = UIImage(named: "bg_cctvdefault.png")
        
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ResImageGalleryVC.imageTapped(_:)))
         CoverImg.userInteractionEnabled = true
         CoverImg.addGestureRecognizer(tapGestureRecognizer)
         self.firstV.addSubview(self.CoverImg)
@@ -376,7 +376,7 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
             menuImage[menuImage.count-1].image = chosenImage //4
 //            CoverImg.contentMode = .ScaleAspectFit //3
 //            CoverImg.image = chosenImage //4
-            let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+            //let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
 //            let imageName = imageURL.pathComponents![1];
             print("(menuImage) : \(menuImage)")
             let send = API_Model()

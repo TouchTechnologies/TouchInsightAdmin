@@ -315,10 +315,10 @@ class RegisterVC: UIViewController , UITextFieldDelegate,UIImagePickerController
         
         profileImg.contentMode = .ScaleAspectFit //3
         profileImg.image = chosenImage //4
-        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        let imageName = imageURL.pathComponents![1];
+        //let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        //let imageName = imageURL.pathComponents![1];
         //        print("imageName : \(imageName)")
-        
+        //
         //        let send = API_Model()
         //        let userID = appDelegate.userInfo["userID"]
         //        send.CreateUserAvatar(userID!,image: chosenImage)
@@ -341,12 +341,12 @@ class RegisterVC: UIViewController , UITextFieldDelegate,UIImagePickerController
         passWordTxt.resignFirstResponder()
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RegisterVC.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RegisterVC.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         self.view!.endEditing(true)
         return true
     }

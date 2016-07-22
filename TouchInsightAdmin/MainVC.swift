@@ -35,15 +35,11 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate.isLogin = true
-        
         
         //        PKHUD.sharedHUD.dimsBackground = true
         //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
         //        PKHUD.sharedHUD.show()
-        
-        
         
         self.getProvince()
         self.getFacility()
@@ -125,8 +121,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             //            self.viewUserInfo.frame.size.height = 180.0
             //            self.mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 667)
         }
-        
-        
     }
     
     
@@ -314,7 +308,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     override func viewWillAppear(animated: Bool) {
-        appDelegate.isLogin = true
         print("before")
         //        self.navigationController?.navigationController?.navigationBarHidden = true
         

@@ -23,9 +23,10 @@ class AddProviderAlertVC: UIViewController , RNGridMenuDelegate {
 //        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
 //        self.imageView.layer.cornerRadius = CGRectGetHeight(self.imageView.bounds) / 2
 //        self.imageView.clipsToBounds = true
-        let longPress: RNLongPressGestureRecognizer = RNLongPressGestureRecognizer(target: self, action: "handleLongPress:")
-        self.view!.addGestureRecognizer(longPress)
-
+        
+//        let longPress: RNLongPressGestureRecognizer = RNLongPressGestureRecognizer(target: self, action: Selector("handleLongPress:"))
+//        self.view!.addGestureRecognizer(longPress)
+//
        
 
         // Do any additional setup after loading the view.

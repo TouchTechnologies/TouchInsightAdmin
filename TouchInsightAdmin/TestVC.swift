@@ -59,7 +59,7 @@ class TestVC: UIViewController,UITextFieldDelegate {
         
         
         
-        let tap = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(TestVC.hideKeyboard(_:)))
         self.view.addGestureRecognizer(tap)
     }
     

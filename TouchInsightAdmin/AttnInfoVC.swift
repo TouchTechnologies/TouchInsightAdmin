@@ -768,7 +768,6 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         
         // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        checkInView.layer.cornerRadius = 5
         checkInView.center.x = (width/2)/2
         checkInView.layer.bounds.size.width = width/2 - 10
         checkInView.layer.borderWidth = 1
@@ -779,7 +778,6 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //        checkOutTxt.center.x = (width/2)/2
         
         // phonNumberTxt.borderStyle = UITextBorderStyle.RoundedRect
-        checkOutView.layer.cornerRadius = 5
         checkOutView.center.x =  width - width/4
         checkOutView.layer.bounds.size.width = width/2 - 10
         checkOutView.layer.borderWidth = 1
@@ -863,6 +861,12 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         
         //superviewForDateSet
+        
+        view_DateSet.frame.size.width = self.scrollView.frame.width - 12
+        view_DateSet.center.x = self.scrollView.frame.width / 2
+        superviewForDateSet.frame.size.width = view_DateSet.frame.size.width
+        superviewForDateSet.frame.origin.x = 0
+        
         let itemWidth = (superviewForDateSet.frame.size.width / 7)
         var nImg = 0
         for dateItem in superviewForDateSet.subviews {
