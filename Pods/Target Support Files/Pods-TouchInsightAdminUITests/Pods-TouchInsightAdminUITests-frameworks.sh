@@ -98,6 +98,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/RBBAnimation/RBBAnimation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNCryptor/RNCryptor.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNGridMenu/RNGridMenu.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SMPageControl/SMPageControl.framework"
 fi
@@ -116,6 +118,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/RBBAnimation/RBBAnimation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNCryptor/RNCryptor.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNGridMenu/RNGridMenu.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SMPageControl/SMPageControl.framework"
 fi

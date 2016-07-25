@@ -84,9 +84,9 @@
 		3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCD72D1D45B92C00892372 /* FileMan.swift */; };
 		3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
-		5B76C9029231FFEF3B0CF5D9 /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */; };
-		DCD7B72B9F6D85A9110D07F0 /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */; };
-		F273F69F11DDB3D8D68CBA8B /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */; };
+		C9F5F891412219F989281C5A /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */; };
+		F20614394B5D165D4B58249E /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E32DE7D8F7AE7C182E11F0 /* Pods_TouchInsightAdminTests.framework */; };
+		F2A028A4390F7C5F1F5558B7 /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F85F983B1A69289714ED14B /* Pods_TouchInsightAdmin.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F30671FF1C1691B4001A577F /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = F30671FD1C1691B4001A577F /* add_image.png */; };
 		F30672001C1691B4001A577F /* add_team.png in Resources */ = {isa = PBXBuildFile; fileRef = F30671FE1C1691B4001A577F /* add_team.png */; };
 		F30672021C16BFAC001A577F /* customProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30672011C16BFAC001A577F /* customProviderView.swift */; };
@@ -245,9 +245,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B426E892197920C0AEE1B09 /* Pods-TouchInsightAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.debug.xcconfig"; sourceTree = "<group>"; };
-		2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3538A651F6C808F8DD33CE72 /* Pods-TouchInsightAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.release.xcconfig"; sourceTree = "<group>"; };
+		23B71628A3E6AF4BCEADBC10 /* Pods-TouchInsightAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.release.xcconfig"; sourceTree = "<group>"; };
+		2F85F983B1A69289714ED14B /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3333AC64BD9D41ACA5321FA7 /* Pods-TouchInsightAdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		361C9A771C0833B30062BE11 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		361C9A7B1C08342B0062BE11 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		361C9A7D1C0834690062BE11 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -364,13 +364,13 @@
 		3BBCD72D1D45B92C00892372 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
 		3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
-		40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
-		905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B324094B2CADF4857C78DA99 /* Pods-TouchInsightAdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		D5E838701804ADF9A30604D9 /* Pods-TouchInsightAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
+		586D92AF6F711ED82D2C729C /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
+		5FF54FEFB0933D4688889AAE /* Pods-TouchInsightAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
+		95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4AC1A99DDFE9988DDC49A71 /* Pods-TouchInsightAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C1E32DE7D8F7AE7C182E11F0 /* Pods_TouchInsightAdminTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCEB657165CBFCBB18CAEDD7 /* Pods-TouchInsightAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		D87384BA852B3AF1C8F18E95 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30671FD1C1691B4001A577F /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_image.png; path = images/add_image.png; sourceTree = "<group>"; };
 		F30671FE1C1691B4001A577F /* add_team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_team.png; path = images/add_team.png; sourceTree = "<group>"; };
 		F30672011C16BFAC001A577F /* customProviderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customProviderView.swift; sourceTree = "<group>"; };
@@ -541,7 +541,7 @@
 				36E394541C40BA22004402B7 /* RNGridMenu.framework in Frameworks */,
 				36E394551C40BA22004402B7 /* SCLAlertView.framework in Frameworks */,
 				36E394561C40BA22004402B7 /* SMPageControl.framework in Frameworks */,
-				F273F69F11DDB3D8D68CBA8B /* Pods_TouchInsightAdmin.framework in Frameworks */,
+				F2A028A4390F7C5F1F5558B7 /* Pods_TouchInsightAdmin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,7 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCD7B72B9F6D85A9110D07F0 /* Pods_TouchInsightAdminTests.framework in Frameworks */,
+				F20614394B5D165D4B58249E /* Pods_TouchInsightAdminTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +557,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B76C9029231FFEF3B0CF5D9 /* Pods_TouchInsightAdminUITests.framework in Frameworks */,
+				C9F5F891412219F989281C5A /* Pods_TouchInsightAdminUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +593,7 @@
 				36DC40F41C0587CF001B8E22 /* TouchInsightAdminUITests */,
 				36DC40D31C0587CE001B8E22 /* Products */,
 				7ECF8A2867ED54DC2E6CC22F /* Frameworks */,
-				E12DFA38ECBBD5EAA54645C2 /* Pods */,
+				6572BBE6466B8726310793BC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -875,6 +875,19 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		6572BBE6466B8726310793BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCEB657165CBFCBB18CAEDD7 /* Pods-TouchInsightAdmin.debug.xcconfig */,
+				586D92AF6F711ED82D2C729C /* Pods-TouchInsightAdmin.release.xcconfig */,
+				A4AC1A99DDFE9988DDC49A71 /* Pods-TouchInsightAdminTests.debug.xcconfig */,
+				23B71628A3E6AF4BCEADBC10 /* Pods-TouchInsightAdminTests.release.xcconfig */,
+				3333AC64BD9D41ACA5321FA7 /* Pods-TouchInsightAdminUITests.debug.xcconfig */,
+				5FF54FEFB0933D4688889AAE /* Pods-TouchInsightAdminUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7ECF8A2867ED54DC2E6CC22F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,24 +939,11 @@
 				36DC410B1C05941C001B8E22 /* FBSDKLoginKit.framework */,
 				36DC410C1C05941C001B8E22 /* FBSDKShareKit.framework */,
 				D87384BA852B3AF1C8F18E95 /* Pods.framework */,
-				40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */,
-				E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */,
-				2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */,
+				2F85F983B1A69289714ED14B /* Pods_TouchInsightAdmin.framework */,
+				C1E32DE7D8F7AE7C182E11F0 /* Pods_TouchInsightAdminTests.framework */,
+				95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E12DFA38ECBBD5EAA54645C2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0B426E892197920C0AEE1B09 /* Pods-TouchInsightAdmin.debug.xcconfig */,
-				640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */,
-				905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */,
-				3538A651F6C808F8DD33CE72 /* Pods-TouchInsightAdminTests.release.xcconfig */,
-				B324094B2CADF4857C78DA99 /* Pods-TouchInsightAdminUITests.debug.xcconfig */,
-				D5E838701804ADF9A30604D9 /* Pods-TouchInsightAdminUITests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		F329F1ED1D2D0FBF0061BA52 /* Restaurant */ = {
@@ -1694,12 +1694,12 @@
 		};
 		36DC40FB1C0587CF001B8E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B426E892197920C0AEE1B09 /* Pods-TouchInsightAdmin.debug.xcconfig */;
+			baseConfigurationReference = CCEB657165CBFCBB18CAEDD7 /* Pods-TouchInsightAdmin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thirawat Phannet (9U54D3YCXA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thirawat Phannet (9U54D3YCXA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1763,7 +1763,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.co.Touchtechnologies.SeeitLiveThailandAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b8f34c1e-da79-459d-b0ef-7997dd7d5206";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchInsightAdmin/TouchInsightAdmin-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1771,12 +1771,12 @@
 		};
 		36DC40FC1C0587CF001B8E22 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */;
+			baseConfigurationReference = 586D92AF6F711ED82D2C729C /* Pods-TouchInsightAdmin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Touch Technologies Co., Ltd. (28WCARLR9T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Touch Technologies Co., Ltd. (28WCARLR9T)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1840,7 +1840,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.co.Touchtechnologies.SeeitLiveThailandAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c1531f34-b304-4659-bcec-692226bc6f2b";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchInsightAdmin/TouchInsightAdmin-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1848,7 +1848,7 @@
 		};
 		36DC40FE1C0587CF001B8E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */;
+			baseConfigurationReference = A4AC1A99DDFE9988DDC49A71 /* Pods-TouchInsightAdminTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TouchInsightAdminTests/Info.plist;
@@ -1861,7 +1861,7 @@
 		};
 		36DC40FF1C0587CF001B8E22 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3538A651F6C808F8DD33CE72 /* Pods-TouchInsightAdminTests.release.xcconfig */;
+			baseConfigurationReference = 23B71628A3E6AF4BCEADBC10 /* Pods-TouchInsightAdminTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TouchInsightAdminTests/Info.plist;
@@ -1874,7 +1874,7 @@
 		};
 		36DC41011C0587CF001B8E22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B324094B2CADF4857C78DA99 /* Pods-TouchInsightAdminUITests.debug.xcconfig */;
+			baseConfigurationReference = 3333AC64BD9D41ACA5321FA7 /* Pods-TouchInsightAdminUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TouchInsightAdminUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1887,7 +1887,7 @@
 		};
 		36DC41021C0587CF001B8E22 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5E838701804ADF9A30604D9 /* Pods-TouchInsightAdminUITests.release.xcconfig */;
+			baseConfigurationReference = 5FF54FEFB0933D4688889AAE /* Pods-TouchInsightAdminUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TouchInsightAdminUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

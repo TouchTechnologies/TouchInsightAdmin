@@ -3,7 +3,7 @@ platform :ios, '8.0'
 # Uncomment this line if you're using Swift
 # source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
-##getServer Json Data
+#getServer Json Data
 #pod 'AF' # 'AFNetworking' ?
 pod 'Alamofire'
 #pod 'AlamofireImage', '~> 2.0'
@@ -38,6 +38,11 @@ pod 'Fabric'
 pod 'Crashlytics'
 
 pod 'FileProvider'
+pod 'RealmSwift'
+
+#Firebase
+pod 'Firebase'
+pod 'Firebase/Crash'
 
 target 'TouchInsightAdmin' do
 
