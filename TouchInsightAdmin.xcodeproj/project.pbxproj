@@ -1100,6 +1100,7 @@
 				3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */,
 				5FDDBFD69044B021B2268B8B /* [CP] Copy Pods Resources */,
 				F369AA9B1D2E3E730025FAB7 /* Fabric Script */,
+				3BBCD7311D45FBA000892372 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1363,6 +1364,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3BBCD7311D45FBA000892372 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=Path/To/ServiceAccount.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:my:app:id\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
 		};
 		3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -261,7 +261,7 @@ class API_Model {
         
         
         let request = Alamofire.request(.POST, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
-        request.validate()
+        //request.validate()
         request.responseJSON{response in
         
             var returnData: [String:AnyObject] = [:]
@@ -284,7 +284,7 @@ class API_Model {
                 ]
 
                 for i in 0...json.count-1 {
-                    print(json[i])
+                    print(i)
                 }
                 
                 //print("JSON(Login): \(JSON)")

@@ -9,6 +9,8 @@
 import UIKit
 import PKHUD
 import SCLAlertView
+import Firebase
+import FirebaseCrash
 
 class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UINavigationControllerDelegate{
     
@@ -121,6 +123,8 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             //            self.viewUserInfo.frame.size.height = 180.0
             //            self.mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 667)
         }
+        
+        
     }
     
     

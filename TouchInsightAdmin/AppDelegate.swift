@@ -11,7 +11,7 @@ import FBSDKCoreKit
 import Foundation
 import Fabric
 import Crashlytics
-
+import Firebase
 
 
 @UIApplicationMain
@@ -166,6 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         Fabric.with([Crashlytics.self])
         
+        FIRApp.configure()
         
         
         return true

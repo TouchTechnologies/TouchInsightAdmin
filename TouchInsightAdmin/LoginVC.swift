@@ -18,6 +18,9 @@ import MapKit
 import RNCryptor
 import PKHUD
 
+import Firebase
+import FirebaseCrash
+
 
 class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
     
@@ -234,6 +237,11 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         userNameTxt.resignFirstResponder()
         passWordTxt.resignFirstResponder()
         
+        
+        FIRCrashMessage("Cause Crash button clicked")
+        fatalError()
+        
+        
         var titleMessage:String = ""
         var message:String = ""
         
@@ -260,8 +268,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                 print(data)
                 
                 
-                if (data["status"] as! Bool)
-                {
+                if (data["status"] as! Bool){
                     
                     titleMessage = "Login Success"
                     message = "ยินดีต้อนรับเข้าสู่ระบบ"
