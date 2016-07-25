@@ -82,6 +82,7 @@
 		3B1EFC511D34B05E00A7F4EA /* mild.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4B1D34B05E00A7F4EA /* mild.png */; };
 		3B43946A1D3CDACA005B4E6C /* mUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4394691D3CDACA005B4E6C /* mUserData.swift */; };
 		3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCD72D1D45B92C00892372 /* FileMan.swift */; };
+		3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
 		5B76C9029231FFEF3B0CF5D9 /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */; };
 		DCD7B72B9F6D85A9110D07F0 /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */; };
@@ -361,6 +362,7 @@
 		3B43946B1D3CE12D005B4E6C /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		3BBCD72D1D45B92C00892372 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
+		3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
 		40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				36DC40D71C0587CF001B8E22 /* ViewController.swift */,
 				36DC40DC1C0587CF001B8E22 /* Assets.xcassets */,
 				36DC40E11C0587CF001B8E22 /* Info.plist */,
+				3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */,
 				36DC41151C05C469001B8E22 /* TouchInsightAdmin-Bridging-Header.h */,
 			);
 			path = TouchInsightAdmin;
@@ -1250,6 +1253,7 @@
 				F360C2CE1C0ED94600149CCC /* ic_team.png in Resources */,
 				F3B8B51B1C3B685F00768DF9 /* ic_hotel_hover.png in Resources */,
 				36DC41401C05C873001B8E22 /* krr.ttf in Resources */,
+				3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */,
 				F3B122341C0DF1C60093E268 /* bglogin2.png in Resources */,
 				F34D52D61C3CF560002AC1EF /* dropshadow.png in Resources */,
 				F3568EB61C0704060074E8CC /* icon2.png in Resources */,

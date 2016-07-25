@@ -258,66 +258,173 @@ class API_Model {
         print("parameter \(parameters)")
         let reqUrl = "\(_apiUrl)tokens"
         print(reqUrl)
-        Alamofire.request(.POST, reqUrl, parameters: parameters)
-            .responseJSON { response in
-//                print("---------------------------------------------------------------------")
-//                print("Login")
-//                //                print(response.request)  // original URL request
-//                print(response.response) // URL response
-//                //                print(response.data)     // server data
-//                //                print(response.result)   // result of response serialization
-//                print("---------------------------------------------------------------------")
-//                //                print("Code \(response.response?.valueForKey("status code") as! String)")
-                if let JSON = response.result.value {
-                    //print("JSON(Login): \(JSON)")
-                    
-                    if let error = JSON["errors"]{
-                        var data: [String:AnyObject] = [:]
-                        if let code = JSON["code"]{
-                            //print("code : : \(code)")
-                            if code == nil{
-                                data["status"] = true
-                                data["userID"] = (JSON["userId"] as! String)
-                                //                                data["accessToken"] = JSON["accessToken"]
-                                //                                print("accessToken : \(JSON["accessToken"] as! String)")
-                                self.appDelegate.userInfo["accessToken"] = (JSON["accessToken"] as! String)
-                                self.appDelegate.userInfo["userID"] = (JSON["userId"] as! String)
-                                self.appDelegate.userInfo["passWord"] = password
-                                //print("Login(User ID) \(JSON["userId"]!)")
-                                Alamofire.request(.GET, "\(self._apiUrl)users/\(JSON["userId"] as! String)/avatars", parameters: ["": ""])
-                                    .responseJSON { response in
-                                        //                                        print(response.request)  // original URL request
-                                        //                                        print(response.response) // URL response
-                                        //                                        print(response.data)     // server data
-                                        //                                        print(response.result)   // result of response serialization
-                                        
-                                        if let JSON = response.result.value {
-                                            //                                            print("JSON avatar login : \(JSON["small"])")
-                                            self.appDelegate.userInfo["avatarImage"] = (JSON["small"] as! String)
-                                        }
-                                }
-                                //                                print("userID\(JSON["userId"] as! String)")
-                                //                                self.getUserInfo(JSON["userId"] as! String)
-                                //                                print("success")
-                            }else{
-                                data["status"] = false
-                            }
-                        }
-                        
-                        for (var index = 0 ;index < error?.count ;index += 1){
-                            //print("field\(index) \(error![index]["field"] as! String)")
-                            if (error![index]["field"] as! String) == "username"{
-                                data["field"] = error![index]["field"]
-                                data["message"] = "username ไม่มีในระบบ"
-                            }else if (error![index]["field"] as! String) == "password"{
-                                data["field"] = error![index]["field"]
-                                data["message"] = "password ผิด"
-                            }
-                        }
-                        completionHandler(data)
-                    }
+        
+        
+        let request = Alamofire.request(.POST, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
+        request.validate()
+        request.responseJSON{response in
+        
+            var returnData: [String:AnyObject] = [:]
+            
+            print("JSON(Login)")
+            print(response.result.value)
+        
+            if response.result.isSuccess {
+                print("Success")
+            }else{
+                print("Failure")
+            }
+            
+            
+            if let json = response.result.value {
+                
+                returnData = [
+                    "success":true,
+                    "data":json
+                ]
+
+                for i in 0...json.count-1 {
+                    print(json[i])
                 }
+                
+                //print("JSON(Login): \(JSON)")
+                
+//                if let error = JSON["errors"]{
+//                    var data: [String:AnyObject] = [:]
+//                    if let code = JSON["code"]{
+//                        //print("code : : \(code)")
+//                        if code == nil{
+//                            data["status"] = true
+//                            data["userID"] = (JSON["userId"] as! String)
+//                            //                                data["accessToken"] = JSON["accessToken"]
+//                            //                                print("accessToken : \(JSON["accessToken"] as! String)")
+//                            self.appDelegate.userInfo["accessToken"] = (JSON["accessToken"] as! String)
+//                            self.appDelegate.userInfo["userID"] = (JSON["userId"] as! String)
+//                            self.appDelegate.userInfo["passWord"] = password
+//                            //print("Login(User ID) \(JSON["userId"]!)")
+//                            Alamofire.request(.GET, "\(self._apiUrl)users/\(JSON["userId"] as! String)/avatars", parameters: ["": ""])
+//                                .responseJSON { response in
+//                                    //                                        print(response.request)  // original URL request
+//                                    //                                        print(response.response) // URL response
+//                                    //                                        print(response.data)     // server data
+//                                    //                                        print(response.result)   // result of response serialization
+//                                    
+//                                    if let JSON = response.result.value {
+//                                        //                                            print("JSON avatar login : \(JSON["small"])")
+//                                        self.appDelegate.userInfo["avatarImage"] = (JSON["small"] as! String)
+//                                    }
+//                            }
+//                            //                                print("userID\(JSON["userId"] as! String)")
+//                            //                                self.getUserInfo(JSON["userId"] as! String)
+//                            //                                print("success")
+//                        }else{
+//                            data["status"] = false
+//                        }
+//                    }
+//                    
+//                    for (var index = 0 ;index < error?.count ;index += 1){
+//
+//                        //print("field\(index) \(error![index]["field"] as! String)")
+//                        if (error![index]["field"] as! String) == "username"{
+//                            data["field"] = error![index]["field"]
+//                            data["message"] = "username ไม่มีในระบบ"
+//                        }else if (error![index]["field"] as! String) == "password"{
+//                            data["field"] = error![index]["field"]
+//                            data["message"] = "password ผิด"
+//                        }
+//                    }
+//                    
+//                    for var i = 0; i < 10; i += 2 {
+//                        print(i)
+//                    }
+//                    
+//                    for i in 0 ..< 10 {
+//                        print(i)
+//                    }
+//                    
+//                }
+            }else{
+                
+                print("error")
+                print(response.result.error?.localizedDescription)
+                print(response.result.value)
+                
+                returnData = [
+                    "success":false,
+                    "data":"Cannot Connect to Server!"
+                ]
+            }
+            
+            print("returnData")
+            print(returnData)
+            print("- - - - - -")
+            
+            completionHandler(returnData)
+            
         }
+//        
+//        Alamofire.request(.POST, reqUrl, parameters: parameters)
+//            .responseJSON { response in
+////                print("---------------------------------------------------------------------")
+////                print("Login")
+////                //                print(response.request)  // original URL request
+////                print(response.response) // URL response
+////                //                print(response.data)     // server data
+////                //                print(response.result)   // result of response serialization
+////                print("---------------------------------------------------------------------")
+////                //                print("Code \(response.response?.valueForKey("status code") as! String)")
+//                
+//                
+//                if let JSON = response.result.value {
+//                    //print("JSON(Login): \(JSON)")
+//                    
+//                    if let error = JSON["errors"]{
+//                        var data: [String:AnyObject] = [:]
+//                        if let code = JSON["code"]{
+//                            //print("code : : \(code)")
+//                            if code == nil{
+//                                data["status"] = true
+//                                data["userID"] = (JSON["userId"] as! String)
+//                                //                                data["accessToken"] = JSON["accessToken"]
+//                                //                                print("accessToken : \(JSON["accessToken"] as! String)")
+//                                self.appDelegate.userInfo["accessToken"] = (JSON["accessToken"] as! String)
+//                                self.appDelegate.userInfo["userID"] = (JSON["userId"] as! String)
+//                                self.appDelegate.userInfo["passWord"] = password
+//                                //print("Login(User ID) \(JSON["userId"]!)")
+//                                Alamofire.request(.GET, "\(self._apiUrl)users/\(JSON["userId"] as! String)/avatars", parameters: ["": ""])
+//                                    .responseJSON { response in
+//                                        //                                        print(response.request)  // original URL request
+//                                        //                                        print(response.response) // URL response
+//                                        //                                        print(response.data)     // server data
+//                                        //                                        print(response.result)   // result of response serialization
+//                                        
+//                                        if let JSON = response.result.value {
+//                                            //                                            print("JSON avatar login : \(JSON["small"])")
+//                                            self.appDelegate.userInfo["avatarImage"] = (JSON["small"] as! String)
+//                                        }
+//                                }
+//                                //                                print("userID\(JSON["userId"] as! String)")
+//                                //                                self.getUserInfo(JSON["userId"] as! String)
+//                                //                                print("success")
+//                            }else{
+//                                data["status"] = false
+//                            }
+//                        }
+//                        
+//                        for (var index = 0 ;index < error?.count ;index += 1){
+//                            //print("field\(index) \(error![index]["field"] as! String)")
+//                            if (error![index]["field"] as! String) == "username"{
+//                                data["field"] = error![index]["field"]
+//                                data["message"] = "username ไม่มีในระบบ"
+//                            }else if (error![index]["field"] as! String) == "password"{
+//                                data["field"] = error![index]["field"]
+//                                data["message"] = "password ผิด"
+//                            }
+//                        }
+//                        completionHandler(data)
+//                    }
+//                }
+//        }
     }
     
     func Register(firstName:String,lastName:String,mobile:String,email:String,passWord:String,completionHandler:[String:AnyObject]->())
