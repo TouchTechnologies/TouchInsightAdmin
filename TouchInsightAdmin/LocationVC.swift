@@ -95,8 +95,8 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
                         if(senderTag == 999){
                             print("latitude:\(self.appDelegate.latitude)")
                             print("longitude:\(self.appDelegate.longitude)")
-                            self.latTxt.text = self.appDelegate.latitude
-                            self.longTxt.text = self.appDelegate.longitude
+                            self.Latlbl.text = self.appDelegate.latitude
+                            self.Longlbl.text = self.appDelegate.longitude
                             
                             
                         }else{
@@ -108,11 +108,6 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
                         
                     }
                   
-                    
-                    
-                    
-                    //                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-                    //                self.navigationController?.pushViewController(secondViewController!, animated: true)
                 }
                 
             }
@@ -306,10 +301,6 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
                 
                 if((appDelegate.latitude != "") && (appDelegate.longitude != "")  && (appDelegate.latitude != "0")  && (appDelegate.longitude != "0") ){
                     
-                    //self.propertyView1.hidden =
-//                    self.propertyView2.hidden = true
-//                    self.changLocationBar.hidden = true
-                    
                     self.latTxt.text = self.appDelegate.latitude
                     self.longTxt.text = self.appDelegate.longitude
                     
@@ -322,21 +313,12 @@ class LocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,U
                     self.saveLocationBtn.hidden = false
                     
                     point.coordinate = CLLocationCoordinate2DMake(Double(appDelegate.latitude)!,Double(appDelegate.longitude)! )
-//                    point.name = ""
-//                    point.title = ""
-                    //point.subtitle = "Current Subtitle"
                     self.mapView.addAnnotation(point)
                     
                     let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(appDelegate.latitude)!,Double(appDelegate.longitude)!)
                     let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 4000, 4000)
                     self.mapView.setRegion(viewRegion, animated:true)
                     
-//                    UIView.animateWithDuration(1.5, animations: {}, completion: {_ in
-//                        
-//                        self.latTxt.text = self.appDelegate.latitude
-//                        self.longTxt.text = self.appDelegate.longitude
-//                        
-//                    })
                 }else{
                     
                     // ---------- ตั้งค่าแผนที่ให้เป็นประเทศไทยก่อน

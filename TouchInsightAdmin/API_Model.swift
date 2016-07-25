@@ -16,6 +16,11 @@ class API_Model {
     let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
     let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
+//    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
+//    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
+//    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
+    
+    
     // test to tak
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

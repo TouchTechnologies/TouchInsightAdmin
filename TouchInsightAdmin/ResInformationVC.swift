@@ -18,7 +18,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     var provinceID = Int()
     let send = API_Model()
     var pickerPick = false
-    var mediaKey:String!
+    //var mediaKey:String!
     var facilitiesAttached:[[String:String]] = []
     
     var facilitiesResAttached = [String]()
@@ -492,12 +492,48 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         print("viewDidDisappear(ResInfo)")
     }
     func initailLogoImage(){
-        if let logo = self.appDelegate.userInfo["avatarImage"] {
-            print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-            imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
+        
+        
+        self._viewEmptyCover.userInteractionEnabled = false
+        self._viewEmptyLogo.userInteractionEnabled = false
+        
+        
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
+            
+            if let imgData = NSData(contentsOfURL:NSURL(string:logo as! String)!) as NSData? {
+                self.imgHotelLogo.image = UIImage(data:imgData)
+                self._viewEmptyLogo.hidden = true
+            }else{
+                self.imgHotelLogo.image = UIImage()
+                self._viewEmptyLogo.hidden = false
+            }
+            
+            //            self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
+            //            self._viewEmptyLogo.hidden = true
         }else{
-            print("no avatar")
-            imgHotelLogo.image = UIImage(named: "ic_team.png")
+            print("no logo")
+            self.imgHotelLogo.image = UIImage()
+            self._viewEmptyLogo.hidden = false
+        }
+        
+        
+        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
+            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
+            
+            if let imgData = NSData(contentsOfURL:NSURL(string:cover as! String)!) as NSData? {
+                self.imgHotelCover.image = UIImage(data:imgData)
+                self._viewEmptyCover.hidden = true
+            }else{
+                self.imgHotelCover.image = UIImage()
+                self._viewEmptyCover.hidden = false
+            }
+            //            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
+            //            self._viewEmptyCover.hidden = true
+        }else{
+            print("no cover")
+            self.imgHotelCover.image = UIImage()
+            self._viewEmptyCover.hidden = false
         }
         
     }
@@ -1062,29 +1098,29 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         //                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
         //                    }
         
-        self._viewEmptyCover.userInteractionEnabled = false
-        self._viewEmptyLogo.userInteractionEnabled = false
         
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
-            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
-            self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
-            self._viewEmptyLogo.hidden = true
-        }else{
-            print("no logo")
-            self.imgHotelLogo.image = UIImage()
-            self._viewEmptyLogo.hidden = false
-        }
+//        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+//            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
+//            self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
+//            self._viewEmptyLogo.hidden = true
+//        }else{
+//            print("no logo")
+//            self.imgHotelLogo.image = UIImage()
+//            self._viewEmptyLogo.hidden = false
+//        }
+//        
+//        
+//        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
+//            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
+//            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
+//            self._viewEmptyCover.hidden = true
+//        }else{
+//            print("no cover")
+//            self.imgHotelCover.image = UIImage()
+//            self._viewEmptyCover.hidden = false
+//        }
         
         
-        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
-            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
-            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
-            self._viewEmptyCover.hidden = true
-        }else{
-            print("no cover")
-            self.imgHotelCover.image = UIImage()
-            self._viewEmptyCover.hidden = false
-        }
 //        
 ////        let dateFormatter = NSDateFormatter()
 //        
@@ -1488,14 +1524,14 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
     func imageTapped(sender: AnyObject){
         
         print("Upload Logo Img")
-        
         //        print("Upload Logo Img")
         let _gg = sender as! UITapGestureRecognizer
-        print(_gg.view)
+        let tag = Int((_gg.view?.tag)!)
+        print(tag)
         
-        if( _gg.view?.tag == 1){
+        if(tag == 1){
             _pickerType = "cover"
-        }else if( _gg.view?.tag == 2){
+        }else if(tag == 2){
             _pickerType = "logo"
         }
         //        print("---------")
@@ -1506,15 +1542,80 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+//        
+//        print("ImagePicker")
+//        
+//        let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+//        var _imageType = ""
+//        if(_pickerType == "cover"){
+//            
+//            print("cover")
+//            // upload Cover
+//            self.imgHotelCover.contentMode = .ScaleAspectFill
+//            self.imgHotelCover.image = chosenImage
+//            _imageType = "coverImage"
+//            
+//        }else if(_pickerType == "logo"){
+//            print("logo")
+//            
+//            // Upload LOGO
+//            self.imgHotelLogo.contentMode = .ScaleAspectFill
+//            self.imgHotelLogo.image = chosenImage
+//            _imageType = "logoImage"
+//            
+//        }
+//        
+////        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+////        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+////        imgHotelLogo.contentMode = .ScaleAspectFit //3
+////        self.imgHotelLogo.image = chosenImage //4
+//        
+//        
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+//        let imageName = imageURL.pathComponents![1];
+//        print("imageName : \(imageName)")
+//        pickerPick = true
+//        //        imgHotelLogo.reloadInputViews()
+//        
+//        let send = API_Model()
+//        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
+//            data in
+//            PKHUD.sharedHUD.dimsBackground = false
+//            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+//            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+//            PKHUD.sharedHUD.show()
+//            
+//            print("UPLOAD DATA ::: \(data)")
+//            self.mediaKey = data
+//            
+//            send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
+//            {
+//                data in
+//                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+//                self.dismissViewControllerAnimated(true, completion:
+//                    {
+//                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
+//                        self.imgHotelLogo.image = chosenImage
+//                        self.imgHotelLogo.reloadInputViews()
+//                })
+//            }
+//        }
+//        
+//        
+        
+        
+        PKHUD.sharedHUD.dimsBackground = false
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
         
         print("ImagePicker")
-        
         let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         var _imageType = ""
         if(_pickerType == "cover"){
             
             print("cover")
             // upload Cover
+            self._viewEmptyCover.hidden = true
             self.imgHotelCover.contentMode = .ScaleAspectFill
             self.imgHotelCover.image = chosenImage
             _imageType = "coverImage"
@@ -1523,47 +1624,58 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
             print("logo")
             
             // Upload LOGO
+            self._viewEmptyLogo.hidden = true
             self.imgHotelLogo.contentMode = .ScaleAspectFill
             self.imgHotelLogo.image = chosenImage
             _imageType = "logoImage"
             
         }
         
-//        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-//        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-//        imgHotelLogo.contentMode = .ScaleAspectFit //3
-//        self.imgHotelLogo.image = chosenImage //4
-        
-        
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         let imageName = imageURL.pathComponents![1];
+        print("imageURL : \(imageURL)")
         print("imageName : \(imageName)")
-        pickerPick = true
+        //pickerPick = true
         //        imgHotelLogo.reloadInputViews()
         
-        let send = API_Model()
-        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
-            data in
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            PKHUD.sharedHUD.show()
+        PKHUD.sharedHUD.show()
+        self.dismissViewControllerAnimated(true, completion:{_ in
             
-            print("UPLOAD DATA ::: \(data)")
-            self.mediaKey = data
-            
-            send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
-            {
-                data in
-                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                self.dismissViewControllerAnimated(true, completion:
-                    {
-                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                        self.imgHotelLogo.image = chosenImage
-                        self.imgHotelLogo.reloadInputViews()
-                })
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                
+                let send = API_Model()
+                send.getUploadKey(Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
+                    _mediaKey in
+                    
+                    send.uploadImage(_mediaKey, image: chosenImage, imageName: imageName){
+                        data in
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            if(self._pickerType == "cover"){
+                                print("cover")
+                                //let _coverServer = data["debug"]!["total_room"]!["sssss"]
+                                let _coverLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
+                                
+                                print("_coverLocal = \(_coverLocal)")
+                                self.imgHotelCover.image = chosenImage
+                                
+                            }else if(self._pickerType == "logo"){
+                                print("logo")
+                                let _logoLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]
+                                print("_logoLocal = \(_logoLocal)")
+                                
+                                self.imgHotelLogo.image = chosenImage
+                            }
+                            PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                        }
+                        
+                    }
+                }
             }
-        }
+            
+        })
+
+        
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

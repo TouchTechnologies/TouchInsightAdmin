@@ -18,7 +18,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     var provinceID = Int()
     let send = API_Model()
     //var pickerPick = false
-    var mediaKey:String!
+    //var mediaKey:String!
     var facilitiesAttached:[[String:String]] = []
     
     var facilitiesHotelAttached = [String]()
@@ -1128,7 +1128,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        
         PKHUD.sharedHUD.dimsBackground = false
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
@@ -1163,20 +1162,19 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         //pickerPick = true
         //        imgHotelLogo.reloadInputViews()
         
-        self.dismissViewControllerAnimated(true, completion:nil)
-        UIView.animateWithDuration(0.10, animations: {}, completion: {_ in
+        PKHUD.sharedHUD.show()
+        self.dismissViewControllerAnimated(true, completion:{_ in
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 
                     let send = API_Model()
                     send.getUploadKey(Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
-                        data in
-                        PKHUD.sharedHUD.show()
+                        _mediaKey in
                         
-                        print("UPLOAD DATA ::: \(data)")
-                        self.mediaKey = data
+//                        print("UPLOAD DATA ::: \(data)")
+//                        self.mediaKey = data
                         
-                        send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName){
+                        send.uploadImage(_mediaKey, image: chosenImage, imageName: imageName){
                             data in
                             
                             dispatch_async(dispatch_get_main_queue()) {

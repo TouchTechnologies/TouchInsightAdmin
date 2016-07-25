@@ -28,6 +28,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     //    @IBOutlet var tableView: UITableView!
     //    @IBOutlet var hotelFacListView: UIView!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imgHotelCover: UIImageView!
     @IBOutlet var imgHotelLogo: UIImageView!
     @IBOutlet var txtHotelName: UITextField!
     @IBOutlet var HotelDesTxt: UITextView!
@@ -45,6 +46,10 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     
     @IBOutlet weak var btnAddFac: UIButton!
     
+    @IBOutlet var _viewEmptyCover: UIView!
+    @IBOutlet var _viewEmptyLogo: UIView!
+    
+    
     //
     //    @IBOutlet var distanceCityTxt: UITextField!
     //    @IBOutlet var DistanceAirportTxt: UITextField!
@@ -54,6 +59,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
     
     //    @IBOutlet var lblAirport: UILabel!
     
+    let myPickerController = UIImagePickerController()
     
     // Big Box ==========
     @IBOutlet weak var view_DateSet: UIView!
@@ -74,8 +80,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             self.img_Weekly.image = UIImage(named: "uncheck.png")
             
             self.view_DateSet.alpha = 0
-            self.view_BottomSet.frame.origin.y = 756
-            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 928)
+            self.view_BottomSet.frame.origin.y = 853
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1031)
             self.selectedDay = ["su": "1", "tu": "1", "th": "1", "fr": "1", "we": "1", "sa": "1", "mo": "1"]
             //            self.scrollView.contentSize = CGSizeMake(self.view.bounds.width, 1900)
             },completion: {_ in
@@ -120,8 +126,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             
             self.view_DateSet.hidden = false
             self.view_DateSet.alpha = 1
-            self.view_BottomSet.frame.origin.y = 828
-            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1000)
+            self.view_BottomSet.frame.origin.y = 933
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1103)
             
             
             
@@ -333,6 +339,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         setStatus24(true)
         
+        myPickerController.delegate = self
+        
         
         
         //self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
@@ -382,13 +390,49 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //        appDelegate.facilityHotelStatus.removeAll()
     }
     func initailLogoImage(){
-        if let logo = self.appDelegate.userInfo["avatarImage"] {
-            print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-            imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo)!)!)
+        
+        self._viewEmptyCover.userInteractionEnabled = false
+        self._viewEmptyLogo.userInteractionEnabled = false
+        
+        
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
+            
+            if let imgData = NSData(contentsOfURL:NSURL(string:logo as! String)!) as NSData? {
+                self.imgHotelLogo.image = UIImage(data:imgData)
+                self._viewEmptyLogo.hidden = true
+            }else{
+                self.imgHotelLogo.image = UIImage()
+                self._viewEmptyLogo.hidden = false
+            }
+            
+            //            self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
+            //            self._viewEmptyLogo.hidden = true
         }else{
-            print("no avatar")
-            imgHotelLogo.image = UIImage(named: "ic_team.png")
+            print("no logo")
+            self.imgHotelLogo.image = UIImage()
+            self._viewEmptyLogo.hidden = false
         }
+        
+        
+        if let cover = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]{
+            print("has cover : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!)")
+            
+            if let imgData = NSData(contentsOfURL:NSURL(string:cover as! String)!) as NSData? {
+                self.imgHotelCover.image = UIImage(data:imgData)
+                self._viewEmptyCover.hidden = true
+            }else{
+                self.imgHotelCover.image = UIImage()
+                self._viewEmptyCover.hidden = false
+            }
+            //            self.imgHotelCover.image = UIImage(data:NSData(contentsOfURL:NSURL(string:cover as! String)!)!)
+            //            self._viewEmptyCover.hidden = true
+        }else{
+            print("no cover")
+            self.imgHotelCover.image = UIImage()
+            self._viewEmptyCover.hidden = false
+        }
+        
         
     }
     
@@ -704,11 +748,21 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
+        lblTitleHeader.layer.bounds.size.width = width
+        lblTitleHeader.center.x = width/2
+        
+        imgHotelCover.layer.cornerRadius = 0
+        imgHotelCover.layer.borderWidth = 1
+        imgHotelCover.layer.borderColor = borderColorCG
+        imgHotelCover.layer.bounds.size.width = width - 10
+        imgHotelCover.center.x = width/2
+        
+        _viewEmptyCover.center.x = width/2
+        
         imgHotelLogo.layer.cornerRadius = 0
         imgHotelLogo.layer.borderWidth = 1
         imgHotelLogo.layer.borderColor = borderColorCG
-        
-        
+                
         txtHotelName.borderStyle = UITextBorderStyle.None
         txtHotelName.center.x = width/2
         txtHotelName.layer.bounds.size.width = width - 10
@@ -844,10 +898,10 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         scrollView.frame = frmScrollView
         
         self.scrollView.frame.origin.y = 0
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 928)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1031)
         
         self.view_DateSet.hidden = true
-        self.view_BottomSet.frame.origin.y = 756
+        self.view_BottomSet.frame.origin.y = 853
         
         //        var frmBtnAddFac = btnAddFac.frame
         //        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width
@@ -905,7 +959,6 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //        frmCheckOut.size.width = openAndCloseWidth - 12
         //        checkOutView.frame = frmCheckOut
         
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -916,10 +969,16 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //self.setObject()
         
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AttnInfoVC.imageTapped(_:)))
+        let tapAddCover = UITapGestureRecognizer(target:self, action:#selector(AttnInfoVC.imageTapped(_:)))
+        imgHotelCover.userInteractionEnabled = true
+        imgHotelCover.tag = 1
+        imgHotelCover.addGestureRecognizer(tapAddCover)
+        
+        let tapAddLogo = UITapGestureRecognizer(target:self, action:#selector(AttnInfoVC.imageTapped(_:)))
         imgHotelLogo.userInteractionEnabled = true
-        imgHotelLogo.addGestureRecognizer(tapGestureRecognizer)
-        self.scrollView.addSubview(self.imgHotelLogo)
+        imgHotelLogo.tag = 2
+        imgHotelLogo.addGestureRecognizer(tapAddLogo)
+        
         
         //scrollView.contentSize = CGSizeMake(width,2150)
         
@@ -952,7 +1011,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         provinceID = Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["province_id"]! as! String)!
         addressTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["address_en"]! as! String)
         print("Logooooo \((appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]))");
-        self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+        //self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
         
         
         //                    if(pickerPick == false){
@@ -964,21 +1023,21 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         //                     self.imgHotelLogo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"] as! String)!)!)
         //                    }
         
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
-        {
-            
-            
-            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
-            
-            
-            self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
-        }
-        else
-        {
-            print("no logo")
-            self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
-            
-        }
+//        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
+//        {
+//            
+//            
+//            print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
+//            
+//            
+//            self.imgHotelLogo.image = UIImage(data:NSData(contentsOfURL:NSURL(string:logo as! String)!)!)
+//        }
+//        else
+//        {
+//            print("no logo")
+//            self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+//            
+//        }
         
         
         //
@@ -1264,14 +1323,14 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     }
                     if(allDay == 7){
                         self.view_DateSet.hidden = true
-                        self.view_BottomSet.frame.origin.y = 756
-                        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 928)
+                        self.view_BottomSet.frame.origin.y = 853
+                        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1031)
                         self.img_AllDay.image = UIImage(named: "check.png")
                         self.img_Weekly.image = UIImage(named: "uncheck.png")
                     }else{
                         self.view_DateSet.hidden = false
-                        self.view_BottomSet.frame.origin.y = 828
-                        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1000)
+                        self.view_BottomSet.frame.origin.y = 933
+                        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, 1103)
                         self.img_AllDay.image = UIImage(named: "uncheck.png")
                         self.img_Weekly.image = UIImage(named: "check.png")
                     }
@@ -1285,57 +1344,104 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         
     }
-    func imageTapped(img: AnyObject)
-    {
+    
+    var _pickerType = ""
+    func imageTapped(sender: AnyObject){
+        //        print("Upload Logo Img")
+        let _gg = sender as! UITapGestureRecognizer
+        let tag = Int((_gg.view?.tag)!)
+        print(tag)
         
-        print("Upload Logo Img")
+        if(tag == 1){
+            _pickerType = "cover"
+        }else if(tag == 2){
+            _pickerType = "logo"
+        }
+        //        print("---------")
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        myPickerController.allowsEditing = false
         self.presentViewController(myPickerController, animated: true, completion: nil)
         
     }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        PKHUD.sharedHUD.dimsBackground = false
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        
         print("ImagePicker")
-        
-        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imgHotelLogo.contentMode = .ScaleAspectFit //3
-        self.imgHotelLogo.image = chosenImage //4
-        
+        let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        var _imageType = ""
+        if(_pickerType == "cover"){
+            
+            print("cover")
+            // upload Cover
+            self._viewEmptyCover.hidden = true
+            self.imgHotelCover.contentMode = .ScaleAspectFill
+            self.imgHotelCover.image = chosenImage
+            _imageType = "coverImage"
+            
+        }else if(_pickerType == "logo"){
+            print("logo")
+            
+            // Upload LOGO
+            self._viewEmptyLogo.hidden = true
+            self.imgHotelLogo.contentMode = .ScaleAspectFill
+            self.imgHotelLogo.image = chosenImage
+            _imageType = "logoImage"
+            
+        }
         
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         let imageName = imageURL.pathComponents![1];
+        print("imageURL : \(imageURL)")
         print("imageName : \(imageName)")
-        pickerPick = true
+        //pickerPick = true
         //        imgHotelLogo.reloadInputViews()
         
-        let send = API_Model()
-        send.getUploadKey(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: "logoImage",imageName: imageName){
-            data in
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            PKHUD.sharedHUD.show()
+        PKHUD.sharedHUD.show()
+        self.dismissViewControllerAnimated(true, completion:{_ in
             
-            print("UPLOAD DATA ::: \(data)")
-            self.mediaKey = data
-            
-            send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
-            {
-                data in
-                //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                self.dismissViewControllerAnimated(true, completion:
-                    {
-                        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                        self.imgHotelLogo.image = chosenImage
-                        self.imgHotelLogo.reloadInputViews()
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                
+                let send = API_Model()
+                send.getUploadKey(Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
+                    _mediaKey in
+                    
+                    //                        print("UPLOAD DATA ::: \(data)")
+                    //                        self.mediaKey = data
+                    
+                    send.uploadImage(_mediaKey, image: chosenImage, imageName: imageName){
+                        data in
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            if(self._pickerType == "cover"){
+                                print("cover")
+                                //let _coverServer = data["debug"]!["total_room"]!["sssss"]
+                                let _coverLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
+                                
+                                print("_coverLocal = \(_coverLocal)")
+                                self.imgHotelCover.image = chosenImage
+                                
+                            }else if(self._pickerType == "logo"){
+                                print("logo")
+                                let _logoLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]
+                                print("_logoLocal = \(_logoLocal)")
+                                
+                                self.imgHotelLogo.image = chosenImage
+                            }
+                            PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                        }
+                        
                     }
-                )
+                }
             }
-        }
+            
+        })
+        
+
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

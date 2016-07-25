@@ -48,57 +48,70 @@ class AttnLocationVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
          print("lat :\(latTxt.text) long: \(longTxt.text)")
          print("save Button")
         
-        let send = API_Model()
-        let dataDic = [
-            "providerInformation" :
-            [
-                    "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                    "providerTypeKeyname" : "hotel",
-                    "longitude": self.longTxt.text! as String,
-                    "latitude": self.latTxt.text! as String
-            ],
-            "user" : [
-                "accessToken" : appDelegate.userInfo["accessToken"]!
-            ]
-        ]
         
-        let dataJson = send.Dict2JsonString(dataDic)
-        
-        print("data Send Json :\(dataJson)")
-        print("Json Encode :\(send.jsonEncode(dataJson))")
-        
-        //Update Provider
-        send.providerAPI(self.appDelegate.command["updateProvider"]!, dataJson: dataJson){
-            data in
-            print("data (Location):\(data)")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             
-            let dataJson = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
-            //print("appDelegate :\(appDelegate.userInfo["email"])")
-            print("dataSendJson : \(dataJson)")
-            send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJson){
+            let send = API_Model()
+            let dataDic = [
+                "providerInformation" :
+                    [
+                        "providerId" : Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,
+                        "providerTypeKeyname" : "hotel",
+                        "longitude": self.longTxt.text! as String,
+                        "latitude": self.latTxt.text! as String
+                ],
+                "user" : [
+                    "accessToken" : self.appDelegate.userInfo["accessToken"]!
+                ]
+            ]
+            
+            let dataJson = send.Dict2JsonString(dataDic)
+            
+            print("data Send Json :\(dataJson)")
+            print("Json Encode :\(send.jsonEncode(dataJson))")
+            
+            //Update Provider
+            send.providerAPI(self.appDelegate.command["updateProvider"]!, dataJson: dataJson){
                 data in
+                print("data (Location):\(data)")
                 
-            print("listProvider :\(data["ListProviderInformationSummary"]!)")
-
+                let dataJson = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
+                //print("appDelegate :\(appDelegate.userInfo["email"])")
+                print("dataSendJson : \(dataJson)")
+                send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJson){
+                    data in
+                    
+                    self.appDelegate.providerData = data
+                    
+                    let letChange = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["latitude"]! as! String
+                    let longChange = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["longitude"]! as! String
+                    
+                    let senderTag = sender.tag as Int
+                    print("senderTag:\(senderTag)")
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        if(senderTag == 999){
+                            print("latitude:\(self.appDelegate.latitude)")
+                            print("longitude:\(self.appDelegate.longitude)")
+                            self.Latlbl.text = self.appDelegate.latitude
+                            self.Longlbl.text = self.appDelegate.longitude
+                            
+                            
+                        }else{
+                            print("LATTT ::: \(letChange)")
+                            self.latTxt.text = letChange
+                            print("LONGG ::: \(longChange)")
+                            self.longTxt.text = longChange
+                        }
+                        
+                    }
+                    
+                }
                 
-                self.appDelegate.providerData = data
-                
-                
-                let letChange = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["latitude"]! as! String
-                let longChange = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["longitude"]! as! String
-                print("LATTT ::: \(letChange)")
-                self.latTxt.text = letChange
-                print("LONGG ::: \(longChange)")
-                self.longTxt.text = longChange
-                
-                
-                
-                //                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-                //                self.navigationController?.pushViewController(secondViewController!, animated: true)
             }
             
         }
-       
        
     }
 func changeDetial(){
@@ -261,6 +274,7 @@ func changeDetial(){
             point.title = _titleName
             //point.subtitle = "Current Subtitle"
             self.mapView.addAnnotation(point)
+            self.mapView.showsUserLocation = false
             
             let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(_lat)!,Double(_lng)!)
             let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 1000, 1000)
@@ -283,9 +297,24 @@ func changeDetial(){
                 
                 if((appDelegate.latitude != "") && (appDelegate.longitude != "")  && (appDelegate.latitude != "0")  && (appDelegate.longitude != "0") ){
                     
+                    self.latTxt.text = self.appDelegate.latitude
+                    self.longTxt.text = self.appDelegate.longitude
+                    
+                    let btnSender = UIButton()
+                    btnSender.tag = 999
+                    self.saveLocationBtn(btnSender)
+                    
+                    self.propertyView2.hidden = true
+                    self.changLocationBar.hidden = false
+                    self.saveLocationBtn.hidden = false
+                    
+                    point.coordinate = CLLocationCoordinate2DMake(Double(appDelegate.latitude)!,Double(appDelegate.longitude)! )
+                    self.mapView.addAnnotation(point)
+                    
                     let Coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(appDelegate.latitude)!,Double(appDelegate.longitude)!)
                     let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(Coordinates, 4000, 4000)
                     self.mapView.setRegion(viewRegion, animated:true)
+                    
                 }else{
                     
                     // ---------- ตั้งค่าแผนที่ให้เป็นประเทศไทยก่อน

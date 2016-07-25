@@ -99,9 +99,25 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         //*******************User Test**********************//
         //       userNameTxt.text = "pair@p.z"
         //       passWordTxt.text = "12345678"
+        let device = DeviceDetail()
         
-        userNameTxt.text = "teerstudio@hotmail.com"
-        passWordTxt.text = "master99"
+        print(" DeviceDetail.Simulator ")
+        print(device)
+        print(device.description)
+        print("= = = = = = = = = = = = =")
+//        print(device)     // prints for example "iPhone 6 Plus"
+//        if device.model {
+//            // Do something
+//        } else {
+//            // Do something else
+//        }
+//        
+        if(device.description == "Simulator"){
+            
+            userNameTxt.text = "teerstudio@hotmail.com"
+            passWordTxt.text = "master99"
+            
+        }
         
         userNameTxt.delegate = self
         passWordTxt.delegate = self
