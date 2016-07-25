@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B7444E6EF715DF4635CBB05BEBBA59D"
+               BlueprintIdentifier = "7A5E6A9BD425E9C67D4BA8B329C94938"
                BuildableName = "Pods_TouchInsightAdminUITests.framework"
                BlueprintName = "Pods-TouchInsightAdminUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B7444E6EF715DF4635CBB05BEBBA59D"
+            BlueprintIdentifier = "7A5E6A9BD425E9C67D4BA8B329C94938"
             BuildableName = "Pods_TouchInsightAdminUITests.framework"
             BlueprintName = "Pods-TouchInsightAdminUITests"
             ReferencedContainer = "container:Pods.xcodeproj">

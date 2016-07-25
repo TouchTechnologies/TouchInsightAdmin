@@ -263,11 +263,12 @@ class API_Model {
         //request.validate()
         request.responseJSON{response in
             
-            var returnData: [String:AnyObject] = [
-                "success":false,
-                "message":"Cannot Connect to Server!",
-                "data":[]
-            ]
+            var returnData: [String:AnyObject] = [:]
+//            var returnData: [String:AnyObject] = [
+//                "success":false,
+//                "message":"Cannot Connect to Server!",
+//                "data":[]
+//            ]
         
             //print("JSON(Login)")
             print(response.result.value)
@@ -290,7 +291,7 @@ class API_Model {
                         self.appDelegate.userInfo["userID"] = (json["userId"] as! String)
                         self.appDelegate.userInfo["passWord"] = password
                         //print("Login(User ID) \(JSON["userId"]!)")
-                        Alamofire.request(.GET, "\(self._apiUrl)users/\(userId)/avatars", parameters: [])
+                        Alamofire.request(.GET, "\(self._apiUrl)users/\(userId)/avatars", parameters: ["":""])
                             .responseJSON { response in
                                 if let JSON = response.result.value {
                                     print("JSON avatar login : \(JSON["small"]!)")
@@ -300,10 +301,57 @@ class API_Model {
                         
                     }else{ // Login Fail
                        //print("userId = NO")
+                        //print(json["errors"]!![0]["message"]!![0])
+                        
+                        //if let _m = (json["errors"] as! Array)[0]["message"]!![0] as! String{
+                        
+//                        for var index = 0 ;index < error?.count ;index++
+//                        {
+//                            print("field\(index) \(error![index]["field"] as! String)")
+//                            if (error![index]["field"] as! String) == "username"
+//                            {
+//                                data["field"] = error![index]["field"]
+//                                data["message"] = "username ไม่มีในระบบ"
+//                            }else if (error![index]["field"] as! String) == "password"
+//                            {
+//                                data["field"] = error![index]["field"]
+//                                data["message"] = "password ผิด"
+//                            }
+//                            
+//                        }
+                        
+                        var msg = ""
+                        if let error = json["errors"] as! NSArray?{
+                            
+                            if let message = error[0]["message"] as! NSArray?{
+                                
+                                for msgError in message{
+                                    msg = msgError as! String
+                                    print(msgError)
+                                    print("-------")
+                                }
+                                
+//                                if let _m = message[0]{
+//                                    msg = _m
+//                                }
+                                
+//                                if(message.count > 0){
+//                                    if let _m = message[0] as! String?{
+//                                        msg = _m
+//                                    }
+//                                    
+//                                }
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
                         
                         returnData = [
                             "success":false,
-                            "message":json["errors"]!!["message"],
+                            "message":msg,
                             "data":json
                         ]
                     }
@@ -311,6 +359,12 @@ class API_Model {
                 
                 //print("Success")
             }else{ // ไม่มี else เพราะมีค่าเริ่มต้นอยู่แล้ว
+                
+                returnData = [
+                    "success":false,
+                    "message":"Cannot Connect to Server!",
+                    "data":[:]
+                ]
                 
                 print("error")
                 print(response.result.error?.localizedDescription)

@@ -32,7 +32,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
     
     let locationManager = CLLocationManager()
     
-    var alertView = SCLAlertView()
+    //var alertView = SCLAlertView()
     
     
     //    var _mUserData: mUserData!
@@ -89,8 +89,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         //        RealmWrite()
         //        
         //        RealmRead()
-        //        
-        alertView.showCircularIcon = false
+        //
         super.viewDidLoad()
         self.setViewStyle()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -332,17 +331,18 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                         })
                         
                     }
-                }
-                else
-                {
+                }else{
                     self.appDelegate.isLogin = false
                     titleMessage = "Login fail"
                     message = data["message"] as! String
-                    self.alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
-                    print(" Message = \(data["message"])")
-                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
-                    //PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                    PKHUD.sharedHUD.hide(animated: false, completion: {_ in
+                        
+                    })
+                    
+                    let alertView = SCLAlertView()
+                    alertView.showCircularIcon = false
+                    alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 3.0)
+     
                 }
                 
             }
@@ -351,21 +351,27 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         {
             titleMessage = "Login fail"
             message = "กรุณากรอก Username และ Password"
-            alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
+            let alertView = SCLAlertView()
+            alertView.showCircularIcon = false
+            alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 3.0)
+
         }
         else if userNameTxt.text == ""
         {
             titleMessage = "Login fail"
             message = "กรุณากรอก Username"
-            alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
+            let alertView = SCLAlertView()
+            alertView.showCircularIcon = false
+            alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 3.0)
         }
         else if passWordTxt.text == ""
         {
             titleMessage = "Login fail"
             message = "กรุณากรอก Password"
-            alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 1.0)
+            let alertView = SCLAlertView()
+            alertView.showCircularIcon = false
+            alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 3.0)
         }
-        
         
         
     }

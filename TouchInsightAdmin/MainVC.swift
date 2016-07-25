@@ -75,21 +75,14 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         if(appDelegate.isLogin){
             if let avatar = self.appDelegate.userInfo["avatarImage"] where avatar != "" {
                 print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-                dispatch_async(dispatch_get_main_queue()) {
-                    
-                    if let avatar = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
-                        print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
-                        
-                        if let imgData = NSData(contentsOfURL:NSURL(string:avatar as! String)!) as NSData? {
-                            self.imgProfile.image = UIImage(data:imgData)
-                        }else{
-                            self.imgProfile.image = UIImage(named: "ic_team.png")
-                        }
-                    }else{
-                        self.imgProfile.image = UIImage(named: "ic_team.png")
-                    }
-                    
+                
+                //var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+                if let imgData = NSData(contentsOfURL:NSURL(string:avatar )!) as NSData? {
+                    self.imgProfile.image = UIImage(data:imgData)
+                }else{
+                    self.imgProfile.image = UIImage(named: "ic_team.png")
                 }
+                
                 
             }else{
                 print("no avatar")

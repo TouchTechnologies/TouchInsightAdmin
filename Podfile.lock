@@ -1,12 +1,107 @@
 PODS:
   - Alamofire (3.4.1)
+  - Crashlytics (3.7.2):
+    - Fabric (~> 1.6.3)
+  - CustomIOSAlertView (0.9.3)
+  - EAIntroView (2.9.0):
+    - EARestrictedScrollView (~> 1.1.0)
+  - EARestrictedScrollView (1.1.0)
+  - Fabric (1.6.7)
+  - FileProvider (0.1.0)
+  - Firebase (3.3.0):
+    - Firebase/Core (= 3.3.0)
+  - Firebase/Analytics (3.3.0):
+    - FirebaseAnalytics (= 3.2.1)
+  - Firebase/Core (3.3.0):
+    - Firebase/Analytics (= 3.3.0)
+  - Firebase/Crash (3.3.0):
+    - Firebase/Analytics (= 3.3.0)
+    - FirebaseCrash (= 1.0.6)
+  - FirebaseAnalytics (3.2.1):
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleUtilities (~> 1.3)
+  - FirebaseCrash (1.0.6):
+    - FirebaseAnalytics (~> 3.0)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - FirebaseInstanceID (1.0.7)
+  - GoogleInterchangeUtilities (1.2.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.1)
+  - GoogleUtilities (1.3.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - HanekeSwift (0.10.1)
+  - NKJPagerViewController (1.1.2)
+  - PagingMenuController (0.8.0)
+  - PKHUD (3.2.1)
+  - PureLayout (3.0.2)
+  - QRCodeReader.swift (6.0.0)
+  - RBBAnimation (0.4.0)
+  - Realm (1.0.1):
+    - Realm/Headers (= 1.0.1)
+  - Realm/Headers (1.0.1)
+  - RealmSwift (1.0.1):
+    - Realm (= 1.0.1)
+  - RNCryptor (4.0.0)
+  - RNGridMenu (0.1.3)
+  - SCLAlertView (0.5.1)
+  - SMPageControl (1.2)
 
 DEPENDENCIES:
   - Alamofire
+  - Crashlytics
+  - CustomIOSAlertView (= 0.9.3)
+  - EAIntroView
+  - Fabric
+  - FileProvider
+  - Firebase
+  - Firebase/Crash
+  - HanekeSwift
+  - NKJPagerViewController
+  - PagingMenuController (= 0.8.0)
+  - PKHUD
+  - PureLayout
+  - QRCodeReader.swift
+  - RBBAnimation
+  - RealmSwift
+  - RNCryptor
+  - RNGridMenu
+  - SCLAlertView (= 0.5.1)
+  - SMPageControl
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
+  EAIntroView: 76f68cc56242f2e25359419e6ecc2344ee7e1756
+  EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FileProvider: f3e2f023ee2d235f9104982ed085b39ee4c95516
+  Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
+  FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
+  FirebaseCrash: 899d0abc23b411d01087094e3da24527eaecabf7
+  FirebaseInstanceID: a9d923f3d0b6fbf9fac89310860357aaadc34be5
+  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
+  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
+  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  NKJPagerViewController: 48cdd1e5343a6c1a3e700ff67332e15fe708e0bf
+  PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
+  PKHUD: 001c11518f125a273ddf026bcc64918423744ea2
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  QRCodeReader.swift: 4aa8b0f88847a51312d6ffd2cafc387962da9dd8
+  RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
+  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
+  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+  RNCryptor: 59d6483908115af5c12b884db23392024e52a5fe
+  RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
+  SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
+  SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
 
-PODFILE CHECKSUM: 7723fcdfbd39d99fb89caffee55e3d94f66bedaa
+PODFILE CHECKSUM: ab82ef52fbbaa99ec50d9201c7ce2d88aec45373
 
 COCOAPODS: 1.0.1
