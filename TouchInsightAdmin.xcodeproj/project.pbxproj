@@ -81,8 +81,8 @@
 		3B1EFC501D34B05E00A7F4EA /* mild_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */; };
 		3B1EFC511D34B05E00A7F4EA /* mild.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4B1D34B05E00A7F4EA /* mild.png */; };
 		3B43946A1D3CDACA005B4E6C /* mUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4394691D3CDACA005B4E6C /* mUserData.swift */; };
+		3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCD72D1D45B92C00892372 /* FileMan.swift */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
-		3BE931431D40CF5C009DBCC8 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE931421D40CF5C009DBCC8 /* FileMan.swift */; };
 		5B76C9029231FFEF3B0CF5D9 /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF577DB7DEF547C3AB0D00C /* Pods_TouchInsightAdminUITests.framework */; };
 		DCD7B72B9F6D85A9110D07F0 /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62ADD6A8C4217B3459B2731 /* Pods_TouchInsightAdminTests.framework */; };
 		F273F69F11DDB3D8D68CBA8B /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */; };
@@ -360,8 +360,8 @@
 		3B4394691D3CDACA005B4E6C /* mUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mUserData.swift; path = Model/mUserData.swift; sourceTree = "<group>"; };
 		3B43946B1D3CE12D005B4E6C /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		3BBCD72D1D45B92C00892372 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
-		3BE931421D40CF5C009DBCC8 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
 		40D69EEE9185F7EA4A7100FA /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		640E87AC9BBBE9FB914EEC66 /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		905C4E7098FA5D5C734FF7B6 /* Pods-TouchInsightAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -867,7 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				3B4394691D3CDACA005B4E6C /* mUserData.swift */,
-				3BE931421D40CF5C009DBCC8 /* FileMan.swift */,
+				3BBCD72D1D45B92C00892372 /* FileMan.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1552,7 +1552,7 @@
 				F329F1E61D2CCB2D0061BA52 /* fileManager.swift in Sources */,
 				F329F1F11D2D100E0061BA52 /* ResInformationVC.swift in Sources */,
 				F3A758141C27CDA900CBB8A0 /* customImgCell.swift in Sources */,
-				3BE931431D40CF5C009DBCC8 /* FileMan.swift in Sources */,
+				3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */,
 				F33261641C0712290035C67D /* MainVC.swift in Sources */,
 				F3627FEE1C2BACEC006BC607 /* CNPPopupTheme.m in Sources */,
 				F3B8B5251C3B85EE00768DF9 /* roomfacility.swift in Sources */,
