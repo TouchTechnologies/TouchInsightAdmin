@@ -65,7 +65,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         //            imgProfile.image = UIImage(named: "ic_team.png")
         //        }
         
-        
+        print("User Data : \(self.appDelegate.userInfo)")
         print("FirstName : \(self.appDelegate.userInfo["firstName"])")
         print("proFile Name Maon :\(self.appDelegate.userInfo["profileName"])")
         //        let send  = API_Model()
@@ -74,22 +74,22 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         if(appDelegate.isLogin){
             if let avatar = self.appDelegate.userInfo["avatarImage"] where avatar != "" {
                 print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-                dispatch_async(dispatch_get_main_queue()) {
-                    //                    var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
-                    //                    if imgProfile == nil {
-                    //                        imgProfile = UIImage(named: "ic_team.png")
-                    //                    }
-                    var imgProfile = UIImage()
-                    if let _img = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!) {
-                        imgProfile = _img
-                    }else{
-                        imgProfile = UIImage(named: "ic_team.png")!
-                    }
-                    
-                    UIView.animateWithDuration(1.0, animations: {
-                        self.imgProfile.image = imgProfile
-                    })
-                }
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    //                    var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+//                    //                    if imgProfile == nil {
+//                    //                        imgProfile = UIImage(named: "ic_team.png")
+//                    //                    }
+//                    var imgProfile = UIImage()
+//                    if let _img = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!) {
+//                        imgProfile = _img
+//                    }else{
+//                        imgProfile = UIImage(named: "ic_team.png")!
+//                    }
+//                    
+//                    UIView.animateWithDuration(1.0, animations: {
+//                        self.imgProfile.image = imgProfile
+//                    })
+//                }
                 
             }else{
                 print("no avatar")
