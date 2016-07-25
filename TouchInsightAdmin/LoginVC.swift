@@ -238,8 +238,8 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
         passWordTxt.resignFirstResponder()
         
         
-        FIRCrashMessage("Cause Crash button clicked")
-        fatalError()
+//        FIRCrashMessage("Cause Crash button clicked")
+//        fatalError()
         
         
         var titleMessage:String = ""
@@ -267,8 +267,13 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                 data in
                 print(data)
                 
+//returnData = [
+//    "success":true,
+//    "message":"Login Success!",
+//    "data":json
+//]
                 
-                if (data["status"] as! Bool){
+                if (data["success"] as! Bool == true){
                     
                     titleMessage = "Login Success"
                     message = "ยินดีต้อนรับเข้าสู่ระบบ"
@@ -278,8 +283,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                     
                     //                        appDelegate.firstName = 
                     //                        login.getUserInfo(data["userID"] as! String)
-                    login.getUserInfo(self.appDelegate.userInfo["userID"]! as String)
-                    {
+                    login.getUserInfo(self.appDelegate.userInfo["userID"]! as String){
                         data in
                         //PKHUD.sharedHUD.hide(afterDelay: 0.1)
                         print("data : \(data)")

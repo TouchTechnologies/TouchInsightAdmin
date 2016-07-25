@@ -46,7 +46,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         self.getProvince()
         self.getFacility()
         
-        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         imgProfile.frame.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.5, UIScreen.mainScreen().bounds.size.width/3.5)
         imgProfile.center.x = UIScreen.mainScreen().bounds.size.width/2
@@ -76,22 +75,21 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         if(appDelegate.isLogin){
             if let avatar = self.appDelegate.userInfo["avatarImage"] where avatar != "" {
                 print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    //                    var imgProfile: UIImage? = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
-//                    //                    if imgProfile == nil {
-//                    //                        imgProfile = UIImage(named: "ic_team.png")
-//                    //                    }
-//                    var imgProfile = UIImage()
-//                    if let _img = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!) {
-//                        imgProfile = _img
-//                    }else{
-//                        imgProfile = UIImage(named: "ic_team.png")!
-//                    }
-//                    
-//                    UIView.animateWithDuration(1.0, animations: {
-//                        self.imgProfile.image = imgProfile
-//                    })
-//                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    if let avatar = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+                        print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
+                        
+                        if let imgData = NSData(contentsOfURL:NSURL(string:avatar as! String)!) as NSData? {
+                            self.imgProfile.image = UIImage(data:imgData)
+                        }else{
+                            self.imgProfile.image = UIImage(named: "ic_team.png")
+                        }
+                    }else{
+                        self.imgProfile.image = UIImage(named: "ic_team.png")
+                    }
+                    
+                }
                 
             }else{
                 print("no avatar")
@@ -102,7 +100,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             self.lblEmail.text = appDelegate.userInfo["email"]
             
         }
-        
         
         
         

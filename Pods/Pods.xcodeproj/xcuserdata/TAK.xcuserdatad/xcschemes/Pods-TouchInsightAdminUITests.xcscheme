@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7A5E6A9BD425E9C67D4BA8B329C94938"
+               BlueprintIdentifier = "4B7444E6EF715DF4635CBB05BEBBA59D"
                BuildableName = "Pods_TouchInsightAdminUITests.framework"
                BlueprintName = "Pods-TouchInsightAdminUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A5E6A9BD425E9C67D4BA8B329C94938"
+            BlueprintIdentifier = "4B7444E6EF715DF4635CBB05BEBBA59D"
             BuildableName = "Pods_TouchInsightAdminUITests.framework"
             BlueprintName = "Pods-TouchInsightAdminUITests"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A5E6A9BD425E9C67D4BA8B329C94938"
-            BuildableName = "Pods_TouchInsightAdminUITests.framework"
-            BlueprintName = "Pods-TouchInsightAdminUITests"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
