@@ -177,23 +177,43 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
             //            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://192.168.9.58/framework/public/resource/insight/hotel/1965/gallery/image/asset-small.jpg")!)!)
             
             
+            
+            
+            
+//            if let logo_url = self.hotelGallery[indexPath.row]["thumbnail"] as! String? {
+//                
+//                Cell.imageColl.hnk_setImageFromURL(NSURL(string: logo_url)!, placeholder: UIImage(named: "ic_media.png"), format: nil, failure: {_ in}, success: {_ in})
+//                
+//                
+//                //                if let imgData = NSData(contentsOfURL:NSURL(string:logo_url)!) as NSData? {
+//                //                    Cell.imageColl.image = UIImage(data:imgData)
+//                //                }else{
+//                //                    Cell.imageColl.image = UIImage()
+//                //                }
+//            }else{
+//                Cell.imageColl.image = UIImage()
+//            }
+
             let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
-            if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
-                print("ERROR")
-                Cell.imageColl.removeFromSuperview()
-                let lblError = UILabel()
-                lblError.frame = CGRectMake(0, Cell.frame.size.height/2 - 15, Cell.frame.size.width, 30)
-                lblError.text = "loading..."
-                lblError.textAlignment = .Center
-                Cell.addSubview(lblError)
-                
-                
-            }
-            else{
-                print("\(indexPath.row ) = strURL ::\(strURL)")
-                
-                Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
-            }
+            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+            
+//            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
+//            if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
+//                print("ERROR")
+//                Cell.imageColl.removeFromSuperview()
+//                let lblError = UILabel()
+//                lblError.frame = CGRectMake(0, Cell.frame.size.height/2 - 15, Cell.frame.size.width, 30)
+//                lblError.text = "loading..."
+//                lblError.textAlignment = .Center
+//                Cell.addSubview(lblError)
+//                
+//                
+//            }
+//            else{
+//                print("\(indexPath.row ) = strURL ::\(strURL)")
+//                
+//                Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+//            }
             
         }
 

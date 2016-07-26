@@ -98,7 +98,7 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
         
         
         self.hotelgalLbl.frame = CGRectMake(10 , self.firstV.frame.size.height + 20 , self.firstV.frame.size.width, 30)
-        self.hotelgalLbl.text = "Hotel Image"
+        self.hotelgalLbl.text = "Attraction Image"
         self.hotelgalLbl.font = UIFont(name: "Helvetica", size: 18)
         self.scrollView.addSubview(hotelgalLbl)
         

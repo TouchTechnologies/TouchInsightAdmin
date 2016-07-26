@@ -305,36 +305,100 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let nib = UINib(nibName: "customProviderListVC", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "cell")
-        Cell = tableView.dequeueReusableCellWithIdentifier("cell") as! customProviderView
         
+        Cell = tableView.dequeueReusableCellWithIdentifier("cell") as! customProviderView
         Cell.selectionStyle = UITableViewCellSelectionStyle.None
         
+//        print("- - - - - - - - ")
+//        print(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["medium"])
+//        print("- - - - - - - - ")
         
         // *************************** FIX BUG *************************
+//        if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["medium"] as! String? {
+//            
+//            Cell.imgProvider.hnk_setImageFromURL(NSURL(string: coverImage)!, placeholder: UIImage(named: "ic_no_image.png"), format: nil, failure: {_ in}, success: {_ in})
+//            //if let imgData = NSData(contentsOfURL:NSURL(string:logo_url)!) as NSData? {
+//            //    Cell.imageColl.image = UIImage(data:imgData)
+//            //}else{
+//            //    Cell.imageColl.image = UIImage()
+//            //}
+//        }else{
+//            Cell.imgProvider.image = UIImage()
+//        }
         
         
-        if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String? {
-            print("CoverImage \(coverImage)")
-//        if let coverImage = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["huge"] as! String?
-//        {
-        
-            if coverImage.rangeOfString("cover/default.png") != nil {
-                let urlLogo = NSURL(string: coverImage)
-                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
-            }else
-            {
-                print("Image::: \(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!)")
-                self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!)
+        if let _cover = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"] as! NSDictionary? {
+            
+            if (_cover["cover_image"]) != nil {
+                
+                //print("cover_image 1111")
+                
+                if let dicCover = _cover["cover_image"]{
+                    
+                    //print("cover_image 22222")
+                    
+                    if (dicCover["medium"]) != nil {
+                        
+                        //print("cover_image 33333")
+                        
+                        print("- - - - - - - - ")
+                        print(dicCover["medium"]!)
+                        print("- - - - - - - - ")
+                        
+                        if let coverImage = dicCover["medium"] as! String?{
+                            print("CoverImage \(coverImage)")
+//                            if coverImage.rangeOfString("cover/default.png") != nil {
+//                                let urlLogo = NSURL(string: coverImage)
+//                                self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
+//                            }else{
+//                                print("Image::: \(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!)")
+//                                self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!)
+//                            }
+                            
+                            let urlLogo = NSURL(string: coverImage)
+                            self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
+                            
+                        }else{
+                            self.Cell.imgProvider.hnk_setImage(UIImage(named: "ic_no_image.png")!, key: "")
+                        }
+                        
+                        
+                    }else{
+                        print("ELSE IMAGE")
+                        
+                        self.Cell.imgProvider.hnk_setImage(UIImage(named: "ic_no_image.png")!, key: "")
+                    }
+                    
+                    print("= = = = = = = = = = = = =")
+                }
+                
             }
             
             
-        }else
-        {
-            self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String?)!)!)
+//            if let dicCover = _cover["cover_image"] as! NSDictionary? {
+//                
+//                print("- - - - - - - - ")
+//                print(dicCover)
+//                print("- - - - - - - - ")
+//                
+////                if let coverImage = dicCover["medium"] as! String?{
+////                    print("CoverImage \(coverImage)")
+////                    if coverImage.rangeOfString("cover/default.png") != nil {
+////                        let urlLogo = NSURL(string: coverImage)
+////                        self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
+////                    }else{
+////                        print("Image::: \(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!)")
+////                        self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!)
+////                    }
+////                    
+////                }else{
+////                    self.Cell.imgProvider.hnk_setImageFromURL(NSURL(string:(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["cover_image"] as! String?)!)!)
+////                }
+//                
+//            }
+            
         }
-        
+    
         Cell.lblProviderType.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String)
         Cell.lblProviderName.text = (appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["name_en"]! as! String)
         
@@ -454,6 +518,12 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        
+        
+        
+        let nib = UINib(nibName: "customProviderListVC", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+        
         
         self.reloadData()
         

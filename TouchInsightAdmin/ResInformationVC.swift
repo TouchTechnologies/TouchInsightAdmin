@@ -1086,7 +1086,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         provinceID = Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["province_id"]! as! String)!
         addressTxt.text = (appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["address_en"]! as! String)
         print("Logooooo \((appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["images"]!!["logo_image"]))");
-        self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
+        //self.imgHotelLogo.image = UIImage(named: "bg_cctvdefault.png")
         
         
         //                    if(pickerPick == false){
@@ -1655,14 +1655,14 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             if(self._pickerType == "cover"){
                                 print("cover")
                                 //let _coverServer = data["debug"]!["total_room"]!["sssss"]
-                                let _coverLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
+                                let _coverLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]
                                 
                                 print("_coverLocal = \(_coverLocal)")
                                 self.imgHotelCover.image = chosenImage
                                 
                             }else if(self._pickerType == "logo"){
                                 print("logo")
-                                let _logoLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["cover_image"]!!["small"]
+                                let _logoLocal = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]
                                 print("_logoLocal = \(_logoLocal)")
                                 
                                 self.imgHotelLogo.image = chosenImage

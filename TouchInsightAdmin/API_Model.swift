@@ -20,15 +20,12 @@ class API_Model {
 //    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
 //    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
     
-    
     // test to tak
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let _osVersion = UIDevice.currentDevice().systemVersion
     let _UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
     let _SecretKey = "BcILclihFSTbm3tGpfKfrbdW"
-    
-    
     
     func post2Server(apiName:String,POST_Data:[String:AnyObject],completionHandler:[String:AnyObject]->()){
         Alamofire.request(.GET, "\(_apiUrl)\(apiName)", parameters: POST_Data)
@@ -46,8 +43,8 @@ class API_Model {
                 
         }
     }
-    func getFromServer(apiName:String,completionHandler:[String:AnyObject]->())
-    {
+    
+    func getFromServer(apiName:String,completionHandler:[String:AnyObject]->()){
         Alamofire.request(.GET, "\(_apiUrl)\(apiName)")
             .responseJSON { response in
                 //                print(response.request)  // original URL request

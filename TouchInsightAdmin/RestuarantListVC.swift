@@ -170,7 +170,7 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
     func initialImageGalleryVC(){
         
         
-        let galleryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ImageGalleryVC") as! ImageGalleryVC
+        let galleryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResImageGalleryVC") as! ResImageGalleryVC
         
         // self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         // self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
