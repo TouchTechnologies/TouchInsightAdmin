@@ -651,9 +651,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 "restaurantTypeDetail": "",
                 "payByCreditCard": "",
                 "openDaily": send.Dict2JsonString(selectedDay),
-                "wifi_available": self.selectedService["wifi"]!,
-                "parkingAvailable": self.selectedService["parking"]!,
-                "nonSmokingZone": self.selectedService["smonking"]!
+                "wifiAvailable": (self.selectedService["wifi"]! == "1") ? "yes" : "no",
+                "parkingAvailable": (self.selectedService["parking"]! == "1") ? "yes" : "no",
+                "nonSmokingZone": (self.selectedService["smonking"]! == "1" ) ? "yes" : "no"
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -1423,7 +1423,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             self.imgWifiServiceNo.image = UIImage(named: "check.png")
                         }else
                         {
-                            if ((wifi as! String) == "1")
+                            if ((wifi as! String) == "1" || (wifi as! String) == "yes")
                             {
                                 self.selectedService["wifi"] = "1"
                                 self.lblWifiServiceYes.textColor = UIColor.blackColor()
@@ -1456,7 +1456,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             self.imgParkingServiceNo.image = UIImage(named: "check.png")
                         }else
                         {
-                            if ((parking as! String) == "1")
+                            if ((parking as! String) == "1" || (parking as! String) == "yes")
                             {
                                 self.selectedService["parking"] = "1"
                                 self.lblParkingServiceYes.textColor = UIColor.blackColor()
@@ -1489,7 +1489,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
                         }else
                         {
-                            if ((smonking as! String) == "1")
+                            if ((smonking as! String) == "1" || (smonking as! String) == "yes")
                             {
                                 self.selectedService["smonking"] = "1"
                                 self.lblSmonkingServiceYes.textColor = UIColor.blackColor()
