@@ -76,6 +76,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     @IBAction func btnBookableYesClick(sender: AnyObject) {
         selectedBookable = "1"
+        print("selectedBookable : \(selectedBookable)")
         UIView.animateWithDuration(0.25, animations: {_ in
             
             self.lblBookableYes.textColor = UIColor.blackColor()
@@ -88,6 +89,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     @IBAction func btnBookableNoClick(sender: AnyObject) {
         selectedBookable = "0"
+        print("selectedBookable : \(selectedBookable)")
         UIView.animateWithDuration(0.25, animations: {_ in
             
             self.lblBookableYes.textColor = UIColor.grayColor()
@@ -1082,23 +1084,41 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                         self.checkOutTxt.text = "00:00"
                     }
 
+                    print("Booooook \(data["GetProviderInformationById"]!["is_bookable"] as! String)")
                     
-                    
-                    if((data["GetProviderInformationById"]!["is_bookable"] as! String) == "1")
+                    if let isBookable = data["GetProviderInformationById"]!["is_bookable"]
                     {
-                        
-                        self.selectedBookable = "1"
-                            self.lblBookableYes.textColor = UIColor.blackColor()
-                            self.lblBookableNo.textColor = UIColor.grayColor()
-                            self.imgBookableYes.image = UIImage(named: "check.png")
-                            self.imgBookableNo.image = UIImage(named: "uncheck.png")
-                    }else
-                    {
-                        self.selectedBookable = "0"
-                        self.lblBookableYes.textColor = UIColor.grayColor()
-                        self.lblBookableNo.textColor = UIColor.blackColor()
-                        self.imgBookableYes.image = UIImage(named: "uncheck.png")
-                        self.imgBookableNo.image = UIImage(named: "check.png")
+                        if(isBookable === NSNull())
+                        {
+                            self.selectedBookable = "0"
+                            self.lblBookableYes.textColor = UIColor.grayColor()
+                            self.lblBookableNo.textColor = UIColor.blackColor()
+                            self.imgBookableYes.image = UIImage(named: "uncheck.png")
+                            self.imgBookableNo.image = UIImage(named: "check.png")
+                        }else
+                        {
+                            if ((isBookable as! String) == "1" || (isBookable as! String) == "yes")
+                            {
+                                print("Yesssssssssss")
+                                self.selectedBookable = "1"
+                                self.lblBookableYes.textColor = UIColor.blackColor()
+                                self.lblBookableNo.textColor = UIColor.grayColor()
+                                self.imgBookableYes.image = UIImage(named: "check.png")
+                                self.imgBookableNo.image = UIImage(named: "uncheck.png")
+                                
+                            }else
+                            {
+                                self.selectedBookable = "0"
+                                self.lblBookableYes.textColor = UIColor.grayColor()
+                                self.lblBookableNo.textColor = UIColor.blackColor()
+                                self.imgBookableYes.image = UIImage(named: "uncheck.png")
+                                self.imgBookableNo.image = UIImage(named: "check.png")
+                                
+                                
+                            }
+                            
+                        }
+
                     }
 
                     

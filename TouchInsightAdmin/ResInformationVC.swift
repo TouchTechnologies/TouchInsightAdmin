@@ -651,9 +651,9 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 "restaurantTypeDetail": "",
                 "payByCreditCard": "",
                 "openDaily": send.Dict2JsonString(selectedDay),
-                "wifi_available": self.selectedService["wifi"]!,
-                "parkingAvailable": self.selectedService["parking"]!,
-                "nonSmokingZone": self.selectedService["smonking"]!
+                "wifiAvailable": (self.selectedService["wifi"]! == "1") ? "yes" : "no",
+                "parkingAvailable": (self.selectedService["parking"]! == "1") ? "yes" : "no",
+                "nonSmokingZone": (self.selectedService["smonking"]! == "1" ) ? "yes" : "no"
             ],
             "user" : [
                 "accessToken" : appDelegate.userInfo["accessToken"]!
@@ -1423,14 +1423,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             self.imgWifiServiceNo.image = UIImage(named: "check.png")
                         }else
                         {
-                            if ((wifi as! String) == "0")
-                            {
-                                self.selectedService["wifi"] = "0"
-                                self.lblWifiServiceYes.textColor = UIColor.grayColor()
-                                self.lblWifiServiceNo.textColor = UIColor.blackColor()
-                                self.imgWifiServiceYes.image = UIImage(named: "uncheck.png")
-                                self.imgWifiServiceNo.image = UIImage(named: "check.png")
-                            }else
+                            if ((wifi as! String) == "1" || (wifi as! String) == "yes")
                             {
                                 self.selectedService["wifi"] = "1"
                                 self.lblWifiServiceYes.textColor = UIColor.blackColor()
@@ -1438,11 +1431,19 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                                 self.imgWifiServiceYes.image = UIImage(named: "check.png")
                                 self.imgWifiServiceNo.image = UIImage(named: "uncheck.png")
                                 
+                            }else
+                            {
+                                self.selectedService["wifi"] = "0"
+                                self.lblWifiServiceYes.textColor = UIColor.grayColor()
+                                self.lblWifiServiceNo.textColor = UIColor.blackColor()
+                                self.imgWifiServiceYes.image = UIImage(named: "uncheck.png")
+                                self.imgWifiServiceNo.image = UIImage(named: "check.png")
+                                
                                 
                             }
- 
+                            
                         }
-
+                        
                     }
                     if let parking = data["GetProviderInformationById"]!["parking_available"]
                     {
@@ -1455,20 +1456,21 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             self.imgParkingServiceNo.image = UIImage(named: "check.png")
                         }else
                         {
-                            if ((parking as! String) == "0")
-                            {
-                                self.selectedService["parking"] = "0"
-                                self.lblParkingServiceYes.textColor = UIColor.grayColor()
-                                self.lblParkingServiceNo.textColor = UIColor.blackColor()
-                                self.imgParkingServiceYes.image = UIImage(named: "uncheck.png")
-                                self.imgParkingServiceNo.image = UIImage(named: "check.png")
-                            }else
+                            if ((parking as! String) == "1" || (parking as! String) == "yes")
                             {
                                 self.selectedService["parking"] = "1"
                                 self.lblParkingServiceYes.textColor = UIColor.blackColor()
                                 self.lblParkingServiceNo.textColor = UIColor.grayColor()
                                 self.imgParkingServiceYes.image = UIImage(named: "check.png")
                                 self.imgParkingServiceNo.image = UIImage(named: "uncheck.png")
+                                
+                            }else
+                            {
+                                self.selectedService["parking"] = "0"
+                                self.lblParkingServiceYes.textColor = UIColor.grayColor()
+                                self.lblParkingServiceNo.textColor = UIColor.blackColor()
+                                self.imgParkingServiceYes.image = UIImage(named: "uncheck.png")
+                                self.imgParkingServiceNo.image = UIImage(named: "check.png")
                                 
                                 
                             }
@@ -1487,21 +1489,20 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                             self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
                         }else
                         {
-                            if ((smonking as! String) == "0")
-                            {
-                                self.selectedService["smonking"] = "0"
-                                self.lblSmonkingServiceYes.textColor = UIColor.grayColor()
-                                self.lblSmonkingServiceNo.textColor = UIColor.blackColor()
-                                self.imgSmonkingServiceYes.image = UIImage(named: "uncheck.png")
-                                self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
-                            }else
+                            if ((smonking as! String) == "1" || (smonking as! String) == "yes")
                             {
                                 self.selectedService["smonking"] = "1"
                                 self.lblSmonkingServiceYes.textColor = UIColor.blackColor()
                                 self.lblSmonkingServiceNo.textColor = UIColor.grayColor()
                                 self.imgSmonkingServiceYes.image = UIImage(named: "check.png")
                                 self.imgSmonkingServiceNo.image = UIImage(named: "uncheck.png")
-                                
+                            }else
+                            {
+                                self.selectedService["smonking"] = "0"
+                                self.lblSmonkingServiceYes.textColor = UIColor.grayColor()
+                                self.lblSmonkingServiceNo.textColor = UIColor.blackColor()
+                                self.imgSmonkingServiceYes.image = UIImage(named: "uncheck.png")
+                                self.imgSmonkingServiceNo.image = UIImage(named: "check.png")
                                 
                             }
                             
