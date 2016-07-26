@@ -170,12 +170,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func getFacility(){
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        
-        //PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show()
         
         var dataIsLoaded = false
         if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
@@ -187,9 +181,17 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             }
         }
         
+        print("dataIsLoaded = \(dataIsLoaded)")
+        
         
         if(!dataIsLoaded){
             
+            PKHUD.sharedHUD.dimsBackground = false
+            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+            
+            //PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show()
             
             let send = API_Model()
             
@@ -316,7 +318,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("before")
+        //print("before")
         //        self.navigationController?.navigationController?.navigationBarHidden = true
         
         

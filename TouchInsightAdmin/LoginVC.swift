@@ -274,8 +274,6 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                 
                 if (data["success"] as! Bool == true){
                     
-                    titleMessage = "Login Success"
-                    message = "ยินดีต้อนรับเข้าสู่ระบบ"
                     //                        SCLAlertView().showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F)
                     //                        print("SUCCESS")
                     
@@ -315,7 +313,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                         
                         self.appDelegate.userInfo["profileName"] = "\(self.appDelegate.userInfo["firstName"]!) \(self.appDelegate.userInfo["lastName"]!)"
                         
-                        
+                        FIRAnalytics.setUserPropertyString(self.appDelegate.userInfo["email"], forName: "email")
                         
                         self.appDelegate.userInfo["username"] = self.userNameTxt.text
                         self.appDelegate.userInfo["passWord"] = self.passWordTxt.text

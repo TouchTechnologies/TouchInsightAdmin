@@ -58,8 +58,9 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
         
         //self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.setViewStle()
+//        self.setViewStle()
         self.initNavUnderline()
+        tableview.registerClass(UITableViewCell.self,forCellReuseIdentifier: "cell")
         
         //self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
     }
@@ -105,12 +106,12 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
     }
     
-    func setViewStle(){
-        tableview.registerClass(UITableViewCell.self,forCellReuseIdentifier: "cell")
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.21, green:0.21, blue:0.21, alpha:1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-    }
+//    func setViewStle(){
+//        tableview.registerClass(UITableViewCell.self,forCellReuseIdentifier: "cell")
+//        
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.21, green:0.21, blue:0.21, alpha:1)
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+//    }
     /*    func setViewStle2(){
      tableview.registerClass(UITableViewCell.self,forCellReuseIdentifier: "cell")
      navigationController?.setNavigationBarHidden(true, animated: true)

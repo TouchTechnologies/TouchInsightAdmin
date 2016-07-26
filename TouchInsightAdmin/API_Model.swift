@@ -503,9 +503,9 @@ class API_Model {
                             }
                         }
                         
-                        for index in 0..<error!.count {
-                            print(index)
-                        }
+//                        for index in 0..<error!.count {
+//                            print(index)
+//                        }
                         
 //                        for( var index = 0 ;index < error?.count ;index += 1){
 //                            
