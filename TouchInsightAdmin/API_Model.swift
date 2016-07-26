@@ -810,7 +810,8 @@ class API_Model {
             "file": ""
         ]
         
-        let API_URL = "http://192.168.9.58/api/uploadmedia/\(mediaKey)"
+//        let API_URL = "http://192.168.9.58/api/uploadmedia/\(mediaKey)"
+        let API_URL = _uploadAPI
         
         Alamofire.upload(.POST, API_URL, multipartFormData: {
             multipartFormData in
