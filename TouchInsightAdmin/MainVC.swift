@@ -227,7 +227,8 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 for _ in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1{
                     self.appDelegate.facilityHotelStatus.append(false)
                 }
-                if(self.loadCount == 2){
+                if(self.loadCount == 3){
+                    print("stop HUD (Data Facility hotel)")
                     PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 
@@ -249,7 +250,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
 //            print("dataJson(Facility) : \(dataRoomJson)")
             send.providerAPI(appDelegate.command["ListRoomFacility"]!, dataJson: dataRoomJson){
                 data in
-                
+                self.loadCount += 1
                 self.appDelegate.facilityRoomDic = data
                 
                 print("========== Data Facility hotel room ==========")
@@ -265,8 +266,9 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 {
                     self.appDelegate.facilityRoomStatus.append(false)
                 }
-                if(self.loadCount == 2)
+                if(self.loadCount == 3)
                 {
+                    print("stop HUD (Data Facility hotel room)")
                     PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
 //                print("Facility Room Status :\(self.appDelegate.facilityRoomStatus.count)")
@@ -305,8 +307,9 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 {
                     self.appDelegate.facilityResStatus.append(false)
                 }
-                if(self.loadCount == 2)
+                if(self.loadCount == 3)
                 {
+                    print("stop HUD (Data Facility restaurant)")
                     PKHUD.sharedHUD.hide(animated: true, completion: nil)
                 }
                 

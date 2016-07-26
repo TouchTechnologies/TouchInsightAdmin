@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/InformationVC.swift"
-            timestampString = "490252231.176559"
+            timestampString = "491207343.251685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "529"
-            endingLineNumber = "529"
-            landmarkName = "setObject()"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
+            landmarkName = "dismissKeyboard()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,8 +111,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
             endingLineNumber = "69"
-            landmarkName = "btn_AllDayClick(_:)"
-            landmarkType = "5">
+            landmarkName = "AttnInfoVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -254,6 +254,22 @@
             startingLineNumber = "389"
             endingLineNumber = "389"
             landmarkName = "btnUpdateRoom(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouchInsightAdmin/API_Model.swift"
+            timestampString = "491193059.725019"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "Register(_:lastName:mobile:email:passWord:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -172,28 +172,31 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
             Cell.imageColl.image = UIImage(named: "add_image.png")
         }else
         {
-            
-            print("imageGal \(self.hotelGallery[indexPath.row]["thumbnail"])")
-            //            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://192.168.9.58/framework/public/resource/insight/hotel/1965/gallery/image/asset-small.jpg")!)!)
-            
-            
             let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
-            if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
-                print("ERROR")
-                Cell.imageColl.removeFromSuperview()
-                let lblError = UILabel()
-                lblError.frame = CGRectMake(0, Cell.frame.size.height/2 - 15, Cell.frame.size.width, 30)
-                lblError.text = "loading..."
-                lblError.textAlignment = .Center
-                Cell.addSubview(lblError)
-                
-                
-            }
-            else{
-                print("\(indexPath.row ) = strURL ::\(strURL)")
-                
-                Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
-            }
+            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+            
+            
+//            print("imageGal \(self.hotelGallery[indexPath.row]["thumbnail"])")
+//            //            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://192.168.9.58/framework/public/resource/insight/hotel/1965/gallery/image/asset-small.jpg")!)!)
+//            
+//            
+//            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
+//            if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
+//                print("ERROR")
+//                Cell.imageColl.removeFromSuperview()
+//                let lblError = UILabel()
+//                lblError.frame = CGRectMake(0, Cell.frame.size.height/2 - 15, Cell.frame.size.width, 30)
+//                lblError.text = "loading..."
+//                lblError.textAlignment = .Center
+//                Cell.addSubview(lblError)
+//                
+//                
+//            }
+//            else{
+//                print("\(indexPath.row ) = strURL ::\(strURL)")
+//                
+//                Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+//            }
             
         }
 
