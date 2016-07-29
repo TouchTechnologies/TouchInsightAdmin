@@ -391,7 +391,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="fhX-QS-vUJ" rowHeight="51" style="IBUITableViewCellStyleDefault" id="jgg-fc-Fkx">
-                                        <rect key="frame" x="0.0" y="28" width="376" height="51"/>
+                                        <rect key="frame" x="0.0" y="92" width="376" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jgg-fc-Fkx" id="kyt-Fs-N6a">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -3082,110 +3082,6 @@
             </objects>
             <point key="canvasLocation" x="2105.5" y="1976"/>
         </scene>
-        <!--Image Gallery-->
-        <scene sceneID="XxK-5d-dQl">
-            <objects>
-                <viewController storyboardIdentifier="ResImageGalleryVC" title="Image Gallery" id="LTA-QQ-gOB" customClass="ResImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="coU-xw-eXP">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" id="Onm-VK-kbq">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleAspectFit" id="VVT-Pb-dMP">
-                                        <rect key="frame" x="8" y="7" width="359" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cover Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D4h-YW-os5">
-                                                <rect key="frame" x="0.0" y="0.0" width="359" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RLT-95-JeK">
-                                        <rect key="frame" x="8" y="527" width="359" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" red="0.79372328520000002" green="0.19304782149999999" blue="0.1976572871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
-                                        <state key="normal" title="SAVE">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveGalleryBtn:" destination="LTA-QQ-gOB" eventType="touchUpInside" id="4MD-ZW-vvE"/>
-                                        </connections>
-                                    </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ijb-3k-V4e">
-                                        <rect key="frame" x="8" y="245" width="359" height="265"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="5u5-aM-CLw">
-                                            <size key="itemSize" width="101" height="101"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="3UH-pt-aGh" customClass="ImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_image.png" id="13H-Yv-0S2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="customSize" width="101" height="101"/>
-                                                <connections>
-                                                    <outlet property="imageColl" destination="13H-Yv-0S2" id="7Eg-fX-fE5"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="LTA-QQ-gOB" id="47L-JR-42I"/>
-                                            <outlet property="delegate" destination="LTA-QQ-gOB" id="c8U-KU-XYo"/>
-                                        </connections>
-                                    </collectionView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Image Gallery" id="FyH-2a-f9o">
-                        <barButtonItem key="leftBarButtonItem" image="Left-32.png" id="Qni-1f-7Sj">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="btnBack:" destination="LTA-QQ-gOB" id="PVV-Dm-xSE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="baseView" destination="coU-xw-eXP" id="Swf-Wg-Cu3"/>
-                        <outlet property="collectionView" destination="ijb-3k-V4e" id="94j-Vb-abP"/>
-                        <outlet property="coverImgLbl" destination="D4h-YW-os5" id="vBY-Ob-GQn"/>
-                        <outlet property="firstV" destination="VVT-Pb-dMP" id="FQI-Ev-Co8"/>
-                        <outlet property="saveButton" destination="RLT-95-JeK" id="T1N-Hc-fAO"/>
-                        <outlet property="scrollView" destination="Onm-VK-kbq" id="Kkd-zq-LEz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GYb-o1-H0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1629.5" y="1976.5"/>
-        </scene>
         <!--Location-->
         <scene sceneID="TrB-X8-n7u">
             <objects>
@@ -3863,110 +3759,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nzT-3K-kpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1093.5" y="2786.5"/>
-        </scene>
-        <!--Image Gallery-->
-        <scene sceneID="IXQ-t9-Mg2">
-            <objects>
-                <viewController storyboardIdentifier="AttnImageGalleryVC" title="Image Gallery" id="iO6-ys-e0A" customClass="AttnImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eps-O2-nHa">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" id="0kn-J8-VyJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleAspectFit" id="ts9-pW-hAL">
-                                        <rect key="frame" x="8" y="7" width="359" height="187"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cover Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S42-wQ-kYS">
-                                                <rect key="frame" x="0.0" y="0.0" width="359" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SSv-Wn-DlJ">
-                                        <rect key="frame" x="8" y="245" width="359" height="265"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="2EI-bv-jEH">
-                                            <size key="itemSize" width="101" height="101"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="nEK-Jg-ZY2" customClass="ImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_image.png" id="0Mf-pb-Crt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="customSize" width="101" height="101"/>
-                                                <connections>
-                                                    <outlet property="imageColl" destination="0Mf-pb-Crt" id="ICd-P2-S8L"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="iO6-ys-e0A" id="APr-JD-cfo"/>
-                                            <outlet property="delegate" destination="iO6-ys-e0A" id="2wA-h3-UTL"/>
-                                        </connections>
-                                    </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fAG-QK-naT">
-                                        <rect key="frame" x="8" y="527" width="359" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" red="0.79372328520000002" green="0.19304782149999999" blue="0.1976572871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
-                                        <state key="normal" title="SAVE">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveGalleryBtn:" destination="iO6-ys-e0A" eventType="touchUpInside" id="n3M-Lk-AwU"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Image Gallery" id="KJs-18-E0L">
-                        <barButtonItem key="leftBarButtonItem" image="Left-32.png" id="qm7-hh-jOt">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="btnBack:" destination="iO6-ys-e0A" id="Uhz-lc-5d7"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="baseView" destination="eps-O2-nHa" id="8L3-ac-25z"/>
-                        <outlet property="collectionView" destination="SSv-Wn-DlJ" id="uvw-LR-2X3"/>
-                        <outlet property="coverImgLbl" destination="S42-wQ-kYS" id="rWs-xF-hAf"/>
-                        <outlet property="firstV" destination="ts9-pW-hAL" id="c09-IL-yQu"/>
-                        <outlet property="saveButton" destination="fAG-QK-naT" id="TqJ-TQ-Rj0"/>
-                        <outlet property="scrollView" destination="0kn-J8-VyJ" id="g9E-kM-wGi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sje-Y6-cJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1629.5" y="2786.5"/>
         </scene>
         <!--Location-->
         <scene sceneID="tid-Qf-FiB">
@@ -5154,6 +4946,166 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rnd-rc-0xU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2105.5" y="2786"/>
+        </scene>
+        <!--Image Gallery-->
+        <scene sceneID="8Gx-eF-lLX">
+            <objects>
+                <viewController storyboardIdentifier="ResImageGalleryVC" title="Image Gallery" id="LcM-va-GUr" customClass="ResImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IS0-Bf-UZj">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Xe6-UH-c2O">
+                                <rect key="frame" x="8" y="9" width="359" height="524"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="OUK-Vz-M01">
+                                    <size key="itemSize" width="101" height="101"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="Tqq-hB-rYO" customClass="ImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_image.png" id="WNY-0t-q2T">
+                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="customSize" width="101" height="101"/>
+                                        <connections>
+                                            <outlet property="imageColl" destination="WNY-0t-q2T" id="4dX-3r-Qho"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="LcM-va-GUr" id="liL-4x-3hq"/>
+                                    <outlet property="delegate" destination="LcM-va-GUr" id="g1k-Iq-88u"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yuy-ha-Uxi">
+                                <rect key="frame" x="8" y="541" width="359" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.79372328520000002" green="0.19304782149999999" blue="0.1976572871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveGalleryBtn:" destination="LcM-va-GUr" eventType="touchUpInside" id="LA9-BJ-GG0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Image Gallery" id="cgj-eg-4Kw">
+                        <barButtonItem key="leftBarButtonItem" image="Left-32.png" id="3f1-Ma-JWI">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="btnBack:" destination="LcM-va-GUr" id="Pr8-C4-Ua6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="baseView" destination="IS0-Bf-UZj" id="bxK-9J-f5k"/>
+                        <outlet property="collectionView" destination="Xe6-UH-c2O" id="5Yr-9L-tqa"/>
+                        <outlet property="saveButton" destination="yuy-ha-Uxi" id="0H1-Jo-0Wl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SRu-cB-SXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629.5" y="1970.5"/>
+        </scene>
+        <!--Image Gallery-->
+        <scene sceneID="jfk-Yg-W4e">
+            <objects>
+                <viewController storyboardIdentifier="AttnImageGalleryVC" title="Image Gallery" id="RxO-Vl-D1H" customClass="AttnImageGalleryVC" customModule="TouchInsightAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BUs-6H-xEY">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="a1h-e3-Kbo">
+                                <rect key="frame" x="8" y="9" width="359" height="524"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="cVc-dl-to6">
+                                    <size key="itemSize" width="101" height="101"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="7Xs-hV-Sgm" customClass="ImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_image.png" id="w0R-Y3-zrd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="customSize" width="101" height="101"/>
+                                        <connections>
+                                            <outlet property="imageColl" destination="w0R-Y3-zrd" id="Pvw-Ve-kTr"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="RxO-Vl-D1H" id="KnZ-7z-PlG"/>
+                                    <outlet property="delegate" destination="RxO-Vl-D1H" id="tmU-Cn-WR2"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ESU-VS-VcN">
+                                <rect key="frame" x="8" y="541" width="359" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.79372328520000002" green="0.19304782149999999" blue="0.1976572871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveGalleryBtn:" destination="RxO-Vl-D1H" eventType="touchUpInside" id="E5B-Zm-4da"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Image Gallery" id="Fk5-Of-5vq">
+                        <barButtonItem key="leftBarButtonItem" image="Left-32.png" id="GYo-pe-9Zq">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="btnBack:" destination="RxO-Vl-D1H" id="zYi-gv-iGu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="baseView" destination="BUs-6H-xEY" id="65g-we-n2R"/>
+                        <outlet property="collectionView" destination="a1h-e3-Kbo" id="Vzc-2T-1up"/>
+                        <outlet property="saveButton" destination="ESU-VS-VcN" id="bUn-tp-Mj9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SrQ-FQ-4vN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629.5" y="2762.5"/>
         </scene>
     </scenes>
     <resources>

@@ -392,13 +392,13 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
             var imageName = dateFormatter.stringFromDate(date)
             //            print("Date Time : \(localDate)")
             
-            let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+            var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
             print("(hotelImage before) : \(hotelImage.count)")
             hotelImage[hotelImage.count-1].contentMode = .ScaleAspectFill
             hotelImage[hotelImage.count-1].image = chosenImage //4
             //            CoverImg.contentMode = .ScaleAspectFit //3
             //            CoverImg.image = chosenImage //4
-            let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+            //let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
             //            let imageName = imageURL.pathComponents![1];
             print("(hotelImage) : \(hotelImage)")
             let send = API_Model()
@@ -417,6 +417,9 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print("data getUploadKeyGallery: \(data)")
                 self.mediaKey = data
                 print("MEDIAKEY ::: \(self.mediaKey)")
+                
+                chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
+                
                 send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName)
                 {
                     data in
@@ -431,11 +434,7 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                     //                    self.Cell.imageColl.reloadInputViews()
                     
                     self.hotelImage[self.hotelImage.count-1].reloadInputViews()
-                    self.dismissViewControllerAnimated(true, completion:
-                        {
-                            self.Cell.imageColl.image = chosenImage
-                            self.Cell.imageColl.reloadInputViews()
-                    })
+                    self.dismissViewControllerAnimated(true, completion:nil)
                     
                     self.hotelGallery.count ==  self.hotelImage.count+1
                     self.addImageNum += 1

@@ -123,8 +123,18 @@ CustomIOS7AlertViewDelegate {
         
         numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
         bedTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
-        maxOccupTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["maximum_person"] as! String)
-        occupencyNum = Int32(maxOccupTxt.text!)!
+        
+        
+        if let dicData = appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!] as! NSDictionary? {
+            if !(dicData["maximum_person"] is NSNull) {
+                maxOccupTxt.text = (dicData["maximum_person"] as! String)
+                occupencyNum = Int32(maxOccupTxt.text!)!
+            }else{
+                maxOccupTxt.text = "1"
+                occupencyNum = Int32(maxOccupTxt.text!)!
+            }
+        }
+        
         self.appDelegate.viewWithTopButtons.hidden = true
         self.getFacility()
     }

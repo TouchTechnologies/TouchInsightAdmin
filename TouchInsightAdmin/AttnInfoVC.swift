@@ -748,6 +748,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
+        self.scrollView.frame.size.width = self.view.frame.size.width
+        
         lblTitleHeader.layer.bounds.size.width = width
         lblTitleHeader.center.x = width/2
         
@@ -769,13 +771,11 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         txtHotelName.layer.borderWidth = 1
         txtHotelName.layer.borderColor = borderColorCG
         
-        
         HotelDesTxt.layer.cornerRadius = 0
         HotelDesTxt.center.x = width/2
         HotelDesTxt.layer.bounds.size.width = width - 10
         HotelDesTxt.layer.borderWidth = 1
         HotelDesTxt.layer.borderColor = borderColorCG
-        
         
         phonNumberTxt.borderStyle = UITextBorderStyle.None
         phonNumberTxt.center.x = width/2
@@ -902,6 +902,9 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 853
+        
+        self.view_DateSet.frame.size.width = self.view.frame.size.width
+        self.view_BottomSet.frame.size.width = self.view.frame.size.width
         
         //        var frmBtnAddFac = btnAddFac.frame
         //        frmBtnAddFac.origin.x = hotelFacListView.frame.size.width - frmBtnAddFac.size.width

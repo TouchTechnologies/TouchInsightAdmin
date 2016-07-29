@@ -71,56 +71,69 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
         
     }
     func initialSize(){
+//        let width = UIScreen.mainScreen().bounds.size.width
+//        let height = UIScreen.mainScreen().bounds.size.height
+//        defultImg = UIImage(named: "bg_cctvdefault.png")!
+//        
+//        self.baseView.frame = CGRectMake(0, 0, width, height)
+//        self.scrollView.frame = CGRectMake(0, 0, width, height)
+//        self.scrollView.contentSize = CGSizeMake(width, height)
+//        self.firstV.frame = CGRectMake(10, 10, width - 20, height/2)
+//        self.firstV.backgroundColor = UIColor.clearColor()
+//        
+//        
+//        hotelImage[0].frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
+//        //        CoverImg.image = UIImage(named: "bg_cctvdefault.png")
+//        
+//        
+//        
+//        
+//        
+//        self.hotelgalLbl.frame = CGRectMake(10 , self.firstV.frame.size.height + 20 , self.firstV.frame.size.width, 30)
+//        self.hotelgalLbl.text = "Attraction Image"
+//        self.hotelgalLbl.font = UIFont(name: "Helvetica", size: 18)
+//        self.scrollView.addSubview(hotelgalLbl)
+//        
+//        
+//        self.collectionView.frame = CGRectMake(10 , self.hotelgalLbl.frame.origin.y + 50 , self.firstV.bounds.size.width, self.firstV.bounds.size.width)
+//        
+//        self.saveButton.frame.origin.y = self.collectionView.frame.origin.y + self.collectionView.frame.size.height + 20
+//        self.saveButton.frame.size.width = self.collectionView.frame.size.width
+//        self.saveButton.center.x = width/2
+//        
+//        
+//        //        self.imgcell.frame = CGRectMake(0 , 0, self.collectionView.frame.size.width/3 - 4, self.collectionView.frame.size.width/3 - 4)
+//        //        self.imgcell.backgroundColor = UIColor.blueColor()
+//        //
+//        
+//        self.scrollView.addSubview(self.collectionView)
+        
+        
+        
+        
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         defultImg = UIImage(named: "bg_cctvdefault.png")!
         
         self.baseView.frame = CGRectMake(0, 0, width, height)
-        self.scrollView.frame = CGRectMake(0, 0, width, height)
-        self.scrollView.contentSize = CGSizeMake(width, height)
-        self.firstV.frame = CGRectMake(10, 10, width - 20, height/2)
-        self.firstV.backgroundColor = UIColor.clearColor()
+        hotelImage[0].frame = CGRectMake(0,30,width - 40,30)
         
-        
-        hotelImage[0].frame = CGRectMake(0,30,self.firstV.frame.size.width,self.firstV.frame.size.height - 30)
-        //        CoverImg.image = UIImage(named: "bg_cctvdefault.png")
-        
-        
-        
-        
-        
-        self.hotelgalLbl.frame = CGRectMake(10 , self.firstV.frame.size.height + 20 , self.firstV.frame.size.width, 30)
-        self.hotelgalLbl.text = "Attraction Image"
-        self.hotelgalLbl.font = UIFont(name: "Helvetica", size: 18)
-        self.scrollView.addSubview(hotelgalLbl)
-        
-        
-        self.collectionView.frame = CGRectMake(10 , self.hotelgalLbl.frame.origin.y + 50 , self.firstV.bounds.size.width, self.firstV.bounds.size.width)
-        
-        self.saveButton.frame.origin.y = self.collectionView.frame.origin.y + self.collectionView.frame.size.height + 20
-        self.saveButton.frame.size.width = self.collectionView.frame.size.width
-        self.saveButton.center.x = width/2
-        
-        
-        //        self.imgcell.frame = CGRectMake(0 , 0, self.collectionView.frame.size.width/3 - 4, self.collectionView.frame.size.width/3 - 4)
-        //        self.imgcell.backgroundColor = UIColor.blueColor()
-        //
-        
-        self.scrollView.addSubview(self.collectionView)
+        self.collectionView.frame = CGRectMake(5, 10, width - 10, height - 163)
+        self.saveButton.frame.origin.y = height - self.saveButton.frame.size.height
         
         
     }
-    func imageTapped(img: AnyObject)
-    {
-        
-        print("Upload Cover Img Tag : \(img.tag)")
-        pickerType = "coverImage"
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(myPickerController, animated: true, completion: nil)
-        
-    }
+//    func imageTapped(img: AnyObject)
+//    {
+//        
+//        print("Upload Cover Img Tag : \(img.tag)")
+//        pickerType = "coverImage"
+//        let myPickerController = UIImagePickerController()
+//        myPickerController.delegate = self
+//        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        self.presentViewController(myPickerController, animated: true, completion: nil)
+//        
+//    }
     func imageTapped2(img: AnyObject)
     {
         pickerType = "hotelImage"
@@ -149,48 +162,86 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
         
+//        Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! ImageCollectionViewCell
+//        return Cell
+        
+        
         Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! ImageCollectionViewCell
+        
+        if (self.hotelGallery.count == 0 || indexPath.row == self.hotelGallery.count){
+            //let imgSize = CGSizeMake(Cell.frame.width - 12, Cell.frame.height - 12)
+            Cell.imageColl.image = UIImage(named: "add_image.png")
+            //Cell.imageColl. = CGSizeMake((Cell.frame.width - 12), (Cell.frame.height - 12))
+            
+            Cell.imageColl.contentMode = .ScaleAspectFit
+            //Cell.imageColl.frame = CGRectMake(5, 5, Cell.frame.width - 12, Cell.frame.height - 12)
+            
+            //Cell.backgroundColor = UIColor.grayColor()
+            
+            Cell.layer.borderWidth = 0.5
+            Cell.layer.borderColor = UIColor.grayColor().CGColor
+        }else{
+            
+            //print("imageGal \(self.hotelGallery[indexPath.row]["thumbnail"])")
+            
+            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
+            //Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+            Cell.imageColl.hnk_setImageFromURL(NSURL(string: strURL)!)
+            Cell.imageColl.contentMode = .ScaleAspectFill
+            Cell.backgroundColor = UIColor.whiteColor()
+            
+            Cell.layer.borderWidth = 0
+            Cell.layer.borderColor = UIColor.clearColor().CGColor
+            
+            //Cell.imageColl.frame = CGRectMake(0, 0, Cell.frame.width, Cell.frame.height)
+        }
+        //        Cell.imageColl.layer.borderWidth = 0.5
+        //        Cell.imageColl.layer.borderColor = UIColor.redColor().CGColor
+        //
+        //        Cell.layer.borderWidth = 0.5
+        //        Cell.layer.borderColor = UIColor.blueColor().CGColor
+        
         return Cell
         
     }
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         // Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! ImageCollectionViewCell
-        
-        
-        
-        if (self.hotelGallery.count == 0 || indexPath.row == self.hotelGallery.count)
-            
-        {
-            Cell.imageColl.image = UIImage(named: "add_image.png")
-        }else
-        {
-            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
-            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
-            
-            
-//            print("imageGal \(self.hotelGallery[indexPath.row]["thumbnail"])")
-//            //            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://192.168.9.58/framework/public/resource/insight/hotel/1965/gallery/image/asset-small.jpg")!)!)
+//        
+//        
+//        
+//        if (self.hotelGallery.count == 0 || indexPath.row == self.hotelGallery.count)
 //            
-//            
+//        {
+//            Cell.imageColl.image = UIImage(named: "add_image.png")
+//        }else
+//        {
 //            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
-//            if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
-//                print("ERROR")
-//                Cell.imageColl.removeFromSuperview()
-//                let lblError = UILabel()
-//                lblError.frame = CGRectMake(0, Cell.frame.size.height/2 - 15, Cell.frame.size.width, 30)
-//                lblError.text = "loading..."
-//                lblError.textAlignment = .Center
-//                Cell.addSubview(lblError)
-//                
-//                
-//            }
-//            else{
-//                print("\(indexPath.row ) = strURL ::\(strURL)")
-//                
-//                Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
-//            }
-            
-        }
+//            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+//            
+//            
+////            print("imageGal \(self.hotelGallery[indexPath.row]["thumbnail"])")
+////            //            Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "http://192.168.9.58/framework/public/resource/insight/hotel/1965/gallery/image/asset-small.jpg")!)!)
+////            
+////            
+////            let strURL = (self.hotelGallery[indexPath.row]["thumbnail"]) as! String
+////            if strURL == "http://192.168.9.58/framework/public/resource/insight/hotel/default/gallery/thumbnail/default.png" {
+////                print("ERROR")
+////                Cell.imageColl.removeFromSuperview()
+////                let lblError = UILabel()
+////                lblError.frame = CGRectMake(0, Cell.frame.size.height/2 - 15, Cell.frame.size.width, 30)
+////                lblError.text = "loading..."
+////                lblError.textAlignment = .Center
+////                Cell.addSubview(lblError)
+////                
+////                
+////            }
+////            else{
+////                print("\(indexPath.row ) = strURL ::\(strURL)")
+////                
+////                Cell.imageColl.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strURL )!)!)
+////            }
+//            
+//        }
         
         
         
@@ -210,8 +261,12 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
     //    }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("collectionView didSelectItemAtIndexPath")
-        self.imageTapped2(indexPath.item)
         
+        if (indexPath.item == self.hotelGallery.count) {
+            
+            self.imageTapped2(indexPath.item)
+            
+        }
     }
     
     func uploadcoverImg(){
@@ -297,7 +352,7 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
         if(pickerType == "coverImage")
         {
             print("ImagePicker:coverImage")
-            let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+            var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
             pickerPick = true
             
             //            CoverImg.contentMode = .ScaleToFill //3
@@ -318,6 +373,9 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
                 data in
                 //print(data)
                 self.mediaKey = data
+                
+                chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
+                
                 send.uploadImage(self.mediaKey, image: chosenImage, imageName: imageName){
                     data in
                     PKHUD.sharedHUD.contentView = PKHUDProgressView()
@@ -357,7 +415,7 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
             
             let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
             print("(hotelImage before) : \(hotelImage.count)")
-            hotelImage[hotelImage.count-1].contentMode = .ScaleAspectFit
+            hotelImage[hotelImage.count-1].contentMode = .ScaleAspectFill
             hotelImage[hotelImage.count-1].image = chosenImage //4
             //            CoverImg.contentMode = .ScaleAspectFit //3
             //            CoverImg.image = chosenImage //4
@@ -394,11 +452,7 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
                     //                    self.Cell.imageColl.reloadInputViews()
                     
                     self.hotelImage[self.hotelImage.count-1].reloadInputViews()
-                    self.dismissViewControllerAnimated(true, completion:
-                        {
-                            self.Cell.imageColl.image = chosenImage
-                            self.Cell.imageColl.reloadInputViews()
-                    })
+                    self.dismissViewControllerAnimated(true, completion:nil)
                     
                     self.hotelGallery.count ==  self.hotelImage.count+1
                     self.addImageNum += 1

@@ -859,6 +859,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
+        self.scrollView.frame.size.width = self.view.frame.size.width
+        
         lblTitleHeader.layer.bounds.size.width = width
         lblTitleHeader.center.x = width/2
         
@@ -984,6 +986,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self.view_DateSet.hidden = true
         self.view_BottomSet.frame.origin.y = 912
         
+        self.view_DateSet.frame.size.width = self.view.frame.size.width
+        self.view_BottomSet.frame.size.width = self.view.frame.size.width
         
         
 //        var frmBottomSet = self.view_BottomSet.frame

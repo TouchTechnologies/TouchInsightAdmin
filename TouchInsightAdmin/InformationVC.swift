@@ -564,6 +564,8 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         
         let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
+        self.scrollView.frame.size.width = self.view.frame.size.width
+        
         lblTitleHeader.layer.bounds.size.width = width
         lblTitleHeader.center.x = width/2
         

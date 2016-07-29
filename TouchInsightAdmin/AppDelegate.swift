@@ -37,8 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var facilityHotelDic:NSDictionary?
     var facilityHotelStatus = [Bool]()
     var hotelLogo = UIImageView()
-    //    var facilitiesHotelAttached = [String]()
-    
+    //var facilitiesHotelAttached = [String]()
     
     //Restuarant
     var menuIndex : Int?
@@ -68,8 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "listProvider":"010100",
         "updateProvider":"010700",
         
-        //        "ListHotelFacility":"110001", //remove
-        
+        //"ListHotelFacility":"110001", //remove
         "ListFacility":"110001",
         "SetFacilityAttached":"110700",
         "GetFacilityAttached":"110100",
@@ -94,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "getUploadImageURL":"010700",
         "listProvince":"000300",
         
-        
         //Restuarant Menu Code
         "ListMenu":"130100",
         "CreateMenu":"130600",
@@ -105,8 +102,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "CreateMenuGallery":"140600",
         "DeleteMenuGallery":"140800",
         
-        
         ]
+    
     var userInfo = [
         "userID":"",
         "avatarImage":"",
@@ -118,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         "mobile":"",
         "passWord":"",
         "id":""
-    ]
+        ]
     
     
     func getlistProvider(completionHandler:[String:AnyObject]->()) {
