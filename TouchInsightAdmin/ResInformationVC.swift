@@ -498,7 +498,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         self._viewEmptyLogo.userInteractionEnabled = false
         
         
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["extra-small"]{
             print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
             
             if let imgData = NSData(contentsOfURL:NSURL(string:logo as! String)!) as NSData? {
@@ -1610,7 +1610,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         
         print("ImagePicker")
-        let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        var chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         var _imageType = ""
         if(_pickerType == "cover"){
             
@@ -1647,6 +1647,8 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                 let send = API_Model()
                 send.getUploadKey(Int(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["provider_id"]! as! String)!,imageType: _imageType,imageName: imageName){
                     _mediaKey in
+                    
+                    chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
                     
                     send.uploadImage(_mediaKey, image: chosenImage, imageName: imageName){
                         data in

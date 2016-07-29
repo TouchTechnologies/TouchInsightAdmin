@@ -126,8 +126,13 @@ public class NetworkReachabilityManager {
     public convenience init?() {
         var address = sockaddr_in()
         address.sin_len = UInt8(sizeofValue(address))
-        address.sin_family = sa_family_t(AF_INET)
-
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(majorVersion: 9, minorVersion: 0, patchVersion: 0)) {
+            //println("iOS >= 9.0.0")
+            address.sin_family = sa_family_t(AF_INET6)
+        }else{
+            address.sin_family = sa_family_t(AF_INET)
+        }
+        
         guard let reachability = withUnsafePointer(&address, {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }) else { return nil }

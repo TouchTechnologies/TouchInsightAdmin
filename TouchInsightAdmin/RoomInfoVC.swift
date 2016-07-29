@@ -173,7 +173,7 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
 //        
 //        self.presentViewController(editView, animated: true, completion: nil)
         
-     self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
+        self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
         
     }
     
@@ -207,12 +207,14 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
             send.providerAPI(self.appDelegate.command["DeleteRoomType"]!, dataJson: dataJson){
                 data in
                 print("data(DeleteRoomType) :\(data)")
-                SCLAlertView().showTitle("Delete", subTitle: "ลบ Room สำเร็จ", duration: 1.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
+                
+                let alertViewSuccess = SCLAlertView()
+                alertViewSuccess.showTitle("Delete", subTitle: "ลบ Room สำเร็จ", duration: 3.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
                 
                 //back to room list view
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC
-                self.appDelegate.pagecontrolIndex = 2
-                self.navigationController?.pushViewController(vc, animated:true)
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC
+//                self.appDelegate.pagecontrolIndex = 2
+//                self.navigationController?.pushViewController(vc, animated:true)
                 
               // self.appDelegate.viewWithTopButtons.hidden = false
               

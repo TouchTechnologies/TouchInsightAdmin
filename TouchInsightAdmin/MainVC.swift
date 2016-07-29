@@ -120,6 +120,8 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     func getProvince(){
         
+        let timeIntervalStart = NSDate().timeIntervalSince1970
+
         var dataIsLoaded = false
         if let dicData = self.appDelegate.provinceDic as NSDictionary? {
             
@@ -162,6 +164,12 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 //                print("ProvinceName :\(self.appDelegate.provinceName)")
             
                 
+                let timeIntervalEnded = NSDate().timeIntervalSince1970
+                
+                print("getProvince -------------------")
+                print("timeIntervalStart = \(timeIntervalStart)")
+                print("timeIntervalEnded = \(timeIntervalEnded)")
+                print("getProvince -------------------")
             
             }
             
@@ -170,6 +178,9 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func getFacility(){
+        
+        let timeIntervalStart = NSDate().timeIntervalSince1970
+        
         
         var dataIsLoaded = false
         if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
@@ -185,6 +196,10 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         
         
         if(!dataIsLoaded){
+            
+            var facilityHotelDic_isLoaded = false
+            var facilityRoomDic_isLoaded = false
+            var facilityResDic_isLoaded = false
             
             PKHUD.sharedHUD.dimsBackground = false
             PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
@@ -227,9 +242,21 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 for _ in 0...self.appDelegate.facilityHotelDic!["facilities"]!.count - 1{
                     self.appDelegate.facilityHotelStatus.append(false)
                 }
-                if(self.loadCount == 2){
-                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                
+                
+                //facilityHotelDic_isLoaded
+                //facilityRoomDic_isLoaded
+                //facilityResDic_isLoaded
+                facilityHotelDic_isLoaded = true
+                if (facilityRoomDic_isLoaded && facilityResDic_isLoaded){
+                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                
                 }
+                
+                
+//                if(self.loadCount == 2){
+//                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+//                }
                 
 //                print("Facility Hotel Status :\(self.appDelegate.facilityHotelStatus.count)")
             }
@@ -265,10 +292,23 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 {
                     self.appDelegate.facilityRoomStatus.append(false)
                 }
-                if(self.loadCount == 2)
-                {
-                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                
+                
+                //facilityHotelDic_isLoaded
+                //facilityRoomDic_isLoaded
+                //facilityResDic_isLoaded
+                facilityRoomDic_isLoaded = true
+                if (facilityHotelDic_isLoaded && facilityResDic_isLoaded){
+                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    
                 }
+                
+                
+                
+//                if(self.loadCount == 2)
+//                {
+//                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+//                }
 //                print("Facility Room Status :\(self.appDelegate.facilityRoomStatus.count)")
             }
             
@@ -305,10 +345,23 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 {
                     self.appDelegate.facilityResStatus.append(false)
                 }
-                if(self.loadCount == 2)
-                {
-                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                
+                
+                
+                //facilityHotelDic_isLoaded
+                //facilityRoomDic_isLoaded
+                //facilityResDic_isLoaded
+                facilityResDic_isLoaded = true
+                if (facilityHotelDic_isLoaded && facilityResDic_isLoaded){
+                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    
                 }
+                
+                
+//                if(self.loadCount == 2)
+//                {
+//                    PKHUD.sharedHUD.hide(animated: true, completion: nil)
+//                }
                 
 //                print("Facility restuarant Status :\(self.appDelegate.facilityResStatus.count)")
             }

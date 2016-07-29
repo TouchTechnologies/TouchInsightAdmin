@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 class FileMan: NSObject{
     
@@ -28,6 +29,59 @@ class FileMan: NSObject{
     }
     
     
+    func resizeImage(image: UIImage, maxSize: CGFloat) -> UIImage {
+        
+        var newImage = UIImage()
+        
+        if(image.size.height > maxSize || image.size.height > maxSize){
+            
+//            var scale = CGFloat()
+//            if(image.size.height > image.size.width){
+//                scale = maxSize / image.size.height
+//            }else{
+//                scale = maxSize / image.size.width
+//            }
+//            
+//            let newHeight = image.size.height * scale
+//            UIGraphicsBeginImageContext(CGSizeMake(maxSize, newHeight))
+//            image.drawInRect(CGRectMake(0, 0, maxSize, newHeight))
+//            newImage = UIGraphicsGetImageFromCurrentImageContext()
+//            
+//            UIGraphicsEndImageContext()
+            
+            let old_w = image.size.width
+            let old_h = image.size.height
+            var thumb_w = CGFloat()
+            var thumb_h = CGFloat()
+            
+            //var scale = CGFloat()
+            if(old_w > old_h){
+                thumb_w = maxSize
+                thumb_h = old_h / old_w * maxSize
+            }else if(old_h > old_w){
+                thumb_w = old_w / old_h * maxSize
+                thumb_h = maxSize
+            }else{
+                thumb_w = maxSize
+                thumb_h = maxSize
+            }
+            
+            UIGraphicsBeginImageContext(CGSizeMake(thumb_w, thumb_h))
+            image.drawInRect(CGRectMake(0, 0, thumb_w, thumb_h))
+            newImage = UIGraphicsGetImageFromCurrentImageContext()
+            
+            UIGraphicsEndImageContext()
+            
+            
+        }else{
+            
+            newImage = image
+            
+        }
+        
+        
+        return newImage
+    }
     
     
 //    

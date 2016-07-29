@@ -42,7 +42,7 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
         let nib = UINib(nibName: "customImgCell", bundle: nil)
         collectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
         bgView.layer.cornerRadius = 5
-         getRoomGallery()
+        getRoomGallery()
         /*let nib = UINib(nibName: "customImgCell", bundle: nil)
         self.subCollectionView.registerNib(nib , forCellWithReuseIdentifier: "customImgCell")
 */
@@ -85,5 +85,4 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
     
     // MARK: UICollectionViewDataSource
     
-
 }

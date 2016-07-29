@@ -72,28 +72,7 @@ CustomIOS7AlertViewDelegate {
         
     }
     override func viewWillAppear(animated: Bool) {
-        let width = UIScreen.mainScreen().bounds.size.width
-        let contentscrollheight = self.scrollView.layer.bounds.size.height
-        scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        // let contentscrollheight = self.scrollView.layer.bounds.size.height
         
-        
-        
-        
-        print("room index : \(appDelegate.roomIndex)")
-        print("RoomID :  \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String)")
-        //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
-        roomNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
-        shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
-        priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
-        
-        numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
-        bedTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
-        maxOccupTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["maximum_person"] as! String)
-        occupencyNum = Int32(maxOccupTxt.text!)!
-        self.appDelegate.viewWithTopButtons.hidden = true
-        self.getFacility()
         
         //        self.setFacility(7270)
         //        self.updateData()
@@ -125,6 +104,29 @@ CustomIOS7AlertViewDelegate {
         
         self.initNavUnderline()
         self.initialObject()
+        
+        let width = UIScreen.mainScreen().bounds.size.width
+        let contentscrollheight = self.scrollView.layer.bounds.size.height
+        scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        // let contentscrollheight = self.scrollView.layer.bounds.size.height
+        
+        
+        
+        
+        print("room index : \(appDelegate.roomIndex)")
+        print("RoomID :  \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String)")
+        //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
+        roomNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
+        shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
+        priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
+        
+        numOfRoomTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_th"] as! String)
+        bedTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
+        maxOccupTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["maximum_person"] as! String)
+        occupencyNum = Int32(maxOccupTxt.text!)!
+        self.appDelegate.viewWithTopButtons.hidden = true
+        self.getFacility()
     }
     func initialObject(){
         

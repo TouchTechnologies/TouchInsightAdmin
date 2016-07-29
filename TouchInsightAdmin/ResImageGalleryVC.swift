@@ -232,6 +232,8 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         self.initialSize()
         self.getGallery()
         
+        
+
         // Do any additional setup after loading the view.
     }
     
@@ -241,9 +243,9 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 //    }
 
     override func viewWillAppear(animated: Bool) {
-       self.initialSize()
-        print("viewWillAppear(imggall)")
-        print("cover_image1 \(self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"])")
+       //self.initialSize()
+//        print("viewWillAppear(imggall)")
+//        print("cover_image1 \(self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"])")
 //        let urlImage = self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] as! String
 //        print("URL IMAGE :::\(urlImage)")
 //        if(urlImage == "http://192.168.9.58/framework/public/resource/insight/hotel/default/cover/default.png"){
@@ -254,19 +256,6 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
 //          CoverImg.image =  UIImage(data: NSData(contentsOfURL: NSURL(string:urlImage)!)!)
 //        
 //        }
-       
-        
-        if let coverImage = appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] as! String? {
-            if coverImage.rangeOfString("cover/default.png") != nil {
-                let urlLogo = NSURL(string: coverImage)
-                CoverImg.hnk_setImageFromURL(urlLogo!)
-            }else
-            {
-                CoverImg.hnk_setImageFromURL(NSURL(string:(appDelegate.providerIDData!["GetProviderInformationById"]!["images"]!!["cover_image"]!!["huge"] as! String?)!)!,placeholder: UIImage(named: "bg_cctvdefault.png"))
-            }
-            
-        }
-
         
     
         //      CoverImg.image =  UIImage(data: NSData(contentsOfURL: NSURL(string:self.appDelegate.providerIDData!["GetProviderInformationById"]!["cover_image"] as! String)!)!)
@@ -423,19 +412,15 @@ class ResImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
                     self.addImageNum += 1
 //                    self.collectionView.reloadData()
                 }
-                
-
-         
-              
+             
             }
-            
-
-         
+           
         }
   
     }
-    func getGallery()
-    {
+    
+    func getGallery(){
+        
         let send = API_Model()
         send.getGallery(Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!){
             data in

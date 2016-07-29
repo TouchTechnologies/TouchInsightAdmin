@@ -85,7 +85,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
     
     override func viewDidLoad() {
         appDelegate.isLogin = false
-        
+        userNameTxt.keyboardType = .EmailAddress
         //        RealmWrite()
         //        
         //        RealmRead()
@@ -120,6 +120,15 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
             passWordTxt.text = "master99"
             
         }
+        
+        userNameTxt.text = "teerstudio@hotmail.com"
+        passWordTxt.text = "master99"
+        
+        userNameTxt.text = "admin2327@hotel.com"
+        passWordTxt.text = "admin2327"
+        
+        
+        
         
         userNameTxt.delegate = self
         passWordTxt.delegate = self
@@ -323,10 +332,13 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
                         self.appDelegate.isLogin = true
                         print("APPDALAGATELOGIN:::\(self.appDelegate.isLogin)")
                         
-                        PKHUD.sharedHUD.hide(animated: false, completion: {_ in
-                            let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-                            self.navigationController?.pushViewController(secondViewController!, animated: true)
-                        })
+                        let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                        self.navigationController?.pushViewController(secondViewController!, animated: true)
+                        
+//                        PKHUD.sharedHUD.hide(animated: false, completion: {_ in
+//                            let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+//                            self.navigationController?.pushViewController(secondViewController!, animated: true)
+//                        })
                         
                     }
                 }else{

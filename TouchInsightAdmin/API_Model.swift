@@ -12,13 +12,13 @@ import RNCryptor
 //import CoreLocation
 class API_Model {
     
-    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
-//    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
-//    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
-//    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
+    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
     
     // test to tak
     
@@ -213,25 +213,20 @@ class API_Model {
                 
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
-                    if let jsonStatus = (JSON["status"])
-                    {
+                    if let jsonStatus = (JSON["status"]){
                         print("jsonStatus :\(JSON["status"] as! Int)")
-                        if (jsonStatus as! Int == 4051){
+                        if(jsonStatus as! Int == 4051){
                             print("Error")
                             //                            print("Data \(self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64))")
                             print("Message \(JSON["message"])")
-                        }else
-                        {
+                        }else{
                             let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
                             print("============================================")
                             let resultJson = self.jsonEncode(result as String)
                             completionHandler(resultJson )
                         }
                     }
-                    
-                    
                 }
-                
         }
     }
     

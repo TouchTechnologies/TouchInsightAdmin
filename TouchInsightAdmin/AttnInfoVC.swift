@@ -395,7 +395,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         self._viewEmptyLogo.userInteractionEnabled = false
         
         
-        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["small"]{
+        if let logo = self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!!["extra-small"]{
             print("has LOGO : \(self.appDelegate.providerData!["ListProviderInformationSummary"]![self.appDelegate.providerIndex!]["images"]!!["logo_image"]!)")
             
             if let imgData = NSData(contentsOfURL:NSURL(string:logo as! String)!) as NSData? {
@@ -1372,7 +1372,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         
         print("ImagePicker")
-        let chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        var chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         var _imageType = ""
         if(_pickerType == "cover"){
             
@@ -1412,6 +1412,8 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
                     
                     //                        print("UPLOAD DATA ::: \(data)")
                     //                        self.mediaKey = data
+                    
+                    chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
                     
                     send.uploadImage(_mediaKey, image: chosenImage, imageName: imageName){
                         data in

@@ -220,7 +220,7 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        
 //        self.presentViewController(editView, animated: true, completion: nil)
         
-     self.performSegueWithIdentifier("toEditMenu", sender: gestureRecognizer)
+        self.performSegueWithIdentifier("toEditMenu", sender: gestureRecognizer)
         
     }
     func deleteTap(gestureRecognizer: UIGestureRecognizer) {

@@ -359,14 +359,15 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
                             self.Cell.imgProvider.hnk_setImageFromURL(urlLogo!)
                             
                         }else{
-                            self.Cell.imgProvider.hnk_setImage(UIImage(named: "ic_no_image.png")!, key: "")
+                            
+                            self.Cell.imgProvider.image = UIImage(named: "ic_no_image.png")
                         }
                         
                         
                     }else{
                         print("ELSE IMAGE")
                         
-                        self.Cell.imgProvider.hnk_setImage(UIImage(named: "ic_no_image.png")!, key: "")
+                        self.Cell.imgProvider.image = UIImage(named: "ic_no_image.png")
                     }
                     
                     print("= = = = = = = = = = = = =")
@@ -510,7 +511,6 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         hLoader.dimsBackground = false
         hLoader.userInteractionOnUnderlyingViewsEnabled = false
         hLoader.contentView = PKHUDProgressView()
-        hLoader.show()
         
         self.tableView.delegate = self
         
