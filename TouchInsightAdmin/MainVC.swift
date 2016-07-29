@@ -276,7 +276,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
 //            print("dataJson(Facility) : \(dataRoomJson)")
             send.providerAPI(appDelegate.command["ListRoomFacility"]!, dataJson: dataRoomJson){
                 data in
-                
+                self.loadCount += 1
                 self.appDelegate.facilityRoomDic = data
                 
                 print("========== Data Facility hotel room ==========")
