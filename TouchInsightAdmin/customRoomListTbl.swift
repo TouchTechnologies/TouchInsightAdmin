@@ -87,15 +87,15 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
                     self.roomGallery = []
                 }
                 
-                print("-countData-")
-                print(countData)
-                print("-RoomGalleryIndex-")
-                print(self.appDelegate.roomGalleryIndex!)
-                print("-Room ID-")
-                print(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!["room_type_id"])
-                print("-Room Data-")
-                print(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!)
-                print("================================================")
+//                print("-countData-")
+//                print(countData)
+//                print("-RoomGalleryIndex-")
+//                print(self.appDelegate.roomGalleryIndex!)
+//                print("-Room ID-")
+//                print(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!["room_type_id"])
+//                print("-Room Data-")
+//                print(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!)
+//                print("================================================")
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     // update some UI
