@@ -117,9 +117,10 @@ CustomIOS7AlertViewDelegate {
     
     
     override func viewWillAppear(animated: Bool) {
-        let width = UIScreen.mainScreen().bounds.size.width
-        let contentscrollheight = self.scrollView.layer.bounds.size.height
-        scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
+        width = UIScreen.mainScreen().bounds.size.width
+        height = UIScreen.mainScreen().bounds.size.height
+        //let contentscrollheight = self.scrollView.layer.bounds.size.height
+        //scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         // let contentscrollheight = self.scrollView.layer.bounds.size.height
         let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResEditMenuVC.imageTapped(_:)))
@@ -265,6 +266,13 @@ CustomIOS7AlertViewDelegate {
         viewSplHot.frame.origin.x = splitWidth * 2
         viewSplHot.frame.size.width = splitWidth
         
+        
+        self.scrollView.frame.origin.y = 0
+        self.scrollView.frame.origin.x = 0
+        self.scrollView.frame.size.height = self.view.frame.size.height
+        self.scrollView.frame.size.width = self.view.frame.size.width
+        self.scrollView.contentSize.height = 612
+        //self.scrollView.backgroundColor = UIColor.greenColor()
     }
     
     func initNavUnderline(){

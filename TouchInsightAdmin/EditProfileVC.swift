@@ -99,7 +99,8 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
         
         if let avatar = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
-            ProfileImg.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+            //ProfileImg.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
+            ProfileImg.hnk_setImageFromURL(NSURL(string:avatar)!)
         }else{
             print("no avatar")
             ProfileImg.image = UIImage(named: "ic_team.png")

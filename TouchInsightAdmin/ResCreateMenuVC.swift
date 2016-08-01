@@ -117,9 +117,10 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         print("viewWillAppear")
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-      //  let width = UIScreen.mainScreen().bounds.size.width
-        let contentscrollheight = self.scrollView.layer.bounds.size.height
-        scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
+        width = UIScreen.mainScreen().bounds.size.width
+        heigth = UIScreen.mainScreen().bounds.size.height
+//        let contentscrollheight = self.scrollView.layer.bounds.size.height
+//        scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
         self.appDelegate.viewWithTopButtons.hidden = true
         
         let ggTapImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResCreateMenuVC.imageTapped(_:)))
@@ -192,8 +193,14 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         addButton.layer.cornerRadius = 5
         addButton.layer.bounds.size.width = (self.view.frame.size.width) - 10
         addButton.center.x = (self.view?.frame.size.width)!/2
-
+        
+        
         self.scrollView.frame.origin.y = 0
+        self.scrollView.frame.origin.x = 0
+        self.scrollView.frame.size.height = self.view.frame.size.height
+        self.scrollView.frame.size.width = self.view.frame.size.width
+        self.scrollView.contentSize.height = 612
+        //self.scrollView.backgroundColor = UIColor.greenColor()
         
         let splitWidth = self.view.frame.size.width / 3
         viewSplMild.frame.origin.x = splitWidth * 0
@@ -204,8 +211,6 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         
         viewSplHot.frame.origin.x = splitWidth * 2
         viewSplHot.frame.size.width = splitWidth
-        
-        
         
     }
     

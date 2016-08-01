@@ -464,7 +464,13 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                     }
                     // HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
                     
+                    print("==========  facilitiesAttached  =========")
+                    print("=========================================")
+                    //print(data["facilitiesAttached"]![i])
+                    print("=========================================")
                     
+                    
+                    //self.facilitiesHotelAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                     self.facilitiesHotelAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }

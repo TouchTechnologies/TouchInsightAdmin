@@ -254,15 +254,15 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             send.providerAPI(self.appDelegate.command["DeleteMenu"]!, dataJson: dataJson){
                 data in
                 print("data(DeleteRoomType) :\(data)")
-                SCLAlertView().showTitle("Delete", subTitle: "ลบ Menu สำเร็จ", duration: 1.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
-                self.navigationController?.popViewControllerAnimated(true)
-//                self.tableView.reloadData()
+                SCLAlertView().showTitle("Delete", subTitle: "Delete Success!", duration: 3.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
+                //self.navigationController?.popViewControllerAnimated(true)
+                self.tableView.reloadData()
               
             }
             
         }
         alertView.showCircularIcon = false
-        alertView.showInfo("Delete", subTitle: "คุณต้องการลบข้อมูล Menu ใช่หรือไม่?",closeButtonTitle: "NO",colorStyle:0xAC332F)
+        alertView.showInfo("Delete Menu", subTitle: "Are you sure?",closeButtonTitle: "NO",colorStyle:0xAC332F)
         
         
     }

@@ -438,7 +438,7 @@ class ImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINavig
                     
                     self.hotelGallery.count ==  self.hotelImage.count+1
                     self.addImageNum += 1
-                    //                    self.collectionView.reloadData()
+                    self.collectionView.reloadData()
                 }
                 
             }

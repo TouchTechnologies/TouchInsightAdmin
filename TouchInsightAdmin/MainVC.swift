@@ -181,7 +181,6 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         
         let timeIntervalStart = NSDate().timeIntervalSince1970
         
-        
         var dataIsLoaded = false
         if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
             
@@ -417,6 +416,12 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         //            print("appDelegate.isDisplayLoginSuccess = true")
         //        }
         
+        if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
+            let arrData = dicData["facilities"] as! NSArray
+            if(arrData.count > 0){
+                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+            }
+        }
         
     }
     

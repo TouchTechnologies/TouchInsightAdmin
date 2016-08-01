@@ -21,8 +21,10 @@ import PKHUD
 import Firebase
 import FirebaseCrash
 
+import Realm
+import RealmSwift
 
-class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
+class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate {
     
     @IBOutlet weak var userNameTxt: UITextField!
     @IBOutlet weak var passWordTxt: UITextField!
@@ -83,7 +85,20 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
     //        
     //    }
     
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
+        
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginVC.dismissKeyboard))
+        tap.delegate = self
+        tap.cancelsTouchesInView = true
+        self.view!.addGestureRecognizer(tap)
+        
+        
+        
         appDelegate.isLogin = false
         userNameTxt.keyboardType = .EmailAddress
         //        RealmWrite()
@@ -139,8 +154,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             self.locationManager.startUpdatingLocation()
             print("OK Location")
-        }
-        else{
+        }else{
             print("Location service disabled");
         }
         

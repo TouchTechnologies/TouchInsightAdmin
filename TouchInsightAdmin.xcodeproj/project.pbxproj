@@ -648,6 +648,7 @@
 		36DC41161C05C55E001B8E22 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				3B346C461D49EB3E001C5AAF /* Toucan.swift */,
 				F383BF5A1C7C185500726ED7 /* SSRadioButton.swift */,
 				F383BF5B1C7C185500726ED7 /* SSRadioButtonsController.swift */,
 				F3B73A2C1C562E4200781D48 /* CustomIOS7AlertView.swift */,
@@ -871,7 +872,6 @@
 		3B4394681D3CDA7D005B4E6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3B346C461D49EB3E001C5AAF /* Toucan.swift */,
 				3B4394691D3CDACA005B4E6C /* mUserData.swift */,
 				3BBCD72D1D45B92C00892372 /* FileMan.swift */,
 			);
