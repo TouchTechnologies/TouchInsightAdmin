@@ -11,24 +11,15 @@ import Foundation
 
 public class DeviceType {
     public class var isIpad:Bool {
-        if #available(iOS 8.0, *) {
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(majorVersion: 8, minorVersion: 0, patchVersion: 0)) { //println("iOS >= 8.0.0")
             return UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Pad
-        } else {
+        }else{
             return (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
         }
     }
+    
     public class var isIphone:Bool {
-//        #if iOS8target
-//            // iOS 8+ compatible code
-//        #else
-//            if #available(iOS 8.0, *) {
-//                // repeat iOS 8+ compatible code again!
-//            } else {
-//                // iOS 7 code
-//            }
-//        #endif
-        
-        if #available(iOS 8.0, iOSApplicationExtension 8.0, *) {
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(majorVersion: 8, minorVersion: 0, patchVersion: 0)) { //println("iOS >= 8.0.0")
             return UIScreen.mainScreen().traitCollection.userInterfaceIdiom == .Phone
         }else{
             return UIDevice.currentDevice().userInterfaceIdiom == .Phone

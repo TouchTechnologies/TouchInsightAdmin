@@ -117,7 +117,11 @@ CustomIOS7AlertViewDelegate {
         print("room index : \(appDelegate.roomIndex)")
         print("RoomID :  \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String)")
         //    print("Edit room \(appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!])")
-        roomNameTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
+        let room_id = appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_id"] as! String
+        let room_name_en = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
+        print("RoomID :  \(room_id)")
+        
+        roomNameTxt.text = "\(room_name_en) : id \(room_id)" // room_name_en
         shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
         priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
         
@@ -316,10 +320,17 @@ CustomIOS7AlertViewDelegate {
                         data in
                         if(index == self.roomImageUpload.count-1)
                         {
-                            PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                            let alert = SCLAlertView()
-                            alert.showCircularIcon = false
-                            alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 2.0)
+                            PKHUD.sharedHUD.hide(false, completion: {action in
+                                let alert = SCLAlertView()
+                                alert.showCircularIcon = false
+                                alert.showCloseButton = false
+                                alert.addButton("Done", action: {action in
+                                    self.navigationController?.popViewControllerAnimated(true)
+                                })
+                                //alert.showError(, subTitle: )
+                                alert.showError("Information", subTitle: "Update Room Success!")
+                            })
+                            //alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 4.0)
 //                            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
 //                            
 //                            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
@@ -333,17 +344,28 @@ CustomIOS7AlertViewDelegate {
 //                            self.navunderlive.hidden = true
 //
 //                            self.appDelegate.pagecontrolIndex = 2
-                            self.navigationController?.popViewControllerAnimated(true)
+                            //self.navigationController?.popViewControllerAnimated(true)
                         }
                     }
                 }
             }
-        }else
-        {
-            PKHUD.sharedHUD.hide(afterDelay: 0.1)
-            let alert = SCLAlertView()
-            alert.showCircularIcon = false
-            alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 2.0)
+        }else{
+            //PKHUD.sharedHUD.hide(afterDelay: 0.1)
+            PKHUD.sharedHUD.hide(false, completion: {action in
+                let alert = SCLAlertView()
+                alert.showCircularIcon = false
+                alert.showCloseButton = false
+                alert.addButton("Done", action: {action in
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+                //alert.showError(, subTitle: )
+                alert.showError("Information", subTitle: "Update Room Success!")
+            })
+//            let alert = SCLAlertView()
+//            alert.showCircularIcon = false
+//            alert.showInfo("Information", subTitle: "Update Room Success", colorStyle:0xAC332F ,duration: 4.0)
+            
+            
 //            let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
 //            
 //            self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
@@ -352,7 +374,7 @@ CustomIOS7AlertViewDelegate {
 //                self.navunderlive.hidden = true
 //                
 //            })
-            self.navigationController?.popViewControllerAnimated(true)
+            //self.navigationController?.popViewControllerAnimated(true)
             
         }
         

@@ -12,13 +12,13 @@ import RNCryptor
 //import CoreLocation
 class API_Model {
     
-//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
-    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
-    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
-    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
+//    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
+//    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
+//    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
     
     // test to tak
     
@@ -667,6 +667,7 @@ class API_Model {
         
         providerAPI(self.appDelegate.command["ListRoomTypeGallery"]!, dataJson: Dict2JsonString(dataJson)){
             data in
+            print("RoomID :\(roomID)")
             print("data(All) :\(data)")
             print("data(Count) :\(data["roomTypeGallery"]!.count)")
             completionHandler(data["roomTypeGallery"] as! [[String : AnyObject]])

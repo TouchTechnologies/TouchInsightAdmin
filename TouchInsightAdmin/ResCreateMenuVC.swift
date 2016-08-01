@@ -348,11 +348,23 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                             data in
 //                            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                             print("DataUpload : \(data)")
-                            PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                            let alert = SCLAlertView()
-                            alert.showCircularIcon = false
-                            alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F ,duration: 2.0)
-                            self.navigationController?.popViewControllerAnimated(true)
+//                            PKHUD.sharedHUD.hide(afterDelay: 0.1)
+//                            let alert = SCLAlertView()
+//                            alert.showCircularIcon = false
+//                            alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F ,duration: 2.0)
+//                            self.navigationController?.popViewControllerAnimated(true)
+//                            
+                            PKHUD.sharedHUD.hide(false, completion: {action in
+                                let alert = SCLAlertView()
+                                alert.showCircularIcon = false
+                                alert.showCloseButton = false
+                                alert.addButton("Done", action: {action in
+                                    self.navigationController?.popViewControllerAnimated(true)
+                                })
+                                //alert.showError(, subTitle: )
+                                alert.showError("Information", subTitle: "Create Menu Success!")
+                            })
+                            
                             
                         }
                         
@@ -360,13 +372,25 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
                     }
                     
                 }else{
-                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                    let alert = SCLAlertView()
-                    alert.showCircularIcon = false
-                    alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+//                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+//                    let alert = SCLAlertView()
+//                    alert.showCircularIcon = false
+//                    alert.showInfo("Information", subTitle: "Create Menu Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
                     
-                    self.navigationController?.popViewControllerAnimated(true)    
+                    //self.navigationController?.popViewControllerAnimated(true)
                 
+                    
+                    PKHUD.sharedHUD.hide(false, completion: {action in
+                        let alert = SCLAlertView()
+                        alert.showCircularIcon = false
+                        alert.showCloseButton = false
+                        alert.addButton("Done", action: {action in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
+                        //alert.showError(, subTitle: )
+                        alert.showError("Information", subTitle: "Create Menu Success!")
+                    })
+                    
                 }
             }
         }else{

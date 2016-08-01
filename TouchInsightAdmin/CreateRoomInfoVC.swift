@@ -283,11 +283,21 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
                                 if(index == self.roomImageUpload.count-1)
                                 {
                                     print("index \(index) count \(self.roomImageUpload.count-1)")
-                                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                                    let alert = SCLAlertView()
-                                    alert.showCircularIcon = false
-                                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                                
+//                                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+//                                    let alert = SCLAlertView()
+//                                    alert.showCircularIcon = false
+//                                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+//                                
+                                    PKHUD.sharedHUD.hide(false, completion: {action in
+                                        let alert = SCLAlertView()
+                                        alert.showCircularIcon = false
+                                        alert.showCloseButton = false
+                                        alert.addButton("Done", action: {action in
+                                            self.navigationController?.popViewControllerAnimated(true)
+                                        })
+                                        //alert.showError(, subTitle: )
+                                        alert.showError("Information", subTitle: "Create Room Success!")
+                                    })
 //                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
 //                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
 //                                        self.appDelegate.viewWithTopButtons.hidden = false
@@ -304,19 +314,29 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
                         }
                     }
                     
-                }else
-                {
-                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-                    let alert = SCLAlertView()
-                    alert.showCircularIcon = false
-                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+                }else{
+//                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
+//                    let alert = SCLAlertView()
+//                    alert.showCircularIcon = false
+//                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
+                    
+                    PKHUD.sharedHUD.hide(false, completion: {action in
+                        let alert = SCLAlertView()
+                        alert.showCircularIcon = false
+                        alert.showCloseButton = false
+                        alert.addButton("Done", action: {action in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
+                        //alert.showError(, subTitle: )
+                        alert.showError("Information", subTitle: "Create Room Success!")
+                    })
 //                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
 //                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
 //                        self.appDelegate.viewWithTopButtons.hidden = false
 //                        self.navunderlive.hidden = true
 //                        
 //                    })
-                    self.navigationController?.popViewControllerAnimated(true)
+                    //self.navigationController?.popViewControllerAnimated(true)
                 }
             }
         }else

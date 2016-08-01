@@ -687,7 +687,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
                     print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
                     
 //                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    //PKHUD.sharedHUD.hide(animated: false, completion: nil)
                     
                     // let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
                     // secondViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -695,6 +695,20 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
 //                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                     self.appDelegate.viewWithTopButtons.hidden = true
+                    
+                    
+                    PKHUD.sharedHUD.hide(false, completion: {action in
+                        let alert = SCLAlertView()
+                        alert.showCircularIcon = false
+                        alert.showCloseButton = false
+                        alert.addButton("Done", action: {action in
+                            //                            self.navigationController?.popViewControllerAnimated(true)
+                            //                            self.dismissViewControllerAnimated(true, completion: nil)
+                            
+                        })
+                        //alert.showError(, subTitle: )
+                        alert.showError("Information", subTitle: "Update Success!")
+                    })
                 }
                 
             }

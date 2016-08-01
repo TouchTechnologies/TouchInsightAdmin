@@ -64,6 +64,10 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
         let nib = UINib(nibName: "customRoomList", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
         print("roomData2 didLoad :\(roomNameData)")
+        
+        
+        
+        
     }
     override func viewDidAppear(animated: Bool) {
 //        super.viewDidAppear(true)
@@ -101,6 +105,11 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
                 self.tableView.hidden = false
                 self.tableView.reloadData()
                 
+                
+                
+                print("self.roomNameData.roomTypes")
+                print(self.roomNameData["roomTypes"]!)
+                print("================================================")
             }
             
             else{
@@ -140,6 +149,7 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         appDelegate.roomGalleryIndex = indexPath.row
         let cell:customRoomListTbl = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customRoomListTbl
+        cell.getRoomGallery()
         if let roomName = self.roomNameData["roomTypes"]![indexPath.row]!["room_type_name_en"]! {
             cell.roomnameLbl.text = (roomName as! String)
             cell.numOfRoom.text = "\(self.roomNameData["roomTypes"]![indexPath.row]["room_type_description_th"] as! String) rooms"
@@ -163,17 +173,24 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
         
         return cell
     }
-    func handleTap(gestureRecognizer: UIGestureRecognizer) {
+    func handleTap(sender: AnyObject) {
+        var tag = Int()
+        if sender.isKindOfClass(UIButton) {
+            tag = sender.tag
+            
+        }else{
+            tag = sender.view!.tag
         
-        let tag = gestureRecognizer.view!.tag
+        }
+        
 //        appDelegate.roomIndex = gestureRecognizer.view!.tag
-       print("edit tag button : \(tag)")
+       print("edit tag : \(tag)")
 //
 //         editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
 //        
 //        self.presentViewController(editView, animated: true, completion: nil)
         
-        self.performSegueWithIdentifier("toEdit", sender: gestureRecognizer)
+        self.performSegueWithIdentifier("toEdit", sender: sender)
         
     }
     
@@ -208,8 +225,16 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
                 data in
                 print("data(DeleteRoomType) :\(data)")
                 
-                let alertViewSuccess = SCLAlertView()
-                alertViewSuccess.showTitle("Delete", subTitle: "ลบ Room สำเร็จ", duration: 3.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
+//                let alertViewSuccess = SCLAlertView()
+//                alertViewSuccess.showTitle("Delete", subTitle: "Delete Success!", duration: 3.0, completeText: "Done", style: .Success, colorStyle: 0xDB3F42, colorTextButton: 0xffffff )
+
+                let alert = SCLAlertView()
+                alert.showCircularIcon = false
+                alert.showCloseButton = false
+                alert.addButton("Done", action: {action in
+                    self.getRoomType()
+                })
+                alert.showError("Information", subTitle: "Delete Success!")
                 
                 //back to room list view
 //                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProviderInfoVC") as! ProviderInfoVC
@@ -222,7 +247,7 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
             
         }
         alertView.showCircularIcon = false
-        alertView.showInfo("Delete", subTitle: "คุณต้องการลบข้อมูล Room ใช่หรือไม่?",closeButtonTitle: "NO",colorStyle:0xAC332F)
+        alertView.showInfo("Delete Room", subTitle: "Are you sure?",closeButtonTitle: "NO",colorStyle:0xAC332F)
         
         
     }
@@ -249,10 +274,18 @@ class RoomInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIG
         }
         else if segue.identifier == "toEdit"{
             
+            var tag = Int()
+            if sender!.isKindOfClass(UIButton) {
+                tag = sender!.tag
+                
+            }else{
+                tag = sender!.view!.tag
+                
+            }
+
+            print("Sender : \(tag)")
             
-            print("Sender : \(sender!.view!.tag)")
-            
-            appDelegate.roomIndex = sender!.view!.tag
+            appDelegate.roomIndex = tag
             
 //            editView = self.storyboard!.instantiateViewControllerWithIdentifier("editRoom") as! EditRoominfomationVC
 //            editView.modalTransitionStyle = .CrossDissolve

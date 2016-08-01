@@ -37,8 +37,7 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
     override func awakeFromNib() {
         super.awakeFromNib()
        
-
-        print("customRoomListTbl")
+        print("=======customRoomListTbl========")
         let nib = UINib(nibName: "customImgCell", bundle: nil)
         collectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
         bgView.layer.cornerRadius = 5
@@ -67,19 +66,46 @@ class customRoomListTbl: UITableViewCell ,UICollectionViewDataSource ,UICollecti
         
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
     }
 
     func getRoomGallery()
     {
-        let send = API_Model()
-        print("appDelegate.roomGalleryIndex : \(appDelegate.roomGalleryIndex!)")
-//        print("Room Dic : \(appDelegate.roomDic!["roomTypes"]!)")
-        send.getRoomGallery(appDelegate.roomDic!["roomTypes"]![appDelegate.roomGalleryIndex!]!["room_type_id"] as! String){
-            data in
-            print("getRoomGallery(customRoomListTbl): \(data)")
-            self.roomGallery = data
-            self.collectionView.reloadData()
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                // do some task
+            let send = API_Model()
+            //        print("Room Dic : \(appDelegate.roomDic!["roomTypes"]!)")
+            send.getRoomGallery(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!["room_type_id"] as! String){
+                data in
+                
+                let countData = (data as NSArray).count
+                if countData > 0 {
+                    self.roomGallery = data
+                }else{
+                    
+                    self.roomGallery = []
+                }
+                
+                print("-countData-")
+                print(countData)
+                print("-RoomGalleryIndex-")
+                print(self.appDelegate.roomGalleryIndex!)
+                print("-Room ID-")
+                print(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!["room_type_id"])
+                print("-Room Data-")
+                print(self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomGalleryIndex!]!)
+                print("================================================")
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    // update some UI
+                    
+                    self.collectionView.reloadData()
+                }
+            }
+
         }
+        
         
     }
     

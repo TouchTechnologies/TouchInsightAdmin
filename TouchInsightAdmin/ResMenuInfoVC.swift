@@ -155,7 +155,6 @@ class ResMenuInfoVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let cell:customMenuListTbl = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customMenuListTbl
         print("Menuuuuuuuuuu")
         //print(self.menuNameData["menus"]![indexPath.row]!)
-        
         let gestureDelete = UITapGestureRecognizer(target: self, action: #selector(ResMenuInfoVC.deleteTap(_:)))
         gestureDelete.numberOfTouchesRequired = 1
         cell.deleteBtn.userInteractionEnabled = true
