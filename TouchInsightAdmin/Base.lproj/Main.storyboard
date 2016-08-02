@@ -292,63 +292,41 @@
                                         <rect key="frame" x="0.0" y="216" width="375" height="451"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BACKEND EDITOR" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kNn-ef-gu8">
-                                                <rect key="frame" x="0.0" y="405" width="204" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- SEE IT LIVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zrH-3M-eTW">
-                                                <rect key="frame" x="212" y="405" width="163" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="3ad-S6-dyY">
-                                                <rect key="frame" x="25" y="8" width="325" height="393"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="1" id="ZDq-4l-K4S">
-                                                    <size key="itemSize" width="139" height="129"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="cell" id="QPM-qG-S2v" customClass="MyCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="139" height="129"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="129"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S9f-er-BDl">
-                                                                    <rect key="frame" x="0.0" y="96" width="139" height="28"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="g6j-FE-a0k">
-                                                                    <rect key="frame" x="29" y="8" width="80" height="80"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                                </imageView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <connections>
-                                                            <outlet property="imgMenu" destination="g6j-FE-a0k" id="Cgk-66-d0S"/>
-                                                            <outlet property="lblMenu" destination="S9f-er-BDl" id="1fq-3b-E57"/>
-                                                        </connections>
-                                                    </collectionViewCell>
-                                                </cells>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" id="0aH-Z8-9oN">
+                                                <rect key="frame" x="97" y="33" width="180" height="130"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="titleEdgeInsets" minX="-90" minY="97" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="42" minY="-21" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Business Type" image="home_icon_business">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="qD3-8u-Qpg" id="DIl-CN-4a7"/>
-                                                    <outlet property="delegate" destination="qD3-8u-Qpg" id="AJc-xH-CqK"/>
+                                                    <action selector="btnBusinessClick:" destination="qD3-8u-Qpg" eventType="touchUpInside" id="RlJ-Yo-hWs"/>
                                                 </connections>
-                                            </collectionView>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" id="Qr0-4a-9d8">
+                                                <rect key="frame" x="97" y="188" width="180" height="130"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="titleEdgeInsets" minX="-90" minY="97" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="42" minY="-21" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Coupon" image="home_icon_business">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnCouponClick:" destination="qD3-8u-Qpg" eventType="touchUpInside" id="ZzK-tY-FoH"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_footer" id="dvc-jl-Gan">
+                                                <rect key="frame" x="0.0" y="417" width="375" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -362,11 +340,15 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="collectionView" destination="3ad-S6-dyY" id="tja-xe-qdR"/>
+                        <outlet property="btnBusiness" destination="0aH-Z8-9oN" id="wEw-Yr-UkV"/>
+                        <outlet property="btnCoupon" destination="Qr0-4a-9d8" id="c9t-7L-5SQ"/>
+                        <outlet property="btnSetting" destination="n3Q-bU-gEj" id="7uG-My-5Xc"/>
+                        <outlet property="imgFooterText" destination="dvc-jl-Gan" id="sga-Yh-hbY"/>
                         <outlet property="imgProfile" destination="OPG-zB-Deg" id="Z6Q-GE-ZLQ"/>
                         <outlet property="lblEmail" destination="Vbn-Ah-ozy" id="Nb1-Uf-THh"/>
                         <outlet property="lblProfileName" destination="5A4-uV-KLU" id="t7Q-Ig-mzy"/>
                         <outlet property="mainScrollView" destination="0cI-aM-uJj" id="Bha-Pp-R8Q"/>
+                        <outlet property="viewDetail" destination="qMo-He-QAg" id="ILj-mD-B56"/>
                         <outlet property="viewUserInfo" destination="vzx-5c-s1Z" id="hiG-Df-6ay"/>
                     </connections>
                 </viewController>
@@ -391,7 +373,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="fhX-QS-vUJ" rowHeight="51" style="IBUITableViewCellStyleDefault" id="jgg-fc-Fkx">
-                                        <rect key="frame" x="0.0" y="92" width="376" height="51"/>
+                                        <rect key="frame" x="0.0" y="28" width="376" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jgg-fc-Fkx" id="kyt-Fs-N6a">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -676,17 +658,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="310" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kcr-S3-p5d">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="222" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kcr-S3-p5d">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="70"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="310" id="adp-Y2-NQl">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="310"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="222" id="adp-Y2-NQl">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="222"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="adp-Y2-NQl" id="XtI-GF-fmt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -700,7 +683,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="n2n-aM-IJ5">
-                                <rect key="frame" x="305" y="602" width="65" height="65"/>
+                                <rect key="frame" x="305" y="601" width="65" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="btnadd_pressed.png"/>
@@ -726,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5q-d5-FqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325.5" y="499.5"/>
+            <point key="canvasLocation" x="2329.5" y="473.5"/>
         </scene>
         <!--Provider InfoVC-->
         <scene sceneID="4X0-7o-bwK">
@@ -1700,6 +1683,7 @@
                                 <rect key="frame" x="0.0" y="38" width="375" height="629"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="210" id="kex-2F-gPo" customClass="customRoomListTbl" customModule="TouchInsightAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="210"/>
@@ -1718,7 +1702,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GsT-tM-GQe">
-                                <rect key="frame" x="275" y="497" width="80" height="80"/>
+                                <rect key="frame" x="275" y="497" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btnadd_pressed.png"/>
                                 <connections>
@@ -3222,6 +3206,7 @@
                                 <rect key="frame" x="0.0" y="38" width="375" height="629"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="210" id="f9a-KQ-lhD" customClass="customMenuListTbl" customModule="TouchInsightAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="210"/>
@@ -3240,7 +3225,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NBz-Rs-fvO">
-                                <rect key="frame" x="275" y="497" width="80" height="80"/>
+                                <rect key="frame" x="275" y="497" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btnadd_pressed.png"/>
                                 <connections>
@@ -3900,6 +3885,7 @@
                                 <rect key="frame" x="0.0" y="38" width="375" height="629"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="210" id="MD4-1u-76l" customClass="customRoomListTbl" customModule="TouchInsightAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="210"/>
@@ -3918,7 +3904,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4cm-9j-Lum">
-                                <rect key="frame" x="275" y="497" width="80" height="80"/>
+                                <rect key="frame" x="275" y="497" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btnadd_pressed.png"/>
                                 <connections>
@@ -4444,7 +4430,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="Tqq-hB-rYO" customClass="ImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="Tqq-hB-rYO" customClass="ResImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -4524,7 +4510,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="7Xs-hV-Sgm" customClass="ImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="7Xs-hV-Sgm" customClass="AttnImageCollectionViewCell" customModule="TouchInsightAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -4596,6 +4582,8 @@
         <image name="empty_menu.png" width="222" height="222"/>
         <image name="empty_provider.png" width="222" height="222"/>
         <image name="fr.png" width="50" height="50"/>
+        <image name="home_footer" width="117" height="20"/>
+        <image name="home_icon_business" width="86" height="86"/>
         <image name="hot.png" width="50" height="50"/>
         <image name="ic_add_image_profile.png" width="76" height="81"/>
         <image name="ic_map.png" width="243" height="243"/>

@@ -14,14 +14,18 @@ class customProviderView: UITableViewCell {
     @IBOutlet var imgProvider: UIImageView!
     @IBOutlet weak var lblProviderName: UILabel!
     @IBOutlet weak var lblProviderType: UILabel!
+    @IBOutlet weak var bgProviderName: UIView!
     
     @IBOutlet var teamDetailView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.teamDetailView.layer.cornerRadius = 5
-        self.imgProvider.layer.cornerRadius = 5
-        
+//        self.teamDetailView.layer.cornerRadius = 5
+//        self.imgProvider.layer.cornerRadius = 5
+//        let frm = self.maskView?.superview?.frame
+//        print("---------- view size ----------")
+//        print(frm)
+//        print("-------------------------------")
         self.imgProvider.image = UIImage(named: "ic_no_image.png")
         
         //lblProviderType.text = "AAAAAA"

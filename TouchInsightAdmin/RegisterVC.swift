@@ -222,13 +222,19 @@ class RegisterVC: UIViewController , UITextFieldDelegate,UIImagePickerController
                         {
                             data in
                             print("CreateUserAvatar \(data)")
-                            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                            PKHUD.sharedHUD.hide(afterDelay: 2.0)
-                            
-                            titleMessage = "Register Success"
-                            message = "ยินดีตอนรับเข้าสู่ระบบ"
-                            SCLAlertView().showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F)
-                            
+                          
+                            PKHUD.sharedHUD.hide(false, completion: {action in
+                                let alert = SCLAlertView()
+//                                alert.showCircularIcon = false
+                                alert.showCloseButton = false
+                                alert.addButton("Done", action: {action in
+                                    self.navigationController?.popViewControllerAnimated(true)
+                                    //self.dismissViewControllerAnimated(true, completion: nil)
+                                    
+                                })
+                                //alert.showError(, subTitle: )
+                                alert.showError("Register Success", subTitle: "ยินดีตอนรับเข้าสู่ระบบ!")
+                            })
                             
                         }
                         register.getUserInfo(self.appDelegate.userInfo["userID"]! as String)
@@ -264,12 +270,28 @@ class RegisterVC: UIViewController , UITextFieldDelegate,UIImagePickerController
                 else
                 {
                     
-                    PKHUD.sharedHUD.hide(afterDelay: 2.0)
-                    titleMessage = "Register fail"
-                    message = "Email ผิดหรือ มีอยู่ในระบบ"
                     
-                    self.alert.showCircularIcon = false
-                    self.alert.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F)
+                    
+                    PKHUD.sharedHUD.hide(false, completion: {action in
+                        let alert = SCLAlertView()
+                        alert.showCircularIcon = false
+                        alert.showCloseButton = false
+                        alert.addButton("OK", action: {action in
+                            //                            self.navigationController?.popViewControllerAnimated(true)
+                            //                            self.dismissViewControllerAnimated(true, completion: nil)
+                            
+                        })
+                        //alert.showError(, subTitle: )
+                        alert.showError("Register fail", subTitle: "Email ผิดหรือ มีอยู่ในระบบ!")
+                    })
+                    
+                    
+//                    PKHUD.sharedHUD.hide(afterDelay: 2.0)
+//                    titleMessage = "Register fail"
+//                    message = "Email ผิดหรือ มีอยู่ในระบบ"
+//                    
+//                    self.alert.showCircularIcon = false
+//                    self.alert.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F)
                 }
                 
             }

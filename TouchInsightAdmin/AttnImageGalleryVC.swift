@@ -24,7 +24,7 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
     var coverImgCell = UIImageView()
     var hotelGallery = [[String:AnyObject]]()
     var defultImg = UIImage()
-    var Cell = ImageCollectionViewCell()
+    var Cell = AttnImageCollectionViewCell()
     @IBOutlet var collectionView: UICollectionView!
     var photoGall : [String] = []
     var addImageNum = 0
@@ -166,7 +166,7 @@ class AttnImageGalleryVC: UIViewController, UIImagePickerControllerDelegate, UIN
 //        return Cell
         
         
-        Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! ImageCollectionViewCell
+        Cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",forIndexPath: indexPath) as! AttnImageCollectionViewCell
         
         if (self.hotelGallery.count == 0 || indexPath.row == self.hotelGallery.count){
             //let imgSize = CGSizeMake(Cell.frame.width - 12, Cell.frame.height - 12)

@@ -12,16 +12,21 @@ import SCLAlertView
 import Firebase
 import FirebaseCrash
 
-class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UINavigationControllerDelegate{
+class MainVC: UIViewController,UINavigationControllerDelegate{
     
-    @IBOutlet var barButton: UIBarButtonItem!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet weak var imageMenu: UIImageView!
+//    @IBOutlet var barButton: UIBarButtonItem!
+//    @IBOutlet var collectionView: UICollectionView!
+//    @IBOutlet weak var imageMenu: UIImageView!
+    
     
     //profile info
     @IBOutlet var imgProfile: UIImageView!
     @IBOutlet var lblProfileName: UILabel!
     @IBOutlet var lblEmail: UILabel!
+    @IBOutlet weak var btnSetting: UIButton!
+    
+    @IBOutlet weak var viewDetail: UIView!
+    @IBOutlet var imgFooterText: UIImageView!
     
     var loadCount = 0
     var menuList:[String] = ["Business Type","Team","Media","Live Stream"]
@@ -34,6 +39,26 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     @IBOutlet weak var viewUserInfo: UIView!
     @IBOutlet weak var mainScrollView: UIScrollView!
     
+    @IBOutlet weak var btnBusiness: UIButton!
+    @IBAction func btnBusinessClick(sender: AnyObject) {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let _nextView = storyBoard.instantiateViewControllerWithIdentifier("providerlist") as! ProviderListVC
+        self.navigationController?.pushViewController(_nextView, animated: true)
+        
+    }
+    
+    @IBOutlet weak var btnCoupon: UIButton!
+    @IBAction func btnCouponClick(sender: AnyObject) {
+   
+        let alert = SCLAlertView()
+        alert.showCloseButton = false
+        alert.addButton("OK", action: {action in
+            
+        })
+        alert.showError("Information", subTitle: "Coming Soon!")
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +77,20 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         
         imgProfile.layer.masksToBounds = true
         imgProfile.layer.cornerRadius = imgProfile.frame.size.height/2
+        
+        
+        self.viewDetail.frame.size.height = self.view.frame.size.height - self.viewUserInfo.frame.size.height - 20
+        
+        imgFooterText.frame.origin.x = 0
+        imgFooterText.frame.size.width = self.view.frame.size.width
+        imgFooterText.frame.size.height = 34
+        imgFooterText.frame.origin.y = self.viewDetail.frame.size.height - imgFooterText.frame.size.height// - 12
+        
+        btnBusiness.center.x = UIScreen.mainScreen().bounds.size.width/2
+        btnCoupon.center.x = UIScreen.mainScreen().bounds.size.width/2
+        
+        btnBusiness.frame.origin.y = 10
+        btnCoupon.frame.origin.y = btnBusiness.frame.size.height + btnBusiness.frame.origin.y + 10
         
         
         //        if let avatar = self.appDelegate.userInfo["avatarImage"] {
@@ -179,7 +218,7 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     func getFacility(){
         
-        let timeIntervalStart = NSDate().timeIntervalSince1970
+        //let timeIntervalStart = NSDate().timeIntervalSince1970
         
         var dataIsLoaded = false
         if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
@@ -444,54 +483,54 @@ class MainVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     // MARK: UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView)->Int {
-        //#warning Incomplete method implementation -- Return the number of sections
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    {
-        return CGSize(width: collectionView.frame.size.width/2 - 1, height: collectionView.frame.size.width/2-20)
-    }
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return self.menuList.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell",forIndexPath: indexPath) as! MyCollectionViewCell
-        
-        //   let imgsName = "\(imageName)"
-        
-        cell.lblMenu.text = self.menuList[indexPath.item]
-        cell.imgMenu.image = UIImage(named: self.imageName[indexPath.item])
-        
-        return cell
-        
-    }
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        if(indexPath.item == 0){
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let _nextView = storyBoard.instantiateViewControllerWithIdentifier("providerlist") as! ProviderListVC
-            self.navigationController?.pushViewController(_nextView, animated: true)
-            
-            
-            
-            //            performSegueWithIdentifier("loadprovider", sender: self)
-            //let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
-            // self.navigationController!.pushViewController(providerlist!, animated: true)
-            print("You select Provider menu")
-        } else if (indexPath.item == 1){
-            
-        } else if (indexPath.item == 2){
-            
-        } else if (indexPath.item == 3){
-            
-        }
-        
-    }
+//    func numberOfSectionsInCollectionView(collectionView: UICollectionView)->Int {
+//        //#warning Incomplete method implementation -- Return the number of sections
+//        return 1
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+//    {
+//        return CGSize(width: collectionView.frame.size.width/2 - 1, height: collectionView.frame.size.width/2-20)
+//    }
+//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        //#warning Incomplete method implementation -- Return the number of items in the section
+//        return self.menuList.count
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell",forIndexPath: indexPath) as! MyCollectionViewCell
+//        
+//        //   let imgsName = "\(imageName)"
+//        
+//        cell.lblMenu.text = self.menuList[indexPath.item]
+//        cell.imgMenu.image = UIImage(named: self.imageName[indexPath.item])
+//        
+//        return cell
+//        
+//    }
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        
+//        if(indexPath.item == 0){
+//            
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            let _nextView = storyBoard.instantiateViewControllerWithIdentifier("providerlist") as! ProviderListVC
+//            self.navigationController?.pushViewController(_nextView, animated: true)
+//            
+//            
+//            
+//            //            performSegueWithIdentifier("loadprovider", sender: self)
+//            //let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")
+//            // self.navigationController!.pushViewController(providerlist!, animated: true)
+//            print("You select Provider menu")
+//        } else if (indexPath.item == 1){
+//            
+//        } else if (indexPath.item == 2){
+//            
+//        } else if (indexPath.item == 3){
+//            
+//        }
+//        
+//    }
     
     @IBAction func btnSettingClick(sender: AnyObject) {
         

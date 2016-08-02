@@ -547,7 +547,10 @@ class ResCreateMenuVC: UIViewController,UITextFieldDelegate,UIScrollViewDelegate
         func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         print("ImagePicker")
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+            
+            chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
+            
             imageDataForUpload[0] = chosenImage
             imgMenuLogo.image = chosenImage
             let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL

@@ -121,7 +121,7 @@ CustomIOS7AlertViewDelegate {
         let room_name_en = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_name_en"] as! String)
         print("RoomID :  \(room_id)")
         
-        roomNameTxt.text = "\(room_name_en) : id \(room_id)" // room_name_en
+        roomNameTxt.text = room_name_en // "\(room_name_en) : id \(room_id)" // room_name_en
         shotDescTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_description_en"] as! String)
         priceTxt.text = (appDelegate.roomDic!["roomTypes"]![appDelegate.roomIndex!]!["room_type_current_price"] as! String)
         
@@ -624,8 +624,9 @@ CustomIOS7AlertViewDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         print("ImagePicker")
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         
+        chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
         
         print("ImagePicker:roomImage")
         let date = NSDate();

@@ -1356,6 +1356,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
             
             dispatch_async(dispatch_get_main_queue()) {
                 // update some UI
+                PKHUD.sharedHUD.hide(false, completion: nil)
             }
         }
         

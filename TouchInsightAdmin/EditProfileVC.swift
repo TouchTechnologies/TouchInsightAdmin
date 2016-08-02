@@ -119,7 +119,9 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print("ImagePicker:profileImage")
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        
+        chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
         
         ProfileImg.contentMode = .ScaleAspectFit //3
         ProfileImg.image = chosenImage //4
@@ -129,8 +131,7 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
         
         let send = API_Model()
         let userID = appDelegate.userInfo["userID"]
-        send.CreateUserAvatar(userID!,image: chosenImage)
-        {
+        send.CreateUserAvatar(userID!,image: chosenImage){
             data in
             print("CreateUserAvatar \(data)")
             

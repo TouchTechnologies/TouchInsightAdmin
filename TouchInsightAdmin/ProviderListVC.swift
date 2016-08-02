@@ -30,8 +30,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     var navunderlive = UIView()
     var Cell = customProviderView()
-    
-    let hLoader = PKHUD.sharedHUD
+
     
     @IBOutlet weak var btnCreateNew: UIButton!
     
@@ -258,26 +257,23 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(" Index Path : \(indexPath.row)")
         
      
-        
-        
         if let keyType = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String? {
             
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            PKHUD.sharedHUD.show()
             
-            appDelegate.providerIndex = indexPath.row
-            appDelegate.pagecontrolIndex = 0
-            
+//            PKHUD.sharedHUD.dimsBackground = false
+//            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+//            //PKHUD.sharedHUD.contentView = PKHUDProgressView()
+//            PKHUD.sharedHUD.show()
             
             print("keyType")
             print(keyType)
+            
+            appDelegate.providerIndex = indexPath.row
+            appDelegate.pagecontrolIndex = 0
             
             
             
@@ -303,11 +299,42 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
     }
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
-        Cell = tableView.dequeueReusableCellWithIdentifier("cell") as! customProviderView
+        //Cell = tableView.dequeueReusableCellWithIdentifier("cell") as! customProviderView
+        Cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! customProviderView
         Cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        var frmBlockView = CGRect()
+        frmBlockView.size.width = self.view.frame.size.width - 10
+        frmBlockView.size.height = Cell.frame.size.height - 10
+        frmBlockView.origin.x = 5
+        frmBlockView.origin.y = 5
+        Cell.teamDetailView.frame = frmBlockView
+        
+        
+        var frmViewIn = frmBlockView
+        frmViewIn.size.width = frmBlockView.size.width - 10
+        frmViewIn.size.height = frmBlockView.size.height - 10
+        frmViewIn.origin.x = 5
+        frmViewIn.origin.y = 5
+        
+        let titleHeight:CGFloat = 36
+        Cell.imgProvider.frame = frmViewIn
+        Cell.lblProviderName.frame.size.width = frmViewIn.size.width
+        Cell.lblProviderName.frame.size.height = titleHeight
+        Cell.lblProviderName.frame.origin.y = 0
+        
+        Cell.bgProviderName.frame.size.width = frmViewIn.size.width
+        Cell.bgProviderName.frame.size.height = titleHeight
+        Cell.bgProviderName.frame.origin.y = frmBlockView.size.height - (titleHeight + 5)
+        
+        
+        print("Cell.frame")
+        print(Cell.frame)
+        print("----------")
         
 //        print("- - - - - - - - ")
 //        print(appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["images"]!!["cover_image"]!!["medium"])
@@ -408,7 +435,10 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     func reloadData() {
         
-        hLoader.show()
+        PKHUD.sharedHUD.dimsBackground = false
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
         
         appDelegate.getlistProvider{data in
             
@@ -422,12 +452,12 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
                 self.tableView.reloadData()
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                 
-                self.hLoader.hide(animated: false, completion: nil)
+                PKHUD.sharedHUD.hide(animated: false, completion: nil)
                 
             }else{
                 self.tableView.hidden = true
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                self.hLoader.hide(animated: false, completion: nil)
+                PKHUD.sharedHUD.hide(animated: false, completion: nil)
             }
         }
     }
@@ -508,9 +538,6 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         super.viewDidLoad()
         
         // init Loader
-        hLoader.dimsBackground = false
-        hLoader.userInteractionOnUnderlyingViewsEnabled = false
-        hLoader.contentView = PKHUDProgressView()
         
         self.tableView.delegate = self
         
@@ -523,7 +550,6 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
         let nib = UINib(nibName: "customProviderListVC", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "cell")
-        
         
         self.reloadData()
         
@@ -552,7 +578,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     override func viewDidDisappear(animated: Bool) {
         print("viewDidDisappear")
-        PKHUD.sharedHUD.hide(animated: true, completion: nil)
+        //PKHUD.sharedHUD.hide(animated: true, completion: nil)
         
     }
     

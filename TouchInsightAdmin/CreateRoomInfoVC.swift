@@ -564,7 +564,9 @@ class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDat
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         print("ImagePicker")
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        
+        chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
         
         dismissViewControllerAnimated(true, completion: nil)
         self.roomGallery.append(chosenImage)
