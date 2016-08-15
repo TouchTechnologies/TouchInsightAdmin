@@ -68,6 +68,11 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
 //        self.navigationController?.navigationBar.tintColor = UIColor.greenColor()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        if let indexPath = self.tableview.indexPathForSelectedRow as NSIndexPath?{
+            
+            self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -145,7 +150,7 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             
         }
         else if (indexPath.row == 1){
-            
+            self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
         }
         else if (indexPath.row == 2){
             

@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (3.4.1)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
   - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
   - CustomIOSAlertView (0.9.3)
@@ -7,6 +13,10 @@ PODS:
     - EARestrictedScrollView (~> 1.1.0)
   - EARestrictedScrollView (1.1.0)
   - Fabric (1.6.7)
+  - FBSDKCoreKit (4.14.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.14.0):
+    - FBSDKCoreKit
   - FileProvider (0.1.0)
   - Firebase (3.3.0):
     - Firebase/Core (= 3.3.0)
@@ -50,13 +60,17 @@ PODS:
   - RNGridMenu (0.1.3)
   - SCLAlertView (0.5.1)
   - SMPageControl (1.2)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
+  - Bolts
   - Crashlytics
   - CustomIOSAlertView (= 0.9.3)
   - EAIntroView
   - Fabric
+  - FBSDKCoreKit
+  - FBSDKLoginKit
   - FileProvider
   - Firebase
   - Firebase/Crash
@@ -72,14 +86,18 @@ DEPENDENCIES:
   - RNGridMenu
   - SCLAlertView (= 0.5.1)
   - SMPageControl
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   EAIntroView: 76f68cc56242f2e25359419e6ecc2344ee7e1756
   EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
+  FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
   FileProvider: f3e2f023ee2d235f9104982ed085b39ee4c95516
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
   FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
@@ -101,7 +119,8 @@ SPEC CHECKSUMS:
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
   SCLAlertView: 3ac39a863d3e10fc165662b1228b03402297aea9
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: ab82ef52fbbaa99ec50d9201c7ce2d88aec45373
+PODFILE CHECKSUM: 975ccd7dc84b0b6cc165486a95ab5f88caa578de
 
 COCOAPODS: 1.0.1

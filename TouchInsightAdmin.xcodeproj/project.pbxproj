@@ -81,10 +81,17 @@
 		3B1EFC501D34B05E00A7F4EA /* mild_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */; };
 		3B1EFC511D34B05E00A7F4EA /* mild.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4B1D34B05E00A7F4EA /* mild.png */; };
 		3B346C471D49EB3E001C5AAF /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346C461D49EB3E001C5AAF /* Toucan.swift */; };
-		3B43946A1D3CDACA005B4E6C /* mUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4394691D3CDACA005B4E6C /* mUserData.swift */; };
+		3B43946A1D3CDACA005B4E6C /* MemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4394691D3CDACA005B4E6C /* MemberData.swift */; };
 		3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCD72D1D45B92C00892372 /* FileMan.swift */; };
 		3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
+		3BEF75731D616C0A007266C0 /* HotelCouponListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75721D616C0A007266C0 /* HotelCouponListVC.swift */; };
+		3BEF75751D617613007266C0 /* HotelCouponListExpireVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75741D617613007266C0 /* HotelCouponListExpireVC.swift */; };
+		3BEF75771D6177A0007266C0 /* customCouponList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF75761D6177A0007266C0 /* customCouponList.xib */; };
+		3BEF75791D6177A7007266C0 /* customCouponList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75781D6177A7007266C0 /* customCouponList.swift */; };
+		3BEF757F1D61A682007266C0 /* coupon_no_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF757E1D61A682007266C0 /* coupon_no_image.jpg */; };
+		3BEF75811D61AAD6007266C0 /* HotelCreateCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75801D61AAD6007266C0 /* HotelCreateCouponVC.swift */; };
+		3BEF75831D61AAE4007266C0 /* HotelEditCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75821D61AAE4007266C0 /* HotelEditCouponVC.swift */; };
 		C9F5F891412219F989281C5A /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */; };
 		F20614394B5D165D4B58249E /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E32DE7D8F7AE7C182E11F0 /* Pods_TouchInsightAdminTests.framework */; };
 		F2A028A4390F7C5F1F5558B7 /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F85F983B1A69289714ED14B /* Pods_TouchInsightAdmin.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -360,12 +367,19 @@
 		3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mild_hover.png; sourceTree = "<group>"; };
 		3B1EFC4B1D34B05E00A7F4EA /* mild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mild.png; sourceTree = "<group>"; };
 		3B346C461D49EB3E001C5AAF /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
-		3B4394691D3CDACA005B4E6C /* mUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mUserData.swift; path = Model/mUserData.swift; sourceTree = "<group>"; };
+		3B4394691D3CDACA005B4E6C /* MemberData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberData.swift; path = Model/MemberData.swift; sourceTree = "<group>"; };
 		3B43946B1D3CE12D005B4E6C /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		3BBCD72D1D45B92C00892372 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
 		3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
+		3BEF75721D616C0A007266C0 /* HotelCouponListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCouponListVC.swift; sourceTree = "<group>"; };
+		3BEF75741D617613007266C0 /* HotelCouponListExpireVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCouponListExpireVC.swift; sourceTree = "<group>"; };
+		3BEF75761D6177A0007266C0 /* customCouponList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customCouponList.xib; sourceTree = "<group>"; };
+		3BEF75781D6177A7007266C0 /* customCouponList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCouponList.swift; sourceTree = "<group>"; };
+		3BEF757E1D61A682007266C0 /* coupon_no_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coupon_no_image.jpg; sourceTree = "<group>"; };
+		3BEF75801D61AAD6007266C0 /* HotelCreateCouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCreateCouponVC.swift; sourceTree = "<group>"; };
+		3BEF75821D61AAE4007266C0 /* HotelEditCouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelEditCouponVC.swift; sourceTree = "<group>"; };
 		586D92AF6F711ED82D2C729C /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		5FF54FEFB0933D4688889AAE /* Pods-TouchInsightAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -753,6 +767,7 @@
 				3B1EFC451D34B05400A7F4EA /* Spicy Level */,
 				3B1EFC3E1D334BF600A7F4EA /* Check */,
 				3B1EFC211D334BCF00A7F4EA /* DateSet */,
+				3BEF757E1D61A682007266C0 /* coupon_no_image.jpg */,
 				F36AABC71C8EEB2E000B7BFE /* edit_icon.png */,
 				F366B7171C7C38A0006EC4B7 /* empty_menu.png */,
 				F3DA15D01C6486B600900527 /* icon-2.png */,
@@ -872,7 +887,7 @@
 		3B4394681D3CDA7D005B4E6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3B4394691D3CDACA005B4E6C /* mUserData.swift */,
+				3B4394691D3CDACA005B4E6C /* MemberData.swift */,
 				3BBCD72D1D45B92C00892372 /* FileMan.swift */,
 			);
 			name = Model;
@@ -1014,6 +1029,8 @@
 				F3C6DC0D1C1821870005A621 /* RoomGalleryCell.swift */,
 				F3A758191C27D6FD00CBB8A0 /* customRoomList.xib */,
 				F3E6F7721C1EA44D005FE053 /* customRoomListTbl.swift */,
+				3BEF75761D6177A0007266C0 /* customCouponList.xib */,
+				3BEF75781D6177A7007266C0 /* customCouponList.swift */,
 				366F50071D373C3D005B6DF1 /* customMenuList.xib */,
 				366F50051D373C23005B6DF1 /* customMenuListTbl.swift */,
 				F3C069DB1C0C617E004E19D8 /* customProviderListVC.xib */,
@@ -1059,6 +1076,10 @@
 				F3C6DC1B1C197B710005A621 /* ImageGalleryVC.swift */,
 				F3BA1F541C76FF6700B0782C /* ImageCollectionViewCell.swift */,
 				366F4FFD1D34FD5B005B6DF1 /* HotelAddContentInfo.swift */,
+				3BEF75721D616C0A007266C0 /* HotelCouponListVC.swift */,
+				3BEF75741D617613007266C0 /* HotelCouponListExpireVC.swift */,
+				3BEF75801D61AAD6007266C0 /* HotelCreateCouponVC.swift */,
+				3BEF75821D61AAE4007266C0 /* HotelEditCouponVC.swift */,
 			);
 			name = Hotel;
 			sourceTree = "<group>";
@@ -1104,6 +1125,7 @@
 				5FDDBFD69044B021B2268B8B /* [CP] Copy Pods Resources */,
 				F369AA9B1D2E3E730025FAB7 /* Fabric Script */,
 				3BBCD7311D45FBA000892372 /* Run Script ServiceAccount.json */,
+				3BF01C3B1D583D9B00323342 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1234,6 +1256,7 @@
 				F34D52D71C3CF560002AC1EF /* hotel.png in Resources */,
 				F3B8B5231C3B858300768DF9 /* roomfacilityCell.xib in Resources */,
 				F360C2CD1C0ED94600149CCC /* ic_provider_list.png in Resources */,
+				3BEF75771D6177A0007266C0 /* customCouponList.xib in Resources */,
 				F3B071251C0F566300DC97CB /* Screenshot-32.png in Resources */,
 				F36965F41C578D51001F18AD /* ic_livestream_menu2.png in Resources */,
 				3B1EFC311D334BE700A7F4EA /* fr.png in Resources */,
@@ -1306,6 +1329,7 @@
 				F3C1ACF71C5EFDD400446DAD /* bg_cctvdefault.png in Resources */,
 				3B1EFC381D334BE700A7F4EA /* th_hover.png in Resources */,
 				F36965EF1C578D51001F18AD /* ic_gellary.png in Resources */,
+				3BEF757F1D61A682007266C0 /* coupon_no_image.jpg in Resources */,
 				3B1EFC361D334BE700A7F4EA /* su_hover.png in Resources */,
 				F36965F11C578D51001F18AD /* ic_info.png in Resources */,
 				F3B8B5211C3B847100768DF9 /* roomfacility.xib in Resources */,
@@ -1381,6 +1405,19 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=Path/To/ServiceAccount.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:my:app:id\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
+		};
+		3BF01C3B1D583D9B00323342 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "./Pods/FirebaseCrash/batch-upload FFF5435E-EE96-3CA2-94E7-E8B37CD01C2C";
 		};
 		3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1509,9 +1546,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F329F1FD1D2D106B0061BA52 /* ResImageCollectionViewCell.swift in Sources */,
-				3B43946A1D3CDACA005B4E6C /* mUserData.swift in Sources */,
+				3B43946A1D3CDACA005B4E6C /* MemberData.swift in Sources */,
 				3621BC741C06DC2A0051E850 /* API_Model.swift in Sources */,
 				F3EFB8831C6848950010D24D /* SBScrollView.swift in Sources */,
+				3BEF75751D617613007266C0 /* HotelCouponListExpireVC.swift in Sources */,
 				F329F1F91D2D10540061BA52 /* ResImageGalleryVC.swift in Sources */,
 				368AB9DC1D2FA1DB007CEC09 /* Resfacility.swift in Sources */,
 				F309A38C1C8002520084647D /* introPage4.swift in Sources */,
@@ -1530,6 +1568,7 @@
 				F30DF85A1D2F5B110074B713 /* AttnMenuInfoVC.swift in Sources */,
 				F329F1FB1D2D10600061BA52 /* ResEditMenuVC.swift in Sources */,
 				F329F1F51D2D10260061BA52 /* ResMenuInfoVC.swift in Sources */,
+				3BEF75791D6177A7007266C0 /* customCouponList.swift in Sources */,
 				F3C6DC041C17D6F90005A621 /* RoomInfoVC.swift in Sources */,
 				F3C6DC0C1C1805450005A621 /* CreateRoomInfoVC.swift in Sources */,
 				F355232F1C28EF75001F5A27 /* AddProviderAlertVC.swift in Sources */,
@@ -1563,6 +1602,7 @@
 				F306727D1C1718E6001A577F /* ProviderInfoVC.swift in Sources */,
 				F383BF5D1C7C185500726ED7 /* SSRadioButtonsController.swift in Sources */,
 				36DC41291C05C667001B8E22 /* DeviceType.swift in Sources */,
+				3BEF75811D61AAD6007266C0 /* HotelCreateCouponVC.swift in Sources */,
 				36DC41201C05C5B4001B8E22 /* FTWButton.m in Sources */,
 				36DC412B1C05C6E3001B8E22 /* JobTextFieldxxx.swift in Sources */,
 				F30DF8621D2F5B380074B713 /* AttnImageCollectionViewCell.swift in Sources */,
@@ -1570,6 +1610,7 @@
 				36AD55E41C0C391D001CAB71 /* ProviderListVC.swift in Sources */,
 				F329F1F31D2D10190061BA52 /* ResLocationVC.swift in Sources */,
 				F3A758311C27FD8D00CBB8A0 /* providerCell.swift in Sources */,
+				3BEF75831D61AAE4007266C0 /* HotelEditCouponVC.swift in Sources */,
 				36DC41251C05C600001B8E22 /* TestVC.swift in Sources */,
 				F33261621C0710EE0035C67D /* RegisterVC.swift in Sources */,
 				F329F1E61D2CCB2D0061BA52 /* fileManager.swift in Sources */,
@@ -1580,6 +1621,7 @@
 				F3627FEE1C2BACEC006BC607 /* CNPPopupTheme.m in Sources */,
 				F3B8B5251C3B85EE00768DF9 /* roomfacility.swift in Sources */,
 				3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */,
+				3BEF75731D616C0A007266C0 /* HotelCouponListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1721,8 +1763,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thirawat Phannet (9U54D3YCXA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thirawat Phannet (9U54D3YCXA)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1786,7 +1828,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.co.Touchtechnologies.SeeitLiveThailandAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b8f34c1e-da79-459d-b0ef-7997dd7d5206";
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchInsightAdmin/TouchInsightAdmin-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1798,8 +1840,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Touch Technologies Co., Ltd. (28WCARLR9T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Touch Technologies Co., Ltd. (28WCARLR9T)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1863,7 +1905,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.co.Touchtechnologies.SeeitLiveThailandAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c1531f34-b304-4659-bcec-692226bc6f2b";
 				SWIFT_OBJC_BRIDGING_HEADER = "TouchInsightAdmin/TouchInsightAdmin-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

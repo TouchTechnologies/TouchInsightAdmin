@@ -12,7 +12,9 @@ import Foundation
 import Fabric
 import Crashlytics
 import Firebase
+import RealmSwift
 
+let uiRealm = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -118,6 +120,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         ]
     
     
+    var menuFocusIndexOnBack:Int = 0
+    
+    func getMemberData() -> [String:AnyObject] {
+        
+        let arrMember = Array(uiRealm.objects(MemberData).toArray())
+        var dicMember = [String:AnyObject]()
+//        if arrMember.count > 0 {
+//            
+//            print("DLG getMemberData() - 1")
+//            //print(arrMember[0])
+//            
+////            for (ky, val) in (arrMember[0]){
+////                print(xxx)
+////            }
+//         //arrMember[0].valueForKey("userInfo")
+//            
+//            self.userInfo["userID"] = arrMember[0].valueForKey("userInfo") as? String
+////            self.userInfo["avatarImage"] = String(arrMember[0]["avatarImage"])
+////            self.userInfo["profileName"] = String(arrMember[0]["profileName"])
+////            self.userInfo["firstName"] = String(arrMember[0]["firstName"])
+////            self.userInfo["lastName"] = String(arrMember[0]["lastName"])
+////            self.userInfo["email"] = String(arrMember[0]["email"])
+////            self.userInfo["accessToken"] = String(arrMember[0]["accessToken"])
+////            self.userInfo["mobile"] = String(arrMember[0]["mobile"])
+////            self.userInfo["username"] = String(arrMember[0]["username"])
+////            self.userInfo["passWord"] = String(arrMember[0]["passWord"])
+////            self.userInfo["id"] = String(arrMember[0]["id"])
+//            
+//            print("DLG getMemberData() - 2")
+//            
+//            dicMember = Dictionary()
+//        }
+        return dicMember
+    }
+    
     func getlistProvider(completionHandler:[String:AnyObject]->()) {
         
         let userData = self.userInfo
@@ -165,6 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         FIRApp.configure()
         
+        self.getMemberData()
         
         return true
         

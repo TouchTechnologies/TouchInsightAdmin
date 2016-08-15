@@ -40,9 +40,16 @@ pod 'Crashlytics'
 pod 'FileProvider'
 pod 'RealmSwift'
 
+pod 'SwiftyJSON'
+
 #Firebase
 pod 'Firebase'
 pod 'Firebase/Crash'
+
+pod 'Bolts'
+pod 'FBSDKCoreKit'
+#pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 
 target 'TouchInsightAdmin' do
 

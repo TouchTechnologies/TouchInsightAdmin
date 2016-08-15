@@ -21,10 +21,33 @@ import PKHUD
 import Firebase
 import FirebaseCrash
 
-import Realm
+import FBSDKCoreKit
+//import FBSDKShareKit
+import FBSDKLoginKit
+
 import RealmSwift
 
+extension Results {
+    
+    func toArray() -> [T] {
+        return self.map{$0}
+    }
+}
+
+extension RealmSwift.List {
+    
+    func toArray() -> [T] {
+        return self.map{$0}
+    }
+}
 class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate {
+    
+    var _member : Results<MemberData>!
+    
+    
+    @IBOutlet weak var scrollview: UIScrollView!
+    @IBOutlet weak var btnLogin: UIButton!
+    let btnFbLogin = FBSDKLoginButton()
     
     @IBOutlet weak var userNameTxt: UITextField!
     @IBOutlet weak var passWordTxt: UITextField!
@@ -43,7 +66,6 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
     
     //    var provinceList = [ProvinceList]()
     //    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    
     
     
     @IBAction func registBtn(sender: AnyObject) {
@@ -89,13 +111,65 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         self.view.endEditing(true)
     }
     
+    
+    func readDB(){
+        self._member = uiRealm.objects(MemberData)
+//        if self._member != nil {
+//            return self._member
+//        }else{
+//            return nil
+//        }
+//        
+//        print("--------- readDB --------")
+//        print(self._member[0])
+//        print("----------------------------")
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        
+//        readDB()
+//        if self._member != nil{
+//            
+//            let m = Array((self._member).toArray())
+//            
+//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
+//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
+//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
+//            print(m)
+//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
+//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
+//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
+//            
+//
+////            do {
+////                let realm = try Realm()
+////                let objs = realm.objects(MemberData).toArray()
+////                // ...
+////                
+////            } catch _ {
+////                // ...
+////            }
+//
+//            
+//        }
+        
+        
+
+
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginVC.dismissKeyboard))
         tap.delegate = self
         tap.cancelsTouchesInView = true
         self.view!.addGestureRecognizer(tap)
+        
+        
         
         
         
@@ -105,7 +179,6 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         //        
         //        RealmRead()
         //
-        super.viewDidLoad()
         self.setViewStyle()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
@@ -233,6 +306,12 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         passWordTxt.layer.borderWidth = 1
         passWordTxt.layer.borderColor = UIColor.grayColor().CGColor
         
+        // ยังไม่เซทค่า config app
+        // https://developers.facebook.com/docs/facebook-login/ios#code-example
+        var frmBtnFbLogin = btnLogin.frame
+        frmBtnFbLogin.origin.y = btnLogin.frame.origin.y + btnLogin.frame.size.height + 12
+        btnFbLogin.frame = frmBtnFbLogin
+        scrollview.addSubview(btnFbLogin)
     }
     
     
@@ -345,6 +424,27 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                         
                         self.appDelegate.isLogin = true
                         print("APPDALAGATELOGIN:::\(self.appDelegate.isLogin)")
+                        
+                        
+                        let newMember = MemberData()
+                        newMember.id = self.appDelegate.userInfo["id"]!
+                        newMember.userID = self.appDelegate.userInfo["userID"]!
+                        newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
+                        newMember.firstName = self.appDelegate.userInfo["firstName"]!
+                        newMember.lastName = self.appDelegate.userInfo["lastName"]!
+                        newMember.profileName = self.appDelegate.userInfo["profileName"]!
+                        newMember.mobile = self.appDelegate.userInfo["mobile"]!
+                        newMember.email = self.appDelegate.userInfo["email"]!
+                        newMember.username = self.appDelegate.userInfo["username"]!
+                        newMember.passWord = self.appDelegate.userInfo["passWord"]!
+                        
+                        try! uiRealm.write{
+                            uiRealm.add(newMember)
+                            
+                            print("write Yes")
+                            self.readDB()
+                            
+                        }
                         
                         let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                         self.navigationController?.pushViewController(secondViewController!, animated: true)

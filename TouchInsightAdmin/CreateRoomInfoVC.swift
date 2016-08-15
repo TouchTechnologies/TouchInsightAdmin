@@ -10,7 +10,6 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-
 class CreateRoomInfoVC: UIViewController,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate , UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()

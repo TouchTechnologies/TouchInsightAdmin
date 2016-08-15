@@ -25,6 +25,9 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
     var RoominfoViewController = UIViewController()
     var navunderlive = UIView()
     
+    var _HotelCouponListVC = UIViewController()
+    var _HotelCouponListExpireVC = UIViewController()
+    
     var options = PagingMenuOptions()
     
     
@@ -67,13 +70,35 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         self.reloadInputViews()
         // self.appDelegate.pagecontrolIndex = 2
         
-        
         self.getProviderByID()
         
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("viewWillAppearviewWillAppearviewWillAppear")
         self.navigationController?.navigationBarHidden = false
+        self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
+        self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
+        self.reloadInputViews()
+        self.appDelegate.viewWithTopButtons.hidden = false
+        //self.initialInfoVC()
+        
+        if (self.appDelegate.menuFocusIndexOnBack == 0){
+            btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
+            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+            btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
+        }else if(self.appDelegate.menuFocusIndexOnBack == 1){
+            btnGallery.setImage(UIImage(named:"ic_gellary2.png"), forState: .Normal)
+            btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
+            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+        }else if(self.appDelegate.menuFocusIndexOnBack == 2){
+            btnLive.setImage(UIImage(named: "ic_livestream_menu2.png"), forState: .Normal)
+            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         
         
         
@@ -86,9 +111,12 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
     // MARK: - PagingMenuControllerDelegate
     
     func willMoveToMenuPage(page: Int) {
+        print("willMoveToMenuPage \(page)")
     }
     
     func didMoveToMenuPage(page: Int) {
+        print("didMoveToMenuPage \(page)")
+        
     }
     
     
@@ -140,8 +168,7 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         options.defaultPage = 0
         if(appDelegate.pagecontrolIndex == 2){
             options.defaultPage = 2
-        }
-        else{
+        }else{
             options.defaultPage = 0
         }
         options.scrollEnabled = true
@@ -222,6 +249,85 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         
         
     }
+    
+    
+    func initialCouponVC(){
+        
+//        _HotelCouponListVC = self.storyboard?.instantiateViewControllerWithIdentifier("HotelCouponListVC") as! HotelCouponListVC
+//        LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationVC") as! LocationVC
+//        
+//        // self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
+//        // self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
+//        // self.appDelegate.viewWithTopButtons.hidden = false
+//        
+//        
+//        let viewControllers = [_HotelCouponListVC,LocationViewController]
+//        
+//        options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
+//        let navwidth = self.navigationController?.navigationBar.bounds.size.width
+//        print("nav width = \(navwidth)")
+//        options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
+//        let menuWidth = navwidth! / 2
+//        options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: true, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
+//        
+//        
+//        options.scrollEnabled = true
+//        options.menuItemMargin = 0
+//        options.textColor = UIColor.grayColor()
+//        options.backgroundColor = UIColor.whiteColor()
+//        
+//        
+//        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+//        
+//        pagingMenuController.view.bounds.size.width = UIScreen.mainScreen().bounds.size.width
+//        pagingMenuController.setup(viewControllers: viewControllers, options: options)
+//        pagingMenuController.menuView.scrollEnabled = false
+//        
+        
+        
+        
+        
+        
+        
+        
+//        infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("InformationVC") as! InformationVC
+//        LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationVC") as! LocationVC
+//        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoomInfoVC") as! RoomInfoVC
+        
+        _HotelCouponListVC = self.storyboard?.instantiateViewControllerWithIdentifier("HotelCouponListVC") as! HotelCouponListVC
+        _HotelCouponListExpireVC = self.storyboard?.instantiateViewControllerWithIdentifier("HotelCouponListExpireVC") as! HotelCouponListExpireVC
+        
+        
+        //        let viewControllers = [infoViewController, LocationViewController, RoominfoViewController]
+        let viewControllers = [_HotelCouponListVC,_HotelCouponListExpireVC]
+        options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
+        let navwidth = self.navigationController?.navigationBar.bounds.size.width
+        print("nav width = \(navwidth)")
+        options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
+        let menuWidth = navwidth!/2
+        options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: false, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
+        options.defaultPage = 0
+        if(appDelegate.pagecontrolIndex == 2){
+            options.defaultPage = 2
+        }else{
+            options.defaultPage = 0
+        }
+        options.scrollEnabled = true
+        options.menuItemMargin = 0
+        options.textColor = UIColor.grayColor()
+        options.backgroundColor = UIColor.whiteColor()
+        
+        
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        pagingMenuController.delegate = self
+        pagingMenuController.view.bounds.size.width = UIScreen.mainScreen().bounds.size.width
+        pagingMenuController.setup(viewControllers: viewControllers, options: options)
+        pagingMenuController.menuView.scrollEnabled = true
+        pagingMenuController.menuView.menuItemViews.forEach{$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProviderInfoVC.handleTapGesture(_:)))) }
+        
+    }
+    
+    
     func topMenu(sender : UIButton){
         if (sender.tag == 0){
             btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
@@ -244,12 +350,16 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
 //            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
 //            print("live stream")
             
-            let alertView = SCLAlertView()
-            alertView.showCircularIcon = false
-            alertView.showNotice("Comming Soon !!!", subTitle: "")
+//            let alertView = SCLAlertView()
+//            alertView.showCircularIcon = false
+//            alertView.showNotice("Comming Soon !!!", subTitle: "")
+            
+            btnLive.setImage(UIImage(named: "ic_livestream_menu2.png"), forState: .Normal)
+            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+            self.initialCouponVC()
             
         }
-        
     }
     
     

@@ -9,16 +9,25 @@
 import Foundation
 import Alamofire
 import RNCryptor
+import SwiftyJSON
+
 //import CoreLocation
 class API_Model {
     
 //    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
 //    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
 //    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
-//    
-    let _apiUrl = "http://192.168.9.118/framework/public/api/v1/"
-    let _oldapiUrl = "http://192.168.9.118/api/interface/insight"
-    let _uploadAPI = "http://192.168.9.118/api/uploadmedia/"
+
+    
+    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
+    
+    
+//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+//    let _oldapiUrl = "http://27.254.47.203:8094/backend_api/interface/insight"
+//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+    
     
     // test to tak
     
@@ -150,15 +159,26 @@ class API_Model {
             //                print(response.data)     // server data
             //                print(response.result)   // result of response serialization
             
-            if let JSON = response.result.value {
-                //                    print("providerAPIJSON: \(JSON)")
-                if let jsonStatus = (JSON["status"])
-                {
-                    //print("jsonStatus :\(JSON["status"] as! Int)")
-                    if (jsonStatus as! Int == 4051){
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    
+//                    print("------- print test data json -------")
+//                    print(value)
+//                    print("------------------------------------")
+//                    
+//                    print("------- print test data json -------")
+//                    print(json)
+//                    print("------------------------------------")
+                    
+                    let jsonStatus = json["status"].intValue
+                    
+                    print("------- jsonStatus = \"\(jsonStatus)\" -------")
+                    if (jsonStatus == 4051){
                         print("Error")
                     }else{
-                        let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
+                        let result = self.deCrypt(json["data"].stringValue, base64IV: IV_Key64)
                         //print("============================================")
                         
                         //                            print("before JsonEncode : \(result)")
@@ -178,10 +198,79 @@ class API_Model {
                         //                            print("after JsonEncode : \(resultJson)")
                         //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
                     }
+                    
+//                    if let jsonStatus = json["status"]{
+//                        //print("jsonStatus :\(JSON["status"] as! Int)")
+//                        if (jsonStatus as! Int == 4051){
+//                            print("Error")
+//                        }else{
+//                            let result = self.deCrypt(json["data"].stringValue, base64IV: IV_Key64)
+//                            //print("============================================")
+//                            
+//                            //                            print("before JsonEncode : \(result)")
+//                            //completionHandler(JSON as! [String : AnyObject])
+//                            let resultJson = self.jsonEncode(result as String)
+//                            //                            print("resultJson")
+//                            //                            print(resultJson)
+//                            //                            print("= = = = = = = =")
+//                            
+//                            print("---->>>provider APIJSON<<<-----")
+//                            print(dataJson)
+//                            print("-------------------------------")
+//                            print(result)
+//                            print("||||>>>provider APIJSON<<<||||")
+//                            
+//                            completionHandler(resultJson )
+//                            //                            print("after JsonEncode : \(resultJson)")
+//                            //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
+//                        }
+//                    }else{
+//                    
+//                    }
+                    
                 }
+
+                break
+            case .Failure( _):
                 
-                
+                print("--- Error ---")
+//                print(error)
+                break
             }
+            
+            
+//            if let JSON = response.result.value {
+//                //                    print("providerAPIJSON: \(JSON)")
+//                if let jsonStatus = (JSON["status"])
+//                {
+//                    //print("jsonStatus :\(JSON["status"] as! Int)")
+//                    if (jsonStatus as! Int == 4051){
+//                        print("Error")
+//                    }else{
+//                        let result = self.deCrypt(JSON["data"] as! String, base64IV: IV_Key64)
+//                        //print("============================================")
+//                        
+//                        //                            print("before JsonEncode : \(result)")
+//                        //completionHandler(JSON as! [String : AnyObject])
+//                        let resultJson = self.jsonEncode(result as String)
+//                        //                            print("resultJson")
+//                        //                            print(resultJson)
+//                        //                            print("= = = = = = = =")
+//                        
+//                        print("---->>>provider APIJSON<<<-----")
+//                        print(dataJson)
+//                        print("-------------------------------")
+//                        print(result)
+//                        print("||||>>>provider APIJSON<<<||||")
+//                        
+//                        completionHandler(resultJson )
+//                        //                            print("after JsonEncode : \(resultJson)")
+//                        //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
+//                    }
+//                }
+//                
+//                
+//            }
         }
     }
     func getProvince(apiCode:String,dataJson:String,completionHandler:NSDictionary->()){

@@ -59,11 +59,12 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     @IBAction  func btnCreateProvider(sender: AnyObject) {
         print("alert ")
         
-        alert.delegate = self
-        alert.buttonColor = UIColor.redColor()
-        alert.containerView = createpopupView()
-        alert.show()
+//        alert.delegate = self
+//        alert.buttonColor = UIColor.redColor()
+//        alert.containerView = createpopupView()
+//        alert.show()
         
+        setAddForm(.Show)
         
         //      alert.keyboardWillShow(NSNotification)
     }
@@ -534,6 +535,63 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         }
     }
     
+    var viewAlert = UIView()
+    var viewAlertBG = UIView()
+    func initAddForm() {
+//        let AddView:UIView = UINib(nibName: "nib file name", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as UIView
+        
+        let AddView:alertCreateProviderV = NSBundle.mainBundle().loadNibNamed("customCreateProvider", owner: self, options: nil)[0] as! alertCreateProviderV
+        
+        var frmAlertView = self.view.frame
+        frmAlertView.size.width = self.view.frame.size.width - 30
+        frmAlertView.size.height = self.view.frame.size.height - ( 30 + 20 + 44 + 15 )
+        frmAlertView.origin.x = 15
+        frmAlertView.origin.y = 20 + 44 + 15
+        viewAlert.frame = frmAlertView
+        viewAlert.alpha = 0
+        viewAlert.clipsToBounds = true
+//        viewAlert.contentMode = .ScaleAspectFit
+        viewAlert.backgroundColor = UIColor.greenColor()
+        
+        viewAlert.tag = 9988991
+        
+        viewAlert.addSubview(AddView)
+        
+        
+        viewAlertBG.frame = self.view.frame
+        viewAlertBG.frame.origin.x = 0
+        viewAlertBG.frame.origin.y = 0
+        viewAlertBG.alpha = 0
+        viewAlertBG.tag = 9988992
+        viewAlertBG.backgroundColor = UIColor.blackColor()
+        
+        
+        self.view.addSubview(viewAlertBG)
+        self.view.addSubview(viewAlert)
+        
+    }
+    
+    enum setAddFormType {
+        case Show
+        case Hide
+    }
+    func setAddForm(action: setAddFormType) {
+        print("setAddForm action = \(action)")
+        if action == .Show{
+            UIView.animateWithDuration(0.25, animations: {
+                self.viewAlert.alpha = 1
+                self.viewAlertBG.alpha = 0.7
+            })
+        }else if action == .Hide{
+            UIView.animateWithDuration(0.25, animations: {
+                self.viewAlert.alpha = 0
+                self.viewAlertBG.alpha = 0
+            })
+        }
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -554,11 +612,11 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         self.reloadData()
         
         //create alert
-        
+        initAddForm()
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        self.appDelegate.menuFocusIndexOnBack = 0
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
     }
     

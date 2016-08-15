@@ -53,6 +53,7 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
    
         let alert = SCLAlertView()
         alert.showCloseButton = false
+        alert.showCircularIcon = false
         alert.addButton("OK", action: {action in
             
         })

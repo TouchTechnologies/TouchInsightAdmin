@@ -8,13 +8,13 @@
 
 import UIKit
 import SCLAlertView
-class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource ,UITextFieldDelegate{
+class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource ,UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let typename : [String] = ["Attraction","Restaurant","Hotel"]
     let typeimg : [String] = ["ic_attraction","ic_restaurant","ic_hotel"]
     let typeimghover : [String] = ["ic_attraction_hover","ic_restaurant_hover","ic_hotel_hover"]
-    var typeKeyName:String?
+    var typeKeyName:String? = ""
     var currentSelectStatus = [false,false,false]
     
     @IBOutlet var closeBtn: UIButton!
@@ -38,6 +38,7 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
         if(UI_USER_INTERFACE_IDIOM() == .Pad){
             
             //rowH = 70*scy
+            rowH = 70
         }
         else{
             
@@ -53,115 +54,143 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
     //       // tableView.reloadData()
     //    }
     @IBAction func createBtn(sender: AnyObject) {
-        let send = API_Model()
-        // var titleMessage:String = ""
+        
         let message:String = "Information"
-        //        if self.typeKeyName == typename[2]
-        //        {
-        //            let dataJson =
-        //            [
-        //                "providerInformation" :
-        //                    [
-        //                        "providerTypeKeyname" : self.typeKeyName!,
-        //                        "nameEn"              :providerNameTxt.text!,
-        //                        "nameTh"              : ""
-        //                    ],
-        //                "user" :
-        //                    [
-        //                        "accessToken" : self.appDelegate.userInfo["accessToken"]!
-        //                    ]
-        //            ]
-        //
-        //            //create Provider
-        //            send.providerAPI(self.appDelegate.command["createProvider"]!, dataJson: send.Dict2JsonString(dataJson)){
-        //                data in
-        //                //                    print("data :\(data)")
-        //
-        //               let dataJsonUpdate = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
-        //              //  print("appDelegate :\(self.appDelegate.userInfo["email"])")
-        //                                 print("dataSendJson : \(dataJsonUpdate)")
-        //                //
-        //                send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJsonUpdate){
-        //                    data in
-        //
-        //                    //                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
-        //                    self.appDelegate.providerData = data
-        //                    print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
-        //
-        ////                    message = "Info"
-        //                self.alertsuccess.addButton("OK", action: {
-        //                        print ("Success")
-        //
-        //                        self.providerNameTxt.text = ""
-        //
-        //                        self.tableView.reloadData()
-        //                        self.removeFromSuperview()
-        //
-        //
-        //                    })
-        //                self.alertsuccess.showCloseButton = false
-        //                self.alertsuccess.showCircularIcon = false
-        //                self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:1.0, colorStyle:0xAC332F)
-        //                }
-        //
-        //            }
-        //        }
-        //        else
-        //        {
-        //
-        //            message = "Information"
-        //            let alertfail = SCLAlertView()
-        //            alertfail.showCircularIcon = false
-        //            alertfail.showInfo(message, subTitle: "Create provider fail!", colorStyle:0xAC332F)
-        //                print("nil")
-        //        }
-        
-        let dataJson =
-            [
-                "providerInformation" :
-                    [
-                        "providerTypeKeyname" : self.typeKeyName!,
-                        "nameEn"              :providerNameTxt.text!,
-                        "nameTh"              : ""
-                ],
-                "user" :
-                    [
-                        "accessToken" : self.appDelegate.userInfo["accessToken"]!
-                ]
-        ]
-        
-        //create Provider
-        send.providerAPI(self.appDelegate.command["createProvider"]!, dataJson: send.Dict2JsonString(dataJson)){
-            data in
-            //                    print("data :\(data)")
+        if providerNameTxt.text == "" {
             
-            let dataJsonUpdate = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
-            //  print("appDelegate :\(self.appDelegate.userInfo["email"])")
-            print("dataSendJson : \(dataJsonUpdate)")
+            let alert = SCLAlertView()
+            alert.showCircularIcon = false
+            alert.showCloseButton = false
+            alert.addButton("OK", action: {
+                self.providerNameTxt.becomeFirstResponder()
+            })
+            alert.showInfo(message, subTitle: "Choose provider type!", colorStyle:0xAC332F)
+            
+            
+        }else if self.typeKeyName == "" {
+            
+            let alert = SCLAlertView()
+            alert.showCircularIcon = false
+            alert.showCloseButton = false
+            alert.addButton("OK", action: {
+                
+            })
+            alert.showInfo(message, subTitle: "Choose provider type!", colorStyle:0xAC332F)
+            
+        }else{
+            
+            let send = API_Model()
+            // var titleMessage:String = ""
+            //        if self.typeKeyName == typename[2]
+            //        {
+            //            let dataJson =
+            //            [
+            //                "providerInformation" :
+            //                    [
+            //                        "providerTypeKeyname" : self.typeKeyName!,
+            //                        "nameEn"              :providerNameTxt.text!,
+            //                        "nameTh"              : ""
+            //                    ],
+            //                "user" :
+            //                    [
+            //                        "accessToken" : self.appDelegate.userInfo["accessToken"]!
+            //                    ]
+            //            ]
             //
-            send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJsonUpdate){
+            //            //create Provider
+            //            send.providerAPI(self.appDelegate.command["createProvider"]!, dataJson: send.Dict2JsonString(dataJson)){
+            //                data in
+            //                //                    print("data :\(data)")
+            //
+            //               let dataJsonUpdate = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
+            //              //  print("appDelegate :\(self.appDelegate.userInfo["email"])")
+            //                                 print("dataSendJson : \(dataJsonUpdate)")
+            //                //
+            //                send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJsonUpdate){
+            //                    data in
+            //
+            //                    //                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
+            //                    self.appDelegate.providerData = data
+            //                    print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
+            //
+            ////                    message = "Info"
+            //                self.alertsuccess.addButton("OK", action: {
+            //                        print ("Success")
+            //
+            //                        self.providerNameTxt.text = ""
+            //
+            //                        self.tableView.reloadData()
+            //                        self.removeFromSuperview()
+            //
+            //
+            //                    })
+            //                self.alertsuccess.showCloseButton = false
+            //                self.alertsuccess.showCircularIcon = false
+            //                self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:1.0, colorStyle:0xAC332F)
+            //                }
+            //
+            //            }
+            //        }
+            //        else
+            //        {
+            //
+            //            message = "Information"
+            //            let alertfail = SCLAlertView()
+            //            alertfail.showCircularIcon = false
+            //            alertfail.showInfo(message, subTitle: "Create provider fail!", colorStyle:0xAC332F)
+            //                print("nil")
+            //        }
+            
+            let dataJson =
+                [
+                    "providerInformation" :
+                        [
+                            "providerTypeKeyname" : self.typeKeyName!,
+                            "nameEn"              :providerNameTxt.text!,
+                            "nameTh"              : ""
+                    ],
+                    "user" :
+                        [
+                            "accessToken" : self.appDelegate.userInfo["accessToken"]!
+                    ]
+            ]
+            
+            //create Provider
+            send.providerAPI(self.appDelegate.command["createProvider"]!, dataJson: send.Dict2JsonString(dataJson)){
                 data in
+                //                    print("data :\(data)")
                 
-                //                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
-                self.appDelegate.providerData = data
-                print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
+                let dataJsonUpdate = "{\"providerUser\":\"\(self.appDelegate.userInfo["email"]!)\"}"
+                //  print("appDelegate :\(self.appDelegate.userInfo["email"])")
+                print("dataSendJson : \(dataJsonUpdate)")
+                //
+                send.providerAPI(self.appDelegate.command["listProvider"]!, dataJson: dataJsonUpdate){
+                    data in
+                    
+                    //                        print("listProvider :\(data["ListProviderInformationSummary"]!)")
+                    self.appDelegate.providerData = data
+                    print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
+                    
+                    //                    message = "Info"
+                    self.alertsuccess.addButton("OK", action: {
+                        print ("Success")
+                        
+                        self.providerNameTxt.text = ""
+                        
+                        self.tableView.reloadData()
+                        
+                        self.btnCloseFormClick(UIButton())
+                        
+                        //                    self.superview!.superview!.removeFromSuperview()
+                        //                    let provList = ProviderListVC()
+                        //                    provList.alertDismiss(UIButton())
+                        
+                    })
+                    self.alertsuccess.showCloseButton = false
+                    self.alertsuccess.showCircularIcon = false
+                    self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:5.0, colorStyle:0xAC332F)
+                }
                 
-                //                    message = "Info"
-                self.alertsuccess.addButton("OK", action: {
-                    print ("Success")
-                    
-                    self.providerNameTxt.text = ""
-                    
-                    self.tableView.reloadData()
-                
-//                    self.superview!.superview!.removeFromSuperview()
-//                    let provList = ProviderListVC()
-//                    provList.alertDismiss(UIButton())
-                    
-                })
-                self.alertsuccess.showCloseButton = false
-                self.alertsuccess.showCircularIcon = false
-                self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:5.0, colorStyle:0xAC332F)
             }
             
         }
@@ -175,13 +204,61 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
         
         
     }
+    
+    @IBAction func btnCloseFormClick(sender: AnyObject) {
+        
+        //        let pListVC = ProviderListVC()
+        //        pListVC.setAddForm(.Hide)
+        
+        
+        //   , 9988992
+        let superView = self.superview!.superview!
+        for v:UIView in superView.subviews {
+            
+            if v.tag == 9988991 || v.tag == 9988992 {
+                UIView.animateWithDuration(0.25, animations: {
+                    v.alpha = 0
+                })
+            }
+            print("v.tag")
+            print(v.tag)
+        }
+        print("----------------------")
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.initialSize()
         
+        
         UIView.animateWithDuration(0.5, animations: {}, completion: {_ in
-            self.providerNameTxt.becomeFirstResponder()
+            //self.providerNameTxt.becomeFirstResponder()
+            
+            let superView = self.superview!
+            print("superView Tag : \(superView.tag)")
+            
+            var frmAlertView = superView.frame
+            frmAlertView.origin.x = 0
+            frmAlertView.origin.y = 0
+            self.frame = frmAlertView
+            
+            self.providerNameTxt.delegate = self
+            
+            
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+            tap.delegate = self
+            tap.cancelsTouchesInView = false
+            self.addGestureRecognizer(tap)
+            
+            
         })
+    }
+    
+    func dismissKeyboard() {
+        
+        self.endEditing(true)
+        
     }
     
     
@@ -191,7 +268,7 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.providerNameTxt.resignFirstResponder()
+        //self.providerNameTxt.resignFirstResponder()
         
         print(" Index Path : \(indexPath.row)")
         typeKeyName = typename[indexPath.row]
@@ -256,14 +333,18 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
     func tableView(tableView: UITableView,didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.allowsMultipleSelection = false
     }
-    //    
+    //
     //    func textFieldShouldReturn(textField: UITextField) -> Bool {
     //        textField.resignFirstResponder()
     //        return true
-    //        
+    //
     //    }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return rowH
     }
     
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return providerNameTxt.resignFirstResponder()
+    }
 }
