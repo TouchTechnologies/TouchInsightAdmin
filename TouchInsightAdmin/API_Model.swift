@@ -461,6 +461,7 @@ class API_Model {
             
         }
     }
+    //http://localhost/api/v1/users/:userId/social-accounts
     
     func Register(firstName:String,lastName:String,mobile:String,email:String,passWord:String,completionHandler:[String:AnyObject]->())
     {
@@ -491,6 +492,7 @@ class API_Model {
                             print("code : : \(code)")
                             if code == nil{
                                 data["status"] = true
+                                data["data"] = JSON
                             }else{
                                 data["status"] = false
                             }
@@ -600,7 +602,230 @@ class API_Model {
                 
         }
     }
-    
+    //users/:userId/social-accounts
+    func LogInFB(userID:String,socialAccessToken:String,completionHandler:[String:AnyObject]->())
+    {
+        let parameters = [
+//            "userId":"facebook",
+            "accessToken":socialAccessToken,
+            "social":"facebook"             //Fix
+        ]
+        print("parameter \(parameters)")
+        let reqUrl = "\(_apiUrl)users/\(userID)/social-accounts"
+        print(reqUrl)
+        
+        let request = Alamofire.request(.POST, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
+        //request.validate()
+        request.responseJSON{response in
+            
+            var returnData: [String:AnyObject] = [:]
+            //            var returnData: [String:AnyObject] = [
+            //                "success":false,
+            //                "message":"Cannot Connect to Server!",
+            //                "data":[]
+            //            ]
+            
+            print("JSON(LogInFB)")
+            print(response.result.value)
+            
+            if response.result.isSuccess {
+                
+                if let json = response.result.value {
+                    
+                    if let userId = json["userId"] as! String? { // Login OK
+                        //print("userId = \(userId)")
+
+                        let parametersFB = [
+                            //            "userId":"facebook",
+                            "tokenIdentifier":self._UUID,
+                            "platform":"Application",//Fix
+                            "os":"iOS"              //Fix
+                        ]
+                        print("parameter \(parametersFB)")
+                        let reqUrlFB = "\(self._apiUrl)users/\(userId)/tokens"
+                        let request = Alamofire.request(.POST, reqUrlFB, parameters: parametersFB, encoding: .JSON, headers: .None)
+                        //request.validate()
+                        request.responseJSON{response in
+                            
+                            print("JSON(getFBTocken)")
+                            print(response.result.value)
+                            
+                            
+                            
+                        }
+                        returnData = [
+                            "success":true,
+                            "message":"Login Success!",
+                            "data":json
+                        ]
+                        
+                        self.appDelegate.userInfo["accessToken"] = (json["accessToken"] as! String)
+                        self.appDelegate.userInfo["userID"] = (json["userId"] as! String)
+//                        self.appDelegate.userInfo["passWord"] = password
+                        //print("Login(User ID) \(JSON["userId"]!)")
+                        Alamofire.request(.GET, "\(self._apiUrl)users/\(userId)/avatars", parameters: ["":""])
+                            .responseJSON { response in
+                                if let JSON = response.result.value {
+                                    print("JSON avatar login : \(JSON["small"]!)")
+                                    self.appDelegate.userInfo["avatarImage"] = (JSON["small"] as! String)
+                                }
+                        }
+
+                    }else{ // Login Fail
+                        //print("userId = NO")
+                        //print(json["errors"]!![0]["message"]!![0])
+                        
+                        //if let _m = (json["errors"] as! Array)[0]["message"]!![0] as! String{
+                        
+                        //                        for var index = 0 ;index < error?.count ;index++
+                        //                        {
+                        //                            print("field\(index) \(error![index]["field"] as! String)")
+                        //                            if (error![index]["field"] as! String) == "username"
+                        //                            {
+                        //                                data["field"] = error![index]["field"]
+                        //                                data["message"] = "username ไม่มีในระบบ"
+                        //                            }else if (error![index]["field"] as! String) == "password"
+                        //                            {
+                        //                                data["field"] = error![index]["field"]
+                        //                                data["message"] = "password ผิด"
+                        //                            }
+                        //
+                        //                        }
+                        
+                        var msg = ""
+                        if let error = json["errors"] as! NSArray?{
+                            
+                            if let message = error[0]["message"] as! NSArray?{
+                                
+                                for msgError in message{
+                                    msg = msgError as! String
+                                    print(msgError)
+                                    print("-------")
+                                }
+                                
+                                //                                if let _m = message[0]{
+                                //                                    msg = _m
+                                //                                }
+                                
+                                //                                if(message.count > 0){
+                                //                                    if let _m = message[0] as! String?{
+                                //                                        msg = _m
+                                //                                    }
+                                //
+                                //                                }
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        returnData = [
+                            "success":false,
+                            "message":msg,
+                            "data":json
+                        ]
+                    }
+                }
+                
+                //print("Success")
+            }else{ // ไม่มี else เพราะมีค่าเริ่มต้นอยู่แล้ว
+                
+                returnData = [
+                    "success":false,
+                    "message":"Cannot Connect to Server!",
+                    "data":[:]
+                ]
+                
+                print("error")
+                print(response.result.error?.localizedDescription)
+                print(response.result.value)
+                
+            }
+            
+            print("returnData")
+            print(returnData)
+            print("- - - - - -")
+            
+            completionHandler(returnData)
+            
+        }
+    }
+    func checkUser(email:String, completionHandler:[String:AnyObject]->())
+    {
+        
+        let parameters = [
+            "username":email
+        ]
+        var data = [String:AnyObject]()
+        print("parameter \(parameters)")
+        let reqUrl = "\(_apiUrl)users"
+        print(reqUrl)
+//        let request = Alamofire.request(.GET, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
+//        //request.validate()
+//        request.responseJSON{response in
+        
+        Alamofire.request(.GET, "\(_apiUrl)users?username=\(email)")
+                .responseJSON { response in
+//            print(response.request)  // original URL request
+//            print(response.response) // URL response
+//            print(response.data)     // server data
+//            print(response.result)   // result of response serialization
+            
+            
+                if let JSON = response.result.value {
+                    print("JSON(checkUser): \(JSON)")
+                    if(JSON.count == 0)
+                    {
+                        print("NULLLLLL")
+                        data["status"] = true
+                        data["data"] = ""
+                        
+                    }else
+                    {
+                        data["status"] = false
+                        data["data"] = JSON[0]
+                    }
+
+
+                }
+            completionHandler(data)
+        }
+    }
+
+    func checkUserFB(id:String, completionHandler:[String:AnyObject]->())
+    {
+        var data = [String:AnyObject]()
+        
+        Alamofire.request(.GET, "\(_apiUrl)users/\(id)/social-accounts")
+            .responseJSON { response in
+                //            print(response.request)  // original URL request
+                //            print(response.response) // URL response
+                //            print(response.data)     // server data
+                //            print(response.result)   // result of response serialization
+                
+                
+                if let JSON = response.result.value {
+                    print("JSON(checkUserFB): \(JSON)")
+                    if(JSON.count == 0)
+                    {
+                        print("NULLLLLL")
+                        data["status"] = true
+                        data["data"] = ""
+                        
+                    }else
+                    {
+                        data["status"] = false
+                        data["data"] = JSON[0]
+                    }
+                    
+                    
+                }
+                completionHandler(data)
+        }
+    }
+
     func getUserInfo(userID:String, completionHandler:[String:AnyObject]->())
     {
         Alamofire.request(.GET, "\(_apiUrl)users/\(userID)")
