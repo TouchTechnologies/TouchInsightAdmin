@@ -47,8 +47,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
     
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var btnLogin: UIButton!
-    let btnFbLogin = FBSDKLoginButton()
-    
+    let btnFbLogin = UIButton()
     @IBOutlet weak var userNameTxt: UITextField!
     @IBOutlet weak var passWordTxt: UITextField!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -311,6 +310,10 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         var frmBtnFbLogin = btnLogin.frame
         frmBtnFbLogin.origin.y = btnLogin.frame.origin.y + btnLogin.frame.size.height + 12
         btnFbLogin.frame = frmBtnFbLogin
+        btnFbLogin.backgroundColor = UIColor.blueColor()
+        btnFbLogin.setTitle("FB LOGIN", forState: UIControlState.Normal)
+        btnFbLogin.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        btnFbLogin.addTarget(self, action: #selector(loginFB) , forControlEvents: UIControlEvents.TouchUpInside)
         scrollview.addSubview(btnFbLogin)
     }
     
@@ -332,7 +335,173 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         locationManager.stopUpdatingLocation()
         //        self.map.setRegion(region, animated: true)
     }
-    
+    func loginFB() {
+        print("loginFB")
+        var titleMessage:String = ""
+        var message:String = ""
+        PKHUD.sharedHUD.dimsBackground = false
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
+        
+        let loginManager:FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logInWithReadPermissions(["email", "public_profile", "user_photos"], handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+            
+            if let gotError = error{
+                //got error
+            }
+            else if(result.isCancelled){
+                print("login canceled")
+            }
+            else{
+                
+                print(result.grantedPermissions)
+                //                if(result.grantedPermissions.containsObject("email")){
+                
+                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"name,email,first_name,last_name,picture.type(large)"])
+//                let request = FBSDKGraphRequest(graphPath: "me", parameters: nil, HTTPMethod: "GET")
+                graphRequest.startWithCompletionHandler({ (connection:FBSDKGraphRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
+                    
+                    if let gotError = error{
+                        //got error
+                    }
+                    else {
+                        
+                        print("dataAll : \(data)")
+                        
+                        let email : String = data.valueForKey("email") as! String;
+                        let firstName:String = data.valueForKey("first_name") as! String;
+                        let lastName:String = data.valueForKey("last_name") as! String;
+                        let userFBID:String = data.valueForKey("id") as! String;
+                        
+                        let userImageURL = "https://graph.facebook.com/\(userFBID)/picture?type=small";
+                        
+//                        let url = NSURL(string: userImageURL);
+//                        
+//                        let imageData = NSData(contentsOfURL: url!);
+//                        
+//                        let image = UIImage(data: imageData!);
+                        
+                        let fbAccesToken = FBSDKAccessToken.currentAccessToken().tokenString
+                        print("userFBID: \(userFBID) Email \(email) \n firstName:\(firstName) \n image: \(userImageURL)");
+                        print("access token : \(fbAccesToken)")
+                        let send = API_Model()
+                        send.checkUser(email, completionHandler: {
+                            checkData in
+                            if (checkData["status"] as! Bool == true)
+                            {
+                                send.Register(firstName, lastName: lastName, mobile: "", email: email, passWord: "123456")
+                                {
+                                    regData in
+                                    print("Register Data : \(regData)")
+//                                    print("userID : \(regData["data"]!["id"])")
+                                    let userID = regData["data"]!["id"] as! String
+                                    
+                                    send.LogInFB(userID, socialAccessToken: fbAccesToken,completionHandler:
+                                        {
+                                            logData in
+                                            print("Data(CreateUsersSocialAccounts) : \(logData)")
+                                            if(logData["success"] as! Bool )
+                                            {
+                                                self.appDelegate.isLogin = true
+                                                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                                                self.navigationController?.pushViewController(secondViewController!, animated: true)
+                                            }
+                                            else{
+                                                
+                                                self.appDelegate.isLogin = false
+                                                titleMessage = "Login fail"
+                                                message = data["message"] as! String
+                                                PKHUD.sharedHUD.hide(animated: false, completion: {_ in
+                                                    
+                                                })
+                                                
+                                                let alertView = SCLAlertView()
+                                                alertView.showCircularIcon = false
+                                                alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 3.0)
+                                            }
+                                            
+                                            
+                                    })
+                                    
+                                }
+                            }else
+                            {
+                                print("HAS USERS in system : \(checkData["data"]!["id"] as! String)")
+                                let userID = checkData["data"]!["id"] as! String
+                                send.checkUserFB(userID, completionHandler: {
+                                    checkUserFBData in
+                                    print("checkUserFBData \(checkUserFBData)")
+                                    
+                                    if(checkUserFBData["status"] as! Bool == true)
+                                    {
+                                        send.LogInFB(userID, socialAccessToken: fbAccesToken,completionHandler:
+                                            {
+                                                logData in
+                                                print("Data(CreateUsersSocialAccounts) : \(logData)")
+                                                if(logData["success"] as! Bool )
+                                                {
+                                                    self.appDelegate.userInfo["accessToken"] = (checkUserFBData["data"]!["accessToken"] as! String)
+                                                    self.appDelegate.userInfo["userID"] = (checkUserFBData["data"]!["userId"] as! String)
+                                                    self.appDelegate.userInfo["email"] = (checkUserFBData["data"]!["email"] as! String)
+                                                    self.appDelegate.isLogin = true
+                                                    let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                                                    self.navigationController?.pushViewController(secondViewController!, animated: true)
+                                                }
+                                                else{
+                                                    
+                                                    self.appDelegate.isLogin = false
+                                                    titleMessage = "Login fail"
+                                                    message = data["message"] as! String
+                                                    PKHUD.sharedHUD.hide(animated: false, completion: {_ in
+                                                        
+                                                    })
+                                                    
+                                                    let alertView = SCLAlertView()
+                                                    alertView.showCircularIcon = false
+                                                    alertView.showInfo(titleMessage, subTitle: message, colorStyle:0xAC332F, duration: 3.0)
+                                                }
+                                        })
+
+                                    }else
+                                    {
+                                        print("checkUserFBData \(checkUserFBData)")
+                                        self.appDelegate.userInfo["accessToken"] = (checkUserFBData["data"]!["accessToken"] as! String)
+                                        self.appDelegate.userInfo["userID"] = (checkUserFBData["data"]!["userId"] as! String)
+                                        self.appDelegate.userInfo["email"] = (checkUserFBData["data"]!["email"] as! String)
+                                        
+                                        self.appDelegate.isLogin = true
+                                        let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                                        self.navigationController?.pushViewController(secondViewController!, animated: true)
+                                    }
+                                    
+
+                                    
+                                })
+
+                            }
+                            
+                        })
+
+                        
+                    }
+                }) 
+                
+            }
+        })
+
+    }
+//    func fbCreateUser(firstName:String,lastName:String,email:String) ->() {
+//        let register = API_Model()
+//        register.Register(firstName, lastName: lastName, mobile: "", email: email, passWord: "")
+//        {
+//            data in
+//            print("Register Data : \(data)")
+//        }
+//    }
+
+
     @IBAction func LoginBtn(sender: AnyObject)
     {
         userNameTxt.resignFirstResponder()
