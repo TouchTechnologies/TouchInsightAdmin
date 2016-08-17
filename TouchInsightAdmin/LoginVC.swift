@@ -346,16 +346,14 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         PKHUD.sharedHUD.show()
         
         let loginManager:FBSDKLoginManager = FBSDKLoginManager()
-        loginManager.logInWithReadPermissions(["email", "public_profile", "user_photos"], handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+        loginManager.logInWithReadPermissions(["email", "public_profile"], handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
             
-            if let gotError = error{
+            if let _ = error{
                 //got error
-            }
-            else if(result.isCancelled){
+            } else if(result.isCancelled){
                 print("login canceled")
                 PKHUD.sharedHUD.hide(animated: false, completion:nil)
-            }
-            else{
+            } else{
                 
                 print(result.grantedPermissions)
                 //                if(result.grantedPermissions.containsObject("email")){
@@ -364,10 +362,9 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
 //                let request = FBSDKGraphRequest(graphPath: "me", parameters: nil, HTTPMethod: "GET")
                 graphRequest.startWithCompletionHandler({ (connection:FBSDKGraphRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
                     
-                    if let gotError = error{
+                    if let _ = error{
                         //got error
-                    }
-                    else {
+                    } else {
                         
                         print("dataAll : \(data)")
                         
