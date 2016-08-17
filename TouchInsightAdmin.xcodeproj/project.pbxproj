@@ -33,9 +33,6 @@
 		36DC41281C05C667001B8E22 /* DeviceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC41261C05C667001B8E22 /* DeviceDetail.swift */; };
 		36DC41291C05C667001B8E22 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC41271C05C667001B8E22 /* DeviceType.swift */; };
 		36DC412B1C05C6E3001B8E22 /* JobTextFieldxxx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC412A1C05C6E3001B8E22 /* JobTextFieldxxx.swift */; };
-		36DC413E1C05C873001B8E22 /* asg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36DC41361C05C75A001B8E22 /* asg.ttf */; };
-		36DC413F1C05C873001B8E22 /* bangna.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36DC41371C05C75A001B8E22 /* bangna.ttf */; };
-		36DC41401C05C873001B8E22 /* krr.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36DC41381C05C75A001B8E22 /* krr.ttf */; };
 		36DC41411C05C873001B8E22 /* thaisanslite.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36DC41391C05C75A001B8E22 /* thaisanslite.ttf */; };
 		36E039DD1C2BE31C003EB925 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E039D41C2BE31C003EB925 /* arrow.png */; };
 		36E039DE1C2BE31C003EB925 /* attachment.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E039D51C2BE31C003EB925 /* attachment.png */; };
@@ -306,9 +303,6 @@
 		36DC41261C05C667001B8E22 /* DeviceDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceDetail.swift; path = Class/DeviceDetail.swift; sourceTree = "<group>"; };
 		36DC41271C05C667001B8E22 /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceType.swift; path = Class/DeviceType.swift; sourceTree = "<group>"; };
 		36DC412A1C05C6E3001B8E22 /* JobTextFieldxxx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobTextFieldxxx.swift; path = Class/JobTextFieldxxx.swift; sourceTree = "<group>"; };
-		36DC41361C05C75A001B8E22 /* asg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = asg.ttf; path = font/asg.ttf; sourceTree = "<group>"; };
-		36DC41371C05C75A001B8E22 /* bangna.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = bangna.ttf; path = font/bangna.ttf; sourceTree = "<group>"; };
-		36DC41381C05C75A001B8E22 /* krr.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = krr.ttf; path = font/krr.ttf; sourceTree = "<group>"; };
 		36DC41391C05C75A001B8E22 /* thaisanslite.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = thaisanslite.ttf; path = font/thaisanslite.ttf; sourceTree = "<group>"; };
 		36E039BF1C2BDA69003EB925 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = "Pods/../build/Debug-iphoneos/PureLayout.framework"; sourceTree = "<group>"; };
 		36E039C01C2BDA69003EB925 /* RNGridMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RNGridMenu.framework; path = "Pods/../build/Debug-iphoneos/RNGridMenu.framework"; sourceTree = "<group>"; };
@@ -719,9 +713,6 @@
 		36DC412D1C05C72F001B8E22 /* font */ = {
 			isa = PBXGroup;
 			children = (
-				36DC41361C05C75A001B8E22 /* asg.ttf */,
-				36DC41371C05C75A001B8E22 /* bangna.ttf */,
-				36DC41381C05C75A001B8E22 /* krr.ttf */,
 				36DC41391C05C75A001B8E22 /* thaisanslite.ttf */,
 			);
 			name = font;
@@ -1227,7 +1218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3B122301C0D5F540093E268 /* bglogin.jpg in Resources */,
-				36DC413E1C05C873001B8E22 /* asg.ttf in Resources */,
 				F36965F31C578D51001F18AD /* ic_livestream_menu.png in Resources */,
 				F3568EB71C0704060074E8CC /* login_logo.png in Resources */,
 				F3C6DC161C191C570005A621 /* bg3.png in Resources */,
@@ -1246,7 +1236,6 @@
 				F36965F21C578D51001F18AD /* ic_info2.png in Resources */,
 				3B1EFC371D334BE700A7F4EA /* su.png in Resources */,
 				3B1EFC321D334BE700A7F4EA /* mo_hover.png in Resources */,
-				36DC413F1C05C873001B8E22 /* bangna.ttf in Resources */,
 				F3C069D41C0BF30B004E19D8 /* icon_setting.png in Resources */,
 				3B1EFC301D334BE700A7F4EA /* fr_hover.png in Resources */,
 				F3C6DC081C17FD490005A621 /* ic_room.png in Resources */,
@@ -1279,7 +1268,6 @@
 				F3E6F76B1C1E6CBF005FE053 /* bglogin6.png in Resources */,
 				F360C2CE1C0ED94600149CCC /* ic_team.png in Resources */,
 				F3B8B51B1C3B685F00768DF9 /* ic_hotel_hover.png in Resources */,
-				36DC41401C05C873001B8E22 /* krr.ttf in Resources */,
 				3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */,
 				F3B122341C0DF1C60093E268 /* bglogin2.png in Resources */,
 				F34D52D61C3CF560002AC1EF /* dropshadow.png in Resources */,

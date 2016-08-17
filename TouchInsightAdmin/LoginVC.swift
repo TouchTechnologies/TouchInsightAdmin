@@ -353,6 +353,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
             }
             else if(result.isCancelled){
                 print("login canceled")
+                PKHUD.sharedHUD.hide(animated: false, completion:nil)
             }
             else{
                 
