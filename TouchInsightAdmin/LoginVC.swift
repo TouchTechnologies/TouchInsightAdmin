@@ -346,7 +346,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         PKHUD.sharedHUD.show()
         
         let loginManager:FBSDKLoginManager = FBSDKLoginManager()
-        loginManager.logInWithReadPermissions(["email", "public_profile", "user_photos"], handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+        loginManager.logInWithReadPermissions(["email", "public_profile"], handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
             
             if let gotError = error{
                 //got error
@@ -359,7 +359,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                 print(result.grantedPermissions)
                 //                if(result.grantedPermissions.containsObject("email")){
                 
-                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"name,email,first_name,last_name,picture.type(large)"])
+                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"name,email,first_name,last_name"])
 //                let request = FBSDKGraphRequest(graphPath: "me", parameters: nil, HTTPMethod: "GET")
                 graphRequest.startWithCompletionHandler({ (connection:FBSDKGraphRequestConnection!, data:AnyObject!, error:NSError!) -> Void in
                     
@@ -384,14 +384,14 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
 //                        let image = UIImage(data: imageData!);
                         
                         let fbAccesToken = FBSDKAccessToken.currentAccessToken().tokenString
-                        print("userFBID: \(userFBID) Email \(email) \n firstName:\(firstName) \n image: \(userImageURL)");
+                        print("userFBID: \(userFBID) Email \(email) \n firstName:\(firstName) \n lastname:\(lastName)  \n image: \(userImageURL)");
                         print("access token : \(fbAccesToken)")
                         let send = API_Model()
                         send.checkUser(email, completionHandler: {
                             checkData in
                             if (checkData["status"] as! Bool == true)
                             {
-                                send.Register(firstName, lastName: lastName, mobile: "", email: email, passWord: "123456")
+                                send.Register(firstName, lastName: lastName, mobile: "", email: email, passWord: self.randomStringWithLength(6) as String)
                                 {
                                     regData in
                                     print("Register Data : \(regData)")
@@ -404,6 +404,41 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                             print("Data(CreateUsersSocialAccounts) : \(logData)")
                                             if(logData["success"] as! Bool )
                                             {
+                                                if let _email = logData["data"]!["email"] as! String? {
+                                                    self.appDelegate.userInfo["email"] = _email
+                                                }
+ 
+                                                if let _id = logData["data"]!["userID"] as! String? {
+                                                    self.appDelegate.userInfo["id"] = _id
+                                                }
+                                                
+                                                if let _accessToken = logData["data"]!["accessToken"] as! String? {
+                                                    self.appDelegate.userInfo["accessToken"] = _accessToken
+                                                }
+                                                if let _avatarImage = logData["data"]!["photoUrl"] as! String? {
+                                                    self.appDelegate.userInfo["avatarImage"] = _avatarImage
+                                                }
+                                                
+                                                if let _firstName = logData["data"]!["userProfileObject"]!!["firstName"] as! String? {
+                                                    self.appDelegate.userInfo["firstName"] = _firstName
+                                                }
+                                                
+                                                if let _lastName = logData["data"]!["userProfileObject"]!!["lastName"] as! String? {
+                                                    self.appDelegate.userInfo["lastName"] = _lastName
+                                                }
+                                                
+//                                                if(!self.isNull(logData["data"]!["userProfileObject"]!!["phone"]))
+//                                                {
+//                                                    if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
+//                                                        self.appDelegate.userInfo["mobile"] = _mobile
+//                                                    }
+//                                                }
+                                                
+                                                
+
+                                                
+
+                                                
                                                 self.appDelegate.isLogin = true
                                                 let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                                                 self.navigationController?.pushViewController(secondViewController!, animated: true)
@@ -442,9 +477,33 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                 print("Data(CreateUsersSocialAccounts) : \(logData)")
                                                 if(logData["success"] as! Bool )
                                                 {
-                                                    self.appDelegate.userInfo["accessToken"] = (checkUserFBData["data"]!["accessToken"] as! String)
-                                                    self.appDelegate.userInfo["userID"] = (checkUserFBData["data"]!["userId"] as! String)
-                                                    self.appDelegate.userInfo["email"] = (checkUserFBData["data"]!["email"] as! String)
+
+                                                    if let _email = logData["data"]!["email"] as! String? {
+                                                        self.appDelegate.userInfo["email"] = _email
+                                                    }
+                                                    
+                                                    if let _id = logData["data"]!["userID"] as! String? {
+                                                        self.appDelegate.userInfo["id"] = _id
+                                                    }
+                                                    
+                                                    if let _accessToken = logData["data"]!["accessToken"] as! String? {
+                                                        self.appDelegate.userInfo["accessToken"] = _accessToken
+                                                    }
+                                                    if let _avatarImage = logData["data"]!["photoUrl"] as! String? {
+                                                        self.appDelegate.userInfo["avatarImage"] = _avatarImage
+                                                    }
+                                                    
+                                                    if let _firstName = logData["data"]!["userProfileObject"]!!["firstName"] as! String? {
+                                                        self.appDelegate.userInfo["firstName"] = _firstName
+                                                    }
+                                                    
+                                                    if let _lastName = logData["data"]!["userProfileObject"]!!["lastName"] as! String? {
+                                                        self.appDelegate.userInfo["lastName"] = _lastName
+                                                    }
+                                                    if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
+                                                        self.appDelegate.userInfo["mobile"] = _mobile
+                                                    }
+    
                                                     self.appDelegate.isLogin = true
                                                     let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                                                     self.navigationController?.pushViewController(secondViewController!, animated: true)
@@ -467,9 +526,31 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                     }else
                                     {
                                         print("checkUserFBData \(checkUserFBData)")
-                                        self.appDelegate.userInfo["accessToken"] = (checkUserFBData["data"]!["accessToken"] as! String)
-                                        self.appDelegate.userInfo["userID"] = (checkUserFBData["data"]!["userId"] as! String)
-                                        self.appDelegate.userInfo["email"] = (checkUserFBData["data"]!["email"] as! String)
+                                        if let _email = checkUserFBData["data"]!["email"] as! String? {
+                                            self.appDelegate.userInfo["email"] = _email
+                                        }
+                                        
+                                        if let _id = checkUserFBData["data"]!["userID"] as! String? {
+                                            self.appDelegate.userInfo["id"] = _id
+                                        }
+                                        
+                                        if let _accessToken = checkUserFBData["data"]!["accessToken"] as! String? {
+                                            self.appDelegate.userInfo["accessToken"] = _accessToken
+                                        }
+                                        if let _avatarImage = checkUserFBData["data"]!["photoUrl"] as! String? {
+                                            self.appDelegate.userInfo["avatarImage"] = _avatarImage
+                                        }
+                                        
+                                        if let _firstName = checkUserFBData["data"]!["userProfileObject"]!!["firstName"] as! String? {
+                                            self.appDelegate.userInfo["firstName"] = _firstName
+                                        }
+                                        
+                                        if let _lastName = checkUserFBData["data"]!["userProfileObject"]!!["lastName"] as! String? {
+                                            self.appDelegate.userInfo["lastName"] = _lastName
+                                        }
+//                                        if let _mobile = checkUserFBData["data"]!["userProfileObject"]!!["phone"] as! String? {
+//                                            self.appDelegate.userInfo["mobile"] = _mobile
+//                                        }
                                         
                                         self.appDelegate.isLogin = true
                                         let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
@@ -721,5 +802,26 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
      // Pass the selected object to the new view controller.
      }
      */
+    
+    func randomStringWithLength (len : Int) -> NSString {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        let randomString : NSMutableString = NSMutableString(capacity: len)
+        
+        for (var i=0; i < len; i++){
+            let length = UInt32 (letters.length)
+            let rand = arc4random_uniform(length)
+            randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        }
+        
+        return randomString
+    }
+    func isNull(someObject: AnyObject?) -> Bool {
+        guard let someObject = someObject else {
+            return true
+        }
+        return (someObject is NSNull)
+    }
     
 }
