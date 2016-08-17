@@ -1,5 +1,5 @@
 //
-//  CreateRoomInfoVC.swift
+//  HotelCreateCouponVC.swift
 //  TouchInsightAdmin
 //
 //  Created by Touch on 12/9/2558 BE.
@@ -10,22 +10,12 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate , UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
+class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var facilityView: UIView!
-    @IBOutlet var addButton: UIButton!
     
-    var facilitiesRoomAttached = [String]()
-    @IBOutlet weak var roomNameTxt: UITextField!
-    @IBOutlet weak var shotDescTxt: UITextView!
-    @IBOutlet weak var priceTxt: UITextField!
-    @IBOutlet weak var numOfRoomTxt: UITextField!
-    @IBOutlet weak var bedTxt: UITextField!
-    @IBOutlet weak var maxOccupTxt: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+    
     var navunderlive = UIView()
     var width = CGFloat()
     var heigth = CGFloat()
@@ -33,31 +23,364 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionView
     var roomImageUpload = [UIImage()]
     var roomGallery = [UIImage()]
     
-    var Cell = RoomGalleryCell()
     
-    @IBAction func plusOccupency(sender: AnyObject) {
-        print("+1")
-        occupencyNum = occupencyNum + 1
-        maxOccupTxt.text = "\(occupencyNum)"
-    }
+    // Header Section
+    @IBOutlet weak var viewSectionHeader: UIView!
+    @IBOutlet weak var imgLogo: UIImageView!
+    @IBOutlet weak var viewEmptyLogo: UIView!
+    
+    @IBOutlet weak var viewProviderName: UIView!
+    @IBOutlet weak var imgIconProName: UIImageView!
+    @IBOutlet weak var lblProName: UILabel!
+    // --------------
+    
+    
+    // Description Section
+    @IBOutlet weak var viewSectionDescription: UIView!
+    @IBOutlet weak var txtCouponName: TextFieldPadd!
+    @IBOutlet weak var txtShortDes: UITextView!
+    
+    // DateTime - Coupon Start
+    @IBOutlet weak var viewBgDateStart: UIView!
+    @IBOutlet weak var viewBgDateEnd: UIView!
+    @IBOutlet weak var txtDateStart: TextFieldPadd!
+    @IBOutlet weak var txtDateEnd: TextFieldPadd!
+    // --
+    
+    
+    // DateTime - Time to use coupon promotion
+    @IBOutlet weak var viewBgUseStart: UIView!
+    @IBOutlet weak var viewBgUseEnd: UIView!
+    @IBOutlet weak var txtUseStart: TextFieldPadd!
+    @IBOutlet weak var txtUseEnd: TextFieldPadd!
+    // --
+    
+    @IBOutlet weak var txtCouponCount: TextFieldPadd!
+    @IBOutlet weak var txtValidate: TextFieldPadd!
+    @IBOutlet weak var txtPrefixCode: TextFieldPadd!
+    
+    @IBOutlet weak var viewBoxLongDescription: UIView!
+    @IBOutlet weak var txtLongDes: UITextView!
+    // --------------
+    
+    
+    // Discount Section
+    @IBOutlet weak var viewSectionDiscount: UIView!
+    
+    @IBOutlet weak var lblDisCash: UILabel!
+    @IBOutlet weak var lblDisPercent: UILabel!
+    @IBOutlet weak var lblItemTHB: UILabel!
+    @IBOutlet weak var lblItemPercent: UILabel!
+    
+    @IBOutlet weak var viewBgDisCash: UIView!
+    @IBOutlet weak var viewBgDisPercent: UIView!
+    
+    @IBOutlet weak var imgCheckDisCash: UIImageView!
+    @IBOutlet weak var imgCheckDisPercent: UIImageView!
+    
+    @IBOutlet weak var txtPrice: TextFieldPadd!
+    @IBOutlet weak var txtDisCash: TextFieldPadd!
+    @IBOutlet weak var txtDisPercent: TextFieldPadd!
+    
+    // --------------
+    
+    
+    // Condition Section
+    @IBOutlet weak var viewSectionCondition: UIView!
+    @IBOutlet weak var txtCondition: UITextView!
+    @IBOutlet weak var txtContactPhone: TextFieldPadd!
+    @IBOutlet weak var txtContactEmail: TextFieldPadd!
+    
+    @IBOutlet weak var imgCheckStatusPublic: UIImageView!
+    @IBOutlet weak var imgCheckStatusUnPublic: UIImageView!
+    
+    @IBOutlet weak var lblStatusPublic: UILabel!
+    @IBOutlet weak var lblStatusUnPublic: UILabel!
+    // --------------
+    
 
-    @IBAction func minusOccupency(sender: AnyObject) {
-        if(occupencyNum <= 1){
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    // IBAction Section ------------------------------
+    @IBAction func btnOpenLongDesriptionClick(sender: AnyObject) {
+        
+        self.txtLongDes.becomeFirstResponder()
+      
+        let stbHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+        let navHeight = self.navigationController?.navigationBar.frame.size.height
+        let boxTop = navHeight! + stbHeight
+        let boxHeight = self.view.frame.size.height - boxTop - kHeight
+        
+        self.viewBoxLongDescription.frame = CGRectMake(0, boxTop, self.view.frame.size.width, boxHeight)
+        
+        UIView.animateWithDuration(0.25, animations: {
             
-            occupencyNum = 1
+            self.viewBoxLongDescription.alpha = 1
+            
+            }, completion: {a in
+                
+                
+        })
+        
+    }
+    
+    @IBAction func btnCloseLongDesriptionClick(sender: AnyObject) {
+        
+        self.view.endEditing(false)
+        UIView.animateWithDuration(0.20, animations: {
+            
+            self.viewBoxLongDescription.alpha = 0
+            
+            }, completion: {a in
+                
+                
+        })
+    }
+    
+    
+    func setDiscountType(type:String) {
+        // type : cash|percent
+        print("setDiscountType = \(type)")
+        if(type == "cash") {
+            
+            self.lblDisCash.textColor = UIColor.blackColor()
+            self.lblDisPercent.textColor = UIColor.grayColor()
+            self.imgCheckDisCash.image = UIImage(named: "check.png")
+            self.imgCheckDisPercent.image = UIImage(named: "uncheck.png")
+            
+            UIView.animateWithDuration(0.10, animations: {
+                self.viewBgDisCash.alpha = 1
+                self.viewBgDisPercent.alpha = 0
+            })
+            
+        } else if(type == "percent") {
+            
+            self.lblDisCash.textColor = UIColor.grayColor()
+            self.lblDisPercent.textColor = UIColor.blackColor()
+            self.imgCheckDisCash.image = UIImage(named: "uncheck.png")
+            self.imgCheckDisPercent.image = UIImage(named: "check.png")
+            
+            UIView.animateWithDuration(0.10, animations: {
+                self.viewBgDisCash.alpha = 0
+                self.viewBgDisPercent.alpha = 1
+            })
+            
         }
-        else{
-            occupencyNum = occupencyNum-1
+    }
+    
+    @IBAction func btnDisCashClick(sender: AnyObject) {
+        setDiscountType("cash")
+    }
+    
+    @IBAction func btnDisPercentClick(sender: AnyObject) {
+        setDiscountType("percent")
+    }
+    
+    
+    
+    @IBAction func btnSelectDateStartClick(sender: AnyObject) {
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.scrollView.contentOffset.y = 383
+        })
+    }
+    
+    @IBAction func btnSelectDateEndClick(sender: AnyObject) {
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.scrollView.contentOffset.y = 383
+        })
+    }
+    
+    @IBAction func btnSelectUseStartClick(sender: AnyObject) {
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.scrollView.contentOffset.y = 460
+        })
+    }
+    
+    @IBAction func btnSelectUseEndClick(sender: AnyObject) {
+        UIView.animateWithDuration(0.25, animations: {_ in
+            self.scrollView.contentOffset.y = 460
+        })
+    }
+    
+    
+    @IBAction func btnSelectStatusPublicClick(sender: AnyObject) {
+        
+        self.lblStatusPublic.textColor = UIColor.blackColor()
+        self.lblStatusUnPublic.textColor = UIColor.grayColor()
+        self.imgCheckStatusPublic.image = UIImage(named: "check.png")
+        self.imgCheckStatusUnPublic.image = UIImage(named: "uncheck.png")
+    }
+    
+    @IBAction func btnSelectStatusUnPublicClick(sender: AnyObject) {
+        
+        self.lblStatusPublic.textColor = UIColor.grayColor()
+        self.lblStatusUnPublic.textColor = UIColor.blackColor()
+        self.imgCheckStatusPublic.image = UIImage(named: "uncheck.png")
+        self.imgCheckStatusUnPublic.image = UIImage(named: "check.png")
+        
+    }
+    
+    var lastScrollY:CGFloat = 0
+    var kHeight = CGFloat()
+    func keyboardWillShow(notification: NSNotification) {
+        
+        //lastScrollY = self.scrollView.contentOffset.y
+        
+        print("notification \(lastScrollY)")
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            //let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            kHeight = keyboardSize.height
+        }else{
+            kHeight = 0
+        }
+        //self.txtLongDes
+        
+        
+        
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+        })
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        print("keyboardWillHide = \(self.lastScrollY)")
+        
+        scrollToLastScroll()
+        
+        btnCloseLongDesriptionClick(UIButton())
+        
+        
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+            //self.scrollView.contentOffset.y = self.lastScrollY
+        })
+        
+    }
+    
+    func keyboardDidHide(notification: NSNotification) {
+        
+        print("keyboardDidHide = \(self.lastScrollY)")
+        
+        scrollToLastScroll()
+        
+    }
+    
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true;
+    }
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        lastScrollY = self.scrollView.contentOffset.y
+
+        
+        if textField == txtCouponName {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 106
+            })
+        }else if textField == txtCouponCount || textField == txtValidate {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 543
+            })
+        }else if textField == txtPrefixCode {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 616
+            })
+        }else if textField == txtPrice || textField == txtDisCash || textField == txtDisPercent {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 701
+            })
+        }else if textField == txtContactPhone {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 1067
+            })
+        }else if textField == txtContactEmail {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 1142
+            })
         }
         
-        maxOccupTxt.text = "\(occupencyNum)"
+        return true
     }
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        //scrollToLastScroll()
+        
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        
+        //scrollToLastScroll()
+        
+        return true
+    }
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        lastScrollY = self.scrollView.contentOffset.y
+
+        if textView == txtShortDes {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 190
+            })
+        }else if textView == txtCondition {
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = 903
+            })
+        }
+        return true
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        
+        //scrollToLastScroll()
+        
+    }
+    
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        
+        //scrollToLastScroll()
+        return true
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y)
+    }
+    
+    func scrollToLastScroll() {
+        
+        UIView.animateWithDuration(0.25, animations: {_ in
+            
+            self.scrollView.contentOffset.y = self.lastScrollY
+        })
+        
+    }
+    
+    // -----------------------------------------------
     
     override func viewWillAppear(animated: Bool) {
         //self.navigationController?.setNavigationBarHidden(false, animated: true)
       //  let width = UIScreen.mainScreen().bounds.size.width
-        let contentscrollheight = self.scrollView.layer.bounds.size.height
-        scrollView.contentSize = CGSizeMake(width,contentscrollheight+300);
+        let contentscrollheight:CGFloat = 1350 // self.scrollView.layer.bounds.size.height
+        scrollView.contentSize = CGSizeMake(width,contentscrollheight);
         self.appDelegate.viewWithTopButtons.hidden = true
 //        self.getFacility()
 //
@@ -67,30 +390,11 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.navigationBarHidden = false
-        self.initialSize()
         
+        width = UIScreen.mainScreen().bounds.size.width
+        heigth = UIScreen.mainScreen().bounds.size.height
         
-        roomNameTxt.delegate = self
-        priceTxt.delegate = self
-        bedTxt.delegate = self
-        maxOccupTxt.delegate = self
-       
-        occupencyNum = 1
-        maxOccupTxt.text = "\(occupencyNum)"
-        
-        numOfRoomTxt.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        numOfRoomTxt.text = "0"
-        priceTxt.text = "0.00"
-        roomGallery.removeAll()
-        roomImageUpload.removeAll()
-        
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateRoomInfoVC.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HotelCreateCouponVC.dismissKeyboard))
         tap.delegate = self
         tap.cancelsTouchesInView = false
         self.view!.addGestureRecognizer(tap)
@@ -98,86 +402,107 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionView
         self.initNavUnderline()
         self.initialObject()
         // Do any additional setup after loading the view.
+        
+        self.viewBoxLongDescription.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+        self.viewBoxLongDescription.alpha = 0
+        self.viewEmptyLogo.userInteractionEnabled = false
+        
+        myPicker.delegate = self
+        
+        
+        txtCouponName.delegate = self
+        txtShortDes.delegate = self
+        
+        txtDateStart.delegate = self
+        txtDateEnd.delegate = self
+        
+        txtUseStart.delegate = self
+        txtUseEnd.delegate = self
+        
+        txtCouponCount.delegate = self
+        txtValidate.delegate = self
+        txtPrefixCode.delegate = self
+        
+        txtLongDes.delegate = self
+        
+        txtPrice.delegate = self
+        txtDisCash.delegate = self
+        txtDisPercent.delegate = self
+        
+        txtCondition.delegate = self
+        txtContactPhone.delegate = self
+        txtContactEmail.delegate = self
+        
+        
+        let tapAddLogo = UITapGestureRecognizer(target:self, action:#selector(HotelCreateCouponVC.imageTapped(_:)))
+        imgLogo.userInteractionEnabled = true
+        imgLogo.addGestureRecognizer(tapAddLogo)
+        
+        let tapBgLongDes = UITapGestureRecognizer(target:self, action:#selector(HotelCreateCouponVC.btnOpenLongDesriptionClick(_:)))
+        tapBgLongDes.cancelsTouchesInView = false
+        viewBoxLongDescription.userInteractionEnabled = true
+        viewBoxLongDescription.addGestureRecognizer(tapBgLongDes)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        
     }
+    
     func initialObject(){
         
-        roomNameTxt.borderStyle = UITextBorderStyle.RoundedRect
-        roomNameTxt.layer.cornerRadius = 5
-        roomNameTxt.layer.borderWidth = 1
-        roomNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+        setDiscountType("cash")
         
-        
-       // shotDescTxt.borderStyle = UITextBorderStyle.RoundedRect
-        shotDescTxt.layer.cornerRadius = 5
-        shotDescTxt.layer.borderWidth = 1
-        shotDescTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-        
-        priceTxt.borderStyle = UITextBorderStyle.RoundedRect
-        priceTxt.layer.cornerRadius = 5
-        priceTxt.layer.borderWidth = 1
-        priceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
-        numOfRoomTxt.layer.cornerRadius = 5
-        numOfRoomTxt.layer.borderWidth = 1
-        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
-        bedTxt.layer.cornerRadius = 5
-        bedTxt.layer.borderWidth = 1
-        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        
-        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
-        maxOccupTxt.layer.cornerRadius = 5
-        maxOccupTxt.layer.borderWidth = 1
-        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-        addButton.layer.cornerRadius = 5
-        facilityView.layer.cornerRadius = 5
+//        roomNameTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        roomNameTxt.layer.cornerRadius = 5
+//        roomNameTxt.layer.borderWidth = 1
+//        roomNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        
+//       // shotDescTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        shotDescTxt.layer.cornerRadius = 5
+//        shotDescTxt.layer.borderWidth = 1
+//        shotDescTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+//        
+//        priceTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        priceTxt.layer.cornerRadius = 5
+//        priceTxt.layer.borderWidth = 1
+//        priceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        numOfRoomTxt.layer.cornerRadius = 5
+//        numOfRoomTxt.layer.borderWidth = 1
+//        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        bedTxt.layer.cornerRadius = 5
+//        bedTxt.layer.borderWidth = 1
+//        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        
+//        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
+//        maxOccupTxt.layer.cornerRadius = 5
+//        maxOccupTxt.layer.borderWidth = 1
+//        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
+//        addButton.layer.cornerRadius = 5
+//        facilityView.layer.cornerRadius = 5
         
     }
-    func initialSize(){
-    width = UIScreen.mainScreen().bounds.size.width
-    heigth = UIScreen.mainScreen().bounds.size.height
     
-    
-    }
     func initNavUnderline(){
         navunderlive.frame = CGRectMake(self.view.frame.size.width/3, (self.navigationController?.navigationBar.frame.size.height)! - 3, self.view.frame.size.width/3, 3)
         navunderlive.backgroundColor = UIColor.redColor()
-        
         self.navigationController?.navigationBar.addSubview(navunderlive)
-        
     }
     override func viewDidDisappear(animated: Bool) {
-        print("viewDidDisappear(Create)")
-        for i in 0...appDelegate.facilityRoomStatus.count - 1
-        {
-            appDelegate.facilityRoomStatus[i] = false
-        }
+       
     }
-    @IBAction func addFacilityBtn(sender: AnyObject) {
-        let alertView = CustomIOS7AlertView()
-        alertView.containerView = createContainerView()
-      //  alertView.frame = CGRectMake(25, 25, width-50 , heigth-100)
-        alertView.delegate = self
-        alertView.buttonColor = UIColor.redColor()
-        alertView.buttonHeight = 50 
-        alertView.show()
-    }
+
     func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
         alertView.close()
         print("customIOS7AlertViewButtonTouchUpInside")
         
-        self.facilitiesRoomAttached.removeAll()
-        for i in 0...appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
-        {
-            if (self.appDelegate.facilityRoomStatus[i] as Bool)
-            {
-                self.facilitiesRoomAttached.append(appDelegate.facilityRoomDic!["roomTypeFacilities"]![i]["facility_name_en"] as! String)
-            }
-            
-        }
-        tableView.reloadData()
+       
     }
     func closealert(sender: UIButton, alertView: CustomIOS7AlertView) {
         alertView.close()
@@ -198,6 +523,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionView
     @IBAction func btnBack(sender: AnyObject) {
         
         
+        self.appDelegate.menuFocusIndexOnBack = 2
         self.navigationController?.popViewControllerAnimated(true)
 //        appDelegate.pagecontrolIndex = 2
         
@@ -212,262 +538,10 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionView
         
     }
  
-
-    @IBAction func btnAddRoom(sender: AnyObject) {
-        
-        if(roomNameTxt.text != "")
-        {
-            print("Create Room")
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-            PKHUD.sharedHUD.show()
-            
-            let send = API_Model()
-            let dataDic = [
-                "providerInformation" : [
-                    "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                    "providerTypeKeyname" : "hotel"
-                ],
-                //Room
-                "roomType":[
-                    "roomTypeNameEn": roomNameTxt.text!,
-                    "roomTypeNameTh": "",
-                    "roomTypeDescriptionEn": shotDescTxt.text,
-                    "roomTypeDescriptionTh": (numOfRoomTxt.text != "0") ? numOfRoomTxt.text : "0",
-                    "roomTypeAvgPrice": "",
-                    "roomTypeCurrentPrice": priceTxt.text,
-                    "quantity": "",
-                    "maximumPerson": maxOccupTxt.text,
-                    "touchbookingpaymentProductKeycode": ""
-                ],
-                "user" : [
-                    "accessToken" : appDelegate.userInfo["accessToken"]!
-                ]
-            ]
-            
-            let dataJson = send.Dict2JsonString(dataDic)
-            
-            print("data Send Json :\(dataJson)")
-            print("Json Encode :\(send.jsonEncode(dataJson))")
-            send.providerAPI(self.appDelegate.command["createRoomType"]!, dataJson: dataJson){
-                data in
-                print("data(addRoom) :\(data)")
-                print("data(roomTypeId) : \(data["roomType"]!["room_type_id"] as! Int)")
-                self.setFacility(data["roomType"]!["room_type_id"] as! Int)
-   
-                print("countImage \(self.roomImageUpload.count) ")
-                if(self.roomImageUpload.count != 0)
-                {
-                    let date = NSDate();
-                    let dateFormatter = NSDateFormatter()
-                    //To prevent displaying either date or time, set the desired style to NoStyle.
-                    dateFormatter.dateFormat = "MM-dd-yyyy-HH-mm"
-                    dateFormatter.timeZone = NSTimeZone()
-                    let imageDate = dateFormatter.stringFromDate(date)
-                    
-                    for index in 0...self.roomImageUpload.count-1
-                    {
-                        let imageName = imageDate + "-" + String(index)+".jpg"
-                        print("ImageName \(imageName)")
-                        send.getUploadKeyRoomGallery(data["roomType"]!["room_type_id"] as! Int,imageName: imageName){
-                            data in
-                            
-                            print("data getUploadKeyRoomGallery: \(data)")
-                            let mediaKey = data
-                            self.send.uploadImage(mediaKey, image: self.roomImageUpload[index], imageName: imageName){
-                                data in
-                                if(index == self.roomImageUpload.count-1)
-                                {
-                                    print("index \(index) count \(self.roomImageUpload.count-1)")
-//                                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-//                                    let alert = SCLAlertView()
-//                                    alert.showCircularIcon = false
-//                                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-//                                
-                                    PKHUD.sharedHUD.hide(false, completion: {action in
-                                        let alert = SCLAlertView()
-                                        alert.showCircularIcon = false
-                                        alert.showCloseButton = false
-                                        alert.addButton("Done", action: {action in
-                                            self.navigationController?.popViewControllerAnimated(true)
-                                        })
-                                        //alert.showError(, subTitle: )
-                                        alert.showError("Information", subTitle: "Create Room Success!")
-                                    })
-//                                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                                        self.appDelegate.viewWithTopButtons.hidden = false
-//                                        self.navunderlive.hidden = true
-//                                        
-//                                    })
-                                    
-//                                    self.appDelegate.viewWithTopButtons.hidden = false
-//                                    self.navunderlive.hidden = true
-//                                    self.appDelegate.pagecontrolIndex = 2
-                                    self.navigationController?.popViewControllerAnimated(true)
-                                }
-                            }
-                        }
-                    }
-                    
-                }else{
-//                    PKHUD.sharedHUD.hide(afterDelay: 0.1)
-//                    let alert = SCLAlertView()
-//                    alert.showCircularIcon = false
-//                    alert.showInfo("Information", subTitle: "Create Room Success", colorStyle:0xAC332F , closeButtonTitle : "OK")
-                    
-                    PKHUD.sharedHUD.hide(false, completion: {action in
-                        let alert = SCLAlertView()
-                        alert.showCircularIcon = false
-                        alert.showCloseButton = false
-                        alert.addButton("Done", action: {action in
-                            self.navigationController?.popViewControllerAnimated(true)
-                        })
-                        //alert.showError(, subTitle: )
-                        alert.showError("Information", subTitle: "Create Room Success!")
-                    })
-//                    let nev = self.storyboard!.instantiateViewControllerWithIdentifier("navCon") as! UINavigationController
-//                    self.navigationController?.presentViewController(nev, animated: true, completion: { () -> Void in
-//                        self.appDelegate.viewWithTopButtons.hidden = false
-//                        self.navunderlive.hidden = true
-//                        
-//                    })
-                    //self.navigationController?.popViewControllerAnimated(true)
-                }
-            }
-        }else
-        {
-            print("No Data")
-            let alert = SCLAlertView()
-            alert.showCircularIcon = false
-            alert.showInfo("Alert", subTitle: "กรุณากรอกข้อมูล", colorStyle:0xAC332F , closeButtonTitle : "OK")
-        }
-
-
-
-
-        appDelegate.pagecontrolIndex = 2
-        
-
+    func dismissKeyboard(){
+        self.view.endEditing(true)
     }
     
-    func getFacility()
-    {
-        //print("roomDataALL : \(self.appDelegate.roomDic!["roomTypes"])")  7288
-        let dataDic =
-        [
-            "roomType": [
-                "roomTypeId": self.appDelegate.roomDic!["roomTypes"]![self.appDelegate.roomIndex!]!["room_type_id"] as! String
-            ]
-        ]
-        
-        let dataJson = send.Dict2JsonString(dataDic)
-        print("data Send Json :\(dataJson)")
-        print("Json Get(Room)FacilityAttached :\(send.jsonEncode(dataJson))")
-        //Update Provider
-        send.providerAPI(self.appDelegate.command["GetRoomTypeFacilityAttached"]!, dataJson: dataJson)
-            {
-                data in
-                print("data(Get(Room)FacilityAttached) :\(data)")
-                print("Count \(data["roomTypeFacilitiesAttached"]!.count )")
-                if(data["roomTypeFacilitiesAttached"]!.count != 0 )
-                {
-                    for i in 0...data["roomTypeFacilitiesAttached"]!.count - 1
-                    {
-                        print(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"])
-                        print("Fac Room Dic WTF : \(self.appDelegate.facilityRoomDic!)")
-                        print("CountWTF : \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count)")
-                        for j in 0...self.appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
-                        {
-                            //                    print("facilitiesAttachedID \(self.appDelegate.facilityHotelDic!["facilities"]![j]!["facility_id"])")
-                            
-                            if((data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String) == (self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String))
-                            {
-                                self.appDelegate.facilityRoomStatus[j] = true
-                                print("index : \(j) \(data["roomTypeFacilitiesAttached"]![i]["room_type_facility_id"] as! String)")
-                                print("index : \(j) \(self.appDelegate.facilityRoomDic!["roomTypeFacilities"]![j]!["room_type_facility_id"] as! String)")
-                                
-                            }
-                            
-                        }
-                        self.facilitiesRoomAttached.append(data["roomTypeFacilitiesAttached"]![i]["facility_keyname"] as! String)
-                    }
-                }
-                self.tableView.reloadData()
-                print("============facilitiesRoomAttached.count\(self.facilitiesRoomAttached.count)")
-                
-        }
-        
-    }
-
-    
-    func setFacility(roomTypeId:Int)
-    {
-        
-        print("RoomID \(roomTypeId)")
-        var dataDic =
-        [
-            "roomType" :
-                [
-                    "roomTypeId" : roomTypeId,
-            ],
-            "roomTypeFacilitiesAttached" :[],
-            
-            "user" : [
-                "accessToken" : appDelegate.userInfo["accessToken"]!
-            ]
-        ]
-        
-        print("RoomFacility : \(appDelegate.facilityRoomDic)")
-        var facilitiesAttached:[[String:String]] = []
-        for i in 0...appDelegate.facilityRoomDic!["roomTypeFacilities"]!.count - 1
-        {
-            if (self.appDelegate.facilityRoomStatus[i] as Bool)
-            {
-                //                "room_type_facility_id": "1",
-                //                "facility_keyname": "air",
-                //                "quantity": "0",
-                facilitiesAttached.append(
-                    ["room_type_facility_id": appDelegate.facilityRoomDic!["roomTypeFacilities"]![i]["room_type_facility_id"] as! String,
-                        "facility_keyname": appDelegate.facilityRoomDic!["roomTypeFacilities"]![i]["facility_name_en"] as! String,
-                        "quantity": "0", ])
-        //        print("fac OK \(appDelegate.facilityRoomDic!["roomTypeFacilities"]![i])")
-            }
-            
-        }
-        
-        dataDic["roomTypeFacilitiesAttached"] = facilitiesAttached
-        let dataJson = send.Dict2JsonString(dataDic)
-        
-        print("data Send Json(setFac) :\(dataJson)")
-        print("Json Encode :\(send.jsonEncode(dataJson))")
-        //Update SetFacilityAttached
-        send.providerAPI(self.appDelegate.command["SetRoomTypeFacilityAttached"]!, dataJson: dataJson){
-            data in
-            print("data(SetRoomFacilityAttached) :\(data)")
-            
-        }
-    }
-    func buttonTapped(btn:SCLButton) {
-        //self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
-    }
-    func dismissKeyboard()
-    {
-        roomNameTxt.resignFirstResponder()
-        priceTxt.resignFirstResponder()
-        numOfRoomTxt.resignFirstResponder()
-        bedTxt.resignFirstResponder()
-        maxOccupTxt.resignFirstResponder()
-        shotDescTxt.resignFirstResponder()
-    }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -495,96 +569,39 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UICollectionView
 //    }
 //    
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return roomGallery.count+1
-    }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    {
-        return CGSize(width: collectionView.frame.size.width/3 - 2, height: collectionView.frame.size.width/3-1)
-    }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->UICollectionViewCell {
-        Cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell",forIndexPath: indexPath) as! RoomGalleryCell
-        
-        print("roomGallery \(roomGallery.count)")
-        if(self.roomGallery.count == 0 || indexPath.row == self.roomGallery.count){
-            print("if")
-            Cell.imgRoom.image = UIImage(named: "add_image.png")
-            
-        }else{
-            Cell.imgRoom.image = self.roomGallery[indexPath.row]
-            print("else")
-        }
-        
-        print("Cell display")
-        return Cell
-        
+    
+    let myPicker = UIImagePickerController()
+    func imageTapped(sender: AnyObject){
+        myPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        myPicker.allowsEditing = false
+        self.presentViewController(myPicker, animated: true, completion: nil)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
-        print("didSelectItemAtIndexPath ::: \(indexPath.row)")
-        self.CellTapped(indexPath.item)
-       
-    }
-    
-    func CellTapped(img: AnyObject)
-    {
-       
-        
-        print("Upload Cover RoomImg")
-        
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(myPickerController, animated: true, completion: nil)
-        
-    }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return facilitiesRoomAttached.count
-    }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        if(facilitiesRoomAttached.count == 0){
-            cell.textLabel?.text = ""
-        }
-        else{
-            // var facilitiesAttached:[[String:String]] = []
-            cell.textLabel?.text = facilitiesRoomAttached[indexPath.row]
-            print("facilitiesRoomAttached(table) \(facilitiesRoomAttached[indexPath.row])")
-        }
-        
-        //cell.textLabel?.text = "facility name"
-        return cell
-    }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Select")
-    }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
         print("ImagePicker")
-        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
+        self.imgLogo.image = chosenImage
+        
+        self.viewEmptyLogo.alpha = 0
         
         dismissViewControllerAnimated(true, completion: nil)
-        self.roomGallery.append(chosenImage)
-        self.roomImageUpload.append(chosenImage)
-        self.collectionView.reloadData()
+     
     }
     //gestureRecognizer
 
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if(self.view.isDescendantOfView(self.collectionView))
-        {
-            print("if gestureRecognizer")
-            return false
-        }
-        else
-        {
-            print("else gestureRecognizer")
-            return true
-        }
+//        if(self.view.isDescendantOfView(self.collectionView))
+//        {
+//            print("if gestureRecognizer")
+//            return false
+//        }
+//        else
+//        {
+//            print("else gestureRecognizer")
+//            return true
+//        }
+        return true
     }
 
 }

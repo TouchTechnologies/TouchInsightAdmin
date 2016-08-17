@@ -1026,9 +1026,9 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         
         //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-                PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                //PKHUD.sharedHUD.contentView = PKHUDProgressView()
                 PKHUD.sharedHUD.show()
-                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                //PKHUD.sharedHUD.hide(afterDelay: 1.0)
         
                 let send = API_Model()
                 print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
@@ -1037,40 +1037,26 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
                     data in
                     print("getProviderByID \(data)")
-                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+//                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                    //PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                    PKHUD.sharedHUD.hide(false)
+                    
         //            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
         
                     self.totalRoomTxt.text = (data["GetProviderInformationById"]!["total_room"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["total_room"] as! String
-        
                     self.totalFloorTxt.text = (data["GetProviderInformationById"]!["number_of_floors"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_floors"] as! String
-        
-        
                     self.distanceCityTxt.text = (data["GetProviderInformationById"]!["distance_from_city_center"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_from_city_center"] as! String
-        
                     self.DistanceAirportTxt.text = (data["GetProviderInformationById"]!["distance_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["distance_to_airport"] as! String
-                    
-                    
                     self.totalResTxt.text = (data["GetProviderInformationById"]!["number_of_restaurants"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_restaurants"] as! String
-                    
-                    
-                    
                     self.totalBarTxt.text = (data["GetProviderInformationById"]!["number_of_bar"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["number_of_bar"] as! String
-                        
-    
-                    
                     self.txtTimeToAirport.text = (data["GetProviderInformationById"]!["time_to_airport"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["time_to_airport"] as! String
-                    
-                    
-                    
                     
                     
 //                    self.checkInTxt.text = (data["GetProviderInformationById"]!["check_in_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_in_time"] as! String
 //                    
 //                    self.checkOutTxt.text = (data["GetProviderInformationById"]!["check_out_time"]! === NSNull()) ? "" : data["GetProviderInformationById"]!["check_out_time"] as! String
 
-                    if var checkIn = data["GetProviderInformationById"]!["check_in_time"]
-                    {
+                    if var checkIn = data["GetProviderInformationById"]!["check_in_time"]{
                         let myNSString = checkIn as! NSString
                         
                         checkIn = myNSString.substringWithRange(NSRange(location: 0, length: 5))
@@ -1085,12 +1071,11 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                             self.checkoutPicker.setDate(unwrappedDate, animated: false)
                         }
                         
-                    }else
-                    {
+                    }else{
                         self.checkInTxt.text = "00:00"
                     }
-                    if var checkOut = data["GetProviderInformationById"]!["check_out_time"]
-                    {
+                    
+                    if var checkOut = data["GetProviderInformationById"]!["check_out_time"]{
                         let myNSString = checkOut as! NSString
                         
                         checkOut = myNSString.substringWithRange(NSRange(location: 0, length: 5))
@@ -1105,26 +1090,21 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                             self.checkoutPicker.setDate(unwrappedDate, animated: false)
                         }
                         
-                    }else
-                    {
+                    }else{
                         self.checkOutTxt.text = "00:00"
                     }
 
                     print("Booooook \(data["GetProviderInformationById"]!["is_bookable"] as! String)")
                     
-                    if let isBookable = data["GetProviderInformationById"]!["is_bookable"]
-                    {
-                        if(isBookable === NSNull())
-                        {
+                    if let isBookable = data["GetProviderInformationById"]!["is_bookable"]{
+                        if(isBookable === NSNull()){
                             self.selectedBookable = "0"
                             self.lblBookableYes.textColor = UIColor.grayColor()
                             self.lblBookableNo.textColor = UIColor.blackColor()
                             self.imgBookableYes.image = UIImage(named: "uncheck.png")
                             self.imgBookableNo.image = UIImage(named: "check.png")
-                        }else
-                        {
-                            if ((isBookable as! String) == "1" || (isBookable as! String) == "yes")
-                            {
+                        }else{
+                            if ((isBookable as! String) == "1" || (isBookable as! String) == "yes"){
                                 print("Yesssssssssss")
                                 self.selectedBookable = "1"
                                 self.lblBookableYes.textColor = UIColor.blackColor()
@@ -1132,8 +1112,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                                 self.imgBookableYes.image = UIImage(named: "check.png")
                                 self.imgBookableNo.image = UIImage(named: "uncheck.png")
                                 
-                            }else
-                            {
+                            }else{
                                 self.selectedBookable = "0"
                                 self.lblBookableYes.textColor = UIColor.grayColor()
                                 self.lblBookableNo.textColor = UIColor.blackColor()
@@ -1147,6 +1126,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
 
                     }
 
+                    PKHUD.sharedHUD.hide(false)
                     
                 }
         

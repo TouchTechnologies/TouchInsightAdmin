@@ -29,7 +29,7 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     func initial(){
         
         tableView.frame = CGRectMake(0, 0,UIScreen.mainScreen().bounds.size.width , UIScreen.mainScreen().bounds.size.height)
-        createButton.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 90, UIScreen.mainScreen().bounds.size.height - 90, 80, 80)
+        createButton.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 90, UIScreen.mainScreen().bounds.size.height - 90, 64, 64)
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         

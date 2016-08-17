@@ -34,7 +34,7 @@ class customCouponList: UITableViewCell{
         
         viewBG.layer.borderWidth = 0.5
         viewBG.layer.borderColor = UIColor.grayColor().CGColor
-        
+        viewBG.backgroundColor = UIColor.whiteColor()
         
         
         /*let nib = UINib(nibName: "customImgCell", bundle: nil)

@@ -181,6 +181,11 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
                         
                         self.btnCloseFormClick(UIButton())
                         
+                        //let spView = ProviderListVC()
+                        //spView.setAddForm(ProviderListVC.setAddFormType.Hide)
+                        //spView.view.backgroundColor = UIColor.redColor()
+                        
+                        
                         //                    self.superview!.superview!.removeFromSuperview()
                         //                    let provList = ProviderListVC()
                         //                    provList.alertDismiss(UIButton())
