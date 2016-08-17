@@ -442,6 +442,9 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                 print("Data(CreateUsersSocialAccounts) : \(logData)")
                                                 if(logData["success"] as! Bool )
                                                 {
+                                                    self.appDelegate.userInfo["accessToken"] = (checkUserFBData["data"]!["accessToken"] as! String)
+                                                    self.appDelegate.userInfo["userID"] = (checkUserFBData["data"]!["userId"] as! String)
+                                                    self.appDelegate.userInfo["email"] = (checkUserFBData["data"]!["email"] as! String)
                                                     self.appDelegate.isLogin = true
                                                     let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                                                     self.navigationController?.pushViewController(secondViewController!, animated: true)
@@ -466,6 +469,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                         print("checkUserFBData \(checkUserFBData)")
                                         self.appDelegate.userInfo["accessToken"] = (checkUserFBData["data"]!["accessToken"] as! String)
                                         self.appDelegate.userInfo["userID"] = (checkUserFBData["data"]!["userId"] as! String)
+                                        self.appDelegate.userInfo["email"] = (checkUserFBData["data"]!["email"] as! String)
                                         
                                         self.appDelegate.isLogin = true
                                         let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")

@@ -26,7 +26,9 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         let alert = SCLAlertView()
         alert.addButton("OK"){
             print("Logout")
+            print("before Logout : \(self.appDelegate.userInfo)")
             self.appDelegate.userInfo = [:]
+            print("after Logout : \(self.appDelegate.userInfo)")
             print(  self.appDelegate.userInfo["firstName"] )
             
             
