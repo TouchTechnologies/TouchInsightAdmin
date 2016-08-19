@@ -114,16 +114,85 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         let alertView = SCLAlertView()
         alertView.showCircularIcon = false
         alertView.showCloseButton = false
+        
+        let msgAlertTitle = "Information"
+        var msgAlertDetail = "Please input data!"
+        
         if imgLogo.image == nil {
-            print("imgLogo nil")
-            
-            alertView.showInfo("Information", subTitle: "", colorStyle:0xAC332F, duration: 3.0)
+            msgAlertDetail = "Please Select Coupon Image!"
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtShortDes.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtLongDes.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtDateStart.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtDateEnd.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtUseStart.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtUseEnd.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponCount.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtPrice.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtDisCash.text == "" || txtDisPercent.text == ""{ //////////
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
+        }else if txtCouponName.text == "" {
+            alertView.addButton("OK", action: {_ in
+                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+            })
         }
         
         
         
         
-        
+        alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail)
     }
     
     @IBAction func btnOpenLongDesriptionClick(sender: AnyObject) {

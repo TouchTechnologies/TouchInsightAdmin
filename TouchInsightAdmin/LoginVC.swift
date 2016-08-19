@@ -208,7 +208,10 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
 //            // Do something else
 //        }
 //        
-        if(device.description == "Simulator"){
+        
+        let deviceName = UIDevice.currentDevice().name
+        
+        if(device.description == "Simulator" || (deviceName == "TAK" && device.description == "iPhone 6s")){
             
             userNameTxt.text = "teerstudio@hotmail.com"
             passWordTxt.text = "master99"
@@ -512,8 +515,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                     self.appDelegate.isLogin = true
                                                     let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
                                                     self.navigationController?.pushViewController(secondViewController!, animated: true)
-                                                }
-                                                else{
+                                                } else{
                                                     
                                                     self.appDelegate.isLogin = false
                                                     titleMessage = "Login fail"
