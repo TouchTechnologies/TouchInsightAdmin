@@ -106,6 +106,26 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     @IBOutlet weak var lblStatusUnPublic: UILabel!
     // --------------
     
+    
+    @IBOutlet weak var btnSaveData: UIButton!
+    @IBAction func btnSaveDataClick(sender: AnyObject) {
+        
+        print("btnSaveDataClick")
+        let alertView = SCLAlertView()
+        alertView.showCircularIcon = false
+        alertView.showCloseButton = false
+        if imgLogo.image == nil {
+            print("imgLogo nil")
+            
+            alertView.showInfo("Information", subTitle: "", colorStyle:0xAC332F, duration: 3.0)
+        }
+        
+        
+        
+        
+        
+    }
+    
     @IBAction func btnOpenLongDesriptionClick(sender: AnyObject) {
         
         self.txtLongDes.becomeFirstResponder()
@@ -142,7 +162,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     }
     
     
-    
+    var canFocus_DisCash = false
     func setDiscountType(type:String) {
         // type : cash|percent
         print("setDiscountType = \(type)")
@@ -153,9 +173,17 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
             self.imgCheckDisCash.image = UIImage(named: "check.png")
             self.imgCheckDisPercent.image = UIImage(named: "uncheck.png")
             
+            if self.canFocus_DisCash {
+                self.txtDisCash.becomeFirstResponder()
+            }else{
+                self.canFocus_DisCash = true
+            }
+            
             UIView.animateWithDuration(0.10, animations: {
                 self.viewBgDisCash.alpha = 1
                 self.viewBgDisPercent.alpha = 0
+                },completion: {_ in
+                    
             })
             
         } else if(type == "percent") {
@@ -165,9 +193,13 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
             self.imgCheckDisCash.image = UIImage(named: "uncheck.png")
             self.imgCheckDisPercent.image = UIImage(named: "check.png")
             
+            self.txtDisPercent.becomeFirstResponder()
+            
             UIView.animateWithDuration(0.10, animations: {
                 self.viewBgDisCash.alpha = 0
                 self.viewBgDisPercent.alpha = 1
+                },completion: {_ in
+                    
             })
             
         }
@@ -203,7 +235,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         datePickerTitle = "Time to use Start"
         openDatePicker()
         UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = 460
+            self.scrollView.contentOffset.y = 383//460
         })
     }
     @IBAction func btnSelectUseEndClick(sender: AnyObject) {
@@ -211,7 +243,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         datePickerTitle = "Time to use End"
         openDatePicker()
         UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = 460
+            self.scrollView.contentOffset.y = 383//460
         })
     }
     
@@ -256,9 +288,9 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     var pickerTop_Show = CGFloat()
     
     func initDatePicker() {
-        
-        pickerTop_Hide = scrollView.frame.size.height
-        pickerTop_Show = scrollView.frame.size.height - pickerHeight
+        let btnSaveH = btnSaveData.frame.size.height
+        pickerTop_Hide = scrollView.frame.size.height + btnSaveH
+        pickerTop_Show = scrollView.frame.size.height + btnSaveH - pickerHeight
         
         _viewPickerBox.frame = CGRectMake(0, pickerTop_Hide, self.view.frame.size.width, pickerHeight)
         //_viewPickerBox.backgroundColor = UIColor.redColor()
@@ -273,7 +305,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         
         let _viewPickerHeader = UIView()
         _viewPickerHeader.frame = CGRectMake(0, 0, lblPickerTitleWidth, pickerHeaderHeight)
-        _viewPickerHeader.backgroundColor = UIColor.grayColor()
+        _viewPickerHeader.backgroundColor = UIColor(red: 214/255, green: 214/255, blue: 214/255, alpha: 1.0)
         _viewPickerBox.addSubview(_viewPickerHeader)
         
         _lblPickerHeader.frame = CGRectMake(6, 0, lblPickerTitleWidth - 6, pickerHeaderHeight)
@@ -285,13 +317,14 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         _btnPickerClose.frame = CGRectMake(_viewPickerBox.frame.size.width - btnClosePickerWidth, 0, btnClosePickerWidth, pickerHeaderHeight)
         //_btnPickerClose.backgroundColor = UIColor.greenColor()
         _btnPickerClose.setTitle("Finish", forState: .Normal)
+        _btnPickerClose.tintColor = UIColor(red: 84/255, green: 84/255, blue: 84/255, alpha: 1.0)
         _btnPickerClose.titleLabel?.font = UIFont.systemFontOfSize(15)
         _btnPickerClose.addTarget(self, action: #selector(self.closeDatePicker), forControlEvents: .TouchUpInside)
         _viewPickerBox.addSubview(_btnPickerClose)
         
         
         _pkDate.frame = CGRectMake(0, pickerHeaderHeight, _viewPickerBox.frame.size.width, pickerHeight-pickerHeaderHeight)
-        _pkDate.backgroundColor = UIColor.greenColor()
+        _pkDate.backgroundColor = UIColor.whiteColor()
         _pkDate.addTarget(self, action: #selector(self.datePickerChanged), forControlEvents: .ValueChanged)
         _pkDate.datePickerMode = UIDatePickerMode.Date
         _pkDate.locale = NSLocale(localeIdentifier: "TH")
@@ -299,7 +332,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         _viewPickerBox.addSubview(_pkDate)
         
     }
-    let strDateFormat = "dd/MM/yyyy"
+    let strDateFormat = "yyyy/MM/dd" // "dd/MM/yyyy"
     func datePickerChanged(datePicker:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
         print("checkinPickerChanged")
@@ -334,23 +367,59 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         
     }
     
+    func dateToString(date:NSDate) -> String {
+        
+//        let dateString = "Thu, 22 Oct 2015 07:45:17 +0000"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = strDateFormat
+        dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+//        let dateObj = dateFormatter.dateFromString(dateString)
+        
+        dateFormatter.dateFormat = strDateFormat
+        //print("Dateobj: \(dateFormatter.stringFromDate(date))")
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
     func openDatePicker() {
         lastScrollY = self.scrollView.contentOffset.y
         _lblPickerHeader.text = datePickerTitle
-        
+        dismissKeyboard()
         var currentDate = NSDate()
+        
+        
         switch datePickerType {
         case "datestart":
-            currentDate = txtDateStart.text != "" ? (txtDateStart.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            //currentDate = txtDateStart.text != "" ? (txtDateStart.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            if txtDateStart.text != "" {
+                currentDate = (txtDateStart.text?.toDateFormattedWith(strDateFormat))!
+            }else{
+                txtDateStart.text = dateToString(currentDate)
+            }
             break
         case "dateend":
-            currentDate = txtDateEnd.text != "" ? (txtDateEnd.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            //currentDate = txtDateEnd.text != "" ? (txtDateEnd.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            if txtDateEnd.text != "" {
+                currentDate = (txtDateEnd.text?.toDateFormattedWith(strDateFormat))!
+            }else{
+                txtDateEnd.text = dateToString(currentDate)
+            }
             break
         case "usestart":
-            currentDate = txtUseStart.text != "" ? (txtUseStart.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            //currentDate = txtUseStart.text != "" ? (txtUseStart.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            if txtUseStart.text != "" {
+                currentDate = (txtUseStart.text?.toDateFormattedWith(strDateFormat))!
+            }else{
+                txtUseStart.text = dateToString(currentDate)
+            }
             break
         case "useend":
-            currentDate = txtUseEnd.text != "" ? (txtUseEnd.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            //currentDate = txtUseEnd.text != "" ? (txtUseEnd.text?.toDateFormattedWith(strDateFormat))! : currentDate
+            if txtUseEnd.text != "" {
+                currentDate = (txtUseEnd.text?.toDateFormattedWith(strDateFormat))!
+            }else{
+                txtUseEnd.text = dateToString(currentDate)
+            }
             break
         default:
             //
@@ -462,8 +531,10 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                 self.scrollView.contentOffset.y = 1067
             })
         }else if textField == txtContactEmail {
+            let scY = scrollView.frame.size.height - 1142 + kHeight
+            print("scY = \(scY)")
             UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 1142
+                self.scrollView.contentOffset.y = 1142 // scY // 1142
             })
         }
         
@@ -512,24 +583,24 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        //dismissKeyboard()
         print(scrollView.contentOffset.y)
     }
     
     func scrollToLastScroll() {
         
         UIView.animateWithDuration(0.25, animations: {_ in
-            
-            self.scrollView.contentOffset.y = self.lastScrollY
+            self.scrollView.contentOffset.y = self.lastScrollY > 830 ? 830 : self.lastScrollY
         })
         
     }
     
     // -----------------------------------------------
     
+    let contentscrollheight:CGFloat = 1350 // self.scrollView.layer.bounds.size.height
     override func viewWillAppear(animated: Bool) {
         //self.navigationController?.setNavigationBarHidden(false, animated: true)
       //  let width = UIScreen.mainScreen().bounds.size.width
-        let contentscrollheight:CGFloat = 1350 // self.scrollView.layer.bounds.size.height
         scrollView.contentSize = CGSizeMake(width,contentscrollheight);
         self.appDelegate.viewWithTopButtons.hidden = true
 //        self.getFacility()
@@ -639,38 +710,57 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         
         setDiscountType("cash")
         
-//        roomNameTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        roomNameTxt.layer.cornerRadius = 5
-//        roomNameTxt.layer.borderWidth = 1
-//        roomNameTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        
-//        
-//       // shotDescTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        shotDescTxt.layer.cornerRadius = 5
-//        shotDescTxt.layer.borderWidth = 1
-//        shotDescTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
-//        
-//        priceTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        priceTxt.layer.cornerRadius = 5
-//        priceTxt.layer.borderWidth = 1
-//        priceTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        
-//        numOfRoomTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        numOfRoomTxt.layer.cornerRadius = 5
-//        numOfRoomTxt.layer.borderWidth = 1
-//        numOfRoomTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        
-//        bedTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        bedTxt.layer.cornerRadius = 5
-//        bedTxt.layer.borderWidth = 1
-//        bedTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        
-//        maxOccupTxt.borderStyle = UITextBorderStyle.RoundedRect
-//        maxOccupTxt.layer.cornerRadius = 5
-//        maxOccupTxt.layer.borderWidth = 1
-//        maxOccupTxt.layer.borderColor = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.09).CGColor
-//        addButton.layer.cornerRadius = 5
-//        facilityView.layer.cornerRadius = 5
+        txtDateStart.placeholder = strDateFormat
+        txtDateEnd.placeholder = strDateFormat
+        txtUseStart.placeholder = strDateFormat
+        txtUseEnd.placeholder = strDateFormat
+        
+        
+        let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        
+        
+        txtCouponName.borderStyle = UITextBorderStyle.None
+        txtCouponName.layer.borderWidth = 1
+        txtCouponName.layer.borderColor = borderColorCG
+        
+        txtShortDes.layer.borderWidth = 1
+        txtShortDes.layer.borderColor = borderColorCG
+        
+        txtLongDes.layer.borderWidth = 1
+        txtLongDes.layer.borderColor = borderColorCG
+        
+        txtCouponCount.borderStyle = UITextBorderStyle.None
+        txtCouponCount.layer.borderWidth = 1
+        txtCouponCount.layer.borderColor = borderColorCG
+        
+        txtValidate.borderStyle = UITextBorderStyle.None
+        txtValidate.layer.borderWidth = 1
+        txtValidate.layer.borderColor = borderColorCG
+        
+        txtPrefixCode.borderStyle = UITextBorderStyle.None
+        txtPrefixCode.layer.borderWidth = 1
+        txtPrefixCode.layer.borderColor = borderColorCG
+        
+        let viewBgPrice:UIView = txtPrice.superview!
+        viewBgPrice.layer.borderWidth = 1
+        viewBgPrice.layer.borderColor = borderColorCG
+        
+        viewBgDisCash.layer.borderWidth = 1
+        viewBgDisCash.layer.borderColor = borderColorCG
+        
+        viewBgDisPercent.layer.borderWidth = 1
+        viewBgDisPercent.layer.borderColor = borderColorCG
+        
+        txtCondition.layer.borderWidth = 1
+        txtCondition.layer.borderColor = borderColorCG
+        
+        txtContactPhone.borderStyle = UITextBorderStyle.None
+        txtContactPhone.layer.borderWidth = 1
+        txtContactPhone.layer.borderColor = borderColorCG
+        
+        txtContactEmail.borderStyle = UITextBorderStyle.None
+        txtContactEmail.layer.borderWidth = 1
+        txtContactEmail.layer.borderColor = borderColorCG
         
     }
     

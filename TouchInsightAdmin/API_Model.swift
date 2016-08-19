@@ -17,7 +17,7 @@ class API_Model {
 //    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
 //    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
 //    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
-
+    
     
     let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
     let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
@@ -28,8 +28,6 @@ class API_Model {
 //    let _oldapiUrl = "http://27.254.47.203:8094/backend_api/interface/insight"
 //    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
-    
-    // test to tak
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let _osVersion = UIDevice.currentDevice().systemVersion
