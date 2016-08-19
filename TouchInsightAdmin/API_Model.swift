@@ -378,26 +378,7 @@ class API_Model {
                                 }
                         }
                         
-                    }else{ // Login Fail
-                       //print("userId = NO")
-                        //print(json["errors"]!![0]["message"]!![0])
-                        
-                        //if let _m = (json["errors"] as! Array)[0]["message"]!![0] as! String{
-                        
-//                        for var index = 0 ;index < error?.count ;index++
-//                        {
-//                            print("field\(index) \(error![index]["field"] as! String)")
-//                            if (error![index]["field"] as! String) == "username"
-//                            {
-//                                data["field"] = error![index]["field"]
-//                                data["message"] = "username ไม่มีในระบบ"
-//                            }else if (error![index]["field"] as! String) == "password"
-//                            {
-//                                data["field"] = error![index]["field"]
-//                                data["message"] = "password ผิด"
-//                            }
-//                            
-//                        }
+                    }else{
                         
                         var msg = ""
                         if let error = json["errors"] as! NSArray?{
@@ -410,16 +391,6 @@ class API_Model {
                                     print("-------")
                                 }
                                 
-//                                if let _m = message[0]{
-//                                    msg = _m
-//                                }
-                                
-//                                if(message.count > 0){
-//                                    if let _m = message[0] as! String?{
-//                                        msg = _m
-//                                    }
-//                                    
-//                                }
                             }
                             
                             
@@ -1344,8 +1315,108 @@ class API_Model {
         
     }
     
-    /////////////////////Hotel Room/////////////////
-    
-    //    func
-    
+    /////////////////////Coupon API/////////////////
+    func getCoupon(providerID:String,completionHandler:[String:AnyObject]->()) {
+        Alamofire.request(.GET, "\(_apiUrl)coupon-groups/)")
+            .responseJSON { response in
+                //                print(response.request)  // original URL request
+                //                print(response.response) // URL response
+                //                print(response.data)     // server data
+                //                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON(user Info): \(JSON)")
+                    
+                    let data = [
+                        "":""
+                    ]
+
+                    completionHandler(data)
+                }
+                
+        }
+        
+    }
+    func createCoupon(data:[String:AnyObject],completionHandler:[String:AnyObject]->())
+    {
+        let reqUrl = "\(_apiUrl)coupon-groups"
+        print(reqUrl)
+        
+        let request = Alamofire.request(.POST, reqUrl, parameters: data, encoding: .JSON, headers: .None)
+        //request.validate()
+        request.responseJSON{response in
+            
+            var returnData: [String:AnyObject] = [:]
+            //            var returnData: [String:AnyObject] = [
+            //                "success":false,
+            //                "message":"Cannot Connect to Server!",
+            //                "data":[]
+            //            ]
+            
+            //print("JSON(Login)")
+            print(response.result.value)
+            
+            if response.result.isSuccess {
+                
+                if let json = response.result.value {
+                    print("data(createCoupon) : \(json)")
+                    
+                    if let userId = json["userId"] as! String? { // Login OK
+                        //print("userId = \(userId)")
+                        
+                        returnData = [
+                            "success":true,
+                            "message":"Login Success!",
+                            "data":json
+                        ]
+                    }else{
+                        
+                        var msg = ""
+                        if let error = json["errors"] as! NSArray?{
+                            
+                            if let message = error[0]["message"] as! NSArray?{
+                                
+                                for msgError in message{
+                                    msg = msgError as! String
+                                    print(msgError)
+                                    print("-------")
+                                }
+                                
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        returnData = [
+                            "success":false,
+                            "message":msg,
+                            "data":json
+                        ]
+                    }
+                }
+                
+                //print("Success")
+            }else{ // ไม่มี else เพราะมีค่าเริ่มต้นอยู่แล้ว
+                
+                returnData = [
+                    "success":false,
+                    "message":"Cannot Connect to Server!",
+                    "data":[:]
+                ]
+                
+                print("error")
+                print(response.result.error?.localizedDescription)
+                print(response.result.value)
+                
+            }
+            
+            print("returnData")
+            print(returnData)
+            print("- - - - - -")
+            
+            completionHandler(returnData)
+            
+        }
+    }
 }
