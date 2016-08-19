@@ -133,6 +133,13 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         
         super.viewDidLoad()
         
+        
+        let get = API_Model()
+        print("viewDidLoad Login")
+        get.getCoupon("111") { data in
+            print("getCoupon=>>>>>>>>>>>> \(data)")
+        }
+        
 //        readDB()
 //        if self._member != nil{
 //            

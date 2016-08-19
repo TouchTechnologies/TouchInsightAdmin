@@ -1316,8 +1316,11 @@ class API_Model {
     }
     
     /////////////////////Coupon API/////////////////
-    func getCoupon(providerID:String,completionHandler:[String:AnyObject]->()) {
-        Alamofire.request(.GET, "\(_apiUrl)coupon-groups/)")
+    func getCoupon(providerID:String,completionHandler:[[String:AnyObject]]->()) {
+        
+        let reqUrl = "\(_apiUrl)coupon-groups"
+        print(reqUrl)
+        Alamofire.request(.GET, reqUrl)
             .responseJSON { response in
                 //                print(response.request)  // original URL request
                 //                print(response.response) // URL response
@@ -1325,13 +1328,8 @@ class API_Model {
                 //                print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
-                    print("JSON(user Info): \(JSON)")
-                    
-                    let data = [
-                        "":""
-                    ]
-
-                    completionHandler(data)
+//                    print("JSON(getCoupon): \(JSON)")
+                    completionHandler(JSON as! [[String : AnyObject]])
                 }
                 
         }

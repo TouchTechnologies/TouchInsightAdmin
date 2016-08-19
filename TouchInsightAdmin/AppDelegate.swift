@@ -159,7 +159,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         let userData = self.userInfo
         print("---getlistProvider()---")
-        
 //        print("---userData---")
 //        print(userData["email"])
 //        print("--------------")
@@ -196,6 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
         
         Fabric.with([Crashlytics.self])
         
