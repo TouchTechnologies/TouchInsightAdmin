@@ -54,6 +54,7 @@
 		36E394541C40BA22004402B7 /* RNGridMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E394441C40BA21004402B7 /* RNGridMenu.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36E394551C40BA22004402B7 /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E394451C40BA21004402B7 /* SCLAlertView.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36E394561C40BA22004402B7 /* SMPageControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E394461C40BA21004402B7 /* SMPageControl.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		36EF29C21D67080E008B1EAE /* CouponData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF29C11D67080E008B1EAE /* CouponData.swift */; };
 		3B1EFC301D334BE700A7F4EA /* fr_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC221D334BE700A7F4EA /* fr_hover.png */; };
 		3B1EFC311D334BE700A7F4EA /* fr.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC231D334BE700A7F4EA /* fr.png */; };
 		3B1EFC321D334BE700A7F4EA /* mo_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC241D334BE700A7F4EA /* mo_hover.png */; };
@@ -337,6 +338,7 @@
 		36E394441C40BA21004402B7 /* RNGridMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RNGridMenu.framework; path = "Pods/../build/Debug-iphoneos/RNGridMenu.framework"; sourceTree = "<group>"; };
 		36E394451C40BA21004402B7 /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		36E394461C40BA21004402B7 /* SMPageControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SMPageControl.framework; path = "Pods/../build/Debug-iphoneos/SMPageControl.framework"; sourceTree = "<group>"; };
+		36EF29C11D67080E008B1EAE /* CouponData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponData.swift; sourceTree = "<group>"; };
 		3B1EFC221D334BE700A7F4EA /* fr_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fr_hover.png; sourceTree = "<group>"; };
 		3B1EFC231D334BE700A7F4EA /* fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fr.png; sourceTree = "<group>"; };
 		3B1EFC241D334BE700A7F4EA /* mo_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mo_hover.png; sourceTree = "<group>"; };
@@ -880,6 +882,7 @@
 			children = (
 				3B4394691D3CDACA005B4E6C /* MemberData.swift */,
 				3BBCD72D1D45B92C00892372 /* FileMan.swift */,
+				36EF29C11D67080E008B1EAE /* CouponData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1584,6 +1587,7 @@
 				F3B73A2D1C562E4200781D48 /* CustomIOS7AlertView.swift in Sources */,
 				F34D51C11C3CF038002AC1EF /* hotelfacility.swift in Sources */,
 				F3A43FBE1C172337000D76CA /* InformationVC.swift in Sources */,
+				36EF29C21D67080E008B1EAE /* CouponData.swift in Sources */,
 				F3B0711B1C0F3F3200DC97CB /* SettingAccountVC.swift in Sources */,
 				F3C6EE201C6B2EBD00DB031F /* EditRoominfomationVC.swift in Sources */,
 				F30DF8561D2F5AF90074B713 /* AttnInfoVC.swift in Sources */,
