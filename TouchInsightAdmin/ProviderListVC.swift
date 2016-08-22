@@ -55,16 +55,21 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
     }
     
-    let alert = CustomIOS7AlertView()
+    let alertAddProvider = CustomIOS7AlertView()
     @IBAction  func btnCreateProvider(sender: AnyObject) {
         print("alert ")
         
-//        alert.delegate = self
-//        alert.buttonColor = UIColor.redColor()
-//        alert.containerView = createpopupView()
-//        alert.show()
+        alertAddProvider.delegate = self
+        alertAddProvider.buttonColor = UIColor.redColor()
+        alertAddProvider.containerView = createpopupView()
+        alertAddProvider.buttonHeight = 0
+        alertAddProvider.buttonsDividerHeight = 0
+        alertAddProvider.buttonTitles = []
+        alertAddProvider.backgroundColor = UIColor.clearColor()
+        alertAddProvider.layer.cornerRadius = 0
+        alertAddProvider.show()
         
-        setAddForm(.Show)
+        //        setAddForm(.Show)
         
         //      alert.keyboardWillShow(NSNotification)
     }
@@ -134,7 +139,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     internal func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {
         print("reload xxxx")
         
-        alert.close()
+        alertAddProvider.close()
         self.reloadData()
         //            tableView.reloadData()
         
@@ -148,22 +153,48 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     //    }
     
     // Create a custom container view
+    var tmCloseBox = NSTimer()
     func createpopupView() -> UIView {
         
-        popupView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width - 50, UIScreen.mainScreen().bounds.size.height - 100))
-        popupView.backgroundColor = UIColor.blackColor()
-        subView1 = NSBundle.mainBundle().loadNibNamed("customCreateProvider", owner: self, options: nil)[0] as! alertCreateProviderV
-        subView1.createButton.addTarget(self, action: #selector(ProviderListVC.alertDismiss(_:)), forControlEvents: .TouchUpInside)
-        subView1.createButton.layer.cornerRadius = 5
-        subView1.frame = popupView.bounds
-        subView1.providerNameTxt.layer.borderColor = UIColor.grayColor().CGColor
-        subView1.providerNameTxt.layer.borderWidth = 1
-        subView1.providerNameTxt.layer.cornerRadius = 5
-        subView1.providerNameTxt.delegate = self
+        //let frm = CGRectMake(15, 20 + 44 + 15, self.view.frame.size.width - 30, self.view.frame.size.height - ( 30 + 20 + 44 + 15 ))
         
-        popupView.addSubview(subView1)
-        return popupView
+        let frm = CGRectMake(0, 0, self.view.frame.size.width - 30, self.view.frame.size.height - ( 30 + 20 + 44 + 15 ))
+        
+//        popupView = UIView(frame: frm)
+//        popupView.backgroundColor = UIColor.blackColor()
+//        popupView.layer.cornerRadius = 0
+        
+        subView1 = NSBundle.mainBundle().loadNibNamed("customCreateProvider", owner: self, options: nil)[0] as! alertCreateProviderV
+        //subView1.createButton.addTarget(self, action: #selector(ProviderListVC.alertDismiss(_:)), forControlEvents: .TouchUpInside)
+        subView1.layer.cornerRadius = 0
+        subView1.frame = frm
+        subView1.frame.origin.x = 0
+        subView1.frame.origin.y = 0
+//        subView1.providerNameTxt.layer.borderColor = UIColor.grayColor().CGColor
+//        subView1.providerNameTxt.layer.borderWidth = 1
+//        subView1.providerNameTxt.layer.cornerRadius = 0
+//        subView1.providerNameTxt.delegate = self
+        
+//        popupView.addSubview(subView1)
+        
+        tmCloseBox = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(self.tickForCloseBox), userInfo: nil, repeats: true)
+        
+        
+        return subView1 // popupView
     }
+    
+    func tickForCloseBox() {
+        
+        if appDelegate.closeCreateProviderBox {
+            alertDismiss(UIButton())
+        }
+    }
+    
+    func unsetTimer() {
+        appDelegate.closeCreateProviderBox = false
+        tmCloseBox.invalidate()
+    }
+    
     func alertDismiss(sender :UIButton){
         //        alert.close()
         print("helllllll")
@@ -189,9 +220,14 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         //
         //        }
         
-        tableView.reloadData()
+        //
         
+        
+        self.alertAddProvider.close()
+        self.tableView.reloadData()
+        unsetTimer()
     }
+    
     func setAttraction(){
         print("Attraction")
         providerTypeKeyname = "attraction"
@@ -622,6 +658,8 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     override func viewWillDisappear(animated: Bool) {
         print("viewWillDisappear")
+        unsetTimer()
+        
         self.navigationController?.navigationBarHidden = true
     }
     

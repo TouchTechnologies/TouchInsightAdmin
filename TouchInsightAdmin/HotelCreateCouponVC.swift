@@ -119,76 +119,81 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         var msgAlertDetail = "Please input data!"
         
         if imgLogo.image == nil {
-            msgAlertDetail = "Please Select Coupon Image!"
+            msgAlertDetail = "Please Choose Coupon Image!"
             alertView.addButton("OK", action: {_ in
                 UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
             })
-        }else if txtCouponName.text == "" {
+        }else if txtCouponName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Coupon Name"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtCouponName.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 106 }, completion:{ _ in self.txtCouponName.becomeFirstResponder()})
             })
-        }else if txtShortDes.text == "" {
+        }else if txtShortDes.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Short Description"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtShortDes.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 190 }, completion:{ _ in self.txtShortDes.becomeFirstResponder()})
             })
-        }else if txtLongDes.text == "" {
+        }else if txtDateStart.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please Choose Date Start"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.btnSelectDateStartClick(UIButton())
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 383 }, completion:{ _ in self.btnSelectDateStartClick(UIButton())})
             })
-        }else if txtDateStart.text == "" {
+        }else if txtDateEnd.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please Choose Date End"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.btnSelectDateEndClick(UIButton())
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 383 }, completion:{ _ in self.btnSelectDateEndClick(UIButton())})
             })
-        }else if txtDateEnd.text == "" {
+        }else if txtUseStart.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please Choose\nTime to use Start"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.btnSelectUseStartClick(UIButton())
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 460 }, completion:{ _ in self.btnSelectUseStartClick(UIButton())})
             })
-        }else if txtUseStart.text == "" {
+        }else if txtUseEnd.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please Choose\nTime to use End"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.btnSelectUseEndClick(UIButton())
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 460 }, completion:{ _ in self.btnSelectUseEndClick(UIButton())})
             })
-        }else if txtUseEnd.text == "" {
+        }else if txtCouponCount.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter number of Coupon"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtCouponCount.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 543 }, completion:{ _ in self.txtCouponCount.becomeFirstResponder()})
             })
-        }else if txtCouponCount.text == "" {
+        }else if txtPrice.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Price"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtPrice.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 701 }, completion:{ _ in self.txtPrice.becomeFirstResponder()})
             })
-        }else if txtPrice.text == "" {
+        }else if txtCondition.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Condition"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtCondition.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 903 }, completion:{ _ in self.txtCondition.becomeFirstResponder()})
             })
-        }else if txtDisCash.text == "" || txtDisPercent.text == ""{ //////////
+        }else if txtContactPhone.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Contact Phone"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtContactPhone.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 1067 }, completion:{ _ in self.txtContactPhone.becomeFirstResponder()})
             })
-        }else if txtCouponName.text == "" {
+        }else if txtContactEmail.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Contact Email"
             alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
+                self.txtContactEmail.becomeFirstResponder()
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 1142 }, completion:{ _ in self.txtContactEmail.becomeFirstResponder()})
             })
-        }else if txtCouponName.text == "" {
-            alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
-            })
-        }else if txtCouponName.text == "" {
-            alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
-            })
-        }else if txtCouponName.text == "" {
-            alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
-            })
-        }else if txtCouponName.text == "" {
-            alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
-            })
-        }else if txtCouponName.text == "" {
-            alertView.addButton("OK", action: {_ in
-                UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
-            })
-        }
+        }else{
         
+            
+        
+        }
         
         
         
@@ -524,6 +529,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     
     var lastScrollY:CGFloat = 0
     var kHeight = CGFloat()
+    var kbIsShow = false
     func keyboardWillShow(notification: NSNotification) {
         
         //lastScrollY = self.scrollView.contentOffset.y
@@ -550,7 +556,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         
         print("keyboardWillHide = \(self.lastScrollY)")
         
-        scrollToLastScroll()
+        //scrollToLastScroll()
         
         btnCloseLongDesriptionClick(UIButton())
         
@@ -562,23 +568,31 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     }
     
     func keyboardDidHide(notification: NSNotification) {
-        
+        kbIsShow = false
         print("keyboardDidHide = \(self.lastScrollY)")
         
         scrollToLastScroll()
         
     }
     
+    func keyboardDidShow(notification: NSNotification) {
+        kbIsShow = true
+        print("keyboardDidShow = \(self.lastScrollY)")
+        
+        
+    }
+    
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print("textFieldShouldReturn")
         self.view.endEditing(true)
         return true;
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        print("textFieldShouldBeginEditing")
         lastScrollY = self.scrollView.contentOffset.y
 
-        
         if textField == txtCouponName {
             UIView.animateWithDuration(0.25, animations: {_ in
                 self.scrollView.contentOffset.y = 106
@@ -613,18 +627,21 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     
     func textFieldDidEndEditing(textField: UITextField) {
         
+        print("textFieldDidEndEditing")
         //scrollToLastScroll()
         
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         
+        print("textFieldShouldEndEditing")
         //scrollToLastScroll()
         
         return true
     }
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        print("textViewShouldBeginEditing")
         lastScrollY = self.scrollView.contentOffset.y
 
         if textView == txtShortDes {
@@ -641,26 +658,34 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     
     func textViewDidEndEditing(textView: UITextView) {
         
-        //scrollToLastScroll()
+        print("textViewDidEndEditing")
+        scrollToLastScroll()
         
     }
     
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         
-        //scrollToLastScroll()
+        print("textViewShouldEndEditing")
+        scrollToLastScroll()
         return true
     }
     
+    
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //dismissKeyboard()
-        print(scrollView.contentOffset.y)
+        print("scrollViewDidScroll \(scrollView.contentOffset.y)")
     }
     
     func scrollToLastScroll() {
         
-        UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = self.lastScrollY > 830 ? 830 : self.lastScrollY
-        })
+        if self.scrollView.contentOffset.y != self.lastScrollY {
+            
+            UIView.animateWithDuration(0.25, animations: {_ in
+                self.scrollView.contentOffset.y = self.lastScrollY > 830 ? 830 : self.lastScrollY
+            })
+            
+        }
         
     }
     
@@ -772,6 +797,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         
     }
     
