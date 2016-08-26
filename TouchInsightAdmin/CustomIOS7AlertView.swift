@@ -92,26 +92,35 @@ class CustomIOS7AlertView: UIView {
     }
     
     internal func close(completion: ((Bool) -> Void)?) {
-        let currentTransform = alertView.layer.transform
         
-        let startRotation = alertView.valueForKeyPath("layer.transform.rotation.z")!.floatValue
-        let rotation = CATransform3DMakeRotation(CGFloat(-startRotation) + CGFloat(M_PI * 270 / 180), 0, 0, 0)
-        
-        alertView.layer.transform = CATransform3DConcat(rotation, CATransform3DMakeScale(1, 1, 1))
-        alertView.layer.opacity = 1
-        
-        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
-            self.backgroundColor = UIColor(white: 0, alpha: 0)
-            self.alertView.layer.transform = CATransform3DConcat(currentTransform, CATransform3DMakeScale(0.6, 0.6, 1))
-            self.alertView.layer.opacity = 0
-        }, completion: { (finished: Bool) in
-            for view in self.subviews as [UIView] {
-                view.removeFromSuperview()
-            }
+        if(alertView != nil){
+            
+            let currentTransform = alertView.layer.transform
+            
+            let startRotation = alertView.valueForKeyPath("layer.transform.rotation.z")!.floatValue
+            let rotation = CATransform3DMakeRotation(CGFloat(-startRotation) + CGFloat(M_PI * 270 / 180), 0, 0, 0)
+            
+            alertView.layer.transform = CATransform3DConcat(rotation, CATransform3DMakeScale(1, 1, 1))
+            alertView.layer.opacity = 1
+            
+            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
+                self.backgroundColor = UIColor(white: 0, alpha: 0)
+                self.alertView.layer.transform = CATransform3DConcat(currentTransform, CATransform3DMakeScale(0.6, 0.6, 1))
+                self.alertView.layer.opacity = 0
+                }, completion: { (finished: Bool) in
+                    for view in self.subviews as [UIView] {
+                        view.removeFromSuperview()
+                    }
+                    
+                    self.removeFromSuperview()
+                    completion?(finished)
+            })
+        }else{
             
             self.removeFromSuperview()
-            completion?(finished)
-        })
+            completion?(true)
+        }
+        
     }
     
     // Enables or disables the specified button

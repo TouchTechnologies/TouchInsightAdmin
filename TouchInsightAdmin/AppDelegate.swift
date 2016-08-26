@@ -122,6 +122,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     var menuFocusIndexOnBack:Int = 0
     
+    
+    
     func getMemberData() -> [String:AnyObject] {
         
         let arrMember = Array(uiRealm.objects(MemberData).toArray())
@@ -238,6 +240,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     
+    
+    
+    
+    var closeCreateProviderBox = false
     
 }
 

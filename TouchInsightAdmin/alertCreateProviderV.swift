@@ -8,7 +8,7 @@
 
 import UIKit
 import SCLAlertView
-class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource ,UITextFieldDelegate, UIGestureRecognizerDelegate{
+class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource ,UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let typename : [String] = ["Attraction","Restaurant","Hotel"]
@@ -179,7 +179,7 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
                         
                         self.tableView.reloadData()
                         
-                        self.btnCloseFormClick(UIButton())
+                        self.appDelegate.closeCreateProviderBox = true
                         
                         //let spView = ProviderListVC()
                         //spView.setAddForm(ProviderListVC.setAddFormType.Hide)
@@ -212,22 +212,37 @@ class alertCreateProviderV: UIView , UITableViewDelegate , UITableViewDataSource
     
     @IBAction func btnCloseFormClick(sender: AnyObject) {
         
+        //let spView = ProviderListVC()
+        appDelegate.closeCreateProviderBox = true
+        
+        
+        
+        
+
+        //        dispatch_async(dispatch_get_main_queue()) {
+        //            // update some UI
+        //            //let spView = ProviderListVC()
+        //
+        //
+        //
+        //        }
+        
         //        let pListVC = ProviderListVC()
         //        pListVC.setAddForm(.Hide)
         
         
         //   , 9988992
-        let superView = self.superview!.superview!
-        for v:UIView in superView.subviews {
-            
-            if v.tag == 9988991 || v.tag == 9988992 {
-                UIView.animateWithDuration(0.25, animations: {
-                    v.alpha = 0
-                })
-            }
-            print("v.tag")
-            print(v.tag)
-        }
+//        let superView = self.superview!.superview!
+//        for v:UIView in superView.subviews {
+//            
+//            if v.tag == 9988991 || v.tag == 9988992 {
+//                UIView.animateWithDuration(0.25, animations: {
+//                    v.alpha = 0
+//                })
+//            }
+//            print("v.tag")
+//            print(v.tag)
+//        }
         print("----------------------")
         
     }
