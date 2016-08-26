@@ -1327,7 +1327,7 @@ class API_Model {
     }
     
     /////////////////////Coupon API/////////////////
-    func getCoupon(providerID:String,completionHandler:Bool->()) {
+    func getCoupon(providerID:String,completionHandler:[[String:AnyObject]]->()) {
         
         let reqUrl = "\(_apiUrl)coupon-groups"
         print(reqUrl)
@@ -1396,7 +1396,7 @@ class API_Model {
 //                    }
 
                     
-                    completionHandler(true)
+                    completionHandler(dataJSON as! [[String : AnyObject]])
                 }else
                 {
                     print("WTF ELSE")
