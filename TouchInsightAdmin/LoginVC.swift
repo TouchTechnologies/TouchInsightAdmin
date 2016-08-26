@@ -137,7 +137,7 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         let get = API_Model()
         print("viewDidLoad Login")
         get.getCoupon("111") { data in
-            print("getCoupon=>>>>>>>>>>>> \(data)")
+//            print("getCoupon=>>>>>>>>>>>> \(data)")
         }
         
 //        readDB()
@@ -432,6 +432,13 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                     self.appDelegate.userInfo["lastName"] = _lastName
                                                 }
                                                 
+                                                
+//                                                guard let value = logData["data"]!["userProfileObject"] where
+//                                                    self.appDelegate.userInfo["mobile"] == value!["phone"] as? String else {
+//                                                        self.appDelegate.userInfo["mobile"] = "aaaa"
+//                                                        print("Malformed data received from fetchAllRooms service")
+//                                                        return
+//                                                }
 //                                                if(!self.isNull(logData["data"]!["userProfileObject"]!!["phone"]))
 //                                                {
 //                                                    if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
