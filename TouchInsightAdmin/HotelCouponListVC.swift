@@ -22,14 +22,14 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     @IBOutlet var noRoomLine: UIImageView!
     
     @IBOutlet var createButton: UIButton!
-    var roomNameData:NSDictionary = ["":""]
+    //var roomNameData:NSDictionary = ["":""]
     var editRoomTag = 0
     
     
     func initial(){
         
-        tableView.frame = CGRectMake(0, 0,UIScreen.mainScreen().bounds.size.width , UIScreen.mainScreen().bounds.size.height)
-        createButton.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 90, UIScreen.mainScreen().bounds.size.height - 90, 64, 64)
+        //tableView.frame = CGRectMake(0, 0,UIScreen.mainScreen().bounds.size.width , UIScreen.mainScreen().bounds.size.height)
+        //createButton.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 90, UIScreen.mainScreen().bounds.size.height - 90, 64, 64)
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         
@@ -53,76 +53,146 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
       
     }
     
+    
+    var dicProvider = NSDictionary()
+    var imgIconTypeKey = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("room")
         print("viewDidLoad")
         self.initial()
-        tableView.frame = self.view.frame
+        //tableView.frame = self.view.frame
         let nib = UINib(nibName: "customCouponList", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
-        print("roomData2 didLoad :\(roomNameData)")
         
         
+        guard let objProvider = appDelegate.providerData!["ListProviderInformationSummary"]! as? NSArray else {
+            print("no objProvider")
+            return
+        }
         
+        guard let objProviderDic = objProvider[appDelegate.providerIndex!] as? NSDictionary else {
+            print("no objProviderDic")
+            return
+        }
+        
+        dicProvider = objProviderDic
+        
+        
+        print("dicProvider")
+        print("dicProvider")
+        print("dicProvider")
+        print(dicProvider)
+        print("-----------------------------------------")
+        print("-----------------------------------------")
+        print("-----------------------------------------")
+        
+        
+        switch String(dicProvider["provider_type_keyname"]!) {
+        case "hotel":
+            imgIconTypeKey = UIImage(named: "ic_hotel_hover.png")!
+            break
+        case "restaurant":
+            imgIconTypeKey = UIImage(named: "ic_restaurant_hover.png")!
+            break
+        case "attraction":
+            imgIconTypeKey = UIImage(named: "ic_attraction_hover.png")!
+            break
+        default :
+            break
+        }
         
     }
+    
     override func viewDidAppear(animated: Bool) {
 //        super.viewDidAppear(true)
         print("viewDidAppear")
-        self.getRoomType()
+        self.fetchData()
     }
     
-    func getRoomType()
-    {
-        let send = API_Model()
-        let dataDic = [
-            "providerInformation" : [
-                "providerId" : appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String,
-                "providerTypeKeyname" : "hotel"
-            ],
-            "user" : [
-                "accessToken" : appDelegate.userInfo["accessToken"]!
-            ]
-        ]
-
-        let dataJson = send.Dict2JsonString(dataDic)
-//        print("data Send Json :\(dataJson)")
-        print("Json Encode  getRoomType:\(send.jsonEncode(dataJson))")
-        send.providerAPI(self.appDelegate.command["listRoom"]!, dataJson: dataJson){
-            data in
-
-            print("data(RoomType) : \(data)")
-            if(data["roomTypes"]!.count != 0)
-            {
-      //          print("data(RoomType) :\(data["roomTypes"]![0])")
-                print("data(CountRoom) : \(data["roomTypes"]!.count)")
-                
-                self.roomNameData = data
-                self.appDelegate.roomDic = data
-                self.tableView.hidden = false
-                self.tableView.reloadData()
-                
-                
-                
-                print("self.roomNameData.roomTypes")
-                print(self.roomNameData["roomTypes"]!)
-                print("================================================")
-            }
-            
-            else{
-            self.tableView.hidden = true
-            
-            }
+    var dataLists = [[String:AnyObject]]()
+    func fetchData(){
+        
+        guard let objProvider = appDelegate.providerData!["ListProviderInformationSummary"]! as? NSArray else {
+            print("no objProvider")
+            return
         }
+        
+        guard let objProviderDic = objProvider[appDelegate.providerIndex!] as? NSDictionary else {
+            print("no objProviderDic")
+            return
+        }
+        
+        let provider_id = objProviderDic["provider_id"]! as! String
+        
+        let send = API_Model()
+        send.getCoupon(provider_id, completionHandler:{data in
+            if let objData:[[String:AnyObject]] = data {
+                if objData.count > 0 {
+                    self.tableView.hidden = false
+                }else{
+                    self.tableView.hidden = true
+                }
+                self.dataLists = objData
+            }else{
+                self.tableView.hidden = true
+                self.dataLists = [[String:AnyObject]]()
+            }
+            print("======================= getCoupon =========================")
+            print(self.dataLists)
+            print("===========================================================")
+            
+            self.tableView.reloadData()
+            
+        })
+        
+        
+        
+        
+        
+        
+//        let dataDic = [
+//            "providerInformation" : [
+//                "providerId" : appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String,
+//                "providerTypeKeyname" : "hotel"
+//            ],
+//            "user" : [
+//                "accessToken" : appDelegate.userInfo["accessToken"]!
+//            ]
+//        ]
+//        let dataJson = send.Dict2JsonString(dataDic)
+////        print("data Send Json :\(dataJson)")
+//        print("Json Encode  fetchData:\(send.jsonEncode(dataJson))")
+//        send.providerAPI(self.appDelegate.command["listRoom"]!, dataJson: dataJson){
+//            data in
+//
+//            print("data(RoomType) : \(data)")
+//            if(data["roomTypes"]!.count != 0)
+//            {
+//      //          print("data(RoomType) :\(data["roomTypes"]![0])")
+//                print("data(CountRoom) : \(data["roomTypes"]!.count)")
+//                
+//                self.roomNameData = data
+//                self.appDelegate.roomDic = data
+//                self.tableView.hidden = false
+//                self.tableView.reloadData()
+//                
+//                print("self.roomNameData.roomTypes")
+//                print(self.roomNameData["roomTypes"]!)
+//                print("================================================")
+//            }else{
+//                self.tableView.hidden = true
+//            
+//            }
+//        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return dataLists.count
         
     }
-    
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -143,30 +213,42 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        appDelegate.roomGalleryIndex = indexPath.row
+        appDelegate.couponIndex = indexPath.row
         //let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customCouponList
         let cell:customCouponList = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! customCouponList
-
-        //cell.loadData()
-//        if let roomName = self.roomNameData["roomTypes"]![indexPath.row]!["room_type_name_en"]! {
-//            
-//            
-//        }else{
-//            
-//            
-//        }
         
-        //cell.backgroundColor = UIColor.yellowColor()
+        cell.imgIconTitle.contentMode = .ScaleAspectFit
+        cell.imgIconTitle.backgroundColor = UIColor.clearColor()
         
-        cell.lblTitle!.text = "TESTTTTTT"
-        cell.lblDiscount!.text = "9,999THB"
-        cell.lblExpireDate!.text = "Expire 14/02/2017"
+        if let objProvider = dataLists[appDelegate.couponIndex!] as Dictionary? {
+            
+            let discount = String(objProvider["coupongroupType"]!) == "percent" ? "\(String(objProvider["coupongroupValue"]!))%" : "\(String(objProvider["coupongroupValue"]!)) ฿"
+            
+            cell.lblTitle!.text = String(objProvider["coupongroupNameEn"]!)
+            cell.lblDiscount!.text = discount
+            cell.lblExpireDate!.text = String(objProvider["endPromotionDate"]!)
+            cell.lblUsed!.text = ""
+            
+            cell.imgIconTitle.image = imgIconTypeKey
+            print("objProvider")
+            print(objProvider)
+            print("-----------")
+            
+        }else{
+            
+            cell.lblTitle!.text = ""
+            cell.lblDiscount!.text = ""
+            cell.lblExpireDate!.text = ""
+            cell.lblUsed!.text = ""
+            
+        }
         
         cell.frame.size.width = self.view.frame.size.width - 20
         cell.frame.origin.x = 10
         
         return cell
     }
+    
     func handleTap(sender: AnyObject) {
         var tag = Int()
         if sender.isKindOfClass(UIButton) {
@@ -225,7 +307,7 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
                 alert.showCircularIcon = false
                 alert.showCloseButton = false
                 alert.addButton("Done", action: {action in
-                    self.getRoomType()
+                    self.fetchData()
                 })
                 alert.showError("Information", subTitle: "Delete Success!")
                 

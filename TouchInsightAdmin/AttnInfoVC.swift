@@ -528,7 +528,7 @@ class AttnInfoVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDele
         let dataDic = [
             "providerInformation" : [
                 "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                "providerTypeKeyname" : "hotel",
+                "providerTypeKeyname" : "attraction",
                 "nameEn": (txtHotelName.text! == "") ? "" : txtHotelName.text!,
                 "shortDescriptionEn": HotelDesTxt.text!,
                 "shortDescriptionTh": "",

@@ -10,14 +10,6 @@ import UIKit
 import SCLAlertView
 import PKHUD
 
-extension String {
-    func toDateFormattedWith(format:String)-> NSDate {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = format
-        return formatter.dateFromString(self)!
-    }
-}
-
 class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate,UIPickerViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()
@@ -106,7 +98,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     @IBOutlet weak var lblStatusUnPublic: UILabel!
     // --------------
     
-    
+    var dicProvider = NSDictionary()
     @IBOutlet weak var btnSaveData: UIButton!
     @IBAction func btnSaveDataClick(sender: AnyObject) {
         
@@ -118,87 +110,207 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         let msgAlertTitle = "Information"
         var msgAlertDetail = "Please input data!"
         
+        
+        //let objProvider = [String : AnyObject]()
+        //let objProvider = appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!] // [NSObject:AnyObject]
+//        
+//        guard let objProvider = appDelegate.providerData!["ListProviderInformationSummary"]! as! NSArray else {
+//            return
+//        }
+//        guard let objProvider = appDelegate.providerData! as! Dictionary else {
+//            
+//            return
+//        }
+        
+        
+//        print("objProviderDic")
+//        print(objProviderDic)
+//        print("-----------------------------------------")
+//        print("UserData")
+//        print(appDelegate.userInfo)
+//        print("-----------------------------------------")
+        
         if imgLogo.image == nil {
             msgAlertDetail = "Please Choose Coupon Image!"
             alertView.addButton("OK", action: {_ in
                 UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = -64 })
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtCouponName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter Coupon Name"
             alertView.addButton("OK", action: {_ in
                 self.txtCouponName.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 106 }, completion:{ _ in self.txtCouponName.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtShortDes.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter Short Description"
             alertView.addButton("OK", action: {_ in
                 self.txtShortDes.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 190 }, completion:{ _ in self.txtShortDes.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
+        }else if txtLongDes.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
+            msgAlertDetail = "Please enter Long Description"
+            alertView.addButton("OK", action: {_ in
+                //self.txtLongDes.becomeFirstResponder()
+                self.btnOpenLongDesriptionClick(UIButton())
+                //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 190 }, completion:{ _ in self.txtShortDes.becomeFirstResponder()})
+            })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtDateStart.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please Choose Date Start"
             alertView.addButton("OK", action: {_ in
                 self.btnSelectDateStartClick(UIButton())
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 383 }, completion:{ _ in self.btnSelectDateStartClick(UIButton())})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtDateEnd.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please Choose Date End"
             alertView.addButton("OK", action: {_ in
                 self.btnSelectDateEndClick(UIButton())
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 383 }, completion:{ _ in self.btnSelectDateEndClick(UIButton())})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
+        }else if (txtDateStart.text?.toDateFormattedWith(strDateFormat))!.compare((txtDateEnd.text?.toDateFormattedWith(strDateFormat))!) == .OrderedDescending { // asasdasdasd
+            msgAlertDetail = "Start Date must be\ngreater than the end date"
+            alertView.addButton("OK", action: {_ in
+                self.btnSelectDateEndClick(UIButton())
+            })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtUseStart.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please Choose\nTime to use Start"
             alertView.addButton("OK", action: {_ in
                 self.btnSelectUseStartClick(UIButton())
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 460 }, completion:{ _ in self.btnSelectUseStartClick(UIButton())})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtUseEnd.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please Choose\nTime to use End"
             alertView.addButton("OK", action: {_ in
                 self.btnSelectUseEndClick(UIButton())
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 460 }, completion:{ _ in self.btnSelectUseEndClick(UIButton())})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
+        }else if (txtUseStart.text?.toDateFormattedWith(strDateFormat))!.compare((txtUseEnd.text?.toDateFormattedWith(strDateFormat))!) == .OrderedDescending { // asasdasdasd
+            msgAlertDetail = "Start Date must be\ngreater than the end date"
+            alertView.addButton("OK", action: {_ in
+                self.btnSelectUseEndClick(UIButton())
+            })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtCouponCount.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter number of Coupon"
             alertView.addButton("OK", action: {_ in
                 self.txtCouponCount.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 543 }, completion:{ _ in self.txtCouponCount.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtPrice.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter Price"
             alertView.addButton("OK", action: {_ in
                 self.txtPrice.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 701 }, completion:{ _ in self.txtPrice.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtCondition.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter Condition"
             alertView.addButton("OK", action: {_ in
                 self.txtCondition.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 903 }, completion:{ _ in self.txtCondition.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtContactPhone.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter Contact Phone"
             alertView.addButton("OK", action: {_ in
                 self.txtContactPhone.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 1067 }, completion:{ _ in self.txtContactPhone.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else if txtContactEmail.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             msgAlertDetail = "Please enter Contact Email"
             alertView.addButton("OK", action: {_ in
                 self.txtContactEmail.becomeFirstResponder()
                 //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 1142 }, completion:{ _ in self.txtContactEmail.becomeFirstResponder()})
             })
+            alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else{
-        
             
-        
+            let sendData = [
+                "providerId": dicProvider["provider_id"]!,
+                "coupongroupNameEn": txtCouponName.text!,
+                "coupongroupNameTh": txtCouponName.text!,
+                "descriptionEn": txtLongDes.text!,
+                "descriptionTh": txtLongDes.text!,
+                "shortDescriptionEn": txtShortDes.text!,
+                "shortDescriptionTh": txtShortDes.text!,
+                "conditionEn": txtCondition.text!,
+                "conditionTh": txtCondition.text!,
+                "coupongroupValue": couponDiscountType == "cash" ? txtDisCash.text! : txtDisPercent.text!,
+                "coupongroupType": String(couponDiscountType),
+                //"limitUseTime": "", // optional
+                "startDate": (txtDateStart.text! == "") ? strCurDate : txtDateStart.text!, // 2016-02-16
+                "endDate": (txtDateEnd.text! == "") ? strCurDate :  txtDateEnd.text!, // 2016-02-16
+                "startPromotionDate": (txtUseStart.text! == "") ? strCurDate : txtUseStart.text!, // 2016-02-16
+                "endPromotionDate": (txtUseEnd.text! == "") ? strCurDate : txtUseEnd.text!, // 2016-02-16
+                "coupongroupLimit": txtCouponCount.text!,
+                "coupongroupPrefix": txtPrefixCode.text!,// optional
+                "email": txtContactEmail.text!,// optional
+                "contactPhone": txtContactPhone.text!,// optional
+                "status": StatusPublic,// optional
+                "userId": appDelegate.userInfo["userID"]!
+            ]
+            
+            print("------------   sendData   -----------")
+            print(sendData)
+            print("-----------------------------------------")
+            
+
+            send.createCoupon(sendData, completionHandler:{data in
+                if let objData:NSDictionary = data {
+                    
+                    print("completionHandler")
+                    print("success = \(objData["success"])")
+                    print("message = \(objData["message"])")
+                    print("-----------------")
+                    
+                    guard let _success = objData["success"] as! Bool?,let _message = objData["message"] as! String? where _success == true else {
+                        // Value requirements not met, do something
+                        
+                        print("_success is failed")
+                        print("-----------------")
+                        
+                        msgAlertDetail = "Please enter Short Description"
+                        alertView.addButton("OK", action: {_ in
+                            //self.txtShortDes.becomeFirstResponder()
+                            self.btnBack(UIButton())
+                            //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 190 }, completion:{ _ in self.txtShortDes.becomeFirstResponder()})
+                        })
+                        alertView.showInfo(msgAlertTitle, subTitle: String(objData["message"]!), colorStyle:0xAC332F, duration: 5.0)
+                        return
+                    }
+                    
+                    let tmDelayToClose:NSTimeInterval = 5.0
+                    msgAlertDetail = "Please enter Short Description"
+                    alertView.addButton("OK", action: {_ in
+                        self.btnBack(UIButton())
+                    })
+                    alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
+                    NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
+                    
+                    
+                    print("_success is OK")
+                    print("success = \(objData["success"])")
+                    print("message = \(objData["message"])")
+                    print("-----------------")
+                    
+                    
+                }
+            })
+            
         }
         
-        
-        
-        alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail)
     }
+    
     
     @IBAction func btnOpenLongDesriptionClick(sender: AnyObject) {
         
@@ -237,9 +349,11 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     
     
     var canFocus_DisCash = false
+    var couponDiscountType = ""
     func setDiscountType(type:String) {
         // type : cash|percent
         print("setDiscountType = \(type)")
+        couponDiscountType = type
         if(type == "cash") {
             
             self.lblDisCash.textColor = UIColor.blackColor()
@@ -321,9 +435,9 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         })
     }
     
-    
+    var StatusPublic = "0"
     @IBAction func btnSelectStatusPublicClick(sender: AnyObject) {
-        
+        StatusPublic = "1"
         self.lblStatusPublic.textColor = UIColor.blackColor()
         self.lblStatusUnPublic.textColor = UIColor.grayColor()
         self.imgCheckStatusPublic.image = UIImage(named: "check.png")
@@ -331,7 +445,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     }
     
     @IBAction func btnSelectStatusUnPublicClick(sender: AnyObject) {
-        
+        StatusPublic = "0"
         self.lblStatusPublic.textColor = UIColor.grayColor()
         self.lblStatusUnPublic.textColor = UIColor.blackColor()
         self.imgCheckStatusPublic.image = UIImage(named: "uncheck.png")
@@ -407,31 +521,34 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         
     }
     let strDateFormat = "yyyy/MM/dd" // "dd/MM/yyyy"
+    var strCurDate = ""
     func datePickerChanged(datePicker:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
         print("checkinPickerChanged")
         dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
         //dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
         dateFormatter.dateFormat = strDateFormat
-        let strDate = dateFormatter.stringFromDate(datePicker.date)
+        strCurDate = dateFormatter.stringFromDate(datePicker.date)
         
         switch datePickerType {
         case "datestart":
-            txtDateStart.text = strDate
+            txtDateStart.text = strCurDate
             break
         case "dateend":
-            txtDateEnd.text = strDate
+            txtDateEnd.text = strCurDate
             break
         case "usestart":
-            txtUseStart.text = strDate
+            txtUseStart.text = strCurDate
             break
         case "useend":
-            txtUseEnd.text = strDate
+            txtUseEnd.text = strCurDate
             break
         default:
             //
             break
         }
+        
+        
 //        datestart
 //        dateend
 //        usestart
@@ -586,7 +703,8 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         print("textFieldShouldReturn")
-        self.view.endEditing(true)
+        //self.dismissKeyboard()
+        textField.isFirstResponder()
         return true;
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -674,7 +792,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //dismissKeyboard()
-        print("scrollViewDidScroll \(scrollView.contentOffset.y)")
+        //print("scrollViewDidScroll \(scrollView.contentOffset.y)")
     }
     
     func scrollToLastScroll() {
@@ -735,7 +853,6 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setProName("สวัสดีครับ กดเกสทวาทวsdfsdfsfท", proType: .hotel)
         
         width = UIScreen.mainScreen().bounds.size.width
         heigth = UIScreen.mainScreen().bounds.size.height
@@ -802,6 +919,48 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     }
     
     func initialObject(){
+        
+        
+        guard let objProvider = appDelegate.providerData!["ListProviderInformationSummary"]! as? NSArray else {
+            print("no objProvider")
+            return
+        }
+        
+        guard let objProviderDic = objProvider[appDelegate.providerIndex!] as? NSDictionary else {
+            print("no objProviderDic")
+            return
+        }
+        
+        dicProvider = objProviderDic
+        
+        
+        print("dicProvider")
+        print("dicProvider")
+        print("dicProvider")
+        print(dicProvider)
+        print("-----------------------------------------")
+        print("-----------------------------------------")
+        print("-----------------------------------------")
+        
+        var provider_type_keyname = providerType.hotel
+        switch String(dicProvider["provider_type_keyname"]!) {
+        case "hotel":
+            provider_type_keyname = providerType.hotel
+            break
+        case "attraction":
+            provider_type_keyname = providerType.attraction
+            break
+        case "restaurant":
+            provider_type_keyname = providerType.restaurant
+            break
+        default:
+            break
+        }
+        
+        setProName(String(dicProvider["name_en"]!), proType: provider_type_keyname)
+        
+        
+        
         
         setDiscountType("cash")
         

@@ -99,7 +99,7 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
         btnLive.tag = 2
         btnLive.frame = CGRect(origin:CGPoint(x: 60.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
         // btnLive.backgroundColor = UIColor.yellowColor()
-        btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
+        btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
         btnLive.addTarget(self, action: #selector(AttnListVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         
@@ -207,14 +207,14 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
         if (sender.tag == 0){
             btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
             btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-            btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
+            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
             self.initialInfoVC()
             print("info")
         }
         else if(sender.tag == 1){
             
             btnGallery.setImage(UIImage(named:"ic_gellary2.png"), forState: .Normal)
-            btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
+            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
             btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
             self.initialImageGalleryVC()
             
@@ -224,7 +224,7 @@ class AttnListVC: UIViewController , PagingMenuControllerDelegate
         //
         //
         //        else if(sender.tag == 2){
-        //            btnLive.setImage(UIImage(named: "ic_livestream_menu.png"), forState: .Normal)
+        //            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
         //            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
         //            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
         //        print("live stream")

@@ -59,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var provinceName = [String]()
     var provinceID = [String]()
     
+    // Coupon
+    var couponIndex : Int?
+    
     //provider
     var alertProvider : CustomIOS7AlertView?
     var pagecontrolIndex : Int?

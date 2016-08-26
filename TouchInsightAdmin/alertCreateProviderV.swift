@@ -8,6 +8,8 @@
 
 import UIKit
 import SCLAlertView
+
+
 class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource ,UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -56,7 +58,7 @@ class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource 
     @IBAction func createBtn(sender: AnyObject) {
         
         let message:String = "Information"
-        if providerNameTxt.text == "" {
+        if providerNameTxt.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
             
             let alert = SCLAlertView()
             alert.showCircularIcon = false
@@ -64,7 +66,17 @@ class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource 
             alert.addButton("OK", action: {
                 self.providerNameTxt.becomeFirstResponder()
             })
-            alert.showInfo(message, subTitle: "Choose provider type!", colorStyle:0xAC332F)
+            alert.showInfo(message, subTitle: "Please enter business name!", colorStyle:0xAC332F)
+            
+        }else if providerNameTxt.text?.length < 2 {
+            
+            let alert = SCLAlertView()
+            alert.showCircularIcon = false
+            alert.showCloseButton = false
+            alert.addButton("OK", action: {
+                self.providerNameTxt.becomeFirstResponder()
+            })
+            alert.showInfo(message, subTitle: "The name must have\ntwo or more characters.", colorStyle:0xAC332F)
             
             
         }else if self.typeKeyName == "" {
@@ -75,7 +87,7 @@ class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource 
             alert.addButton("OK", action: {
                 
             })
-            alert.showInfo(message, subTitle: "Choose provider type!", colorStyle:0xAC332F)
+            alert.showInfo(message, subTitle: "Choose business type!", colorStyle:0xAC332F)
             
         }else{
             
@@ -193,7 +205,7 @@ class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource 
                     })
                     self.alertsuccess.showCloseButton = false
                     self.alertsuccess.showCircularIcon = false
-                    self.alertsuccess.showInfo(message, subTitle: "Create provider success!", closeButtonTitle:nil, duration:5.0, colorStyle:0xAC332F)
+                    self.alertsuccess.showInfo(message, subTitle: "Create business success!", closeButtonTitle:nil, duration:5.0, colorStyle:0xAC332F)
                 }
                 
             }

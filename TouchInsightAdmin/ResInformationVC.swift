@@ -630,7 +630,7 @@ class ResInformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFie
         let dataDic = [
             "providerInformation" : [
                 "providerId" : Int(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"]! as! String)!,
-                "providerTypeKeyname" : "hotel",
+                "providerTypeKeyname" : "restaurant",
                 "nameEn": (txtHotelName.text! == "") ? "" : txtHotelName.text!,
                 "shortDescriptionEn": HotelDesTxt.text!,
                 "shortDescriptionTh": "",

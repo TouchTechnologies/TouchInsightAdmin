@@ -471,15 +471,26 @@ class API_Model {
                         //                            print("errors \(error![index]["field"] as! String)")
                         //                        }
                         //for index in 0..<error!.count {
-                        for var index = 0 ;index < error?.count ;index += 1 {
-                            //                            print("field\(index) \(error![index]["field"] as! String)")
+                        
+                        for index in 0...(error!.count - 1) {
+                            print("I'm number \(index)")
                             if (error![index]["field"] as! String) == "email"
                             {
                                 data["field"] = error![index]["field"]
                                 data["message"] = "email ซ้ำในระบบ"
                             }
-                            
                         }
+                        
+                        
+//                        for var index = 0 ;index < error?.count ;index += 1 {
+//                            //                            print("field\(index) \(error![index]["field"] as! String)")
+//                            if (error![index]["field"] as! String) == "email"
+//                            {
+//                                data["field"] = error![index]["field"]
+//                                data["message"] = "email ซ้ำในระบบ"
+//                            }
+//                            
+//                        }
                         
                         
 //                        for index in 0..<error!.count {
@@ -544,7 +555,7 @@ class API_Model {
                     //                    print("code \(JSON["code"] as! Int)")
                     //                    print("message \(JSON["message"] as! String)")
                     
-                    if let error = JSON["errors"]{
+                    if (JSON["errors"]) != nil{
                         var data: [String:AnyObject] = [:]
                         if let code = JSON["code"]{
                             print("code : : \(code)")
@@ -1335,86 +1346,49 @@ class API_Model {
         }
         
     }
+    
     func createCoupon(data:[String:AnyObject],completionHandler:[String:AnyObject]->())
     {
         let reqUrl = "\(_apiUrl)coupon-groups"
-        print(reqUrl)
-        
         let request = Alamofire.request(.POST, reqUrl, parameters: data, encoding: .JSON, headers: .None)
         //request.validate()
         request.responseJSON{response in
-            
             var returnData: [String:AnyObject] = [:]
-            //            var returnData: [String:AnyObject] = [
-            //                "success":false,
-            //                "message":"Cannot Connect to Server!",
-            //                "data":[]
-            //            ]
-            
-            //print("JSON(Login)")
-            print(response.result.value)
-            
             if response.result.isSuccess {
-                
                 if let json = response.result.value {
-                    print("data(createCoupon) : \(json)")
-                    
-                    if let userId = json["userId"] as! String? { // Login OK
-                        //print("userId = \(userId)")
-                        
-                        returnData = [
-                            "success":true,
-                            "message":"Login Success!",
-                            "data":json
-                        ]
-                    }else{
-                        
-                        var msg = ""
-                        if let error = json["errors"] as! NSArray?{
-                            
-                            if let message = error[0]["message"] as! NSArray?{
-                                
-                                for msgError in message{
-                                    msg = msgError as! String
-                                    print(msgError)
-                                    print("-------")
+                    if let jsonDic = json as? NSDictionary {
+                        if let errors = jsonDic["errors"] as? NSArray where errors.count > 0 {
+                            var msgError = "something went wrong\nplease try again later!"
+                            if let arrError = errors[0]["message"] as? NSArray {
+                                if let strError = arrError[0] as? String {
+                                    msgError = strError
                                 }
-                                
                             }
-                            
-                            
-                            
+                            returnData = [
+                                "success":false,
+                                "message":msgError,
+                                "data":jsonDic
+                            ]
+                        }else{
+                            returnData = [
+                                "success":true,
+                                "message":"Insert Coupon Success!",
+                                "data":jsonDic
+                            ]
                         }
-                        
-                        returnData = [
-                            "success":false,
-                            "message":msg,
-                            "data":json
-                        ]
                     }
                 }
-                
-                //print("Success")
-            }else{ // ไม่มี else เพราะมีค่าเริ่มต้นอยู่แล้ว
-                
+            }else{
                 returnData = [
                     "success":false,
                     "message":"Cannot Connect to Server!",
                     "data":[:]
                 ]
-                
-                print("error")
-                print(response.result.error?.localizedDescription)
-                print(response.result.value)
-                
+//                print("error")
+//                print(response.result.error?.localizedDescription)
+//                print(response.result.value)
             }
-            
-            print("returnData")
-            print(returnData)
-            print("- - - - - -")
-            
             completionHandler(returnData)
-            
         }
     }
 }
