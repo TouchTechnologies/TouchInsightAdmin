@@ -1327,7 +1327,7 @@ class API_Model {
     }
     
     /////////////////////Coupon API/////////////////
-    func getCoupon(providerID:String,completionHandler:[[String:AnyObject]]->()) {
+    func getCoupon(providerID:String,completionHandler:Bool->()) {
         
         let reqUrl = "\(_apiUrl)coupon-groups"
         print(reqUrl)
@@ -1338,10 +1338,70 @@ class API_Model {
                 //                print(response.data)     // server data
                 //                print(response.result)   // result of response serialization
                 
-                if let JSON = response.result.value {
-//                    print("JSON(getCoupon): \(JSON)")
-                    completionHandler(JSON as! [[String : AnyObject]])
+                var couponArr = NSMutableArray()
+            if response.result.isSuccess
+            {
+//                print("response : : : \(response.result.value as! NSArray)")
+                if let dataJSON = response.result.value {
+//                    print("data : : : \(dataJSON)")
+                    
+//                    for (key,value) in dataJSON
+//                    {
+//                        print("Key:\(key)---Value:\(value)")
+//                    }
+                    
+//                    for data in dataJSON{
+//                    for i in 0...dataJSON.count {
+//                        let coupon = CouponData()
+//                        print("data : : : \(dataJSON)")
+//                        coupon.providerId = dataJSON[i]["providerId"]
+//                        coupon.coupongroupNameEn = data["coupongroupNameEn"]
+//                        coupon.coupongroupNameTH = data["coupongroupNameTH"]
+//                        coupon.descriptionEn = data["descriptionEn"]
+//                        coupon.descriptionTH = data["descriptionTH"]
+//                        coupon.shortDescriptionEn = data["shortDescriptionEn"]
+//                        coupon.shortDescriptionTH = data["shortDescriptionTH"]
+//                        coupon.conditionEn = data["conditionEn"]
+//                        coupon.conditionTh = data["conditionTh"]
+//                        coupon.coupongroupValue = data["coupongroupValue"]
+//                        coupon.coupongroupType = data["coupongroupType"]
+//                        coupon.limitUseTime = data["limitUseTime"]
+//                        coupon.startDate = data["startDate"]
+//                        coupon.endDate = data["endDate"]
+//                        coupon.startPromotionDate = data["startPromotionDate"]
+//                        coupon.endPromotionDate = data["endPromotionDate"]
+//                        coupon.coupongroupLimit = data["coupongroupLimit"]
+//                        coupon.coupongroupPrefix = data["coupongroupPrefix"]
+//                        coupon.email = data["email"]
+//                        coupon.contactPhone = data["contactPhone"]
+//                        coupon.status = data["status"]
+//                        coupon.userId = data["userId"]
+//                        couponArr.addObject(coupon)
+//                    }
+                    
+//                    print("Coupon(Object): \(couponArr)")
+
+//                    let cu:CouponData = couponArr.objectAtIndex(0) as! CouponData
+//                    print("Coupon(0): \(cu.providerId)")
+                    
+
+                    
+                    
+
+                    
+                    
+//                    let userPhotos = currentUser?.photos
+//                    for object in userPhotos as! [ModelAttachment] {
+//                        let url = object.url
+//                    }
+
+                    
+                    completionHandler(true)
+                }else
+                {
+                    print("WTF ELSE")
                 }
+            }
                 
         }
         

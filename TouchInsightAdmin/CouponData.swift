@@ -6,22 +6,34 @@
 //  Copyright © 2559 weerapons suwanchatree. All rights reserved.
 //
 import Foundation
-import RealmSwift
+//import RealmSwift
 
 
-class CouponData: Object {
+class CouponData: NSObject {
     
-    dynamic var userID = ""
-    dynamic var avatarImage = ""
-    dynamic var profileName = ""
-    dynamic var firstName = ""
-    dynamic var lastName = ""
-    dynamic var email = ""
-    dynamic var accessToken = ""
-    dynamic var mobile = ""
-    dynamic var username = ""
-    dynamic var passWord = ""
-    dynamic var id = ""
+    dynamic var	providerId:String = ""
+    dynamic var	coupongroupNameEn	= ""
+    dynamic var	coupongroupNameTH	= ""
+    dynamic var	descriptionEn	= ""
+    dynamic var	descriptionTH	= ""
+    dynamic var	shortDescriptionEn	= ""
+    dynamic var	shortDescriptionTH	= ""
+    dynamic var	conditionEn	= ""
+    dynamic var	conditionTh	= ""
+    dynamic var	coupongroupValue	= ""
+    dynamic var	coupongroupType	= ""
+    dynamic var	limitUseTime	= ""
+    dynamic var	startDate	= ""
+    dynamic var	endDate	= ""
+    dynamic var	startPromotionDate	= ""
+    dynamic var	endPromotionDate	= ""
+    dynamic var	coupongroupLimit	= ""
+    dynamic var	coupongroupPrefix	= ""
+    dynamic var	email	= ""
+    dynamic var	contactPhone	= ""
+    dynamic var	status	= ""
+    dynamic var	userId	= ""
+    
     //dynamic var userData = NSData()
     
     
