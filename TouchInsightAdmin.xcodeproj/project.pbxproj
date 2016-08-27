@@ -83,6 +83,8 @@
 		3BA7A0861D6D4BD900C5C119 /* appExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7A0851D6D4BD900C5C119 /* appExtension.swift */; };
 		3BA7A0891D6D576800C5C119 /* ic_coupon_menu1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7A0871D6D576800C5C119 /* ic_coupon_menu1.png */; };
 		3BA7A08A1D6D576800C5C119 /* ic_coupon_menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7A0881D6D576800C5C119 /* ic_coupon_menu2.png */; };
+		3BA7A08C1D701C3700C5C119 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA7A08B1D701C3700C5C119 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3BA7A08E1D715BFF00C5C119 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7A08D1D715BFF00C5C119 /* KMPlaceholderTextView.swift */; };
 		3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCD72D1D45B92C00892372 /* FileMan.swift */; };
 		3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
@@ -372,6 +374,8 @@
 		3BA7A0851D6D4BD900C5C119 /* appExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appExtension.swift; sourceTree = "<group>"; };
 		3BA7A0871D6D576800C5C119 /* ic_coupon_menu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_coupon_menu1.png; sourceTree = "<group>"; };
 		3BA7A0881D6D576800C5C119 /* ic_coupon_menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_coupon_menu2.png; sourceTree = "<group>"; };
+		3BA7A08B1D701C3700C5C119 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
+		3BA7A08D1D715BFF00C5C119 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
 		3BBCD72D1D45B92C00892372 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
 		3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
@@ -546,6 +550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA7A08C1D701C3700C5C119 /* SVProgressHUD.framework in Frameworks */,
 				36CD93181C7EA92E00E5A414 /* PKHUD.framework in Frameworks */,
 				36CD93161C7EA92900E5A414 /* Alamofire.framework in Frameworks */,
 				36E394481C40BA21004402B7 /* CustomIOSAlertView.framework in Frameworks */,
@@ -671,6 +676,7 @@
 				F3B73A2C1C562E4200781D48 /* CustomIOS7AlertView.swift */,
 				F3FE68051C1153A0002BF719 /* TestcustomAlertViewController.swift */,
 				F3FE68031C109972002BF719 /* JSSAlertView.swift */,
+				3BA7A08D1D715BFF00C5C119 /* KMPlaceholderTextView.swift */,
 				36AB49C81C3CED270078A936 /* MapAnnotation */,
 				F3627FE81C2BACC7006BC607 /* PopupMenu */,
 				366CBBF41C08012500484DA5 /* FBSDK */,
@@ -912,6 +918,7 @@
 		7ECF8A2867ED54DC2E6CC22F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BA7A08B1D701C3700C5C119 /* SVProgressHUD.framework */,
 				3B43946B1D3CE12D005B4E6C /* Realm.framework */,
 				3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */,
 				F3337AA61CA9383100644F91 /* bundle1.o */,
@@ -1564,6 +1571,7 @@
 				F3A7582D1C27FB2E00CBB8A0 /* alertCreateProviderV.swift in Sources */,
 				F30DF8541D2F5AEA0074B713 /* AttnListVC.swift in Sources */,
 				F3B8B5271C3B861100768DF9 /* roomfacCell.swift in Sources */,
+				3BA7A08E1D715BFF00C5C119 /* KMPlaceholderTextView.swift in Sources */,
 				F3BA1F551C76FF6700B0782C /* ImageCollectionViewCell.swift in Sources */,
 				F383BF5C1C7C185500726ED7 /* SSRadioButton.swift in Sources */,
 				F360C2C61C0ED09900149CCC /* MyCollectionViewCell.swift in Sources */,
@@ -1776,6 +1784,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/TouchInsightAdmin/FacebookSDK",
 					"$(PROJECT_DIR)/FacebookSDK",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1853,6 +1862,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/TouchInsightAdmin/FacebookSDK",
 					"$(PROJECT_DIR)/FacebookSDK",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",

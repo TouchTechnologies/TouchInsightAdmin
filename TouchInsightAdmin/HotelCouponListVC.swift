@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import SCLAlertView
+import SwiftyJSON
 
 class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate {
     
@@ -135,13 +136,19 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
                     self.tableView.hidden = true
                 }
                 self.dataLists = objData
+                
+//                print("======================= getCoupon =========================")
+//                print(self.dataLists)
+//                print("===========================================================")
+                
+                print("======================= getCoupon jsonData =========================")
+                print(JSON(self.dataLists))
+                print("====================================================================")
+                
             }else{
                 self.tableView.hidden = true
                 self.dataLists = [[String:AnyObject]]()
             }
-            print("======================= getCoupon =========================")
-            print(self.dataLists)
-            print("===========================================================")
             
             self.tableView.reloadData()
             

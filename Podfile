@@ -51,6 +51,8 @@ pod 'FBSDKCoreKit'
 #pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
 
+pod 'SVProgressHUD'
+
 target 'TouchInsightAdmin' do
 
 end

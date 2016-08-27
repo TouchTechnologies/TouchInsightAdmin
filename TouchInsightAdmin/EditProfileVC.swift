@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import SVProgressHUD
 
 class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -119,9 +120,13 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print("ImagePicker:profileImage")
+        
+        SVProgressHUD.setDefaultStyle(.Dark)
+        SVProgressHUD.show()
+        
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         
-        chosenImage = FileMan().resizeImage(chosenImage, maxSize: 1500)
+        chosenImage = FileMan().resizeImage(chosenImage, maxSize: 500)
         
         ProfileImg.contentMode = .ScaleAspectFit //3
         ProfileImg.image = chosenImage //4
@@ -134,6 +139,8 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
         send.CreateUserAvatar(userID!,image: chosenImage){
             data in
             print("CreateUserAvatar \(data)")
+            
+            SVProgressHUD.dismiss()
             
         }
         ProfileImg.reloadInputViews()

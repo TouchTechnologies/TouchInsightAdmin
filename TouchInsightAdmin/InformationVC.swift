@@ -9,6 +9,7 @@
 import UIKit
 import SCLAlertView
 import PKHUD
+import SVProgressHUD
 
 class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
     let width = UIScreen.mainScreen().bounds.size.width
@@ -1154,9 +1155,13 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+//        PKHUD.sharedHUD.dimsBackground = false
+//        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+//        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        
+        
+        SVProgressHUD.setDefaultStyle(.Dark)
+        SVProgressHUD.show()
         
         print("ImagePicker")
         var chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
@@ -1188,7 +1193,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         //pickerPick = true
         //        imgHotelLogo.reloadInputViews()
         
-        PKHUD.sharedHUD.show()
+        //PKHUD.sharedHUD.show()
         self.dismissViewControllerAnimated(true, completion:{_ in
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -1221,7 +1226,8 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                                     
                                     self.imgHotelLogo.image = chosenImage
                                 }
-                                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+//                                PKHUD.sharedHUD.hide(animated: true, completion: nil)
+                                SVProgressHUD.dismiss()
                             }
                   
                         }

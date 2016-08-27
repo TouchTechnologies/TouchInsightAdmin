@@ -9,12 +9,14 @@
 import UIKit
 import SCLAlertView
 import PKHUD
+import SVProgressHUD
 
 class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate,UIPickerViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIGestureRecognizerDelegate,CustomIOS7AlertViewDelegate {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let send = API_Model()
     @IBOutlet weak var scrollView: UIScrollView!
     
+    //let loader = SVProgressHUD()
     
     var navunderlive = UIView()
     var width = CGFloat()
@@ -23,7 +25,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
     var roomImageUpload = [UIImage()]
     var roomGallery = [UIImage()]
     
-    
+
     // Header Section
     @IBOutlet weak var viewSectionHeader: UIView!
     @IBOutlet weak var imgLogo: UIImageView!
@@ -235,6 +237,9 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
             alertView.showInfo(msgAlertTitle, subTitle: msgAlertDetail, colorStyle:0xAC332F, duration: 5.0)
         }else{
             
+            SVProgressHUD.setDefaultStyle(.Dark)
+            SVProgressHUD.show()
+            
             let sendData = [
                 "providerId": dicProvider["provider_id"]!,
                 "coupongroupNameEn": txtCouponName.text!,
@@ -271,6 +276,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                     print("completionHandler")
                     print("success = \(objData["success"])")
                     print("message = \(objData["message"])")
+                    print("data = \(objData["data"])")
                     print("-----------------")
                     
                     guard let _success = objData["success"] as! Bool?,let _message = objData["message"] as! String? where _success == true else {
@@ -279,23 +285,51 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                         print("_success is failed")
                         print("-----------------")
                         
-                        msgAlertDetail = "Please enter Short Description"
+                        msgAlertDetail = "Sorry!"
                         alertView.addButton("OK", action: {_ in
                             //self.txtShortDes.becomeFirstResponder()
-                            self.btnBack(UIButton())
+                            //self.btnBack(UIButton())
                             //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 190 }, completion:{ _ in self.txtShortDes.becomeFirstResponder()})
                         })
                         alertView.showInfo(msgAlertTitle, subTitle: String(objData["message"]!), colorStyle:0xAC332F, duration: 5.0)
                         return
                     }
                     
-                    let tmDelayToClose:NSTimeInterval = 5.0
-                    msgAlertDetail = "Please enter Short Description"
-                    alertView.addButton("OK", action: {_ in
-                        self.btnBack(UIButton())
+                    let uploadData = [
+                        "id": String(objData["id"]),
+                        "image": self.imgLogo.image!
+                    ]
+                    let headers = [
+                        "Content-Type":"image/png",
+                    ]
+                    self.send.uploadCouponImage(headers, data: uploadData, completionHandler:{data in
+                        if let objDataUpload:NSDictionary = data {
+                            print("objDataUpload")
+                            print("objDataUpload")
+                            print(objDataUpload)
+                            print("-------------")
+                            print("-------------")
+                            
+                            if (objDataUpload[""] as! Int) == 1 {
+                                
+                            }else{
+                            
+                            }
+                            
+                            SVProgressHUD.dismiss()
+                            
+                            let tmDelayToClose:NSTimeInterval = 5.0
+                            msgAlertDetail = "Please enter Short Description"
+                            alertView.addButton("OK", action: {_ in
+                                self.btnBack(UIButton())
+                            })
+                            alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
+                            NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
+                            
+                        }
+                        
                     })
-                    alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
-                    NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
+                    
                     
                     
                     print("_success is OK")
