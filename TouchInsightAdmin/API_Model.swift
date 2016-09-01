@@ -14,14 +14,14 @@ import SwiftyJSON
 //import CoreLocation
 class API_Model {
     
-    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
     
-//    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
-//    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
-//    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
+    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
     
     
 //    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
@@ -1347,7 +1347,7 @@ class API_Model {
             //"providerId":"6688",
             //"q":"pro",
             "sort": "-createdAt"
-            ]
+        ]
         
         Alamofire.request(.GET, reqUrl, headers: nil, parameters: body, encoding: .URL)
             
@@ -1363,9 +1363,9 @@ class API_Model {
                         
                         if (arrJson.count > 0){
                             
-                            print("userID = \(String(self.appDelegate.userInfo["userID"]!))")
-                            print("providerID = \(providerID)")
-                            print("- - - - - - - - - - - - - - - - - - - - -")
+                            //                            print("userID = \(String(self.appDelegate.userInfo["userID"]!))")
+                            //                            print("providerID = \(providerID)")
+                            //                            print("- - - - - - - - - - - - - - - - - - - - -")
                             
                             let userID = String(self.appDelegate.userInfo["userID"]!) // self.appDelegate.userInfo["userID"]! as! String
                             
@@ -1373,32 +1373,40 @@ class API_Model {
                             for dictItem in arrJson {
                                 
                                 
-                                let _id = dictItem["id"] as! String
+                                //let _id = dictItem["id"] as! String
                                 let _createdBy = dictItem["createdBy"] as! String
                                 let _providerId = dictItem["providerId"] as! String
                                 
-                                print("dictItem->id = \(_id)")
-                                print("dictItem->createdBy = \(_createdBy)")
-                                print("dictItem->providerId = \(_providerId)")
-                                print("= = = = = = = = =")
+                                //                                print("dictItem->id = \(_id)")
+                                //                                print("dictItem->createdBy = \(_createdBy)")
+                                //                                print("dictItem->providerId = \(_providerId)")
+                                //                                print("= = = = = = = = =")
                                 
                                 if((_createdBy == userID) && (_providerId == providerID)){
                                     
-                                    //print(dictItem)
-                                    print("= = = = = = = = =")
-                                    print("dictItem->id = \(String(dictItem["id"]!))")
-                                    print("dictItem->createdBy = \(String(dictItem["createdBy"]!))")
-                                    print("dictItem->providerId = \(String(dictItem["providerId"]!))")
-                                    print("= = = add ss = = =")
+                                    print(dictItem)
+                                    
+                                    //                                    print("= = = = = = = = =")
+                                    //                                    print("dictItem->id = \(String(dictItem["id"]!))")
+                                    //                                    print("dictItem->createdBy = \(String(dictItem["createdBy"]!))")
+                                    //                                    print("dictItem->providerId = \(String(dictItem["providerId"]!))")
+                                    //                                    print("= = = add ss = = =")
+                                    
+//                                    if let dicToObject = dictItem as! Dictionary? {
+//                                        
+//                                        
+//                                    }
+                                    
                                     arrTmps.insert(dictItem as! [String : AnyObject], atIndex: n)
+                                    
+                                    n = n + 1
                                     
                                 }
                                 
-                                print("= = = = = = = = = = = = = = = = = = = = = = = = = = =")
+                                //                                print("= = = = = = = = = = = = = = = = = = = = = = = = = = =")
                                 
                                 //arrTmps.addObject(dictItem as! [String : AnyObject])
                                 
-                                n = n + 1
                             }
                         }
                         
@@ -1417,80 +1425,26 @@ class API_Model {
                     }
                 }
         }
+    }
+    
+    func getCouponByID(couponID:String!,completionHandler:[String:AnyObject]->()) {
         
-//        Alamofire.request(.GET, reqUrl)
-//            .responseJSON { response in
-//                //                print(response.request)  // original URL request
-//                //                print(response.response) // URL response
-//                //                print(response.data)     // server data
-//                //                print(response.result)   // result of response serialization
-//                
-//            var couponArr = NSMutableArray()
-//            if response.result.isSuccess
-//            {
-////                print("response : : : \(response.result.value as! NSArray)")
-//                if let dataJSON = response.result.value {
-////                    print("data : : : \(dataJSON)")
-//                    
-////                    for (key,value) in dataJSON
-////                    {
-////                        print("Key:\(key)---Value:\(value)")
-////                    }
-//                    
-////                    for data in dataJSON{
-////                    for i in 0...dataJSON.count {
-////                        let coupon = CouponData()
-////                        print("data : : : \(dataJSON)")
-////                        coupon.providerId = dataJSON[i]["providerId"]
-////                        coupon.coupongroupNameEn = data["coupongroupNameEn"]
-////                        coupon.coupongroupNameTH = data["coupongroupNameTH"]
-////                        coupon.descriptionEn = data["descriptionEn"]
-////                        coupon.descriptionTH = data["descriptionTH"]
-////                        coupon.shortDescriptionEn = data["shortDescriptionEn"]
-////                        coupon.shortDescriptionTH = data["shortDescriptionTH"]
-////                        coupon.conditionEn = data["conditionEn"]
-////                        coupon.conditionTh = data["conditionTh"]
-////                        coupon.coupongroupValue = data["coupongroupValue"]
-////                        coupon.coupongroupType = data["coupongroupType"]
-////                        coupon.limitUseTime = data["limitUseTime"]
-////                        coupon.startDate = data["startDate"]
-////                        coupon.endDate = data["endDate"]
-////                        coupon.startPromotionDate = data["startPromotionDate"]
-////                        coupon.endPromotionDate = data["endPromotionDate"]
-////                        coupon.coupongroupLimit = data["coupongroupLimit"]
-////                        coupon.coupongroupPrefix = data["coupongroupPrefix"]
-////                        coupon.email = data["email"]
-////                        coupon.contactPhone = data["contactPhone"]
-////                        coupon.status = data["status"]
-////                        coupon.userId = data["userId"]
-////                        couponArr.addObject(coupon)
-////                    }
-//                    
-////                    print("Coupon(Object): \(couponArr)")
-//
-////                    let cu:CouponData = couponArr.objectAtIndex(0) as! CouponData
-////                    print("Coupon(0): \(cu.providerId)")
-//                    
-//
-//                    
-//                    
-//
-//                    
-//                    
-////                    let userPhotos = currentUser?.photos
-////                    for object in userPhotos as! [ModelAttachment] {
-////                        let url = object.url
-////                    }
-//
-//                    
-//                    completionHandler(dataJSON as! [[String : AnyObject]])
-//                }else
-//                {
-//                    print("WTF ELSE")
-//                }
-//            }
-//                
-//        }
+        let reqUrl = "\(_apiUrl)coupon-groups/\(couponID)"
+        print("reqUrl = \(reqUrl)")
+        
+        Alamofire.request(.GET, reqUrl, headers: nil, parameters: [:], encoding: .URL)
+            
+            .responseJSON { response in
+                var dicReturnCoupon = NSDictionary()
+                if response.result.isSuccess {
+                    if let dicJson = response.result.value as! NSDictionary? {
+                        dicReturnCoupon = dicJson
+                        completionHandler(dicReturnCoupon as! [String : AnyObject])
+                    }else{
+                        completionHandler(dicReturnCoupon as! [String : AnyObject])
+                    }
+                }
+        }
         
     }
     
@@ -1539,13 +1493,18 @@ class API_Model {
         }
     }
     
-    func uploadCouponImage(header:[String:String], data:[String:AnyObject],completionHandler:[String:AnyObject]->()){
+    func uploadCouponImage(data:[String:AnyObject],completionHandler:[String:AnyObject]->()){
         
-        let couponID = data["id"]!
+        //let couponID = (data["id"]!).stringValue
+        let couponID = String(data["id"]!)
         let base64String = String(FileMan().resizeImage((data["image"]! as! UIImage), maxSize: 500).toBase64())
         
-        let reqUrl = "\(_apiUrl)coupon-groups/\(couponID)/banners"
+        let reqUrl = "\(_apiUrl)coupon-groups/\(couponID)/banners?encoding=base64"
         var data = [String:AnyObject]()
+        
+        //print("id header = \(data["id"]!)")
+        //print("id data = \(data["id"]!)")
+        print("reqUrlUploadImage = \(reqUrl)")
         
         let headers = [
             "Content-Type":"image/png",

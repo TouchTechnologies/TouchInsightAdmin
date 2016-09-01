@@ -17,7 +17,7 @@ class CustomIOS7AlertView: UIView {
     
     var buttonHeight: CGFloat = 50
     var buttonsDividerHeight: CGFloat = 1
-    var cornerRadius: CGFloat = 7
+    var cornerRadius: CGFloat = 0
     
     var useMotionEffects: Bool = true
     var motionEffectExtent: Int = 10

@@ -59,6 +59,13 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
         })
         alert.showError("Information", subTitle: "Coming Soon!")
         
+        
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let _nextView = storyBoard.instantiateViewControllerWithIdentifier("QRScanVC") as! QRScanVC
+//        self.navigationController?.pushViewController(_nextView, animated: true)
+        
+        //QRScanVC
+        
     }
     
     override func viewDidLoad() {

@@ -12,6 +12,7 @@ class customCouponList: UITableViewCell{
     
     @IBOutlet var viewBG: UIView!
     
+    @IBOutlet var imgBG: UIImageView!
     @IBOutlet var imgLogo: UIImageView!
     
     @IBOutlet var imgIconTitle: UIImageView!
@@ -29,13 +30,17 @@ class customCouponList: UITableViewCell{
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        imgLogo.layer.borderWidth = 0.5
-        imgLogo.layer.borderColor = UIColor.grayColor().CGColor
+        
+        imgBG.image = UIImage.imageWithColor(UIColor.whiteColor())
+        imgBG.highlightedImage = UIImage.imageWithColor(UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.00))
+        
+        //imgLogo.layer.borderWidth = 0.5
+        //imgLogo.layer.borderColor = UIColor.grayColor().CGColor
+        
         
         viewBG.layer.borderWidth = 0.5
-        viewBG.layer.borderColor = UIColor.grayColor().CGColor
-        viewBG.backgroundColor = UIColor.whiteColor()
-        
+//        viewBG.layer.borderColor = UIColor.grayColor().CGColor
+//        viewBG.backgroundColor = UIColor.whiteColor()
         
         /*let nib = UINib(nibName: "customImgCell", bundle: nil)
         self.subCollectionView.registerNib(nib , forCellWithReuseIdentifier: "customImgCell")

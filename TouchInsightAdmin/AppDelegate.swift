@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     // Coupon
     var couponIndex : Int?
+    var currentCouponID : Int!
     
     //provider
     var alertProvider : CustomIOS7AlertView?

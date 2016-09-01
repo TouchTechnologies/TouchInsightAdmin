@@ -250,6 +250,8 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                 "shortDescriptionTh": txtShortDes.text!,
                 "conditionEn": txtCondition.text!,
                 "conditionTh": txtCondition.text!,
+                "price": txtPrice.text!,
+                "limitUseTime": txtCouponCount.text!,
                 "coupongroupValue": couponDiscountType == "cash" ? txtDisCash.text! : txtDisPercent.text!,
                 "coupongroupType": String(couponDiscountType),
                 //"limitUseTime": "", // optional
@@ -259,7 +261,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                 "endPromotionDate": (txtUseEnd.text! == "") ? strCurDate : txtUseEnd.text!, // 2016-02-16
                 "coupongroupLimit": txtCouponCount.text!,
                 "coupongroupPrefix": txtPrefixCode.text!,// optional
-                "email": txtContactEmail.text!,// optional
+                "contactEmail": txtContactEmail.text!,// optional
                 "contactPhone": txtContactPhone.text!,// optional
                 "status": StatusPublic,// optional
                 "userId": appDelegate.userInfo["userID"]!
@@ -273,10 +275,22 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
             send.createCoupon(sendData, completionHandler:{data in
                 if let objData:NSDictionary = data {
                     
+                    //var strCouponID = String()
+                    var dicDataDetail = NSDictionary()
+                    if let tmp_dicDataDetail:NSDictionary = objData["data"] as! NSDictionary? {
+                        dicDataDetail = tmp_dicDataDetail
+                    }
+                    
+                    //if let tmpCID = dicDataDetail["id"] as! String? {
+                    //    strCouponID = tmpCID
+                    //}
+
+                    
                     print("completionHandler")
                     print("success = \(objData["success"])")
                     print("message = \(objData["message"])")
-                    print("data = \(objData["data"])")
+                    print("data = \(dicDataDetail)")
+                    //print("strCouponID = \(strCouponID)")
                     print("-----------------")
                     
                     guard let _success = objData["success"] as! Bool?,let _message = objData["message"] as! String? where _success == true else {
@@ -284,7 +298,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                         
                         print("_success is failed")
                         print("-----------------")
-                        
+                        SVProgressHUD.dismiss()
                         msgAlertDetail = "Sorry!"
                         alertView.addButton("OK", action: {_ in
                             //self.txtShortDes.becomeFirstResponder()
@@ -295,14 +309,31 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                         return
                     }
                     
-                    let uploadData = [
-                        "id": String(objData["id"]),
-                        "image": self.imgLogo.image!
+                    let uploadData:[String:AnyObject] = [
+                        //"idold": String(dicDataDetail["id"]),
+                        //"idold2": String(dicDataDetail["id"]!),
+                        //"id": strCouponID,
+                        "image": self.imgLogo.image!,
+                        "id": objData["data"]!["id"]!!,
                     ]
-                    let headers = [
-                        "Content-Type":"image/png",
-                    ]
-                    self.send.uploadCouponImage(headers, data: uploadData, completionHandler:{data in
+//                    let headers = [
+//                        "Content-Type":"image/png",
+//                        //"idold": String(objData["data"]!["id"]),
+//                        "id": String(objData["data"]!["id"]!),
+//                        //"id": strCouponID,
+//                    ]
+                    
+//                    print("headers")
+//                    print("headers idold = \(headers["idold"])")
+//                    print("headers idold2 = \(headers["idold2"])")
+//                    print("-------------")
+//                    
+//                    print("uploadData")
+//                    print("uploadData idold = \(uploadData["idold"])")
+//                    print("uploadData idold2 = \(uploadData["idold2"])")
+//                    print("-------------")
+                    
+                    self.send.uploadCouponImage(uploadData, completionHandler:{data in
                         if let objDataUpload:NSDictionary = data {
                             print("objDataUpload")
                             print("objDataUpload")
@@ -310,21 +341,29 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                             print("-------------")
                             print("-------------")
                             
-                            if (objDataUpload[""] as! Int) == 1 {
+                            let tmDelayToClose:NSTimeInterval = 5.0
+                            
+                            if (objDataUpload["status"] as! Int) == 1 {
+                                
+                                msgAlertDetail = "Create Coupon Success"
+                                alertView.addButton("OK", action: {_ in
+                                    self.btnBack(UIButton())
+                                })
+                                alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
+                                NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
                                 
                             }else{
-                            
+                                
+                                msgAlertDetail = "Sorry, something went wrong"
+                                alertView.addButton("OK", action: {_ in
+                                    //self.btnBack(UIButton())
+                                })
+                                alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
+                                //NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
+                                
                             }
                             
                             SVProgressHUD.dismiss()
-                            
-                            let tmDelayToClose:NSTimeInterval = 5.0
-                            msgAlertDetail = "Please enter Short Description"
-                            alertView.addButton("OK", action: {_ in
-                                self.btnBack(UIButton())
-                            })
-                            alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
-                            NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
                             
                         }
                         

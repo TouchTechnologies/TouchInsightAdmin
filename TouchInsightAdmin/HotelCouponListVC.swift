@@ -130,6 +130,7 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         let send = API_Model()
         send.getCoupon(provider_id, completionHandler:{data in
             if let objData:[[String:AnyObject]] = data {
+                
                 if objData.count > 0 {
                     self.tableView.hidden = false
                 }else{
@@ -203,13 +204,24 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let btnObject = UIButton()
-//        btnObject.tag = indexPath.row
-//        print("edit tag button : \(btnObject.tag)")
-//        self.performSegueWithIdentifier("HotelEditCouponVC", sender: btnObject)
-//        
         
-        //self.performSegueWithIdentifier("HotelEditCouponVC", sender: sender)
+        if let objProvider = dataLists[indexPath.row] as Dictionary? {
+            
+            let id = String(objProvider["id"]!)
+            
+            print("didSelectRowAtIndexPath")
+            print("objProvider")
+            print(objProvider)
+            print("-----------")
+            print("id = \(id)")
+            print("-----------")
+            
+            appDelegate.currentCouponID = Int(id)
+            print("0000000000000000000000000000000000000000000000000000")
+            print("id = \(appDelegate.currentCouponID)")
+            print("0000000000000000000000000000000000000000000000000000")
+            
+        }
         
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HotelEditCouponVC") as! HotelEditCouponVC
         self.navigationController?.pushViewController(vc, animated:true)
@@ -234,7 +246,7 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             cell.lblTitle!.text = String(objProvider["coupongroupNameEn"]!)
             cell.lblDiscount!.text = discount
             cell.lblExpireDate!.text = String(objProvider["endPromotionDate"]!)
-            cell.lblUsed!.text = ""
+            cell.lblUsed!.text = String(objProvider["id"]!)
             
             cell.imgIconTitle.image = imgIconTypeKey
             print("objProvider")
@@ -249,6 +261,11 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             cell.lblUsed!.text = ""
             
         }
+        
+        let bgView = UIView(frame: cell.frame)
+        bgView.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00)
+        cell.backgroundView = bgView
+        cell.selectedBackgroundView = bgView
         
         cell.frame.size.width = self.view.frame.size.width - 20
         cell.frame.origin.x = 10

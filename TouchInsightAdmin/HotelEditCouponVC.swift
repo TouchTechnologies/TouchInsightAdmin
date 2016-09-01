@@ -99,6 +99,156 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
     // --------------
     
     
+    var dicProvider = NSDictionary()
+    func loadData() {
+        let _id = String((appDelegate.currentCouponID as Int))
+        print("loadData(\(_id))")
+        send.getCouponByID(_id, completionHandler: {data in
+            if let objData:NSDictionary = data {
+                
+                print("completionHandler")
+                print(objData)
+                print("-----------------")
+
+                
+                guard let objProvider = self.appDelegate.providerData!["ListProviderInformationSummary"]! as? NSArray else {
+                    print("no objProvider")
+                    return
+                }
+                
+                guard let objProviderDic = objProvider[self.appDelegate.providerIndex!] as? NSDictionary else {
+                    print("no objProviderDic")
+                    return
+                }
+                
+                self.dicProvider = objProviderDic
+                
+                
+                print("dicProvider")
+                print("dicProvider")
+                print("dicProvider")
+                print(self.dicProvider)
+                print("-----------------------------------------")
+                print("-----------------------------------------")
+                print("-----------------------------------------")
+                
+                //bannerUrl
+                if objData["bannerUrl"] != nil && !(objData["bannerUrl"] is NSNull){
+                    
+//                    let x: AnyObject = NSNull()
+//                    if let y = x as? String {
+//                        println("I should never be printed: \(y)")
+//                    } else {
+//                        println("Yay")
+//                    }
+                    
+                    if let bannerUrl = objData["bannerUrl"] as! String? {
+                        //self.imgLogo.hnk_setImageFromURL(NSURL(string: bannerUrl as! String)!)
+                        
+                        if let imgData = NSData(contentsOfURL:NSURL(string:bannerUrl as String)!) as NSData? {
+                            self.imgLogo.image = UIImage(data:imgData)
+                        }else{
+                            //                        self.imgLogo.image = UIImage()
+                        }
+                    }
+                }
+               
+
+
+                
+                
+                var provider_type_keyname = providerType.hotel
+                switch String(self.dicProvider["provider_type_keyname"]!) {
+                case "hotel":
+                    provider_type_keyname = providerType.hotel
+                    break
+                case "attraction":
+                    provider_type_keyname = providerType.attraction
+                    break
+                case "restaurant":
+                    provider_type_keyname = providerType.restaurant
+                    break
+                default:
+                    break
+                }
+                
+                self.setProName(String(self.dicProvider["name_en"]!), proType: provider_type_keyname)
+                
+                
+                self.setDiscountType(String(objData["coupongroupType"]!)) // cash,percent
+                
+                self.txtCouponName.text = String(objData["coupongroupNameEn"]!)
+                self.txtShortDes.text = String(objData["shortDescriptionEn"]!)
+                self.txtLongDes.text = String(objData["descriptionEn"]!)
+                
+                let startDate = (objData["startDate"]!) as! NSString
+                let endDate = (objData["endDate"]!) as! NSString
+                let startPromotionDate = (objData["startPromotionDate"]!) as! NSString
+                let endPromotionDate = (objData["endPromotionDate"]!) as! NSString
+                self.txtDateStart.text = startDate.substringWithRange(NSRange(location: 0, length: 10))
+                self.txtDateEnd.text = endDate.substringWithRange(NSRange(location: 0, length: 10))
+                self.txtUseStart.text = startPromotionDate.substringWithRange(NSRange(location: 0, length: 10))
+                self.txtUseEnd.text = endPromotionDate.substringWithRange(NSRange(location: 0, length: 10))
+                
+                self.txtPrefixCode.text = String(objData["coupongroupPrefix"]!)
+                self.txtPrice.text = String(objData["price"]!)
+                self.txtDisCash.text = String(objData["coupongroupValue"]!)
+                self.txtDisPercent.text = String(objData["coupongroupValue"]!)
+                
+                self.txtCondition.text = String(objData["conditionEn"]!)
+                self.txtContactPhone.text = String(objData["contactPhone"]!)
+                self.txtContactEmail.text = String(objData["contactEmail"]!)
+                
+                
+                
+                
+            }
+        })
+        
+        
+//        send.createCoupon(sendData, completionHandler:{data in
+//            if let objData:NSDictionary = data {
+//                
+//                print("completionHandler")
+//                print("success = \(objData["success"])")
+//                print("message = \(objData["message"])")
+//                print("-----------------")
+//                
+//                guard let _success = objData["success"] as! Bool?,let _message = objData["message"] as! String? where _success == true else {
+//                    // Value requirements not met, do something
+//                    
+//                    print("_success is failed")
+//                    print("-----------------")
+//                    
+//                    msgAlertDetail = "Please enter Short Description"
+//                    alertView.addButton("OK", action: {_ in
+//                        //self.txtShortDes.becomeFirstResponder()
+//                        self.btnBack(UIButton())
+//                        //UIView.animateWithDuration(0.25, animations: {_ in self.scrollView.contentOffset.y = 190 }, completion:{ _ in self.txtShortDes.becomeFirstResponder()})
+//                    })
+//                    alertView.showInfo(msgAlertTitle, subTitle: String(objData["message"]!), colorStyle:0xAC332F, duration: 5.0)
+//                    return
+//                }
+//                
+//                let tmDelayToClose:NSTimeInterval = 5.0
+//                msgAlertDetail = "Please enter Short Description"
+//                alertView.addButton("OK", action: {_ in
+//                    self.btnBack(UIButton())
+//                })
+//                alertView.showInfo(msgAlertTitle, subTitle: _message, colorStyle:0xAC332F, duration: tmDelayToClose)
+//                NSTimer.scheduledTimerWithTimeInterval(tmDelayToClose , target: self, selector: #selector(self.btnBack(_:)), userInfo: nil, repeats: false)
+//                
+//                
+//                print("_success is OK")
+//                print("success = \(objData["success"])")
+//                print("message = \(objData["message"])")
+//                print("-----------------")
+//                
+//                
+//            }
+//        })
+    }
+    
     @IBOutlet weak var btnSaveData: UIButton!
     @IBAction func btnSaveDataClick(sender: AnyObject) {
         
@@ -326,12 +476,12 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     @IBAction func btnOpenLongDesriptionClick(sender: AnyObject) {
         
-        self.txtLongDes.becomeFirstResponder()
+        //self.txtLongDes.becomeFirstResponder()
         
         let stbHeight = UIApplication.sharedApplication().statusBarFrame.size.height
         let navHeight = self.navigationController?.navigationBar.frame.size.height
         let boxTop = navHeight! + stbHeight
-        let boxHeight = self.view.frame.size.height - boxTop - kHeight
+        let boxHeight = self.view.frame.size.height - boxTop // - kHeight
         
         self.viewBoxLongDescription.frame = CGRectMake(0, boxTop, self.view.frame.size.width, boxHeight)
         
@@ -373,11 +523,11 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
             self.imgCheckDisCash.image = UIImage(named: "check.png")
             self.imgCheckDisPercent.image = UIImage(named: "uncheck.png")
             
-            if self.canFocus_DisCash {
-                self.txtDisCash.becomeFirstResponder()
-            }else{
-                self.canFocus_DisCash = true
-            }
+//            if self.canFocus_DisCash {
+//                self.txtDisCash.becomeFirstResponder()
+//            }else{
+//                self.canFocus_DisCash = true
+//            }
             
             UIView.animateWithDuration(0.10, animations: {
                 self.viewBgDisCash.alpha = 1
@@ -393,7 +543,7 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
             self.imgCheckDisCash.image = UIImage(named: "uncheck.png")
             self.imgCheckDisPercent.image = UIImage(named: "check.png")
             
-            self.txtDisPercent.becomeFirstResponder()
+            //self.txtDisPercent.becomeFirstResponder()
             
             UIView.animateWithDuration(0.10, animations: {
                 self.viewBgDisCash.alpha = 0
@@ -406,62 +556,62 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
     }
     
     @IBAction func btnDisCashClick(sender: AnyObject) {
-        setDiscountType("cash")
+        //setDiscountType("cash")
     }
     
     @IBAction func btnDisPercentClick(sender: AnyObject) {
-        setDiscountType("percent")
+        //setDiscountType("percent")
     }
     
     
     @IBAction func btnSelectDateStartClick(sender: AnyObject) {
-        datePickerType = "datestart"
-        datePickerTitle = "Coupon date Start"
-        openDatePicker()
-        UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = 383
-        })
+//        datePickerType = "datestart"
+//        datePickerTitle = "Coupon date Start"
+//        openDatePicker()
+//        UIView.animateWithDuration(0.25, animations: {_ in
+//            self.scrollView.contentOffset.y = 383
+//        })
     }
     @IBAction func btnSelectDateEndClick(sender: AnyObject) {
-        datePickerType = "dateend"
-        datePickerTitle = "Coupon date End"
-        openDatePicker()
-        UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = 383
-        })
+//        datePickerType = "dateend"
+//        datePickerTitle = "Coupon date End"
+//        openDatePicker()
+//        UIView.animateWithDuration(0.25, animations: {_ in
+//            self.scrollView.contentOffset.y = 383
+//        })
     }
     @IBAction func btnSelectUseStartClick(sender: AnyObject) {
-        datePickerType = "usestart"
-        datePickerTitle = "Time to use Start"
-        openDatePicker()
-        UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = 383//460
-        })
+//        datePickerType = "usestart"
+//        datePickerTitle = "Time to use Start"
+//        openDatePicker()
+//        UIView.animateWithDuration(0.25, animations: {_ in
+//            self.scrollView.contentOffset.y = 383//460
+//        })
     }
     @IBAction func btnSelectUseEndClick(sender: AnyObject) {
-        datePickerType = "useend"
-        datePickerTitle = "Time to use End"
-        openDatePicker()
-        UIView.animateWithDuration(0.25, animations: {_ in
-            self.scrollView.contentOffset.y = 383//460
-        })
+//        datePickerType = "useend"
+//        datePickerTitle = "Time to use End"
+//        openDatePicker()
+//        UIView.animateWithDuration(0.25, animations: {_ in
+//            self.scrollView.contentOffset.y = 383//460
+//        })
     }
     
     var StatusPublic = "0"
     @IBAction func btnSelectStatusPublicClick(sender: AnyObject) {
-        StatusPublic = "1"
-        self.lblStatusPublic.textColor = UIColor.blackColor()
-        self.lblStatusUnPublic.textColor = UIColor.grayColor()
-        self.imgCheckStatusPublic.image = UIImage(named: "check.png")
-        self.imgCheckStatusUnPublic.image = UIImage(named: "uncheck.png")
+//        StatusPublic = "1"
+//        self.lblStatusPublic.textColor = UIColor.blackColor()
+//        self.lblStatusUnPublic.textColor = UIColor.grayColor()
+//        self.imgCheckStatusPublic.image = UIImage(named: "check.png")
+//        self.imgCheckStatusUnPublic.image = UIImage(named: "uncheck.png")
     }
     
     @IBAction func btnSelectStatusUnPublicClick(sender: AnyObject) {
-        StatusPublic = "0"
-        self.lblStatusPublic.textColor = UIColor.grayColor()
-        self.lblStatusUnPublic.textColor = UIColor.blackColor()
-        self.imgCheckStatusPublic.image = UIImage(named: "uncheck.png")
-        self.imgCheckStatusUnPublic.image = UIImage(named: "check.png")
+//        StatusPublic = "0"
+//        self.lblStatusPublic.textColor = UIColor.grayColor()
+//        self.lblStatusUnPublic.textColor = UIColor.blackColor()
+//        self.imgCheckStatusPublic.image = UIImage(named: "uncheck.png")
+//        self.imgCheckStatusUnPublic.image = UIImage(named: "check.png")
         
     }
     
@@ -516,7 +666,7 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         _btnPickerClose.frame = CGRectMake(_viewPickerBox.frame.size.width - btnClosePickerWidth, 0, btnClosePickerWidth, pickerHeaderHeight)
         //_btnPickerClose.backgroundColor = UIColor.greenColor()
-        _btnPickerClose.setTitle("Finish", forState: .Normal)
+        _btnPickerClose.setTitle("Close", forState: .Normal)
         _btnPickerClose.tintColor = UIColor(red: 84/255, green: 84/255, blue: 84/255, alpha: 1.0)
         _btnPickerClose.titleLabel?.font = UIFont.systemFontOfSize(15)
         _btnPickerClose.addTarget(self, action: #selector(self.closeDatePicker), forControlEvents: .TouchUpInside)
@@ -720,37 +870,37 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
         return true;
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        print("textFieldShouldBeginEditing")
-        lastScrollY = self.scrollView.contentOffset.y
-        
-        if textField == txtCouponName {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 106
-            })
-        }else if textField == txtCouponCount || textField == txtValidate {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 543
-            })
-        }else if textField == txtPrefixCode {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 616
-            })
-        }else if textField == txtPrice || textField == txtDisCash || textField == txtDisPercent {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 701
-            })
-        }else if textField == txtContactPhone {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 1067
-            })
-        }else if textField == txtContactEmail {
-            let scY = scrollView.frame.size.height - 1142 + kHeight
-            print("scY = \(scY)")
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 1142 // scY // 1142
-            })
-        }
-        
+//        print("textFieldShouldBeginEditing")
+//        lastScrollY = self.scrollView.contentOffset.y
+//        
+//        if textField == txtCouponName {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 106
+//            })
+//        }else if textField == txtCouponCount || textField == txtValidate {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 543
+//            })
+//        }else if textField == txtPrefixCode {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 616
+//            })
+//        }else if textField == txtPrice || textField == txtDisCash || textField == txtDisPercent {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 701
+//            })
+//        }else if textField == txtContactPhone {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 1067
+//            })
+//        }else if textField == txtContactEmail {
+//            let scY = scrollView.frame.size.height - 1142 + kHeight
+//            print("scY = \(scY)")
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 1142 // scY // 1142
+//            })
+//        }
+//        
         return true
     }
     
@@ -771,32 +921,32 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
     }
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        print("textViewShouldBeginEditing")
-        lastScrollY = self.scrollView.contentOffset.y
-        
-        if textView == txtShortDes {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 190
-            })
-        }else if textView == txtCondition {
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = 903
-            })
-        }
+//        print("textViewShouldBeginEditing")
+//        lastScrollY = self.scrollView.contentOffset.y
+//        
+//        if textView == txtShortDes {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 190
+//            })
+//        }else if textView == txtCondition {
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = 903
+//            })
+//        }
         return true
     }
     
     func textViewDidEndEditing(textView: UITextView) {
         
         print("textViewDidEndEditing")
-        scrollToLastScroll()
+        //scrollToLastScroll()
         
     }
     
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         
         print("textViewShouldEndEditing")
-        scrollToLastScroll()
+        //scrollToLastScroll()
         return true
     }
     
@@ -804,18 +954,18 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //dismissKeyboard()
-        print("scrollViewDidScroll \(scrollView.contentOffset.y)")
+        //print("scrollViewDidScroll \(scrollView.contentOffset.y)")
     }
     
     func scrollToLastScroll() {
         
-        if self.scrollView.contentOffset.y != self.lastScrollY {
-            
-            UIView.animateWithDuration(0.25, animations: {_ in
-                self.scrollView.contentOffset.y = self.lastScrollY > 830 ? 830 : self.lastScrollY
-            })
-            
-        }
+//        if self.scrollView.contentOffset.y != self.lastScrollY {
+//            
+//            UIView.animateWithDuration(0.25, animations: {_ in
+//                self.scrollView.contentOffset.y = self.lastScrollY > 830 ? 830 : self.lastScrollY
+//            })
+//            
+//        }
         
     }
     
@@ -865,7 +1015,6 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setProName("สวัสดีครับ กดเกสทวาทวsdfsdfsfท", proType: .hotel)
         
         width = UIScreen.mainScreen().bounds.size.width
         heigth = UIScreen.mainScreen().bounds.size.height
@@ -877,7 +1026,7 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         self.initNavUnderline()
         self.initialObject()
-        self.initDatePicker()
+        //self.initDatePicker()
         
         // Do any additional setup after loading the view.
         
@@ -929,11 +1078,15 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         
+        self.imgLogo.image = UIImage(named: "coupon_no_image.jpg")
+        self.imgLogo.contentMode = .ScaleAspectFill
+        self.setProName("Loading", proType: .hotel)
+        
+        loadData()
     }
     
     func initialObject(){
         
-        setDiscountType("cash")
         
         txtDateStart.placeholder = strDateFormat
         txtDateEnd.placeholder = strDateFormat
@@ -941,51 +1094,73 @@ class HotelEditCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelegate
         txtUseEnd.placeholder = strDateFormat
         
         
-        let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
+        
+        txtCouponName.enabled = false
+        txtShortDes.editable = false
+        txtLongDes.editable = false
+        
+        txtCouponCount.enabled = false
+        txtPrefixCode.enabled = false
+        txtCondition.editable = false
+        
+        txtPrice.enabled = false
+        txtDisCash.enabled = false
+        txtDisPercent.enabled = false
+        
+        txtContactPhone.enabled = false
+        txtContactEmail.enabled = false
+        
+        btnSaveData.hidden = true
         
         
-        txtCouponName.borderStyle = UITextBorderStyle.None
-        txtCouponName.layer.borderWidth = 1
-        txtCouponName.layer.borderColor = borderColorCG
+        //let borderColorCG = UIColor(red: 0.13, green: 0.14, blue: 0.18, alpha: 0.2).CGColor
         
-        txtShortDes.layer.borderWidth = 1
-        txtShortDes.layer.borderColor = borderColorCG
         
-        txtLongDes.layer.borderWidth = 1
-        txtLongDes.layer.borderColor = borderColorCG
+//        txtCouponName.borderStyle = UITextBorderStyle.None
+//        txtCouponName.layer.borderWidth = 1
+//        txtCouponName.layer.borderColor = borderColorCG
+//        
+//        txtShortDes.layer.borderWidth = 1
+//        txtShortDes.layer.borderColor = borderColorCG
+//        
+//        txtLongDes.layer.borderWidth = 1
+//        txtLongDes.layer.borderColor = borderColorCG
+//        
+//        txtCouponCount.borderStyle = UITextBorderStyle.None
+//        txtCouponCount.layer.borderWidth = 1
+//        txtCouponCount.layer.borderColor = borderColorCG
+//        
+//        txtValidate.borderStyle = UITextBorderStyle.None
+//        txtValidate.layer.borderWidth = 1
+//        txtValidate.layer.borderColor = borderColorCG
+//        
+//        txtPrefixCode.borderStyle = UITextBorderStyle.None
+//        txtPrefixCode.layer.borderWidth = 1
+//        txtPrefixCode.layer.borderColor = borderColorCG
+//        
+//        let viewBgPrice:UIView = txtPrice.superview!
+//        viewBgPrice.layer.borderWidth = 1
+//        viewBgPrice.layer.borderColor = borderColorCG
+//        
+//        viewBgDisCash.layer.borderWidth = 1
+//        viewBgDisCash.layer.borderColor = borderColorCG
+//        
+//        viewBgDisPercent.layer.borderWidth = 1
+//        viewBgDisPercent.layer.borderColor = borderColorCG
+//        
+//        txtCondition.layer.borderWidth = 1
+//        txtCondition.layer.borderColor = borderColorCG
+//        
+//        txtContactPhone.borderStyle = UITextBorderStyle.None
+//        txtContactPhone.layer.borderWidth = 1
+//        txtContactPhone.layer.borderColor = borderColorCG
+//        
+//        txtContactEmail.borderStyle = UITextBorderStyle.None
+//        txtContactEmail.layer.borderWidth = 1
+//        txtContactEmail.layer.borderColor = borderColorCG
         
-        txtCouponCount.borderStyle = UITextBorderStyle.None
-        txtCouponCount.layer.borderWidth = 1
-        txtCouponCount.layer.borderColor = borderColorCG
         
-        txtValidate.borderStyle = UITextBorderStyle.None
-        txtValidate.layer.borderWidth = 1
-        txtValidate.layer.borderColor = borderColorCG
         
-        txtPrefixCode.borderStyle = UITextBorderStyle.None
-        txtPrefixCode.layer.borderWidth = 1
-        txtPrefixCode.layer.borderColor = borderColorCG
-        
-        let viewBgPrice:UIView = txtPrice.superview!
-        viewBgPrice.layer.borderWidth = 1
-        viewBgPrice.layer.borderColor = borderColorCG
-        
-        viewBgDisCash.layer.borderWidth = 1
-        viewBgDisCash.layer.borderColor = borderColorCG
-        
-        viewBgDisPercent.layer.borderWidth = 1
-        viewBgDisPercent.layer.borderColor = borderColorCG
-        
-        txtCondition.layer.borderWidth = 1
-        txtCondition.layer.borderColor = borderColorCG
-        
-        txtContactPhone.borderStyle = UITextBorderStyle.None
-        txtContactPhone.layer.borderWidth = 1
-        txtContactPhone.layer.borderColor = borderColorCG
-        
-        txtContactEmail.borderStyle = UITextBorderStyle.None
-        txtContactEmail.layer.borderWidth = 1
-        txtContactEmail.layer.borderColor = borderColorCG
         
     }
     

@@ -85,6 +85,7 @@
 		3BA7A08A1D6D576800C5C119 /* ic_coupon_menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7A0881D6D576800C5C119 /* ic_coupon_menu2.png */; };
 		3BA7A08C1D701C3700C5C119 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA7A08B1D701C3700C5C119 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3BA7A08E1D715BFF00C5C119 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7A08D1D715BFF00C5C119 /* KMPlaceholderTextView.swift */; };
+		3BB563141D77D56E0056E307 /* QRScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB563131D77D56E0056E307 /* QRScanVC.swift */; };
 		3BBCD72E1D45B92C00892372 /* FileMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCD72D1D45B92C00892372 /* FileMan.swift */; };
 		3BBCD7301D45F7D600892372 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */; };
 		3BD0C29C1D3783B0002CF6F2 /* TextFieldPadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */; };
@@ -376,6 +377,7 @@
 		3BA7A0881D6D576800C5C119 /* ic_coupon_menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_coupon_menu2.png; sourceTree = "<group>"; };
 		3BA7A08B1D701C3700C5C119 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		3BA7A08D1D715BFF00C5C119 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
+		3BB563131D77D56E0056E307 /* QRScanVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanVC.swift; sourceTree = "<group>"; };
 		3BBCD72D1D45B92C00892372 /* FileMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileMan.swift; path = Model/FileMan.swift; sourceTree = "<group>"; };
 		3BBCD72F1D45F7D500892372 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BD0C29B1D3783B0002CF6F2 /* TextFieldPadd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPadd.swift; sourceTree = "<group>"; };
@@ -1056,6 +1058,7 @@
 			isa = PBXGroup;
 			children = (
 				F33261631C0712290035C67D /* MainVC.swift */,
+				3BB563131D77D56E0056E307 /* QRScanVC.swift */,
 				F3B0711A1C0F3F3200DC97CB /* SettingAccountVC.swift */,
 				F360C2C51C0ED09900149CCC /* MyCollectionViewCell.swift */,
 				F3B071221C0F4FAD00DC97CB /* EditProfileVC.swift */,
@@ -1607,6 +1610,7 @@
 				F3B73A2D1C562E4200781D48 /* CustomIOS7AlertView.swift in Sources */,
 				F34D51C11C3CF038002AC1EF /* hotelfacility.swift in Sources */,
 				F3A43FBE1C172337000D76CA /* InformationVC.swift in Sources */,
+				3BB563141D77D56E0056E307 /* QRScanVC.swift in Sources */,
 				36EF29C21D67080E008B1EAE /* CouponData.swift in Sources */,
 				F3B0711B1C0F3F3200DC97CB /* SettingAccountVC.swift in Sources */,
 				F3C6EE201C6B2EBD00DB031F /* EditRoominfomationVC.swift in Sources */,
