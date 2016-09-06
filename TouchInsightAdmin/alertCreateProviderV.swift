@@ -36,18 +36,12 @@ class alertCreateProviderV: UIView, UITableViewDelegate , UITableViewDataSource 
         iphonescy = (736.0/480.0);
         iphonescx = (414.0/320.0);
         
-        
         if(UI_USER_INTERFACE_IDIOM() == .Pad){
-            
             //rowH = 70*scy
             rowH = 70
-        }
-        else{
-            
+        } else {
             rowH = 70
         }
-        
-        
     }
     
     //    func customIOS7AlertViewButtonTouchUpInside(alertView: CustomIOS7AlertView, buttonIndex: Int) {

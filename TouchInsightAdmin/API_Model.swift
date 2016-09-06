@@ -176,25 +176,47 @@ class API_Model {
                     if (jsonStatus == 4051){
                         print("Error")
                     }else{
-                        let result = self.deCrypt(json["data"].stringValue, base64IV: IV_Key64)
-                        //print("============================================")
                         
-                        //                            print("before JsonEncode : \(result)")
-                        //completionHandler(JSON as! [String : AnyObject])
-                        let resultJson = self.jsonEncode(result as String)
-                        //                            print("resultJson")
-                        //                            print(resultJson)
-                        //                            print("= = = = = = = =")
                         
-                        print("---->>>provider APIJSON<<<-----")
-                        print(dataJson)
-                        print("-------------------------------")
-                        print(result)
-                        print("||||>>>provider APIJSON<<<||||")
                         
-                        completionHandler(resultJson )
-                        //                            print("after JsonEncode : \(resultJson)")
-                        //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
+                        let strData = json["data"].stringValue
+                        print("---->>> json[data].stringValue <<<-----")
+                        print(strData)
+                        
+                        if let result = (self.deCrypt(strData, base64IV: IV_Key64)) as NSString?{
+                        
+                            //print("============================================")
+                            
+                            //                            print("before JsonEncode : \(result)")
+                            //completionHandler(JSON as! [String : AnyObject])
+                            if let resultJson = self.jsonEncode(result as String) as NSDictionary? {
+                            
+                                //                            print("resultJson")
+                                //                            print(resultJson)
+                                //                            print("= = = = = = = =")
+                                
+                                print("---->>>provider APIJSON<<<-----")
+                                print(dataJson)
+                                print("-------------------------------")
+                                print(result)
+                                print("||||>>>provider APIJSON<<<||||")
+                                
+                                completionHandler(resultJson )
+                                //                            print("after JsonEncode : \(resultJson)")
+                                //                            print("Result===> : \(resultJson["ListProviderInformationSummary"])")
+                                
+                            }else{
+                                
+                                completionHandler(NSDictionary() )
+                                
+                            }
+                            
+                        }else{
+                            
+                            completionHandler(NSDictionary() )
+                        
+                        }
+                        
                     }
                     
 //                    if let jsonStatus = json["status"]{

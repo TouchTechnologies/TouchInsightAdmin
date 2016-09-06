@@ -78,6 +78,7 @@
 		3B1EFC4F1D34B05E00A7F4EA /* middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC491D34B05E00A7F4EA /* middle.png */; };
 		3B1EFC501D34B05E00A7F4EA /* mild_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */; };
 		3B1EFC511D34B05E00A7F4EA /* mild.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EFC4B1D34B05E00A7F4EA /* mild.png */; };
+		3B26FD141D7EC1DB00CCFFC9 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26FD131D7EC1DB00CCFFC9 /* Env.swift */; };
 		3B346C471D49EB3E001C5AAF /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346C461D49EB3E001C5AAF /* Toucan.swift */; };
 		3B43946A1D3CDACA005B4E6C /* MemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4394691D3CDACA005B4E6C /* MemberData.swift */; };
 		3BA7A0861D6D4BD900C5C119 /* appExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7A0851D6D4BD900C5C119 /* appExtension.swift */; };
@@ -368,6 +369,7 @@
 		3B1EFC491D34B05E00A7F4EA /* middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = middle.png; sourceTree = "<group>"; };
 		3B1EFC4A1D34B05E00A7F4EA /* mild_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mild_hover.png; sourceTree = "<group>"; };
 		3B1EFC4B1D34B05E00A7F4EA /* mild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mild.png; sourceTree = "<group>"; };
+		3B26FD131D7EC1DB00CCFFC9 /* Env.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		3B346C461D49EB3E001C5AAF /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		3B4394691D3CDACA005B4E6C /* MemberData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberData.swift; path = Model/MemberData.swift; sourceTree = "<group>"; };
 		3B43946B1D3CE12D005B4E6C /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 		36DC41161C05C55E001B8E22 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				3B26FD131D7EC1DB00CCFFC9 /* Env.swift */,
 				3BA7A0851D6D4BD900C5C119 /* appExtension.swift */,
 				3B346C461D49EB3E001C5AAF /* Toucan.swift */,
 				F383BF5A1C7C185500726ED7 /* SSRadioButton.swift */,
@@ -1584,6 +1587,7 @@
 				3BEF75791D6177A7007266C0 /* customCouponList.swift in Sources */,
 				F3C6DC041C17D6F90005A621 /* RoomInfoVC.swift in Sources */,
 				F3C6DC0C1C1805450005A621 /* CreateRoomInfoVC.swift in Sources */,
+				3B26FD141D7EC1DB00CCFFC9 /* Env.swift in Sources */,
 				F355232F1C28EF75001F5A27 /* AddProviderAlertVC.swift in Sources */,
 				F34625F31C0831D100E2A82C /* IntroViewVC.swift in Sources */,
 				366F50001D34FD78005B6DF1 /* ResAddContentInfo.swift in Sources */,
