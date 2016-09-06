@@ -14,14 +14,14 @@ import SwiftyJSON
 //import CoreLocation
 class API_Model {
     
-//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
     
-    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
-    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
-    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
+//    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
+//    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
+//    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
     
     
 //    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
@@ -759,14 +759,12 @@ class API_Model {
             
                 if let JSON = response.result.value {
                     print("JSON(checkUser): \(JSON)")
-                    if(JSON.count == 0)
-                    {
+                    if(JSON.count! == 0){
                         print("NULLLLLL")
                         data["status"] = true
                         data["data"] = ""
                         
-                    }else
-                    {
+                    }else{
                         data["status"] = false
                         data["data"] = JSON[0]
                     }

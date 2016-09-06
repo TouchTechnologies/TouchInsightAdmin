@@ -350,14 +350,14 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
 //            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
 //            print("live stream")
             
-//            let alertView = SCLAlertView()
-//            alertView.showCircularIcon = false
-//            alertView.showNotice("Comming Soon !!!", subTitle: "")
+            let alertView = SCLAlertView()
+            alertView.showCircularIcon = false
+            alertView.showNotice("Comming Soon !!!", subTitle: "")
             
-            btnLive.setImage(UIImage(named: "ic_coupon_menu2.png"), forState: .Normal)
-            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
-            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-            self.initialCouponVC()
+//            btnLive.setImage(UIImage(named: "ic_coupon_menu2.png"), forState: .Normal)
+//            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+//            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+//            self.initialCouponVC()
             
         }
     }

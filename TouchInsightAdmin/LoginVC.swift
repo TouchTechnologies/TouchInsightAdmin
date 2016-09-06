@@ -27,6 +27,8 @@ import FBSDKLoginKit
 
 import RealmSwift
 
+import FontAwesome_swift
+
 extension Results {
     
     func toArray() -> [T] {
@@ -315,11 +317,47 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         var frmBtnFbLogin = btnLogin.frame
         frmBtnFbLogin.origin.y = btnLogin.frame.origin.y + btnLogin.frame.size.height + 12
         btnFbLogin.frame = frmBtnFbLogin
-        btnFbLogin.backgroundColor = UIColor.blueColor()
-        btnFbLogin.setTitle("FB LOGIN", forState: UIControlState.Normal)
-        btnFbLogin.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        btnFbLogin.backgroundColor = UIColor(red:0.19, green:0.33, blue:0.59, alpha:1.00)
+//        btnFbLogin.setTitle("Sign up with facebook", forState: UIControlState.Normal)
+//        btnFbLogin.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         btnFbLogin.addTarget(self, action: #selector(loginFB) , forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+        
+        var frmBGIconFB = frmBtnFbLogin
+        frmBGIconFB.size.width = frmBtnFbLogin.size.height
+        let viewBGFbIcon = UIView(frame:frmBGIconFB)
+        viewBGFbIcon.backgroundColor = UIColor(red:0.00, green:0.28, blue:0.58, alpha:1.00)
+        //viewBGFbIcon.backgroundColor = UIColor.greenColor()
+        
+        var frmIconFB = frmBtnFbLogin
+        frmIconFB.size.width = frmIconFB.size.height - 8
+        frmIconFB.size.height = frmIconFB.size.height - 8
+        frmIconFB.origin.x = frmBtnFbLogin.origin.x + 4
+        frmIconFB.origin.y = frmBtnFbLogin.origin.y + 4
+        
+        let imgIconFacebook = UIImageView()
+        imgIconFacebook.frame = frmIconFB
+        
+        imgIconFacebook.image = UIImage.fontAwesomeIconWithName(.Facebook, textColor: UIColor.whiteColor(), size: CGSizeMake(frmIconFB.size.width - 8, frmIconFB.size.width - 8))
+        imgIconFacebook.contentMode = .ScaleAspectFit
+        imgIconFacebook.clipsToBounds = true
+        //imgIconFacebook.backgroundColor = UIColor.greenColor()
+        
+        var frmTitleFB = frmBtnFbLogin
+        frmTitleFB.size.width = frmBtnFbLogin.size.width - frmBGIconFB.size.width
+        frmTitleFB.origin.x = frmBGIconFB.size.width + frmBGIconFB.origin.x
+        let lblTitleFacebook = UILabel()
+        lblTitleFacebook.frame = frmTitleFB
+        lblTitleFacebook.text = "Sign up with facebook"
+        lblTitleFacebook.textAlignment = .Center
+        lblTitleFacebook.textColor = UIColor.whiteColor()
+        
+        
         scrollview.addSubview(btnFbLogin)
+        scrollview.addSubview(viewBGFbIcon)
+        scrollview.addSubview(imgIconFacebook)
+        scrollview.addSubview(lblTitleFacebook)
     }
     
     
@@ -510,9 +548,13 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                     if let _lastName = logData["data"]!["userProfileObject"]!!["lastName"] as! String? {
                                                         self.appDelegate.userInfo["lastName"] = _lastName
                                                     }
-                                                    if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
-                                                        self.appDelegate.userInfo["mobile"] = _mobile
+                                                    
+                                                    if logData["data"]!["userProfileObject"]!!["phone"] != nil && !(logData["data"]!["userProfileObject"]!!["phone"] is NSNull){
+                                                        if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
+                                                            self.appDelegate.userInfo["mobile"] = _mobile
+                                                        }
                                                     }
+                                                    
     
                                                     self.appDelegate.isLogin = true
                                                     let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
@@ -550,15 +592,23 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                             self.appDelegate.userInfo["avatarImage"] = _avatarImage
                                         }
                                         
-                                        if let _firstName = checkUserFBData["data"]!["userProfileObject"]!!["firstName"] as! String? {
-                                            self.appDelegate.userInfo["firstName"] = _firstName
-                                        }
+//                                        if let _firstName = checkUserFBData["data"]!["userProfileObject"]!!["firstName"] as! String? {
+//                                            self.appDelegate.userInfo["firstName"] = _firstName
+//                                        }
+//                                        
+//                                        if let _lastName = checkUserFBData["data"]!["userProfileObject"]!!["lastName"] as! String? {
+//                                            self.appDelegate.userInfo["lastName"] = _lastName
+//                                        }
                                         
-                                        if let _lastName = checkUserFBData["data"]!["userProfileObject"]!!["lastName"] as! String? {
-                                            self.appDelegate.userInfo["lastName"] = _lastName
-                                        }
 //                                        if let _mobile = checkUserFBData["data"]!["userProfileObject"]!!["phone"] as! String? {
 //                                            self.appDelegate.userInfo["mobile"] = _mobile
+//                                        }
+                                        
+                                        
+//                                        if logData["data"]!["userProfileObject"]!!["phone"] != nil && !(logData["data"]!["userProfileObject"]!!["phone"] is NSNull){
+//                                            if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
+//                                                self.appDelegate.userInfo["mobile"] = _mobile
+//                                            }
 //                                        }
                                         
                                         self.appDelegate.isLogin = true

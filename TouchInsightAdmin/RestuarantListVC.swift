@@ -9,6 +9,7 @@
 import UIKit
 import PagingMenuController
 import PKHUD
+import SCLAlertView
 class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -217,15 +218,20 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
             
             
             print("Gallery")
+        }else if(sender.tag == 2){
+            
+            let alertView = SCLAlertView()
+            alertView.showCircularIcon = false
+            alertView.showNotice("Comming Soon !!!", subTitle: "")
+            
+//            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
+//            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+//            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+//            print("live stream")
         }
-        //
-        //
-        //        else if(sender.tag == 2){
-        //            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
-        //            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
-        //            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-        //        print("live stream")
-        //        }
+        
+        
+        
         
     }
     

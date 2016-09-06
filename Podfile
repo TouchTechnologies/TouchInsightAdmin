@@ -52,6 +52,7 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 
 pod 'SVProgressHUD'
+pod 'FontAwesome.swift'
 
 target 'TouchInsightAdmin' do
 
