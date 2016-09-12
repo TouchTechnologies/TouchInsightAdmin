@@ -10,18 +10,19 @@ import Foundation
 import Alamofire
 import RNCryptor
 import SwiftyJSON
+import RealmSwift
 
 //import CoreLocation
 class API_Model {
     
-    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
     
-//    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
-//    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
-//    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
+    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
     
     
 //    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
@@ -339,6 +340,177 @@ class API_Model {
         }
     }
     
+    private func GetUserTokenByID22222(userID:String,completionHandler:String->()){
+        
+        let parameters = [
+            "platform":"Application",
+            "tokenIdentifier":_UUID,
+            "os":"iOS",
+            ]
+        let reqUrl = "\(_apiUrl)users/\(userID)/tokens"
+        
+        print("reqUrl : \(reqUrl)")
+        print("parameters : \(parameters)")
+        
+        let request = Alamofire.request(.POST, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
+        //request.validate()
+        request.responseJSON{response in
+            
+            print("response xxxxx : \(response)")
+            
+            var returnData = ""
+            if response.result.isSuccess {
+                
+                if let json = response.result.value {
+                    
+                    print("json xxxxx : \(json)")
+                    
+                    if json["accessToken"] != nil && !(json["accessToken"] is NSNull){
+                        if let accessToken = json["accessToken"] as! String? {
+                            returnData = accessToken
+                        }
+                    }
+                }else{
+                    returnData = ""
+                }
+                
+            }else{
+                returnData = ""
+            }
+            
+            print("GetUserTokenByID")
+            print(returnData)
+            print("- - - - - -")
+            
+            completionHandler(returnData)
+            
+        }
+    }
+
+    
+    func GetToken(completionHandler:String->()){
+        
+        //let userID = self.appDelegate.userInfo["userID"]!
+        let username = self.appDelegate.userInfo["username"]!
+        let password = self.appDelegate.userInfo["passWord"]!
+        
+        let parameters = [
+            "platform":"Application",
+            "tokenIdentifier":_UUID,
+            "os":"iOS",
+            "username": username,
+            "password": password,
+            ]
+        let reqUrl = "\(_apiUrl)tokens"
+        
+        print("reqUrl : \(reqUrl)")
+        print("parameters : \(parameters)")
+        
+        let request = Alamofire.request(.POST, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
+        //request.validate()
+        request.responseJSON{response in
+            
+            var returnData:String = ""
+            if response.result.isSuccess {
+                if let json = response.result.value as! NSDictionary? {
+                    returnData = json["accessToken"]! as! String
+                    
+                    self.appDelegate.userInfo["accessToken"] = returnData
+                    
+                    // - - - - -
+                    let newMember = MemberData()
+                    newMember.id = self.appDelegate.userInfo["id"]!
+                    newMember.userID = self.appDelegate.userInfo["userID"]!
+                    newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
+                    newMember.firstName = self.appDelegate.userInfo["firstName"]!
+                    newMember.lastName = self.appDelegate.userInfo["lastName"]!
+                    newMember.profileName = self.appDelegate.userInfo["profileName"]!
+                    newMember.mobile = self.appDelegate.userInfo["mobile"]!
+                    newMember.email = self.appDelegate.userInfo["email"]!
+                    newMember.username = self.appDelegate.userInfo["username"]!
+                    newMember.passWord = self.appDelegate.userInfo["passWord"]!
+                    newMember.accessToken = self.appDelegate.userInfo["accessToken"]!
+                    
+                    print("newMember rrr : \(newMember)")
+                    
+                    try! uiRealm.write{
+                        uiRealm.add(newMember)
+                        print("write Yes")
+                        
+                    }
+                    // - - - - -
+                    
+                    
+                    self.appDelegate.isLogin = true
+                    
+                }
+            }else{
+                
+                returnData = "\(response.result.error?.localizedDescription)"
+                
+            }
+            
+            print("GetToken returnData")
+            print(returnData)
+            print("- - - - - -")
+            
+            completionHandler(returnData)
+            
+        }
+        
+    }
+    
+    
+    func checkToken(userData:Object,completionHandler:String->()){
+        
+        var returnData = ""
+        
+        print("userData")
+        print(userData)
+        print("- - - - - -")
+        
+        if(self.appDelegate.userInfo["accessToken"]! != ""){
+            
+            let reqUrlDeleteToken = "\(_apiUrl)tokens/\(self.appDelegate.userInfo["accessToken"]!)"
+            print("reqUrlDeleteToken = \(reqUrlDeleteToken)")
+            let requestDeleteToken = Alamofire.request(.DELETE, reqUrlDeleteToken, parameters: [:], encoding: .JSON, headers: .None)
+            requestDeleteToken.validate()
+            requestDeleteToken.responseJSON{response in
+                
+                if response.result.isSuccess {
+                    if let json = response.result.value as! NSDictionary? {
+                        let _data = JSON(json!)
+                        let _accessToken = _data["accessToken"]!
+                        returnData = _accessToken
+                        
+                    }
+                }else{
+                    
+                    returnData = "" // "\(response.result.error?.localizedDescription)"
+                    
+                }
+
+                
+                print("response requestDeleteToken : \(response)")
+                returnData = "zxxxxxxxxx"
+//                self.GetUserTokenByID(userID, completionHandler: {tk in
+//                    returnData = tk as String
+//                })
+            }
+        }else{
+//            self.GetUserTokenByID(userID, completionHandler: {tk in
+//                returnData = tk as String
+//            })
+        }
+        
+        print("GetUserDataByID")
+        print(returnData)
+        print("- - - - - -")
+        
+        completionHandler(returnData)
+        
+    }
+    
     func LogIn(username:String,password:String,latitude:String,longitude:String,completionHandler:[String:AnyObject]->())
     {
         let parameters = [
@@ -394,9 +566,13 @@ class API_Model {
                         //print("Login(User ID) \(JSON["userId"]!)")
                         Alamofire.request(.GET, "\(self._apiUrl)users/\(userId)/avatars", parameters: ["":""])
                             .responseJSON { response in
-                                if let JSON = response.result.value {
-                                    print("JSON avatar login : \(JSON["small"]!)")
-                                    self.appDelegate.userInfo["avatarImage"] = (JSON["small"] as! String)
+                                if let json = response.result.value {
+                                    let _data = JSON(json)
+                                    print("JSON avatar login : \(_data["small"])")
+                                    print("JSON : \(_data)")
+                                    self.appDelegate.userInfo["avatarImage"] = String(_data["small"])
+                                    print("self.appDelegate.userInfo ccxcvsd = \((self.appDelegate.userInfo as Dictionary))")
+                                    
                                 }
                         }
                         
@@ -430,7 +606,7 @@ class API_Model {
                 }
                 
                 //print("Success")
-            }else{ // ไม่มี else เพราะมีค่าเริ่มต้นอยู่แล้ว
+            }else{
                 
                 returnData = [
                     "success":false,
@@ -761,38 +937,35 @@ class API_Model {
     {
         
         let parameters = [
-            "username":email
+            "username":email,
+            "email":email
         ]
         var data = [String:AnyObject]()
-        print("parameter \(parameters)")
         let reqUrl = "\(_apiUrl)users"
+        print("parameter \(parameters)")
         print(reqUrl)
 //        let request = Alamofire.request(.GET, reqUrl, parameters: parameters, encoding: .JSON, headers: .None)
 //        //request.validate()
 //        request.responseJSON{response in
         
-        Alamofire.request(.GET, "\(_apiUrl)users?username=\(email)")
+        Alamofire.request(.GET, "\(_apiUrl)users?username=\(email)") // เช็คว่่มี User นี้อยู่ใน DB หรือยัง
                 .responseJSON { response in
-//            print(response.request)  // original URL request
-//            print(response.response) // URL response
-//            print(response.data)     // server data
-//            print(response.result)   // result of response serialization
             
-            
-                if let JSON = response.result.value {
-                    print("JSON(checkUser): \(JSON)")
-                    if(JSON.count! == 0){
-                        print("NULLLLLL")
+                if let json = response.result.value {
+                    let _data = JSON(json)
+                    print("JSON(checkUser): \(_data)")
+                    
+                    if(_data.count > 0){
+                        print("check user with email : Exists")
+                        data["status"] = false
+                        data["data"] = json[0]
+                    }else{
+                        print("check user with email : No exists")
                         data["status"] = true
                         data["data"] = ""
-                        
-                    }else{
-                        data["status"] = false
-                        data["data"] = JSON[0]
                     }
-
-
                 }
+                    
             completionHandler(data)
         }
     }
@@ -810,15 +983,12 @@ class API_Model {
                 
                 
                 if let JSON = response.result.value {
-                    print("JSON(checkUserFB): \(JSON)")
-                    if(JSON.count == 0)
-                    {
-                        print("NULLLLLL")
+                    //print("JSON(checkUserFB): \(JSON)")
+                    if(JSON.count == 0){
+                        //print("NULLLLLL")
                         data["status"] = true
                         data["data"] = ""
-                        
-                    }else
-                    {
+                    }else{
                         data["status"] = false
                         data["data"] = JSON[0]
                     }
@@ -840,17 +1010,30 @@ class API_Model {
                 
                 if let JSON = response.result.value {
                     print("JSON(user Info): \(JSON)")
-                    let data = [
-                        "profileName" : (JSON["firstName"] as! String)+" "+(JSON["lastName"] as! String),
-                        "email"       : (JSON["email"] as! String)
-                    ]
-                    self.appDelegate.userInfo["firstName"] = (JSON["firstName"] as! String)
-                    self.appDelegate.userInfo["lastName"] = (JSON["lastName"] as! String)
-                    self.appDelegate.userInfo["profileName"] = (JSON["firstName"] as! String)+" "+(JSON["lastName"] as! String)
-                    self.appDelegate.userInfo["email"] = (JSON["email"] as! String)
-                    self.appDelegate.userInfo["mobile"] = (JSON["phoneNumber"] as! String)
-                    self.appDelegate.userInfo["id"] = (JSON["id"] as! String)
                     
+//                    var data: [String:AnyObject] = [:]
+//                    data["profileName"] = "\((JSON["firstName"] as! String)) \((JSON["lastName"] as! String))"
+                    
+//                    let data:[String:AnyObject] = [
+//                        "profileName": "\((JSON["firstName"] as! String)) \((JSON["lastName"] as! String))",
+//                        "firstName": (JSON["firstName"] as! String),
+//                        "lastName": (JSON["lastName"] as! String),
+//                        "email": (JSON["email"] as! String),
+//                        "mobile": (JSON["phoneNumber"] as! String),
+//                        "id": (JSON["id"] as! String),
+//                        "userId": (JSON["id"] as! String),
+//                        "avatarImage": (JSON["avatar"] as! String),
+//                        "username": (JSON["username"] as! String)
+//                    ]
+                    
+                    
+//                    self.appDelegate.userInfo["firstName"] = (JSON["firstName"] as! String)
+//                    self.appDelegate.userInfo["lastName"] = (JSON["lastName"] as! String)
+//                    self.appDelegate.userInfo["profileName"] = (JSON["firstName"] as! String)+" "+(JSON["lastName"] as! String)
+//                    self.appDelegate.userInfo["email"] = (JSON["email"] as! String)
+//                    self.appDelegate.userInfo["mobile"] = (JSON["phoneNumber"] as! String)
+//                    self.appDelegate.userInfo["id"] = (JSON["id"] as! String)
+                    let data:[String:AnyObject] = (JSON as! [String:AnyObject])
                     
                     //                    print("proFileName(getUserInfo) :\(self.appDelegate.userInfo["profileName"])")
                     completionHandler(data)

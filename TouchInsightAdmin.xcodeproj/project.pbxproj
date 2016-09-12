@@ -97,6 +97,7 @@
 		3BEF757F1D61A682007266C0 /* coupon_no_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF757E1D61A682007266C0 /* coupon_no_image.jpg */; };
 		3BEF75811D61AAD6007266C0 /* HotelCreateCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75801D61AAD6007266C0 /* HotelCreateCouponVC.swift */; };
 		3BEF75831D61AAE4007266C0 /* HotelEditCouponVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF75821D61AAE4007266C0 /* HotelEditCouponVC.swift */; };
+		3BFE0CE11D81531E003100DB /* RmMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE0CE01D81531E003100DB /* RmMemberModel.swift */; };
 		C9F5F891412219F989281C5A /* Pods_TouchInsightAdminUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */; };
 		F20614394B5D165D4B58249E /* Pods_TouchInsightAdminTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E32DE7D8F7AE7C182E11F0 /* Pods_TouchInsightAdminTests.framework */; };
 		F2A028A4390F7C5F1F5558B7 /* Pods_TouchInsightAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F85F983B1A69289714ED14B /* Pods_TouchInsightAdmin.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -390,6 +391,7 @@
 		3BEF757E1D61A682007266C0 /* coupon_no_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coupon_no_image.jpg; sourceTree = "<group>"; };
 		3BEF75801D61AAD6007266C0 /* HotelCreateCouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelCreateCouponVC.swift; sourceTree = "<group>"; };
 		3BEF75821D61AAE4007266C0 /* HotelEditCouponVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelEditCouponVC.swift; sourceTree = "<group>"; };
+		3BFE0CE01D81531E003100DB /* RmMemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RmMemberModel.swift; sourceTree = "<group>"; };
 		586D92AF6F711ED82D2C729C /* Pods-TouchInsightAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdmin.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdmin/Pods-TouchInsightAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		5FF54FEFB0933D4688889AAE /* Pods-TouchInsightAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95B513FDFDF2F02E16950EB9 /* Pods_TouchInsightAdminUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdminUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -903,6 +905,7 @@
 				3B4394691D3CDACA005B4E6C /* MemberData.swift */,
 				3BBCD72D1D45B92C00892372 /* FileMan.swift */,
 				36EF29C11D67080E008B1EAE /* CouponData.swift */,
+				3BFE0CE01D81531E003100DB /* RmMemberModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1609,6 +1612,7 @@
 				3B346C471D49EB3E001C5AAF /* Toucan.swift in Sources */,
 				F3FE68061C1153A0002BF719 /* TestcustomAlertViewController.swift in Sources */,
 				F329F1EF1D2D10020061BA52 /* RestuarantListVC.swift in Sources */,
+				3BFE0CE11D81531E003100DB /* RmMemberModel.swift in Sources */,
 				36DC40D61C0587CE001B8E22 /* AppDelegate.swift in Sources */,
 				366F4FFE1D34FD5B005B6DF1 /* HotelAddContentInfo.swift in Sources */,
 				F3B73A2D1C562E4200781D48 /* CustomIOS7AlertView.swift in Sources */,

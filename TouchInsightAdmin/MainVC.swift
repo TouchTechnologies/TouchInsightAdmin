@@ -7,10 +7,11 @@
 //
 
 import UIKit
-import PKHUD
+//import PKHUD
 import SCLAlertView
 import Firebase
 import FirebaseCrash
+import SVProgressHUD
 
 class MainVC: UIViewController,UINavigationControllerDelegate{
     
@@ -71,11 +72,6 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        PKHUD.sharedHUD.dimsBackground = true
-        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        //        PKHUD.sharedHUD.show()
-        
         self.getProvince()
         self.getFacility()
         
@@ -118,6 +114,9 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
         print("proFile Name Maon :\(self.appDelegate.userInfo["profileName"])")
         //        let send  = API_Model()
         print(appDelegate.userInfo["userID"]! as String)
+        
+        
+        print("self.appDelegate.userInfo main = \((self.appDelegate.userInfo as Dictionary))")
         
         if(appDelegate.isLogin){
             if let avatar = self.appDelegate.userInfo["avatarImage"] where avatar != "" {
@@ -247,12 +246,7 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
             var facilityRoomDic_isLoaded = false
             var facilityResDic_isLoaded = false
             
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            
-            //PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            PKHUD.sharedHUD.show()
+            SVProgressHUD.show()
             
             let send = API_Model()
             
@@ -295,7 +289,8 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
                 //facilityResDic_isLoaded
                 facilityHotelDic_isLoaded = true
                 if (facilityRoomDic_isLoaded && facilityResDic_isLoaded){
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    
+                    SVProgressHUD.dismiss()
                 
                 }
                 
@@ -345,7 +340,7 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
                 //facilityResDic_isLoaded
                 facilityRoomDic_isLoaded = true
                 if (facilityHotelDic_isLoaded && facilityResDic_isLoaded){
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    SVProgressHUD.dismiss()
                     
                 }
                 
@@ -399,7 +394,8 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
                 //facilityResDic_isLoaded
                 facilityResDic_isLoaded = true
                 if (facilityHotelDic_isLoaded && facilityResDic_isLoaded){
-                    PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                    
+                    SVProgressHUD.dismiss()
                     
                 }
                 
@@ -466,7 +462,9 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
         if let dicData = self.appDelegate.facilityHotelDic as NSDictionary? {
             let arrData = dicData["facilities"] as! NSArray
             if(arrData.count > 0){
-                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                
+                SVProgressHUD.dismiss()
+                
             }
         }
         
@@ -552,10 +550,6 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
         print("---------prepareForSegue---------")
         print(segue.identifier)
         if (segue.identifier == "loadprovider") {
-            //            PKHUD.sharedHUD.dimsBackground = false
-            //            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-            //            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            //            PKHUD.sharedHUD.show()
             
             //            let nav = segue.destinationViewController as! UINavigationController
             //            let providerlist = self.storyboard?.instantiateViewControllerWithIdentifier("providerlist")

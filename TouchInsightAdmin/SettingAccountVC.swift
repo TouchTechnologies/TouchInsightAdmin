@@ -8,10 +8,13 @@
 
 import UIKit
 import SCLAlertView
+import RealmSwift
+import SwiftyJSON
 
 class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let rmm = RmMemberModel()
     @IBOutlet var tableview: UITableView!
     var menu :[String] = ["Edit Profile","Notification","Help"]
     var navunderlive = UIView()
@@ -25,6 +28,14 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     @IBAction func btnLogout(sender: AnyObject) {
         let alert = SCLAlertView()
         alert.addButton("OK"){
+            
+//            let realm = try! Realm()
+//            try! realm.write {
+//                realm.deleteAll()
+//            }
+
+            self.rmm.MemberData_Delete()
+            
             print("Logout")
             print("before Logout : \(self.appDelegate.userInfo)")
             self.appDelegate.userInfo = [:]
@@ -57,6 +68,11 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
 //        
 //        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         
+        
+        let appJson = JSON(self.appDelegate.userInfo)
+        print("appJson")
+        print(appJson)
+        print("- - - - - - - - - - - -")
         
         
         //self.navigationController?.setNavigationBarHidden(false, animated: true)

@@ -10,7 +10,6 @@
 import Foundation
 import RealmSwift
 
-
 class MemberData: Object {
     
     dynamic var userID = ""
@@ -33,6 +32,21 @@ class MemberData: Object {
     //    return []
     //  }
     
+//    class func toDictionary() -> [String:String] {
+//        return [
+//            "userID": self.userID,
+//            "avatarImage": self.avatarImage,
+//            "profileName": self.profileName,
+//            "firstName": self.firstName,
+//            "lastName": self.lastName,
+//            "email": self.email,
+//            "accessToken": self.accessToken,
+//            "mobile": self.mobile,
+//            "username": self.username,
+//            "passWord": self.passWord,
+//            "id": self.id,
+//        ]
+//    }
     
 
 }

@@ -16,7 +16,8 @@ import SCLAlertView
 import CoreLocation
 import MapKit
 import RNCryptor
-import PKHUD
+//import PKHUD
+import SVProgressHUD
 
 import Firebase
 import FirebaseCrash
@@ -29,23 +30,14 @@ import RealmSwift
 
 import FontAwesome_swift
 
-extension Results {
-    
-    func toArray() -> [T] {
-        return self.map{$0}
-    }
-}
+import SwiftyJSON
 
-extension RealmSwift.List {
-    
-    func toArray() -> [T] {
-        return self.map{$0}
-    }
-}
 class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate {
     
     var _member : Results<MemberData>!
     
+    let send = API_Model()
+    let rmm = RmMemberModel()
     
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var btnLogin: UIButton!
@@ -70,10 +62,6 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
     
     
     @IBAction func registBtn(sender: AnyObject) {
-        
-        
-        
-        
         
         //        performSegueWithIdentifier("toRegist", sender: self) HHHHHHHHHHHHHHHHHH
     }
@@ -129,42 +117,197 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
     
     override func viewWillAppear(animated: Bool) {
         
+        SVProgressHUD.setDefaultStyle(.Dark)
+//        SVProgressHUD.setDefaultStyle(.Light)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+        
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-
+        //readDB()
         
-//        readDB()
-//        if self._member != nil{
+        //rmm.MemberData_Delete()
+        
+        print("- - - - - - - - viewDidLoad - - - - - - - - - - -")
+        let rMember = rmm.MemberData_IsExists()
+        if((rMember["status"] as! Bool) == true){
+            
+            print("- - YES - -")
+            let mData = rMember["data"]!
+            let _accessToken = mData["accessToken"]! as! String
+            print(_accessToken)
+            print(mData)
+            
+            if(_accessToken != ""){
+                
+                print("- - accessToken YES - -")
+                self.send.checkToken(mData as! Object, completionHandler: {strToken in
+                    
+                    let _tk = strToken 
+                    
+                    print("- - strToken - -")
+                    print(_tk)
+                    print(strToken)
+                    print("- - - - - - - - - -")
+                    
+                })
+                
+            }else{
+                // Display Login Page
+                print("- - accessToken NO - -")
+            }
+            
+        }else{
+            print("- - NO - -")
+            // Display Login Page
+            let mData = rMember["data"]! as! [String:AnyObject]
+            print(mData)
+        }
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+        
+//        if self._member != nil && (self._member).toArray().count > 0{
 //            
-//            let m = Array((self._member).toArray())
+//            SVProgressHUD.show()
+//            
+//            //let m = (self._member).toArray().last!
+//            //let m = JSON(self._member!)
+//            
+//            let mData = ((self._member).toArray().last!)
 //            
 //            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
 //            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
 //            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            print(m)
+//            print(mData)
 //            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
 //            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
 //            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
 //            
-//
-////            do {
-////                let realm = try Realm()
-////                let objs = realm.objects(MemberData).toArray()
-////                // ...
-////                
-////            } catch _ {
-////                // ...
-////            }
-//
+//            if ((mData["accessToken"] as! String) == ""){
+//                
+//                print("accessToken = '' ")
+//                
+//                self.send.GetUserDataByID((mData["userID"] as! String), completionHandler:{
+//                    _StrUserToken in
+//                    self.appDelegate.userInfo["accessToken"] = _StrUserToken
+//                    
+//                    
+//                    // - - - - -
+//                    //uiRealm.delete(MemberData()) // Not working
+//                    let realm = try! Realm()
+//                    try! realm.write {
+//                        realm.delete(self._member)
+//                    }
+//                    
+//                    //                    try! uiRealm.write{
+//                    //                        uiRealm.delete(self._member)
+//                    //                        print("Delete newMember")
+//                    //                        self.readDB()
+//                    //
+//                    //                    }
+//                    
+//                    let newMember = MemberData()
+//                    newMember.id = self.appDelegate.userInfo["id"]!
+//                    newMember.userID = self.appDelegate.userInfo["userID"]!
+//                    newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
+//                    newMember.firstName = self.appDelegate.userInfo["firstName"]!
+//                    newMember.lastName = self.appDelegate.userInfo["lastName"]!
+//                    newMember.profileName = self.appDelegate.userInfo["profileName"]!
+//                    newMember.mobile = self.appDelegate.userInfo["mobile"]!
+//                    newMember.email = self.appDelegate.userInfo["email"]!
+//                    newMember.username = self.appDelegate.userInfo["username"]!
+//                    newMember.passWord = self.appDelegate.userInfo["passWord"]!
+//                    newMember.accessToken = self.appDelegate.userInfo["accessToken"]!
+//                    
+//                    try! uiRealm.write{
+//                        uiRealm.add(newMember)
+//                        
+//                        print("write Yes")
+//                        self.readDB()
+//                        
+//                    }
+//                    // - - - - -
+//                    
+//                    self.appDelegate.userInfo["userID"] = (mData["userID"] as! String)
+//                    self.appDelegate.userInfo["avatarImage"] = (mData["avatarImage"] as! String)
+//                    self.appDelegate.userInfo["profileName"] = (mData["profileName"] as! String)
+//                    self.appDelegate.userInfo["firstName"] = (mData["firstName"] as! String)
+//                    self.appDelegate.userInfo["lastName"] = (mData["lastName"] as! String)
+//                    self.appDelegate.userInfo["email"] = (mData["email"] as! String)
+//                    self.appDelegate.userInfo["accessToken"] = (mData["accessToken"] as! String)
+//                    self.appDelegate.userInfo["mobile"] = (mData["mobile"] as! String)
+//                    self.appDelegate.userInfo["passWord"] = (mData["passWord"] as! String)
+//                    self.appDelegate.userInfo["id"] = (mData["id"] as! String)
+//                    
+//                    
+//                    print("- - - - - - - - self.appDelegate.userInfo - - - - - - - - - - -")
+//                    print(self.appDelegate.userInfo)
+//                    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+//                    
+//                    
+//                    self.appDelegate.isLogin = true
+//                    let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+//                    self.navigationController?.pushViewController(secondViewController!, animated: true)
+//                    
+//                })
+//                
+//            }else{
+//                
+//                print("accessToken != '' ")
+//                
+//                let newMember = MemberData()
+//                newMember.id = self.appDelegate.userInfo["id"]!
+//                newMember.userID = self.appDelegate.userInfo["userID"]!
+//                newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
+//                newMember.firstName = self.appDelegate.userInfo["firstName"]!
+//                newMember.lastName = self.appDelegate.userInfo["lastName"]!
+//                newMember.profileName = self.appDelegate.userInfo["profileName"]!
+//                newMember.mobile = self.appDelegate.userInfo["mobile"]!
+//                newMember.email = self.appDelegate.userInfo["email"]!
+//                newMember.username = self.appDelegate.userInfo["username"]!
+//                newMember.passWord = self.appDelegate.userInfo["passWord"]!
+//                newMember.accessToken = self.appDelegate.userInfo["accessToken"]!
+//                
+//                try! uiRealm.write{
+//                    uiRealm.add(newMember)
+//                    
+//                    print("write Yes")
+//                    self.readDB()
+//                    
+//                }
+//                // - - - - -
+//                
+//                self.appDelegate.userInfo["userID"] = (mData["userID"] as! String)
+//                self.appDelegate.userInfo["avatarImage"] = (mData["avatarImage"] as! String)
+//                self.appDelegate.userInfo["profileName"] = (mData["profileName"] as! String)
+//                self.appDelegate.userInfo["firstName"] = (mData["firstName"] as! String)
+//                self.appDelegate.userInfo["lastName"] = (mData["lastName"] as! String)
+//                self.appDelegate.userInfo["email"] = (mData["email"] as! String)
+//                self.appDelegate.userInfo["accessToken"] = (mData["accessToken"] as! String)
+//                self.appDelegate.userInfo["mobile"] = (mData["mobile"] as! String)
+//                self.appDelegate.userInfo["passWord"] = (mData["passWord"] as! String)
+//                self.appDelegate.userInfo["id"] = (mData["id"] as! String)
+//                
+//                
+//                print("- - - - - - - - self.appDelegate.userInfo - - - - - - - - - - -")
+//                print(self.appDelegate.userInfo)
+//                print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+//                
+//                
+//                self.appDelegate.isLogin = true
+//                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+//                self.navigationController?.pushViewController(secondViewController!, animated: true)
+//                
+//            }
 //            
 //        }
         
         
-
+        
 
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginVC.dismissKeyboard))
@@ -176,7 +319,6 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         
         
         
-        appDelegate.isLogin = false
         userNameTxt.keyboardType = .EmailAddress
         //        RealmWrite()
         //        
@@ -382,23 +524,30 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         print("loginFB")
         var titleMessage:String = ""
         var message:String = ""
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show()
         
         let loginManager:FBSDKLoginManager = FBSDKLoginManager()
-        loginManager.logInWithReadPermissions(["email", "public_profile"], handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+        
+        loginManager.logInWithReadPermissions(["email", "public_profile"], handler: { (
+            result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+            
             
             if let _ = error{
                 //got error
+                print("login got error 1")
+                SVProgressHUD.dismiss()
             } else if(result.isCancelled){
+                
                 print("login canceled")
-                PKHUD.sharedHUD.hide(animated: false, completion:nil)
+                SVProgressHUD.dismiss()
+                
             } else{
                 
-                print(result.grantedPermissions)
+                SVProgressHUD.show()
+                
+//                print("loginManager.logInWithReadPermissions")
+//                print(result)
+//                print(result.grantedPermissions)
                 //                if(result.grantedPermissions.containsObject("email")){
                 
                 let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"name,email,first_name,last_name"])
@@ -407,55 +556,62 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                     
                     if let _ = error{
                         //got error
+                        print("login got error 2")
+                        SVProgressHUD.dismiss()
                     } else {
                         
-                        print("dataAll : \(data)")
+                        print("dataAll 111 : \(data)")
                         
                         let email : String = data.valueForKey("email") as! String;
                         let firstName:String = data.valueForKey("first_name") as! String;
                         let lastName:String = data.valueForKey("last_name") as! String;
                         let userFBID:String = data.valueForKey("id") as! String;
                         
-                        let userImageURL = "https://graph.facebook.com/\(userFBID)/picture?type=small";
+                        let userImageURL = "https://graph.facebook.com/\(userFBID)/picture?width=260&height=260";
+                        //https://graph.facebook.com/1257021660984067/picture?width=150&height=150
                         
 //                        let url = NSURL(string: userImageURL);
-//                        
 //                        let imageData = NSData(contentsOfURL: url!);
-//                        
 //                        let image = UIImage(data: imageData!);
                         
                         let fbAccesToken = FBSDKAccessToken.currentAccessToken().tokenString
                         print("userFBID: \(userFBID) Email \(email) \n firstName:\(firstName) \n lastname:\(lastName)  \n image: \(userImageURL)");
                         print("access token : \(fbAccesToken)")
-                        let send = API_Model()
-                        send.checkUser(email, completionHandler: {
+                        self.send.checkUser(email, completionHandler: {
                             checkData in
-                            if (checkData["status"] as! Bool == true)
-                            {
-                                send.Register(firstName, lastName: lastName, mobile: "", email: email, passWord: self.randomStringWithLength(6) as String)
-                                {
+                            
+                            print("checkData 222 : \(checkData)")
+                            
+                            if (checkData["status"] as! Bool == true) {
+                                print("checkData status : 1")
+                                
+                                let randPassword = self.randomStringWithLength(6) as String
+                                
+                                self.send.Register(firstName, lastName: lastName, mobile: "", email: email, passWord: randPassword) {
                                     regData in
-                                    print("Register Data : \(regData)")
+                                    print("Register Data 3333 : \(regData)")
 //                                    print("userID : \(regData["data"]!["id"])")
                                     let userID = regData["data"]!["id"] as! String
                                     
-                                    send.LogInFB(userID, socialAccessToken: fbAccesToken,completionHandler:
+                                    self.send.LogInFB(userID, socialAccessToken: fbAccesToken,completionHandler:
                                         {
                                             logData in
-                                            print("Data(CreateUsersSocialAccounts) : \(logData)")
-                                            if(logData["success"] as! Bool )
-                                            {
+                                            
+                                            print("Data(CreateUsersSocialAccounts) 4444 : \(logData)")
+                                            
+                                            
+                                            if(logData["success"] as! Bool ) {
                                                 if let _email = logData["data"]!["email"] as! String? {
                                                     self.appDelegate.userInfo["email"] = _email
                                                 }
  
-                                                if let _id = logData["data"]!["userID"] as! String? {
+                                                if let _id = logData["data"]!["userId"] as! String? {
                                                     self.appDelegate.userInfo["id"] = _id
                                                 }
                                                 
-                                                if let _accessToken = logData["data"]!["accessToken"] as! String? {
-                                                    self.appDelegate.userInfo["accessToken"] = _accessToken
-                                                }
+////                                                if let _accessToken = logData["data"]!["accessToken"] as! String? {
+////                                                    self.appDelegate.userInfo["accessToken"] = _accessToken
+////                                                }
                                                 if let _avatarImage = logData["data"]!["photoUrl"] as! String? {
                                                     self.appDelegate.userInfo["avatarImage"] = _avatarImage
                                                 }
@@ -467,6 +623,8 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                 if let _lastName = logData["data"]!["userProfileObject"]!!["lastName"] as! String? {
                                                     self.appDelegate.userInfo["lastName"] = _lastName
                                                 }
+                                                
+                                                self.appDelegate.userInfo["profileName"] = "\(self.appDelegate.userInfo["firstName"]!) \(self.appDelegate.userInfo["lastName"]!)"
                                                 
                                                 
 //                                                guard let value = logData["data"]!["userProfileObject"] where
@@ -483,22 +641,22 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
 //                                                }
                                                 
                                                 
-
+                                                self.send.GetToken({_ in
+                                                    
+                                                    let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                                                    self.navigationController?.pushViewController(secondViewController!, animated: true)
+                                                    
+                                                })
                                                 
 
                                                 
-                                                self.appDelegate.isLogin = true
-                                                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-                                                self.navigationController?.pushViewController(secondViewController!, animated: true)
-                                            }
-                                            else{
+                                            } else {
                                                 
                                                 self.appDelegate.isLogin = false
                                                 titleMessage = "Login fail"
                                                 message = data["message"] as! String
-                                                PKHUD.sharedHUD.hide(animated: false, completion: {_ in
-                                                    
-                                                })
+                                                
+                                                SVProgressHUD.dismiss()
                                                 
                                                 let alertView = SCLAlertView()
                                                 alertView.showCircularIcon = false
@@ -509,34 +667,37 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                     })
                                     
                                 }
-                            }else
-                            {
+                            } else {
+                                
+                                print("checkData status : 0 (มีีอยู่ในระบบแล้ว)")
                                 print("HAS USERS in system : \(checkData["data"]!["id"] as! String)")
+                                
                                 let userID = checkData["data"]!["id"] as! String
-                                send.checkUserFB(userID, completionHandler: {
+                                self.send.checkUserFB(userID, completionHandler: {
                                     checkUserFBData in
-                                    print("checkUserFBData \(checkUserFBData)")
+                                    let _checkUserFBData = JSON(checkUserFBData)
                                     
-                                    if(checkUserFBData["status"] as! Bool == true)
-                                    {
-                                        send.LogInFB(userID, socialAccessToken: fbAccesToken,completionHandler:
-                                            {
-                                                logData in
-                                                print("Data(CreateUsersSocialAccounts) : \(logData)")
-                                                if(logData["success"] as! Bool )
-                                                {
+                                    print("checkUserFBData x 1 : \(Bool(_checkUserFBData["status"]))")
+                                    
+                                    if(Bool(_checkUserFBData["status"]) == true){
+                                        
+                                        self.send.LogInFB(userID, socialAccessToken: fbAccesToken,completionHandler:{
+                                            logData in
+                                            
+                                            print("logData x 2 : \(logData)")
+                                        
+                                            
+                                                if(logData["success"] as! Bool ){
 
                                                     if let _email = logData["data"]!["email"] as! String? {
                                                         self.appDelegate.userInfo["email"] = _email
                                                     }
                                                     
-                                                    if let _id = logData["data"]!["userID"] as! String? {
+                                                    if let _id = logData["data"]!["userId"] as! String? {
                                                         self.appDelegate.userInfo["id"] = _id
                                                     }
                                                     
-                                                    if let _accessToken = logData["data"]!["accessToken"] as! String? {
-                                                        self.appDelegate.userInfo["accessToken"] = _accessToken
-                                                    }
+                                                    
                                                     if let _avatarImage = logData["data"]!["photoUrl"] as! String? {
                                                         self.appDelegate.userInfo["avatarImage"] = _avatarImage
                                                     }
@@ -549,24 +710,56 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                         self.appDelegate.userInfo["lastName"] = _lastName
                                                     }
                                                     
+                                                    self.appDelegate.userInfo["profileName"] = "\(self.appDelegate.userInfo["firstName"]!) \(self.appDelegate.userInfo["lastName"]!)"
+                                                    
                                                     if logData["data"]!["userProfileObject"]!!["phone"] != nil && !(logData["data"]!["userProfileObject"]!!["phone"] is NSNull){
                                                         if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
                                                             self.appDelegate.userInfo["mobile"] = _mobile
                                                         }
                                                     }
                                                     
+                                                    self.send.GetToken({
+                                                        _StrUserToken in
+                                                        self.appDelegate.userInfo["accessToken"] = _StrUserToken 
+                                                        
+                                                        
+                                                        // - - - - -
+                                                        let newMember = MemberData()
+                                                        newMember.id = self.appDelegate.userInfo["id"]!
+                                                        newMember.userID = self.appDelegate.userInfo["userID"]!
+                                                        newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
+                                                        newMember.firstName = self.appDelegate.userInfo["firstName"]!
+                                                        newMember.lastName = self.appDelegate.userInfo["lastName"]!
+                                                        newMember.profileName = self.appDelegate.userInfo["profileName"]!
+                                                        newMember.mobile = self.appDelegate.userInfo["mobile"]!
+                                                        newMember.email = self.appDelegate.userInfo["email"]!
+                                                        newMember.username = self.appDelegate.userInfo["username"]!
+                                                        newMember.passWord = self.appDelegate.userInfo["passWord"]!
+                                                        
+                                                        try! uiRealm.write{
+                                                            uiRealm.add(newMember)
+                                                            
+                                                            print("write Yes")
+                                                            self.readDB()
+                                                            
+                                                        }
+                                                        // - - - - -
+                                                        
+                                                        
+                                                        self.appDelegate.isLogin = true
+                                                        let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                                                        self.navigationController?.pushViewController(secondViewController!, animated: true)
+                                                        
+                                                    })
+                                                    
     
-                                                    self.appDelegate.isLogin = true
-                                                    let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-                                                    self.navigationController?.pushViewController(secondViewController!, animated: true)
                                                 } else{
                                                     
                                                     self.appDelegate.isLogin = false
                                                     titleMessage = "Login fail"
                                                     message = data["message"] as! String
-                                                    PKHUD.sharedHUD.hide(animated: false, completion: {_ in
-                                                        
-                                                    })
+                                                    
+                                                    SVProgressHUD.dismiss()
                                                     
                                                     let alertView = SCLAlertView()
                                                     alertView.showCircularIcon = false
@@ -574,14 +767,16 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                                 }
                                         })
 
-                                    }else
-                                    {
-                                        print("checkUserFBData \(checkUserFBData)")
+                                    }else{
+                                        
+//                                        print("checkUserFBData \(checkUserFBData)")
+                                        print("checkUserFBData xxxxc : \(_checkUserFBData)")
+                                        
                                         if let _email = checkUserFBData["data"]!["email"] as! String? {
                                             self.appDelegate.userInfo["email"] = _email
                                         }
                                         
-                                        if let _id = checkUserFBData["data"]!["userID"] as! String? {
+                                        if let _id = checkUserFBData["data"]!["userId"] as! String? {
                                             self.appDelegate.userInfo["id"] = _id
                                         }
                                         
@@ -592,28 +787,59 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                                             self.appDelegate.userInfo["avatarImage"] = _avatarImage
                                         }
                                         
-//                                        if let _firstName = checkUserFBData["data"]!["userProfileObject"]!!["firstName"] as! String? {
-//                                            self.appDelegate.userInfo["firstName"] = _firstName
-//                                        }
-//                                        
-//                                        if let _lastName = checkUserFBData["data"]!["userProfileObject"]!!["lastName"] as! String? {
-//                                            self.appDelegate.userInfo["lastName"] = _lastName
-//                                        }
+                                        if let _firstName = checkUserFBData["data"]!["userProfileObject"]!!["firstName"] as! String? {
+                                            self.appDelegate.userInfo["firstName"] = _firstName
+                                        }
+                                        
+                                        if let _lastName = checkUserFBData["data"]!["userProfileObject"]!!["lastName"] as! String? {
+                                            self.appDelegate.userInfo["lastName"] = _lastName
+                                        }
+                                        
+                                        self.appDelegate.userInfo["profileName"] = "\(self.appDelegate.userInfo["firstName"]!) \(self.appDelegate.userInfo["lastName"]!)"
                                         
 //                                        if let _mobile = checkUserFBData["data"]!["userProfileObject"]!!["phone"] as! String? {
 //                                            self.appDelegate.userInfo["mobile"] = _mobile
 //                                        }
                                         
+                                        if checkUserFBData["data"]!["userProfileObject"]!!["phone"] != nil && !(checkUserFBData["data"]!["userProfileObject"]!!["phone"] is NSNull){
+                                            if let _mobile = checkUserFBData["data"]!["userProfileObject"]!!["phone"] as! String? {
+                                                self.appDelegate.userInfo["mobile"] = _mobile
+                                            }
+                                        }
                                         
-//                                        if logData["data"]!["userProfileObject"]!!["phone"] != nil && !(logData["data"]!["userProfileObject"]!!["phone"] is NSNull){
-//                                            if let _mobile = logData["data"]!["userProfileObject"]!!["phone"] as! String? {
-//                                                self.appDelegate.userInfo["mobile"] = _mobile
-//                                            }
-//                                        }
+                                        self.send.GetToken({
+                                            _StrUserToken in
+                                            self.appDelegate.userInfo["accessToken"] = _StrUserToken
+                                            
+                                            // - - - - -
+                                            let newMember = MemberData()
+                                            newMember.id = self.appDelegate.userInfo["id"]!
+                                            newMember.userID = self.appDelegate.userInfo["userID"]!
+                                            newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
+                                            newMember.firstName = self.appDelegate.userInfo["firstName"]!
+                                            newMember.lastName = self.appDelegate.userInfo["lastName"]!
+                                            newMember.profileName = self.appDelegate.userInfo["profileName"]!
+                                            newMember.mobile = self.appDelegate.userInfo["mobile"]!
+                                            newMember.email = self.appDelegate.userInfo["email"]!
+                                            newMember.username = self.appDelegate.userInfo["username"]!
+                                            newMember.passWord = self.appDelegate.userInfo["passWord"]!
+                                            
+                                            try! uiRealm.write{
+                                                uiRealm.add(newMember)
+                                                
+                                                print("write Yes")
+                                                self.readDB()
+                                                
+                                            }
+                                            // - - - - -
+                                            
+                                            
+                                            self.appDelegate.isLogin = true
+                                            let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                                            self.navigationController?.pushViewController(secondViewController!, animated: true)
+                                            
+                                        })
                                         
-                                        self.appDelegate.isLogin = true
-                                        let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-                                        self.navigationController?.pushViewController(secondViewController!, animated: true)
                                     }
                                     
 
@@ -662,19 +888,14 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
             //        print(passWordTxt.text as! String)
             //        print("latitude : \(latitude)")
             //        print("long")
-            PKHUD.sharedHUD.dimsBackground = false
-            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
             
-            PKHUD.sharedHUD.contentView = PKHUDProgressView()
-            //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-            PKHUD.sharedHUD.show()
+            SVProgressHUD.show()
             
-            //  PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-            //   PKHUD.sharedHUD.hide(afterDelay: 2.0)
             
             login.LogIn(userNameTxt.text!, password: passWordTxt.text!,latitude: latitude!,longitude: longitude!)
             {
                 data in
+                print("login.LogIn")
                 print(data)
                 
 //returnData = [
@@ -693,84 +914,74 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
                     //                        login.getUserInfo(data["userID"] as! String)
                     login.getUserInfo(self.appDelegate.userInfo["userID"]! as String){
                         data in
-                        //PKHUD.sharedHUD.hide(afterDelay: 0.1)
+                        
+                        print("login.getUserInfo")
                         print("data : \(data)")
                         
+                        let _data = JSON(data)
                         
-                        if let _avatarImage = data["avatar"] as! String? {
-                            self.appDelegate.userInfo["avatarImage"] = _avatarImage
-                        }
+                        print("_data : \(_data)")
                         
-                        if let _firstName = data["firstName"] as! String? {
-                            self.appDelegate.userInfo["firstName"] = _firstName
-                        }
+                        //self.appDelegate.userInfo["avatarImage"] = _avatarImage
                         
-                        if let _lastName = data["lastName"] as! String? {
-                            self.appDelegate.userInfo["lastName"] = _lastName
-                        }
+//                        if let _avatarImage = _data["avatar"]{
+//                            self.appDelegate.userInfo["avatarImage"] = _data["avatar"]
+//                        }
+//                        self.appDelegate.userInfo["avatarImage"] = String(_data["avatar"])
                         
-                        if let _email = data["email"] as! String? {
-                            self.appDelegate.userInfo["email"] = _email
-                        }
+//                        if let _firstName = _data["firstName"]{
+//                            self.appDelegate.userInfo["firstName"] = _firstName
+//                        }
+                        self.appDelegate.userInfo["firstName"] = String(_data["firstName"])
                         
-                        if let _mobile = data["phoneNumber"] as! String? {
-                            self.appDelegate.userInfo["mobile"] = _mobile
-                        }
+//                        if let _lastName = _data["lastName"] as! String? {
+//                            self.appDelegate.userInfo["lastName"] = _lastName
+//                        }
+                        self.appDelegate.userInfo["lastName"] = String(_data["lastName"])
+                        
+//                        if let _email = _data["email"] as! String? {
+//                            self.appDelegate.userInfo["email"] = _email
+//                        }
+                        self.appDelegate.userInfo["email"] = String(_data["email"])
+                        
+//                        if let _mobile = _data["phoneNumber"] as! String? {
+//                            self.appDelegate.userInfo["mobile"] = _mobile
+//                        }
+                        self.appDelegate.userInfo["mobile"] = String(_data["phoneNumber"])
                         
                         
-                        if let _id = data["id"] as! String? {
-                            self.appDelegate.userInfo["id"] = _id
-                        }
+//                        if let _id = _data["id"] as! String? {
+//                            self.appDelegate.userInfo["id"] = _id
+//                        }
+                        self.appDelegate.userInfo["id"] = String(_data["id"])
                         
                         self.appDelegate.userInfo["profileName"] = "\(self.appDelegate.userInfo["firstName"]!) \(self.appDelegate.userInfo["lastName"]!)"
                         
-                        FIRAnalytics.setUserPropertyString(self.appDelegate.userInfo["email"], forName: "email")
+                        //FIRAnalytics.setUserPropertyString(self.appDelegate.userInfo["email"], forName: "email")
                         
                         self.appDelegate.userInfo["username"] = self.userNameTxt.text
                         self.appDelegate.userInfo["passWord"] = self.passWordTxt.text
                         self.appDelegate.userInfo["email"] = self.userNameTxt.text
                         //
                         
-                        self.appDelegate.isLogin = true
-                        print("APPDALAGATELOGIN:::\(self.appDelegate.isLogin)")
+                        print("self.appDelegate.userInfo")
+                        print(self.appDelegate.userInfo)
+                        print("-------------------------")
                         
-                        
-                        let newMember = MemberData()
-                        newMember.id = self.appDelegate.userInfo["id"]!
-                        newMember.userID = self.appDelegate.userInfo["userID"]!
-                        newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
-                        newMember.firstName = self.appDelegate.userInfo["firstName"]!
-                        newMember.lastName = self.appDelegate.userInfo["lastName"]!
-                        newMember.profileName = self.appDelegate.userInfo["profileName"]!
-                        newMember.mobile = self.appDelegate.userInfo["mobile"]!
-                        newMember.email = self.appDelegate.userInfo["email"]!
-                        newMember.username = self.appDelegate.userInfo["username"]!
-                        newMember.passWord = self.appDelegate.userInfo["passWord"]!
-                        
-                        try! uiRealm.write{
-                            uiRealm.add(newMember)
+                        self.send.GetToken({_ in
                             
-                            print("write Yes")
-                            self.readDB()
+                            let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                            self.navigationController?.pushViewController(secondViewController!, animated: true)
                             
-                        }
-                        
-                        let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-                        self.navigationController?.pushViewController(secondViewController!, animated: true)
-                        
-//                        PKHUD.sharedHUD.hide(animated: false, completion: {_ in
-//                            let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-//                            self.navigationController?.pushViewController(secondViewController!, animated: true)
-//                        })
+                        })
                         
                     }
                 }else{
                     self.appDelegate.isLogin = false
                     titleMessage = "Login fail"
                     message = data["message"] as! String
-                    PKHUD.sharedHUD.hide(animated: false, completion: {_ in
-                        
-                    })
+                   
+                    SVProgressHUD.dismiss()
                     
                     let alertView = SCLAlertView()
                     alertView.showCircularIcon = false

@@ -8,7 +8,8 @@
 
 
 import UIKit
-import PKHUD
+//import PKHUD
+import SVProgressHUD
 
 class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, CustomIOS7AlertViewDelegate {
     
@@ -198,33 +199,11 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     func alertDismiss(sender :UIButton){
         //        alert.close()
         print("helllllll")
-        //        alert.hidden = true
-        //        alert.removeFromSuperview()
-        //        popupView.removeFromSuperview()
-        //        self.dismissViewControllerAnimated(true, completion: {})
-        //        tableView.hidden = false
-        //        PKHUD.sharedHUD.dimsBackground = false
-        //        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        //        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        //        PKHUD.sharedHUD.show()
-        //        PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        //        if (appDelegate.providerData!["ListProviderInformationSummary"]!.count != 0)
-        //        {
-        //
-        //           let nib = UINib(nibName: "customProviderListVC", bundle: nil)
-        //           self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
-        //            tableView.reloadData()
-        //            PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-        //            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        //
-        //
-        //        }
-        
-        //
         
         
         self.alertAddProvider.close()
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+        self.reloadData()
         unsetTimer()
     }
     
@@ -301,10 +280,6 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         if let keyType = appDelegate.providerData!["ListProviderInformationSummary"]![indexPath.row]!["provider_type_keyname"]! as! String? {
             
             
-//            PKHUD.sharedHUD.dimsBackground = false
-//            PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-//            //PKHUD.sharedHUD.contentView = PKHUDProgressView()
-//            PKHUD.sharedHUD.show()
             
             print("keyType")
             print(keyType)
@@ -472,10 +447,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     func reloadData() {
         
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show()
+        SVProgressHUD.show()
         
         appDelegate.getlistProvider{data in
             
@@ -489,12 +461,14 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
                 self.tableView.reloadData()
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                 
-                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+//                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                SVProgressHUD.dismiss()
                 
             }else{
                 self.tableView.hidden = true
                 //                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+//                PKHUD.sharedHUD.hide(animated: false, completion: nil)
+                SVProgressHUD.dismiss()
             }
         }
     }
@@ -664,6 +638,9 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        
+        SVProgressHUD.setDefaultStyle(.Dark)
         
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         //tableView.reloadData()
