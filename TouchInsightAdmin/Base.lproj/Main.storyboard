@@ -314,7 +314,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <inset key="titleEdgeInsets" minX="-97" minY="97" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="42" minY="-21" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Coupon" image="home_icon_business">
+                                                <state key="normal" title="Coupon" image="home_icon_coupon">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
@@ -6273,6 +6273,7 @@
         <image name="fr.png" width="50" height="50"/>
         <image name="home_footer" width="117" height="20"/>
         <image name="home_icon_business" width="86" height="86"/>
+        <image name="home_icon_coupon" width="86" height="86"/>
         <image name="hot.png" width="50" height="50"/>
         <image name="ic_add_image_profile.png" width="76" height="81"/>
         <image name="ic_map.png" width="243" height="243"/>

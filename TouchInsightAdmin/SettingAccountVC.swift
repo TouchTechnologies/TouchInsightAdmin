@@ -11,7 +11,7 @@ import SCLAlertView
 import RealmSwift
 import SwiftyJSON
 
-class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate{
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let rmm = RmMemberModel()
@@ -61,9 +61,18 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
     }
     
+    
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
     override func viewDidLoad(){
         
         super.viewDidLoad()
+        
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         //        self.navigationController?.navigationBarHidden = false
 //        
 //        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
@@ -103,6 +112,8 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     override func viewWillDisappear(animated: Bool) {
         print("viewWillDisappear")
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     

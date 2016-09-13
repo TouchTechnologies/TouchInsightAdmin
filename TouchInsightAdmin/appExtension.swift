@@ -10,6 +10,17 @@ import UIKit
 import RealmSwift
 
 
+//extension ViewController: UIGestureRecognizerDelegate {
+//    
+//    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return navigationController?.viewControllers.count > 1 ? true : false
+//    }
+//}
+
+
+
+
+
 extension String {
     var length: Int {
         return (self as NSString).length

@@ -10,7 +10,7 @@ import UIKit
 import PagingMenuController
 import PKHUD
 import SCLAlertView
-class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
+class RestuarantListVC: UIViewController , PagingMenuControllerDelegate, UIGestureRecognizerDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -24,6 +24,9 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
     var LocationViewController = UIViewController()
     var RoominfoViewController = UIViewController()
     var navunderlive = UIView()
+    
+    var _HotelCouponListVC = UIViewController()
+    var _HotelCouponListExpireVC = UIViewController()
     
     var options = PagingMenuOptions()
     
@@ -43,9 +46,14 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
 //        }
 //    }
     
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     override func viewDidLoad() {
         print("RestuarantListVC")
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
         self.appDelegate.viewWithTopButtons.hidden = false
@@ -201,6 +209,85 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
         
         
     }
+    
+    
+    func initialCouponVC(){
+        
+        //        _HotelCouponListVC = self.storyboard?.instantiateViewControllerWithIdentifier("HotelCouponListVC") as! HotelCouponListVC
+        //        LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationVC") as! LocationVC
+        //
+        //        // self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
+        //        // self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
+        //        // self.appDelegate.viewWithTopButtons.hidden = false
+        //
+        //
+        //        let viewControllers = [_HotelCouponListVC,LocationViewController]
+        //
+        //        options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
+        //        let navwidth = self.navigationController?.navigationBar.bounds.size.width
+        //        print("nav width = \(navwidth)")
+        //        options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
+        //        let menuWidth = navwidth! / 2
+        //        options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: true, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
+        //
+        //
+        //        options.scrollEnabled = true
+        //        options.menuItemMargin = 0
+        //        options.textColor = UIColor.grayColor()
+        //        options.backgroundColor = UIColor.whiteColor()
+        //
+        //
+        //        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        //
+        //        pagingMenuController.view.bounds.size.width = UIScreen.mainScreen().bounds.size.width
+        //        pagingMenuController.setup(viewControllers: viewControllers, options: options)
+        //        pagingMenuController.menuView.scrollEnabled = false
+        //
+        
+        
+        
+        
+        
+        
+        
+        //        infoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("InformationVC") as! InformationVC
+        //        LocationViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationVC") as! LocationVC
+        //        RoominfoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoomInfoVC") as! RoomInfoVC
+        
+        _HotelCouponListVC = self.storyboard?.instantiateViewControllerWithIdentifier("HotelCouponListVC") as! HotelCouponListVC
+        _HotelCouponListExpireVC = self.storyboard?.instantiateViewControllerWithIdentifier("HotelCouponListExpireVC") as! HotelCouponListExpireVC
+        
+        
+        //        let viewControllers = [infoViewController, LocationViewController, RoominfoViewController]
+        let viewControllers = [_HotelCouponListVC,_HotelCouponListExpireVC]
+        options.menuItemMode = .Underline(height: 3.0, color: UIColor.redColor(), horizontalPadding: 0, verticalPadding: 0)
+        let navwidth = self.navigationController?.navigationBar.bounds.size.width
+        print("nav width = \(navwidth)")
+        options.menuHeight = (self.navigationController?.navigationBar.bounds.size.height)! - 10
+        let menuWidth = navwidth!/2
+        options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: menuWidth), centerItem: false, scrollingMode: PagingMenuOptions.MenuScrollingMode.PagingEnabled)
+        options.defaultPage = 0
+        if(appDelegate.pagecontrolIndex == 2){
+            options.defaultPage = 2
+        }else{
+            options.defaultPage = 0
+        }
+        options.scrollEnabled = true
+        options.menuItemMargin = 0
+        options.textColor = UIColor.grayColor()
+        options.backgroundColor = UIColor.whiteColor()
+        
+        
+        let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+        pagingMenuController.delegate = self
+        pagingMenuController.view.bounds.size.width = UIScreen.mainScreen().bounds.size.width
+        pagingMenuController.setup(viewControllers: viewControllers, options: options)
+        pagingMenuController.menuView.scrollEnabled = true
+        pagingMenuController.menuView.menuItemViews.forEach{$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProviderInfoVC.handleTapGesture(_:)))) }
+        
+    }
+
+    
     func topMenu(sender : UIButton){
         if (sender.tag == 0){
             btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
@@ -220,9 +307,15 @@ class RestuarantListVC: UIViewController , PagingMenuControllerDelegate
             print("Gallery")
         }else if(sender.tag == 2){
             
-            let alertView = SCLAlertView()
-            alertView.showCircularIcon = false
-            alertView.showNotice("Comming Soon !!!", subTitle: "")
+//            let alertView = SCLAlertView()
+//            alertView.showCircularIcon = false
+//            alertView.showNotice("Comming Soon !!!", subTitle: "")
+
+            
+            btnLive.setImage(UIImage(named: "ic_coupon_menu2.png"), forState: .Normal)
+            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+            self.initialCouponVC()
             
 //            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
 //            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)

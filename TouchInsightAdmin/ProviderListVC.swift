@@ -11,7 +11,7 @@ import UIKit
 //import PKHUD
 import SVProgressHUD
 
-class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, CustomIOS7AlertViewDelegate {
+class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, CustomIOS7AlertViewDelegate, UIGestureRecognizerDelegate {
     
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -311,7 +311,11 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
     }
     
-    
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        
+        return indexPath
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -601,20 +605,27 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
     }
     
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // init Loader
         
+        
         self.tableView.delegate = self
         
         self.initNavUnderline()
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        
+        
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
-        
-        
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         let nib = UINib(nibName: "customProviderListVC", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "cell")
@@ -633,8 +644,8 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     override func viewWillDisappear(animated: Bool) {
         print("viewWillDisappear")
         unsetTimer()
+        self.appDelegate.viewWithTopButtons.hidden = true
         
-        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -642,10 +653,13 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         
         SVProgressHUD.setDefaultStyle(.Dark)
         
-        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         //tableView.reloadData()
-        self.appDelegate.viewWithTopButtons.hidden = true
+       //////////// self.appDelegate.viewWithTopButtons.hidden = true
         //self.initialAlert()
+        
+        
+        self.navigationController?.navigationBarHidden = false
+        
     }
     
     

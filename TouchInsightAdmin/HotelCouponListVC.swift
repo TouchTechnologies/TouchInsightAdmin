@@ -67,7 +67,6 @@ class HotelCouponListVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         let nib = UINib(nibName: "customCouponList", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
         
-        
         guard let objProvider = appDelegate.providerData!["ListProviderInformationSummary"]! as? NSArray else {
             print("no objProvider")
             return

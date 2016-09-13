@@ -10,7 +10,7 @@ import UIKit
 import PagingMenuController
 import PKHUD
 import SCLAlertView
-class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
+class ProviderInfoVC: UIViewController , UIGestureRecognizerDelegate, PagingMenuControllerDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -47,10 +47,15 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
 //        }
 //    }
 //    
+    
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     var navBar = UINavigationBar()
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         
         
@@ -75,9 +80,11 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         print("viewWillAppearviewWillAppearviewWillAppear")
+        
         self.navigationController?.navigationBarHidden = false
-        self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
+        //self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
         self.reloadInputViews()
         self.appDelegate.viewWithTopButtons.hidden = false
@@ -99,7 +106,6 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
     }
     
     override func viewDidAppear(animated: Bool) {
-        
         
         
     }
@@ -146,6 +152,14 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
         btnLive.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
+        print("-----setViewWihtTopButton-----")
+        var nn = 0
+        for _vv in viewWithTopButtons.subviews {
+            print("\(nn)")
+            print(_vv)
+            print("-----------------")
+            nn = nn + 1
+        }
         
         viewWithTopButtons.addSubview(btnInfo)
         viewWithTopButtons.addSubview(btnGallery)
@@ -175,7 +189,7 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
         options.menuItemMargin = 0
         options.textColor = UIColor.grayColor()
         options.backgroundColor = UIColor.whiteColor()
-        
+        options.lazyLoadingPage = .Three
         
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
         pagingMenuController.delegate = self
@@ -350,14 +364,14 @@ class ProviderInfoVC: UIViewController , PagingMenuControllerDelegate
 //            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
 //            print("live stream")
             
-            let alertView = SCLAlertView()
-            alertView.showCircularIcon = false
-            alertView.showNotice("Comming Soon !!!", subTitle: "")
+//            let alertView = SCLAlertView()
+//            alertView.showCircularIcon = false
+//            alertView.showNotice("Comming Soon !!!", subTitle: "")
             
-//            btnLive.setImage(UIImage(named: "ic_coupon_menu2.png"), forState: .Normal)
-//            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
-//            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-//            self.initialCouponVC()
+            btnLive.setImage(UIImage(named: "ic_coupon_menu2.png"), forState: .Normal)
+            btnInfo.setImage(UIImage(named: "ic_info.png"), forState: .Normal)
+            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+            self.initialCouponVC()
             
         }
     }

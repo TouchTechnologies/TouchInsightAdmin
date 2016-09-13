@@ -8,7 +8,7 @@
 
 import UIKit
 import SCLAlertView
-import PKHUD
+//import PKHUD
 import SVProgressHUD
 
 class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldDelegate,UIPickerViewDelegate , UIPickerViewDataSource ,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate ,UINavigationControllerDelegate ,UIAccelerometerDelegate {
@@ -117,6 +117,9 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SVProgressHUD.show()
+        
         print("View Did Load")
         self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         
@@ -308,13 +311,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
         print("save")
         //  print ("Province ID : \(provinceID)")
         
-        PKHUD.sharedHUD.dimsBackground = false
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-        PKHUD.sharedHUD.show()
-        //        PKHUD.sharedHUD.hide(afterDelay: 2.0)
+        SVProgressHUD.show()
         
         //        let send = API_Model()
         let dataDic = [
@@ -386,7 +383,6 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                     self.appDelegate.providerData = data
                     print("Count: \(self.appDelegate.providerData!["ListProviderInformationSummary"]!.count)")
                     
-                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                     //PKHUD.sharedHUD.hide(afterDelay: 0.5)
                     //                        PKHUD.sharedHUD.hide(animated: false, completion: nil)
                     
@@ -397,8 +393,8 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                     
                     self.appDelegate.viewWithTopButtons.hidden = true
                     
+                    SVProgressHUD.dismiss()
                     
-                    PKHUD.sharedHUD.hide(false, completion: {action in
                         let alert = SCLAlertView()
                         alert.showCircularIcon = false
                         alert.showCloseButton = false
@@ -409,7 +405,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                         })
                         //alert.showError(, subTitle: )
                         alert.showError("Information", subTitle: "Update Success!")
-                    })
+                    
                 }
                 
             }
@@ -489,6 +485,9 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                     self.facilitiesHotelAttached.append(data["facilitiesAttached"]![i]["facility_keyname"] as! String)
                 }
             }
+            
+    
+            
             self.tableView.reloadData()
         }
         
@@ -1023,13 +1022,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
     
     func getProviderByID()
     {
-                PKHUD.sharedHUD.dimsBackground = false
-                PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        
-        //        PKHUD.sharedHUD.contentView = PKHUDStatusView(title: "Loading", subtitle: "Subtitle", image: nil)
-                //PKHUD.sharedHUD.contentView = PKHUDProgressView()
-                PKHUD.sharedHUD.show()
-                //PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                SVProgressHUD.show()
         
                 let send = API_Model()
                 print("providerId:::\(appDelegate.providerData!["ListProviderInformationSummary"]![appDelegate.providerIndex!]["provider_id"])")
@@ -1038,9 +1031,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
                 send.providerAPI(self.appDelegate.command["GetProviderInformationById"]!, dataJson: dataJson) {
                     data in
                     print("getProviderByID \(data)")
-//                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                    //PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                    PKHUD.sharedHUD.hide(false)
+                    
                     
         //            print("providerDataID \(data["GetProviderInformationById"]!["total_room"])")
         
@@ -1127,7 +1118,7 @@ class InformationVC: UIViewController, CustomIOS7AlertViewDelegate ,UITextFieldD
 
                     }
 
-                    PKHUD.sharedHUD.hide(false)
+                    SVProgressHUD.dismiss()
                     
                 }
         

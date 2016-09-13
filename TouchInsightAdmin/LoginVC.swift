@@ -118,22 +118,17 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
     override func viewWillAppear(animated: Bool) {
         
         SVProgressHUD.setDefaultStyle(.Dark)
-//        SVProgressHUD.setDefaultStyle(.Light)
+        //        SVProgressHUD.setDefaultStyle(.Light)
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
-        
+        SVProgressHUD.show()
     }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        //readDB()
-        
-        //rmm.MemberData_Delete()
+    override func viewDidAppear(animated: Bool) {
         
         print("- - - - - - - - viewDidLoad - - - - - - - - - - -")
         let rMember = rmm.MemberData_IsExists()
         if((rMember["status"] as! Bool) == true){
+            
             
             print("- - YES - -")
             let mData = rMember["data"]!
@@ -143,172 +138,65 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
             
             if(_accessToken != ""){
                 
-                print("- - accessToken YES - -")
-                self.send.checkToken(mData as! Object, completionHandler: {strToken in
-                    
-                    let _tk = strToken 
-                    
-                    print("- - strToken - -")
-                    print(_tk)
-                    print(strToken)
-                    print("- - - - - - - - - -")
-                    
-                })
+                rmm.MemberData_Fetch_RealmToLocal()
+                
+//                self.appDelegate.userInfo["id"] = (mData["id"]! as! String)
+//                self.appDelegate.userInfo["userID"] = (mData["userID"]! as! String)
+//                self.appDelegate.userInfo["avatarImage"] = (mData["avatarImage"]! as! String)
+//                self.appDelegate.userInfo["firstName"] = (mData["firstName"]! as! String)
+//                self.appDelegate.userInfo["lastName"] = (mData["lastName"]! as! String)
+//                self.appDelegate.userInfo["profileName"] = (mData["profileName"]! as! String)
+//                self.appDelegate.userInfo["mobile"] = (mData["mobile"]! as! String)
+//                self.appDelegate.userInfo["email"] = (mData["email"]! as! String)
+//                self.appDelegate.userInfo["username"] = (mData["username"]! as! String)
+//                self.appDelegate.userInfo["passWord"] = (mData["passWord"]! as! String)
+//                self.appDelegate.userInfo["accessToken"] = (mData["accessToken"]! as! String)
+                
+                //                print("- - accessToken YES - -")
+                //                self.send.checkToken(mData as! Object, completionHandler: {strToken in
+                //
+                //                    let _tk = strToken
+                //
+                //                    print("- - strToken - -")
+                //                    print(_tk)
+                //                    print(strToken)
+                //                    print("- - - - - - - - - -")
+                //
+                //                })
+                self.appDelegate.isLogin = true
+                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                self.navigationController?.pushViewController(secondViewController!, animated: true)
+                
+                return
                 
             }else{
                 // Display Login Page
                 print("- - accessToken NO - -")
+                SVProgressHUD.dismiss()
             }
             
         }else{
+            SVProgressHUD.dismiss()
             print("- - NO - -")
             // Display Login Page
             let mData = rMember["data"]! as! [String:AnyObject]
             print(mData)
         }
         print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-
-        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-        
-//        if self._member != nil && (self._member).toArray().count > 0{
-//            
-//            SVProgressHUD.show()
-//            
-//            //let m = (self._member).toArray().last!
-//            //let m = JSON(self._member!)
-//            
-//            let mData = ((self._member).toArray().last!)
-//            
-//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            print(mData)
-//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            print("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")
-//            
-//            if ((mData["accessToken"] as! String) == ""){
-//                
-//                print("accessToken = '' ")
-//                
-//                self.send.GetUserDataByID((mData["userID"] as! String), completionHandler:{
-//                    _StrUserToken in
-//                    self.appDelegate.userInfo["accessToken"] = _StrUserToken
-//                    
-//                    
-//                    // - - - - -
-//                    //uiRealm.delete(MemberData()) // Not working
-//                    let realm = try! Realm()
-//                    try! realm.write {
-//                        realm.delete(self._member)
-//                    }
-//                    
-//                    //                    try! uiRealm.write{
-//                    //                        uiRealm.delete(self._member)
-//                    //                        print("Delete newMember")
-//                    //                        self.readDB()
-//                    //
-//                    //                    }
-//                    
-//                    let newMember = MemberData()
-//                    newMember.id = self.appDelegate.userInfo["id"]!
-//                    newMember.userID = self.appDelegate.userInfo["userID"]!
-//                    newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
-//                    newMember.firstName = self.appDelegate.userInfo["firstName"]!
-//                    newMember.lastName = self.appDelegate.userInfo["lastName"]!
-//                    newMember.profileName = self.appDelegate.userInfo["profileName"]!
-//                    newMember.mobile = self.appDelegate.userInfo["mobile"]!
-//                    newMember.email = self.appDelegate.userInfo["email"]!
-//                    newMember.username = self.appDelegate.userInfo["username"]!
-//                    newMember.passWord = self.appDelegate.userInfo["passWord"]!
-//                    newMember.accessToken = self.appDelegate.userInfo["accessToken"]!
-//                    
-//                    try! uiRealm.write{
-//                        uiRealm.add(newMember)
-//                        
-//                        print("write Yes")
-//                        self.readDB()
-//                        
-//                    }
-//                    // - - - - -
-//                    
-//                    self.appDelegate.userInfo["userID"] = (mData["userID"] as! String)
-//                    self.appDelegate.userInfo["avatarImage"] = (mData["avatarImage"] as! String)
-//                    self.appDelegate.userInfo["profileName"] = (mData["profileName"] as! String)
-//                    self.appDelegate.userInfo["firstName"] = (mData["firstName"] as! String)
-//                    self.appDelegate.userInfo["lastName"] = (mData["lastName"] as! String)
-//                    self.appDelegate.userInfo["email"] = (mData["email"] as! String)
-//                    self.appDelegate.userInfo["accessToken"] = (mData["accessToken"] as! String)
-//                    self.appDelegate.userInfo["mobile"] = (mData["mobile"] as! String)
-//                    self.appDelegate.userInfo["passWord"] = (mData["passWord"] as! String)
-//                    self.appDelegate.userInfo["id"] = (mData["id"] as! String)
-//                    
-//                    
-//                    print("- - - - - - - - self.appDelegate.userInfo - - - - - - - - - - -")
-//                    print(self.appDelegate.userInfo)
-//                    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-//                    
-//                    
-//                    self.appDelegate.isLogin = true
-//                    let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-//                    self.navigationController?.pushViewController(secondViewController!, animated: true)
-//                    
-//                })
-//                
-//            }else{
-//                
-//                print("accessToken != '' ")
-//                
-//                let newMember = MemberData()
-//                newMember.id = self.appDelegate.userInfo["id"]!
-//                newMember.userID = self.appDelegate.userInfo["userID"]!
-//                newMember.avatarImage = self.appDelegate.userInfo["avatarImage"]!
-//                newMember.firstName = self.appDelegate.userInfo["firstName"]!
-//                newMember.lastName = self.appDelegate.userInfo["lastName"]!
-//                newMember.profileName = self.appDelegate.userInfo["profileName"]!
-//                newMember.mobile = self.appDelegate.userInfo["mobile"]!
-//                newMember.email = self.appDelegate.userInfo["email"]!
-//                newMember.username = self.appDelegate.userInfo["username"]!
-//                newMember.passWord = self.appDelegate.userInfo["passWord"]!
-//                newMember.accessToken = self.appDelegate.userInfo["accessToken"]!
-//                
-//                try! uiRealm.write{
-//                    uiRealm.add(newMember)
-//                    
-//                    print("write Yes")
-//                    self.readDB()
-//                    
-//                }
-//                // - - - - -
-//                
-//                self.appDelegate.userInfo["userID"] = (mData["userID"] as! String)
-//                self.appDelegate.userInfo["avatarImage"] = (mData["avatarImage"] as! String)
-//                self.appDelegate.userInfo["profileName"] = (mData["profileName"] as! String)
-//                self.appDelegate.userInfo["firstName"] = (mData["firstName"] as! String)
-//                self.appDelegate.userInfo["lastName"] = (mData["lastName"] as! String)
-//                self.appDelegate.userInfo["email"] = (mData["email"] as! String)
-//                self.appDelegate.userInfo["accessToken"] = (mData["accessToken"] as! String)
-//                self.appDelegate.userInfo["mobile"] = (mData["mobile"] as! String)
-//                self.appDelegate.userInfo["passWord"] = (mData["passWord"] as! String)
-//                self.appDelegate.userInfo["id"] = (mData["id"] as! String)
-//                
-//                
-//                print("- - - - - - - - self.appDelegate.userInfo - - - - - - - - - - -")
-//                print(self.appDelegate.userInfo)
-//                print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-//                
-//                
-//                self.appDelegate.isLogin = true
-//                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-//                self.navigationController?.pushViewController(secondViewController!, animated: true)
-//                
-//            }
-//            
-//        }
-        
         
         
 
+    }
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        //navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        //readDB()
+        
+        //rmm.MemberData_Delete()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginVC.dismissKeyboard))
         tap.delegate = self

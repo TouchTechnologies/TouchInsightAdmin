@@ -13,7 +13,7 @@ import Firebase
 import FirebaseCrash
 import SVProgressHUD
 
-class MainVC: UIViewController,UINavigationControllerDelegate{
+class MainVC: UIViewController,UINavigationControllerDelegate, UIGestureRecognizerDelegate{
     
 //    @IBOutlet var barButton: UIBarButtonItem!
 //    @IBOutlet var collectionView: UICollectionView!
@@ -69,11 +69,22 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
         
     }
     
+    
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+//    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+//        return false
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.getProvince()
         self.getFacility()
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         imgProfile.frame.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width/3.5, UIScreen.mainScreen().bounds.size.width/3.5)
@@ -442,9 +453,16 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
         
         //        let dataJson = "{\"providerUser\":\"\(appDelegate.userInfo["email"]!)\"}"
         
+        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+//        self.navigationController?.navigationBarHidden = true
+        
+//        self.navigationController?.setToolbarHidden(true, animated: true)
+        //self.navigationController?.navigationController?.setToolbarHidden(true, animated: true)
+
         
         //        if appDelegate.isDisplayLoginSuccess != true {
         //            appDelegate.isDisplayLoginSuccess = true
@@ -471,6 +489,8 @@ class MainVC: UIViewController,UINavigationControllerDelegate{
     }
     
     override func viewWillDisappear(animated: Bool) {
+        
+        self.navigationController?.navigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {

@@ -149,6 +149,10 @@ class API_Model {
         
         
         
+        print("------- print param value -------")
+        print(param)
+        print("------------------------------------")
+        
         
         let request = Alamofire.request(.POST, String(_oldapiUrl), parameters: param, encoding: .JSON, headers: .None)
         request.validate()
@@ -163,7 +167,7 @@ class API_Model {
                 if let value = response.result.value {
                     let json = JSON(value)
                     
-//                    print("------- print test data json -------")
+//                    print("------- print test data value -------")
 //                    print(value)
 //                    print("------------------------------------")
 //                    
@@ -469,34 +473,40 @@ class API_Model {
         print(userData)
         print("- - - - - -")
         
-        if(self.appDelegate.userInfo["accessToken"]! != ""){
+        let _accessToken = userData["accessToken"]! as! String
+        //let userID = userData["userID"]! as! String
+        
+        if(_accessToken != ""){
             
-            let reqUrlDeleteToken = "\(_apiUrl)tokens/\(self.appDelegate.userInfo["accessToken"]!)"
-            print("reqUrlDeleteToken = \(reqUrlDeleteToken)")
-            let requestDeleteToken = Alamofire.request(.DELETE, reqUrlDeleteToken, parameters: [:], encoding: .JSON, headers: .None)
-            requestDeleteToken.validate()
-            requestDeleteToken.responseJSON{response in
+            
+            let reqUrlToken = "\(_apiUrl)tokens/\(_accessToken)" // "\(self._apiUrl)users/\(userID)/avatars" //
+            print("reqUrlToken = \(reqUrlToken)")
+            
+            Alamofire.request(.GET, reqUrlToken).responseJSON { response in
+                
+                print(response)
                 
                 if response.result.isSuccess {
-                    if let json = response.result.value as! NSDictionary? {
-                        let _data = JSON(json!)
-                        let _accessToken = _data["accessToken"]!
-                        returnData = _accessToken
+                    
+                    if let json = response.result.value {
+                        let _data = JSON(json)
+                        returnData = String(_data["accessToken"])
                         
                     }
+                    print("Success")
                 }else{
                     
-                    returnData = "" // "\(response.result.error?.localizedDescription)"
+                    print("error")
+                    print(response.result.error?.localizedDescription)
+                    print(response.result.value)
                     
                 }
-
                 
-                print("response requestDeleteToken : \(response)")
-                returnData = "zxxxxxxxxx"
-//                self.GetUserTokenByID(userID, completionHandler: {tk in
-//                    returnData = tk as String
-//                })
+                
+                //completionHandler(data)
             }
+            
+            
         }else{
 //            self.GetUserTokenByID(userID, completionHandler: {tk in
 //                returnData = tk as String
@@ -511,6 +521,20 @@ class API_Model {
         
     }
     
+    func sendRequest(url: String, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) -> NSURLSessionTask {
+        
+        let requestURL = NSURL(string:"\(url)")!
+        
+        let request = NSMutableURLRequest(URL: requestURL)
+        request.HTTPMethod = "GET"
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:completionHandler)
+        task.resume()
+        
+        return task
+    }
+
     func LogIn(username:String,password:String,latitude:String,longitude:String,completionHandler:[String:AnyObject]->())
     {
         let parameters = [
@@ -1459,14 +1483,19 @@ class API_Model {
         let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         do {
             let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
-            //            print("Json Encode \(jsonResult! as NSDictionary)")
+            //print("Json Encode \(jsonResult! as NSDictionary)")
             return jsonResult! as NSDictionary
-            //            return (jsonResult! as! [String : AnyObject])
-            //            print("ListProviderInformationSummary : \(jsonResult!["ListProviderInformationSummary"])")
+            //return (jsonResult! as! [String : AnyObject])
+            //print("ListProviderInformationSummary : \(jsonResult!["ListProviderInformationSummary"])")
         } catch let error as NSError {
             print(error)
             let error = [
                 "error":"error"
+            ]
+            return error
+        } catch {
+            let error = [
+            "error":"error"
             ]
             return error
         }
@@ -1487,7 +1516,7 @@ class API_Model {
             }
         } catch {
             // failure
-            print("Fetch failed: \((error as NSError).localizedDescription)")
+            print("Fetch failed: \((error as! NSError).localizedDescription)")
             //            return "{\"status\":}"
         }
         
