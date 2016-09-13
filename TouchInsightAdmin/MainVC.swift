@@ -52,18 +52,18 @@ class MainVC: UIViewController,UINavigationControllerDelegate, UIGestureRecogniz
     @IBOutlet weak var btnCoupon: UIButton!
     @IBAction func btnCouponClick(sender: AnyObject) {
    
-        let alert = SCLAlertView()
-        alert.showCloseButton = false
-        alert.showCircularIcon = false
-        alert.addButton("OK", action: {action in
-            
-        })
-        alert.showError("Information", subTitle: "Coming Soon!")
+//        let alert = SCLAlertView()
+//        alert.showCloseButton = false
+//        alert.showCircularIcon = false
+//        alert.addButton("OK", action: {action in
+//            
+//        })
+//        alert.showError("Information", subTitle: "Coming Soon!")
         
         
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let _nextView = storyBoard.instantiateViewControllerWithIdentifier("QRScanVC") as! QRScanVC
-//        self.navigationController?.pushViewController(_nextView, animated: true)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let _nextView = storyBoard.instantiateViewControllerWithIdentifier("QRScanVC") as! QRScanVC
+        self.navigationController?.pushViewController(_nextView, animated: true)
         
         //QRScanVC
         
@@ -490,7 +490,7 @@ class MainVC: UIViewController,UINavigationControllerDelegate, UIGestureRecogniz
     
     override func viewWillDisappear(animated: Bool) {
         
-        self.navigationController?.navigationBarHidden = false
+        //self.navigationController?.navigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {

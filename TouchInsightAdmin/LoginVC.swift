@@ -416,13 +416,16 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         
         let loginManager:FBSDKLoginManager = FBSDKLoginManager()
         
-        loginManager.logInWithReadPermissions(["email", "public_profile"], handler: { (
-            result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+        loginManager.logOut()
+        
+        loginManager.logInWithReadPermissions(["email","public_profile"], handler: { // , "public_profile"
+            (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
             
             
-            if let _ = error{
+            if let xx = error{
                 //got error
                 print("login got error 1")
+                print(xx)
                 SVProgressHUD.dismiss()
             } else if(result.isCancelled){
                 

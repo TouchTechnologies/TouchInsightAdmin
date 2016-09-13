@@ -68,7 +68,7 @@ class ProviderInfoVC: UIViewController , UIGestureRecognizerDelegate, PagingMenu
         //
         
         
-        self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
+        //self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
         self.appDelegate.viewWithTopButtons.hidden = false
         self.initialInfoVC()
@@ -79,12 +79,20 @@ class ProviderInfoVC: UIViewController , UIGestureRecognizerDelegate, PagingMenu
         
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        
+        for _vv in appDelegate.viewWithTopButtons.subviews{
+            _vv.removeFromSuperview()
+        }
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         print("viewWillAppearviewWillAppearviewWillAppear")
-        
+        self.title = ""
         self.navigationController?.navigationBarHidden = false
-        //self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
+        self.setViewWihtTopButton(appDelegate.viewWithTopButtons)
         self.navigationController?.navigationBar.addSubview(appDelegate.viewWithTopButtons)
         self.reloadInputViews()
         self.appDelegate.viewWithTopButtons.hidden = false
@@ -127,44 +135,71 @@ class ProviderInfoVC: UIViewController , UIGestureRecognizerDelegate, PagingMenu
     
     
     func setViewWihtTopButton(viewWithTopButtons:UIView){
-        let x = (self.navigationController?.navigationBar.bounds.size.width)! - 95
-        let y = (self.navigationController?.navigationBar.bounds.size.height)!
-        viewWithTopButtons.frame = CGRect(origin:CGPoint(x: x, y: y/2-10), size: CGSize(width: 90.0, height: 30.0))
-        
-        // viewWithTopButtons.backgroundColor = UIColor.redColor()
-        btnInfo.tag = 0
-        btnInfo.frame = CGRect(origin:CGPoint(x: 0.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
-        
-        // btnInfo.backgroundColor = UIColor.greenColor()
-        btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
-        btnInfo.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
-        
-        btnGallery.tag = 1
-        btnGallery.frame = CGRect(origin:CGPoint(x: 30.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
-        
-        // btnGallery.backgroundColor = UIColor.grayColor()
-        btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
-        btnGallery.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
-        
-        btnLive.tag = 2
-        btnLive.frame = CGRect(origin:CGPoint(x: 60.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
-        // btnLive.backgroundColor = UIColor.yellowColor()
-        btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
-        btnLive.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
         
         print("-----setViewWihtTopButton-----")
         var nn = 0
-        for _vv in viewWithTopButtons.subviews {
-            print("\(nn)")
-            print(_vv)
-            print("-----------------")
+        for _vv in (self.navigationController?.navigationBar.subviews)! {
+            
             nn = nn + 1
+            
+            var nnn = 0
+            if _vv.isKindOfClass(UIView) {
+                for _vvv in (_vv.subviews) {
+                    
+                    nnn = nnn + 1
+                    print("\(nn).\(nnn)")
+                    print(_vvv)
+                    print("-----------------")
+                    
+                }
+            }
+            
+            
         }
         
-        viewWithTopButtons.addSubview(btnInfo)
-        viewWithTopButtons.addSubview(btnGallery)
-        viewWithTopButtons.addSubview(btnLive)
         
+        
+        if viewWithTopButtons.subviews.count < 1 {
+            
+            let x = (self.navigationController?.navigationBar.bounds.size.width)! - 95
+            let y = (self.navigationController?.navigationBar.bounds.size.height)!
+            viewWithTopButtons.frame = CGRect(origin:CGPoint(x: x, y: y/2-10), size: CGSize(width: 90.0, height: 30.0))
+            
+            // viewWithTopButtons.backgroundColor = UIColor.redColor()
+            btnInfo.tag = 0
+            btnInfo.frame = CGRect(origin:CGPoint(x: 0.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
+            
+            // btnInfo.backgroundColor = UIColor.greenColor()
+            btnInfo.setImage(UIImage(named: "ic_info2.png"), forState: .Normal)
+            btnInfo.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
+            
+            btnGallery.tag = 1
+            btnGallery.frame = CGRect(origin:CGPoint(x: 30.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
+            
+            // btnGallery.backgroundColor = UIColor.grayColor()
+            btnGallery.setImage(UIImage(named: "ic_gellary.png"), forState: .Normal)
+            btnGallery.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
+            
+            btnLive.tag = 2
+            btnLive.frame = CGRect(origin:CGPoint(x: 60.0, y: 0.0), size: CGSize(width: 20.0, height: 20.0))
+            // btnLive.backgroundColor = UIColor.yellowColor()
+            btnLive.setImage(UIImage(named: "ic_coupon_menu1.png"), forState: .Normal)
+            btnLive.addTarget(self, action: #selector(ProviderInfoVC.topMenu(_:)), forControlEvents: .TouchUpInside)
+            
+//            print("-----setViewWihtTopButton-----")
+//            var nn = 0
+//            for _vv in viewWithTopButtons.subviews {
+//                nn = nn + 1
+//                print("\(nn)")
+//                print(_vv)
+//                print("-----------------")
+//            }
+            
+            viewWithTopButtons.addSubview(btnInfo)
+            viewWithTopButtons.addSubview(btnGallery)
+            viewWithTopButtons.addSubview(btnLive)
+            
+        }
         
     }
     func initialInfoVC(){

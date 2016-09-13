@@ -19,7 +19,14 @@ import RealmSwift
 
 
 
-
+extension String {
+    public func indexOfCharacter(char: Character) -> Int? {
+        if let idx = self.characters.indexOf(char) {
+            return self.startIndex.distanceTo(idx)
+        }
+        return nil
+    }
+}
 
 extension String {
     var length: Int {

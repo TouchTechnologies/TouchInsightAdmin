@@ -645,6 +645,7 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         print("viewWillDisappear")
         unsetTimer()
         self.appDelegate.viewWithTopButtons.hidden = true
+        self.navigationController?.navigationBarHidden = true
         
     }
     

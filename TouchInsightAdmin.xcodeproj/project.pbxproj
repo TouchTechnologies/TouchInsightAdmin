@@ -262,9 +262,6 @@
 		23B71628A3E6AF4BCEADBC10 /* Pods-TouchInsightAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests.release.xcconfig"; sourceTree = "<group>"; };
 		2F85F983B1A69289714ED14B /* Pods_TouchInsightAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouchInsightAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3333AC64BD9D41ACA5321FA7 /* Pods-TouchInsightAdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouchInsightAdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TouchInsightAdminUITests/Pods-TouchInsightAdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		361C9A771C0833B30062BE11 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
-		361C9A7B1C08342B0062BE11 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		361C9A7D1C0834690062BE11 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3621BC711C06BA3D0051E850 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3621BC731C06DC2A0051E850 /* API_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_Model.swift; sourceTree = "<group>"; };
 		366CBBDD1C07F6A200484DA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -593,16 +590,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		366CBBF41C08012500484DA5 /* FBSDK */ = {
-			isa = PBXGroup;
-			children = (
-				361C9A7D1C0834690062BE11 /* FBSDKCoreKit.framework */,
-				361C9A7B1C08342B0062BE11 /* FBSDKLoginKit.framework */,
-				361C9A771C0833B30062BE11 /* FBSDKShareKit.framework */,
-			);
-			name = FBSDK;
-			sourceTree = "<group>";
-		};
 		36AB49C81C3CED270078A936 /* MapAnnotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,7 +673,6 @@
 				3BA7A08D1D715BFF00C5C119 /* KMPlaceholderTextView.swift */,
 				36AB49C81C3CED270078A936 /* MapAnnotation */,
 				F3627FE81C2BACC7006BC607 /* PopupMenu */,
-				366CBBF41C08012500484DA5 /* FBSDK */,
 				36DC41431C05CB1E001B8E22 /* API */,
 				36DC412A1C05C6E3001B8E22 /* JobTextFieldxxx.swift */,
 				36DC41261C05C667001B8E22 /* DeviceDetail.swift */,

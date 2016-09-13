@@ -12,6 +12,7 @@ import QRCodeReader
 
 class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
 
+    @IBOutlet weak var lblShowQR: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,7 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
             
             reader.completionBlock = { (result: QRCodeReaderResult?) in
                 if let result = result {
+                    self.lblShowQR.text = result.value
                     print("Completion with result: \(result.value) of type \(result.metadataType)")
                 }
             }
@@ -72,14 +74,21 @@ class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
     // MARK: - QRCodeReader Delegate Methods
     func reader(reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         self.dismissViewControllerAnimated(true) { [weak self] in
-            let alert = UIAlertController(
-                title: "QRCodeReader",
-                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
-                preferredStyle: .Alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             
-            self?.presentViewController(alert, animated: true, completion: nil)
+            self!.lblShowQR.text = result.value
+
+//            self!.lblShowQR.text = result.value
+//            
+//            let alert = UIAlertController(
+//                title: "QRCodeReader",
+//                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
+//                preferredStyle: .Alert
+//            )
+//            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+//            
+//            self?.presentViewController(alert, animated: true, completion: nil)
+            
+            
         }
     }
     

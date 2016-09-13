@@ -779,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPd-NR-vON" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219" y="2261"/>
+            <point key="canvasLocation" x="-31" y="2245"/>
         </scene>
         <!--Information-->
         <scene sceneID="Ncc-8K-6Jp">
@@ -2006,7 +2006,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fTg-AY-ZuI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FaU-sV-RHJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="testssss" automaticallyAdjustsScrollViewInsets="NO" id="FaU-sV-RHJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yGw-DS-5BU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2296,7 +2296,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z9t-l5-vrq">
                                 <rect key="frame" x="139" y="414" width="97" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" title="Scan">
@@ -2320,6 +2320,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="lblShowQR" destination="Bdo-8A-4BU" id="Mow-aq-rTu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohg-tg-Hyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -6244,7 +6247,7 @@
         <!--Navigation Controller-->
         <scene sceneID="KP1-Pb-UOE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GGO-nO-KEI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NVQRScanVC" automaticallyAdjustsScrollViewInsets="NO" id="GGO-nO-KEI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="daN-Jt-CDC">

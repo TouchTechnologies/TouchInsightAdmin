@@ -240,6 +240,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
             SVProgressHUD.setDefaultStyle(.Dark)
             SVProgressHUD.show()
             
+            
             let sendData = [
                 "providerId": dicProvider["provider_id"]!,
                 "coupongroupNameEn": txtCouponName.text!,
@@ -255,10 +256,10 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
                 "coupongroupValue": couponDiscountType == "cash" ? txtDisCash.text! : txtDisPercent.text!,
                 "coupongroupType": String(couponDiscountType),
                 //"limitUseTime": "", // optional
-                "startDate": (txtDateStart.text! == "") ? strCurDate : txtDateStart.text!, // 2016-02-16
-                "endDate": (txtDateEnd.text! == "") ? strCurDate :  txtDateEnd.text!, // 2016-02-16
-                "startPromotionDate": (txtUseStart.text! == "") ? strCurDate : txtUseStart.text!, // 2016-02-16
-                "endPromotionDate": (txtUseEnd.text! == "") ? strCurDate : txtUseEnd.text!, // 2016-02-16
+                "startDate": (txtDateStart.text! == "") ? checkDateTimezone(strCurDate) : checkDateTimezone(txtDateStart.text!), // 2016-02-16
+                "endDate": (txtDateEnd.text! == "") ? checkDateTimezone(strCurDate) :  checkDateTimezone(txtDateEnd.text!), // 2016-02-16
+                "startPromotionDate": (txtUseStart.text! == "") ? checkDateTimezone(strCurDate) : checkDateTimezone(txtUseStart.text!), // 2016-02-16
+                "endPromotionDate": (txtUseEnd.text! == "") ? checkDateTimezone(strCurDate) : checkDateTimezone(txtUseEnd.text!), // 2016-02-16
                 "coupongroupLimit": txtCouponCount.text!,
                 "coupongroupPrefix": txtPrefixCode.text!,// optional
                 "contactEmail": txtContactEmail.text!,// optional
@@ -384,6 +385,36 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         
     }
     
+    func checkDateTimezone(strDate:String) -> String {
+        var returnData = strDate
+        
+//        
+//        let haystack: String = "Hello World"
+//        let i: Int32 = haystack.rangeOfString("Wo").location
+        
+        if strDate.indexOfCharacter("/") > 0 {
+            
+            let timeZone: NSTimeZone = NSTimeZone.localTimeZone()
+            let tzName: String = timeZone.name
+            //tzName = Asia/Bangkok
+            print("tzName = \(tzName)")
+            
+            let arrDate = strDate.characters.split{$0 == "/"}.map(String.init)
+            
+            let strDay = arrDate[2]
+            let strMonth = arrDate[1]
+            var strYear = arrDate[0]
+            
+            if(tzName == "Asia/Bangkok"){
+                strYear = String(Int(arrDate[0])! - 543)
+            }
+            
+            returnData = "\(strYear)/\(strMonth)/\(strDay)"
+        
+        }
+        
+        return returnData
+    }
     
     @IBAction func btnOpenLongDesriptionClick(sender: AnyObject) {
         
@@ -589,7 +620,7 @@ class HotelCreateCouponVC: UIViewController,UITextFieldDelegate,UITextViewDelega
         _pkDate.addTarget(self, action: #selector(self.datePickerChanged), forControlEvents: .ValueChanged)
         _pkDate.datePickerMode = UIDatePickerMode.Date
         _pkDate.locale = NSLocale(localeIdentifier: "TH")
-        
+        //_pkDate.timeZone = NSTimeZone(name: "UTC")
         _viewPickerBox.addSubview(_pkDate)
         
     }

@@ -935,7 +935,7 @@ class API_Model {
                 }
                 
                 //print("Success")
-            }else{ // ไม่มี else เพราะมีค่าเริ่มต้นอยู่แล้ว
+            }else{
                 
                 returnData = [
                     "success":false,
