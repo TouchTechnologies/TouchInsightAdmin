@@ -15,14 +15,13 @@ import RealmSwift
 //import CoreLocation
 class API_Model {
     
-//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
-    
-    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
-    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
-    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
+//    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
+//    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
+//    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
     
     
 //    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
@@ -1588,6 +1587,8 @@ class API_Model {
                 var arrReturnCoupon = [[String : AnyObject]]()
                 if response.result.isSuccess
                 {
+                    print("response.result.value")
+                    print(response.result.value)
                     //                print("response : : : \(response.result.value as! NSArray)")
                     if let arrJson = response.result.value as! NSArray? {
                         

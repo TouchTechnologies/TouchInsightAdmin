@@ -10,16 +10,20 @@ import UIKit
 import AVFoundation
 import QRCodeReader
 
-class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate {
+class QRScanVC: UIViewController, QRCodeReaderViewControllerDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var lblShowQR: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
     }
     
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)

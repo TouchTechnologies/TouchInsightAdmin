@@ -453,7 +453,6 @@ class MainVC: UIViewController,UINavigationControllerDelegate, UIGestureRecogniz
         
         //        let dataJson = "{\"providerUser\":\"\(appDelegate.userInfo["email"]!)\"}"
         
-        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewDidAppear(animated: Bool) {

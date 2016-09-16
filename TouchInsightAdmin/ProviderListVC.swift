@@ -638,19 +638,20 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
     
     override func viewDidAppear(animated: Bool) {
         self.appDelegate.menuFocusIndexOnBack = 0
-        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
     }
     
     override func viewWillDisappear(animated: Bool) {
         print("viewWillDisappear")
         unsetTimer()
         self.appDelegate.viewWithTopButtons.hidden = true
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
     
     override func viewWillAppear(animated: Bool) {
         
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         SVProgressHUD.setDefaultStyle(.Dark)
         
@@ -659,7 +660,6 @@ class ProviderListVC:UIViewController, UIScrollViewDelegate, UITableViewDelegate
         //self.initialAlert()
         
         
-        self.navigationController?.navigationBarHidden = false
         
     }
     

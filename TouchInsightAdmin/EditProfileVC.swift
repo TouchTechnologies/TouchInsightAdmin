@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import SVProgressHUD
 
-class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet var txtFirstName: UITextField!
     
@@ -98,6 +98,13 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
         txtMobile.text = appDelegate.userInfo["mobile"]
         txtEmail.text = appDelegate.userInfo["email"]
         
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditProfileVC.dismissKeyboard))
+        tap.delegate = self
+        tap.cancelsTouchesInView = true
+        self.view!.addGestureRecognizer(tap)
+        
+        
         if let avatar = self.appDelegate.userInfo["avatarImage"] {
             print("has avatar : \(self.appDelegate.userInfo["avatarImage"])")
             //ProfileImg.image = UIImage(data:NSData(contentsOfURL:NSURL(string:avatar)!)!)
@@ -111,6 +118,10 @@ class EditProfileVC: UIViewController , UITextFieldDelegate,UIImagePickerControl
         //        print(appDelegate.userInfo["mobile"])
         
         // Do any additional setup after loading the view.
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {

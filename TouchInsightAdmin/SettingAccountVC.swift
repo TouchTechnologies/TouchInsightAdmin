@@ -21,7 +21,7 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     
     @IBAction func btnBacktoMain(sender: AnyObject) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -93,13 +93,12 @@ class SettingAccountVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     }
     override func viewWillAppear(animated: Bool) {
         
+        if let indexPath = self.tableview.indexPathForSelectedRow as NSIndexPath?{
+            self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
+        }
 //        self.navigationController?.navigationBar.tintColor = UIColor.greenColor()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        if let indexPath = self.tableview.indexPathForSelectedRow as NSIndexPath?{
-            
-            self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
