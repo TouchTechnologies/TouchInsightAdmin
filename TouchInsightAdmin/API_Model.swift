@@ -24,7 +24,7 @@ class API_Model {
 //    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
     
     
-//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+//    let _apiUrl = "http://27.254.47.203:8094/backend_api/interface/insight/"
 //    let _oldapiUrl = "http://27.254.47.203:8094/backend_api/interface/insight"
 //    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
@@ -1515,7 +1515,7 @@ class API_Model {
             }
         } catch {
             // failure
-            print("Fetch failed: \((error as! NSError).localizedDescription)")
+            print("Fetch failed: \((error as NSError).localizedDescription)")
             //            return "{\"status\":}"
         }
         

@@ -372,6 +372,8 @@
 		3B4394691D3CDACA005B4E6C /* MemberData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberData.swift; path = Model/MemberData.swift; sourceTree = "<group>"; };
 		3B43946B1D3CE12D005B4E6C /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		3B9B32BE1D8CF741002A9A36 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/ObjectMapper/ObjectMapper.framework"; sourceTree = "<group>"; };
+		3B9B32C21D8CF91A002A9A36 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = "../../../Library/Developer/Xcode/DerivedData/TouchInsightAdmin-cpsqhawlcgxoxsedeevictzkmayq/Build/Products/Debug-iphonesimulator/AlamofireObjectMapper/AlamofireObjectMapper.framework"; sourceTree = "<group>"; };
 		3BA7A0851D6D4BD900C5C119 /* appExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appExtension.swift; sourceTree = "<group>"; };
 		3BA7A0871D6D576800C5C119 /* ic_coupon_menu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_coupon_menu1.png; sourceTree = "<group>"; };
 		3BA7A0881D6D576800C5C119 /* ic_coupon_menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_coupon_menu2.png; sourceTree = "<group>"; };
@@ -912,6 +914,8 @@
 		7ECF8A2867ED54DC2E6CC22F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B9B32C21D8CF91A002A9A36 /* AlamofireObjectMapper.framework */,
+				3B9B32BE1D8CF741002A9A36 /* ObjectMapper.framework */,
 				3BA7A08B1D701C3700C5C119 /* SVProgressHUD.framework */,
 				3B43946B1D3CE12D005B4E6C /* Realm.framework */,
 				3B43946C1D3CE12D005B4E6C /* RealmSwift.framework */,
@@ -1129,8 +1133,6 @@
 				3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */,
 				5FDDBFD69044B021B2268B8B /* [CP] Copy Pods Resources */,
 				F369AA9B1D2E3E730025FAB7 /* Fabric Script */,
-				3BBCD7311D45FBA000892372 /* Run Script ServiceAccount.json */,
-				3BF01C3B1D583D9B00323342 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1395,33 +1397,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TouchInsightAdminTests/Pods-TouchInsightAdminTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		3BBCD7311D45FBA000892372 /* Run Script ServiceAccount.json */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script ServiceAccount.json";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=Path/To/ServiceAccount.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:my:app:id\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
-		};
-		3BF01C3B1D583D9B00323342 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "./Pods/FirebaseCrash/batch-upload FFF5435E-EE96-3CA2-94E7-E8B37CD01C2C";
 		};
 		3D16B718CA97CEF1E21D8C6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

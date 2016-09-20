@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/LoginVC.swift"
-            timestampString = "495454186.914034"
+            timestampString = "496038913.369254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "570"
-            endingLineNumber = "570"
+            startingLineNumber = "610"
+            endingLineNumber = "610"
             landmarkName = "loginFB()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/LoginVC.swift"
-            timestampString = "495454186.914034"
+            timestampString = "496038913.369254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "577"
-            endingLineNumber = "577"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
             landmarkName = "loginFB()"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,13 +42,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouchInsightAdmin/LoginVC.swift"
-            timestampString = "495454186.914034"
+            timestampString = "496038913.369254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "663"
-            endingLineNumber = "663"
+            startingLineNumber = "703"
+            endingLineNumber = "703"
             landmarkName = "loginFB()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TouchInsightAdmin.LoginVC.(loginFB () -&gt; ()).(closure #1).(closure #1).(closure #1).(closure #2)"
+                  moduleName = "TouchInsightAdmin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Touch/Documents/TouchWork/TouchInsightAdmin/TouchInsightAdmin/LoginVC.swift"
+                  timestampString = "496038914.690942"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "704"
+                  endingLineNumber = "704"
+                  offsetFromSymbolStart = "2364">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TouchInsightAdmin.LoginVC.(loginFB () -&gt; ()).(closure #1).(closure #1).(closure #1).(closure #2)"
+                  moduleName = "TouchInsightAdmin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Touch/Documents/TouchWork/TouchInsightAdmin/TouchInsightAdmin/LoginVC.swift"
+                  timestampString = "496038914.69121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "704"
+                  endingLineNumber = "704"
+                  offsetFromSymbolStart = "3108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

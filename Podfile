@@ -42,9 +42,9 @@ pod 'RealmSwift'
 
 pod 'SwiftyJSON'
 
-#Firebase
-pod 'Firebase'
-pod 'Firebase/Crash'
+##Firebase
+#pod 'Firebase'
+#pod 'Firebase/Crash'
 
 pod 'Bolts'
 pod 'FBSDKCoreKit'
@@ -53,6 +53,8 @@ pod 'FBSDKLoginKit'
 
 pod 'SVProgressHUD'
 pod 'FontAwesome.swift'
+
+#pod 'AlamofireObjectMapper', '~> 3.0'
 
 target 'TouchInsightAdmin' do
 

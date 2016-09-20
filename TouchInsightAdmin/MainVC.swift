@@ -9,8 +9,8 @@
 import UIKit
 //import PKHUD
 import SCLAlertView
-import Firebase
-import FirebaseCrash
+//import Firebase
+//import FirebaseCrash
 import SVProgressHUD
 
 class MainVC: UIViewController,UINavigationControllerDelegate, UIGestureRecognizerDelegate{

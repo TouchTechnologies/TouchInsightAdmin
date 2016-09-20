@@ -19,8 +19,6 @@ import RNCryptor
 //import PKHUD
 import SVProgressHUD
 
-import Firebase
-import FirebaseCrash
 
 import FBSDKCoreKit
 //import FBSDKShareKit
@@ -120,69 +118,56 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
         SVProgressHUD.setDefaultStyle(.Dark)
         //        SVProgressHUD.setDefaultStyle(.Light)
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
-        SVProgressHUD.show()
     }
     
     override func viewDidAppear(animated: Bool) {
         
         print("- - - - - - - - viewDidLoad - - - - - - - - - - -")
-        let rMember = rmm.MemberData_IsExists()
-        if((rMember["status"] as! Bool) == true){
-            
-            
-            print("- - YES - -")
-            let mData = rMember["data"]!
-            let _accessToken = mData["accessToken"]! as! String
-            print(_accessToken)
-            print(mData)
-            
-            if(_accessToken != ""){
-                
-                rmm.MemberData_Fetch_RealmToLocal()
-                
-//                self.appDelegate.userInfo["id"] = (mData["id"]! as! String)
-//                self.appDelegate.userInfo["userID"] = (mData["userID"]! as! String)
-//                self.appDelegate.userInfo["avatarImage"] = (mData["avatarImage"]! as! String)
-//                self.appDelegate.userInfo["firstName"] = (mData["firstName"]! as! String)
-//                self.appDelegate.userInfo["lastName"] = (mData["lastName"]! as! String)
-//                self.appDelegate.userInfo["profileName"] = (mData["profileName"]! as! String)
-//                self.appDelegate.userInfo["mobile"] = (mData["mobile"]! as! String)
-//                self.appDelegate.userInfo["email"] = (mData["email"]! as! String)
-//                self.appDelegate.userInfo["username"] = (mData["username"]! as! String)
-//                self.appDelegate.userInfo["passWord"] = (mData["passWord"]! as! String)
-//                self.appDelegate.userInfo["accessToken"] = (mData["accessToken"]! as! String)
-                
-                //                print("- - accessToken YES - -")
-                //                self.send.checkToken(mData as! Object, completionHandler: {strToken in
-                //
-                //                    let _tk = strToken
-                //
-                //                    print("- - strToken - -")
-                //                    print(_tk)
-                //                    print(strToken)
-                //                    print("- - - - - - - - - -")
-                //
-                //                })
-                self.appDelegate.isLogin = true
-                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
-                self.navigationController?.pushViewController(secondViewController!, animated: true)
-                
-                return
-                
-            }else{
-                // Display Login Page
-                print("- - accessToken NO - -")
-                SVProgressHUD.dismiss()
-            }
-            
-        }else{
-            SVProgressHUD.dismiss()
-            print("- - NO - -")
-            // Display Login Page
-            let mData = rMember["data"]! as! [String:AnyObject]
-            print(mData)
-        }
-        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+        
+//        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+//        dispatch_async(queue) { () -> Void in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//            })
+//            
+//        }
+
+        
+        
+//        let rMember = rmm.MemberData_IsExists()
+//        if((rMember["status"] as! Bool) == true){
+//            
+//            print("- - YES - -")
+//            let mData = rMember["data"]!
+//            let _accessToken = mData["accessToken"]! as! String
+//            print(_accessToken)
+//            print(mData)
+//            
+//            if(_accessToken != ""){
+//                
+//                rmm.MemberData_Fetch_RealmToLocal()
+//                
+//                self.appDelegate.isLogin = true
+//                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+//                self.navigationController?.pushViewController(secondViewController!, animated: true)
+//                
+//                return
+//                
+//            }else{
+//                // Display Login Page
+//                print("- - accessToken NO - -")
+//                SVProgressHUD.dismiss()
+//            }
+//            
+//        }else{
+//            SVProgressHUD.dismiss()
+//            print("- - NO - -")
+//            // Display Login Page
+//            let mData = rMember["data"]! as! [String:AnyObject]
+//            print(mData)
+//        }
+//        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         
         
 
@@ -191,6 +176,9 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
         
         //navigationController?.interactivePopGestureRecognizer?.delegate = self
         
@@ -278,7 +266,57 @@ class LoginVC: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate,U
          ***/
         
         
-        // Do any additional setup after loading the view.
+        
+        
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+        
+//        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+//        dispatch_async(queue) { () -> Void in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//            })
+//
+//        }
+        SVProgressHUD.show()
+        
+        let rMember = rmm.MemberData_IsExists()
+        if((rMember["status"] as! Bool) == true){
+            
+            print("- - YES - -")
+            let mData = rMember["data"]!
+            let _accessToken = mData["accessToken"]! as! String
+            print(_accessToken)
+            print(mData)
+            
+            if(_accessToken != ""){
+                
+                rmm.MemberData_Fetch_RealmToLocal()
+                
+                self.appDelegate.isLogin = true
+                let secondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MainVC")
+                self.navigationController?.pushViewController(secondViewController!, animated: true)
+                
+                
+            }else{
+                // Display Login Page
+                print("- - accessToken NO - -")
+                SVProgressHUD.dismiss()
+            }
+            
+        }else{
+            SVProgressHUD.dismiss()
+            print("- - NO - -")
+            // Display Login Page
+            let mData = rMember["data"]! as! [String:AnyObject]
+            print(mData)
+        }
+        
+        
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.

@@ -11,7 +11,7 @@ import FBSDKCoreKit
 import Foundation
 import Fabric
 import Crashlytics
-import Firebase
+
 import RealmSwift
 
 let uiRealm = try! Realm()
@@ -205,7 +205,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         Fabric.with([Crashlytics.self])
         
-        FIRApp.configure()
         
         self.getMemberData()
         
