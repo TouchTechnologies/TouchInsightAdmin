@@ -15,13 +15,13 @@ import RealmSwift
 //import CoreLocation
 class API_Model {
     
-    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
-    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
-    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
+//    let _apiUrl = "http://partner.seeitlivethailand.com/api/v1/"
+//    let _oldapiUrl = "http://api.touch-ics.com/2.2/interface/insight"
+//    let _uploadAPI = "http://api.touch-ics.com/2.2/uploadmedia/"
     
-//    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
-//    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
-//    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
+    let _apiUrl = "http://192.168.1.118/framework/public/api/v1/"
+    let _oldapiUrl = "http://192.168.1.118/api/interface/insight"
+    let _uploadAPI = "http://192.168.1.118/api/uploadmedia/"
     
     
 //    let _apiUrl = "http://27.254.47.203:8094/backend_api/interface/insight/"
@@ -1764,4 +1764,68 @@ class API_Model {
 //            return (mutableRequest, nil)
 //        }))
     }
+    
+    
+    func uploadFileCouponImage(data:[String:AnyObject],image:UIImage,completionHandler:Bool->()){
+        
+        //let couponID = (data["id"]!).stringValue
+        let providerID = String(data["providerID"]!)
+        let couponID = String(data["couponID"]!)
+        let imgData = image
+        
+        //let base64String = String(FileMan().resizeImage((data["image"]! as! UIImage), maxSize: 500).toBase64())
+        
+        //        let reqUrl = "\(_apiUrl)coupon-groups/\(couponID)/banners?encoding=base64"
+        //        var data = [String:AnyObject]()
+        
+        //print("id header = \(data["id"]!)")
+        //print("id data = \(data["id"]!)")
+        //print("reqUrlUploadImage = \(reqUrl)")
+        
+        let headers = [
+            "Content-Type":"image/png",
+            ]
+        
+        //let base64String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        //let imgData = UIImage(named: "icon-2.png")!
+        //let base64String = imgData.toBase64()
+        let base64String = String(FileMan().resizeImage(imgData, maxSize: 500).toBase64())
+        //let imgData = UIImagePNGRepresentation(FileMan().resizeImage(imgData, maxSize: 500))
+        
+        let imgName = "\(randomStringWithLength(10)).png"
+        let resUpload = "\(_apiUrl)files/hotel/\(providerID)/coupon/\(couponID)/\(imgName)?encoding=base64"
+        print("resUpload : \(resUpload)")
+        
+        let URL = NSURL(string: resUpload)!
+        
+        Alamofire.request(.POST, URL, parameters: [:], encoding: .Custom({
+            (convertible, params) in
+            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+            mutableRequest.HTTPBody = base64String.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            let returnData:Bool = true
+            completionHandler(returnData)
+            return (mutableRequest, nil)
+        }), headers: headers)
+        
+    }
+    
+    func randomStringWithLength (len : Int) -> NSString {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyz0123456789"
+        
+        var randomString : NSMutableString = NSMutableString(capacity: len)
+        if(len>0){
+            for (_) in 0...len{
+                let length = UInt32 (letters.length)
+                let rand = arc4random_uniform(length)
+                randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+            }
+        }else{
+            randomString = "x"
+        }
+        
+        return randomString
+    }
+    
+    
 }
